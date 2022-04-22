@@ -1,4 +1,4 @@
-# QTinkoff-invest
+# QTinkoffInvest
 Qt client for Tinkoff invest API
 
 # OpenAPI SDK для Qt

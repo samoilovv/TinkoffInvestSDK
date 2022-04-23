@@ -33,24 +33,9 @@ execute_process(
     RESULT_VARIABLE result
     )
 
-#execute_process(
-#    COMMAND "sed -i -- 's/namespace public {/namespace public1 {/g' ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK/*.pb.h ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK/*.pb.cc
-#    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK
-#    RESULT_VARIABLE result
-#    )
-
-#execute_process(
-#    COMMAND "sed -i -- 's/tinkoff::public::/tinkoff::public1::/g' ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK/*.pb.h ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK/*.pb.cc"
-#    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK
-#    RESULT_VARIABLE result
-#    )
-
 if(result EQUAL 0)
     message(STATUS "public keyword has been changed to public1 in all autogen source files")
 endif()
-
-# Include generated *.pb.h files
-#include_directories(${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK)
 
 # hw_grpc_proto
 add_library(hw_grpc_proto
@@ -75,8 +60,6 @@ add_library(${PROJECT_NAME} STATIC
     sandboxservice.cpp
 )
 
-generate_export_header(${PROJECT_NAME})
-
 target_include_directories(${PROJECT_NAME}
     PUBLIC
         ${CMAKE_CURRENT_BINARY_DIR}
@@ -86,8 +69,6 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
     Qt5::Core
-    hevaa::interfaces
-    hevaa::core
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}

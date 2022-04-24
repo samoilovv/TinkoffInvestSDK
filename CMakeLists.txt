@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.11)
 
 project(TinkoffInvestSDK)
 
+include(GenerateExportHeader)
 include(cmake/common.cmake)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
@@ -55,7 +56,7 @@ target_link_libraries(hw_grpc_proto
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
 
-add_library(${PROJECT_NAME} SHARED
+add_library(${PROJECT_NAME} STATIC
     investapiclient.h
     investapiclient.cpp
     customservice.h
@@ -63,6 +64,8 @@ add_library(${PROJECT_NAME} SHARED
     sandboxservice.h
     sandboxservice.cpp
 )
+
+generate_export_header(${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC

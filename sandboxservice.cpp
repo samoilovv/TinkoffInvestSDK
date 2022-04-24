@@ -85,7 +85,6 @@ QString SandboxService::GetSandboxPortfolio()
 {
     ::tinkoff::public1::invest::api::contract::v1::PortfolioRequest request;
     ::tinkoff::public1::invest::api::contract::v1::PortfolioResponse reply;
-    request.set_account_id("4ec8cdd2-2fd9-438a-9767-316fa087cb23");
     Status status = m_sandboxService->GetSandboxPortfolio(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }

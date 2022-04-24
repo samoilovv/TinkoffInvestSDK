@@ -2,6 +2,7 @@
 #define CUSTOMTINKOFFSERVICE_H
 
 #include <QObject>
+#include <QSharedPointer>
 #include <grpcpp/grpcpp.h>
 #include "google/protobuf/message.h"
 
@@ -18,7 +19,8 @@ public:
 protected:
     const QString m_token;
     const QString prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg);
-    inline QSharedPointer<grpc::ClientContext> makeContext();
+    QSharedPointer<grpc::ClientContext> makeContext();
+
 };
 
 #endif // CUSTOMTINKOFFSERVICE_H

@@ -35,10 +35,10 @@ execute_process(
     RESULT_VARIABLE result
     )
 
-if(result EQUAL 0)
+if (result EQUAL 0)
     message(STATUS "public keyword has been changed to public1 in all autogen source files")
 else()
-    message(STATUS "error public-public1 changing, see fix_keywords.sh for more details")
+    message(STATUS "public-public1 chenging error, see fix_keywords.sh for more details")
 endif()
 
 # hw_grpc_proto

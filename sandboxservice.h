@@ -17,17 +17,17 @@ public:
     explicit SandboxService(std::shared_ptr<Channel> channel, const QString &token);
 
 public slots:
-//    QString OpenSandboxAccount();
+    QString OpenSandboxAccount();
     QString GetSandboxAccounts();
-//    QString CloseSandboxAccount();
-//    QString PostSandboxOrder();
-//    QString GetSandboxOrders();
-//    QString CancelSandboxOrder();
-//    QString GetSandboxOrderState();
-//    QString GetSandboxPositions();
-//    QString GetSandboxOperations();
+    QString CloseSandboxAccount();
+    QString PostSandboxOrder();
+    QString GetSandboxOrders();
+    QString CancelSandboxOrder();
+    QString GetSandboxOrderState();
+    QString GetSandboxPositions();
+    QString GetSandboxOperations();
     QString GetSandboxPortfolio();
-//    QString SandboxPayIn();
+    QString SandboxPayIn();
 
 private:
     std::unique_ptr<::tinkoff::public1::invest::api::contract::v1::SandboxService::Stub> m_sandboxService;

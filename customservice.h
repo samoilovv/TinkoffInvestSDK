@@ -16,10 +16,9 @@ public:
     virtual ~CustomService() = default;
 
 protected:
-    ClientContext m_context;
     const QString m_token;
     const QString prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg);
-
+    QSharedPointer<grpc::ClientContext> makeContext();
 };
 
 #endif // CUSTOMTINKOFFSERVICE_H

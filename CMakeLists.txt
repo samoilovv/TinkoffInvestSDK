@@ -4,6 +4,8 @@ project(TinkoffInvestSDK)
 
 include(cmake/common.cmake)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+
 get_filename_component(hw_proto "${CMAKE_CURRENT_SOURCE_DIR}/investAPI/src/docs/contracts/*.proto" ABSOLUTE)
 get_filename_component(hw_proto_path "${hw_proto}" PATH)
 
@@ -51,9 +53,9 @@ target_link_libraries(hw_grpc_proto
   ${_GRPC_GRPCPP}
   ${_PROTOBUF_LIBPROTOBUF})
 
-find_package(Qt5 REQUIRED COMPONENTS Core Sql)
+find_package(Qt5 REQUIRED COMPONENTS Core)
 
-add_library(${PROJECT_NAME} STATIC
+add_library(${PROJECT_NAME} SHARED
     investapiclient.h
     investapiclient.cpp
     customservice.h
@@ -61,8 +63,6 @@ add_library(${PROJECT_NAME} STATIC
     sandboxservice.h
     sandboxservice.cpp
 )
-
-generate_export_header(${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
@@ -73,8 +73,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
     Qt5::Core
-    hevaa::interfaces
-    hevaa::core
+    hw_grpc_proto
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}

@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(SDK)
+project(TinkoffInvestSDK)
 
 include(cmake/common.cmake)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
 get_filename_component(hw_proto "${CMAKE_CURRENT_SOURCE_DIR}/investAPI/src/docs/contracts/*.proto" ABSOLUTE)
 get_filename_component(hw_proto_path "${hw_proto}" PATH)
@@ -35,6 +37,8 @@ execute_process(
 
 if(result EQUAL 0)
     message(STATUS "public keyword has been changed to public1 in all autogen source files")
+else()
+    message(STATUS "error public-public1 changing, see fix_keywords.sh for more details")
 endif()
 
 # hw_grpc_proto
@@ -49,9 +53,9 @@ target_link_libraries(hw_grpc_proto
   ${_GRPC_GRPCPP}
   ${_PROTOBUF_LIBPROTOBUF})
 
-find_package(Qt5 REQUIRED COMPONENTS Core Sql)
+find_package(Qt5 REQUIRED COMPONENTS Core)
 
-add_library(${PROJECT_NAME} STATIC
+add_library(${PROJECT_NAME} SHARED
     investapiclient.h
     investapiclient.cpp
     customservice.h
@@ -69,6 +73,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
     Qt5::Core
+    hw_grpc_proto
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}

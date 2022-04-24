@@ -11,10 +11,10 @@ const QString CustomService::prepareServiceAnswer(const Status &status, const go
     return status.ok() ? QString::fromStdString(protoMsg.DebugString()) : "RPC failed";
 }
 
-grpc::ClientContext CustomService::makeContext()
+inline QSharedPointer<grpc::ClientContext> CustomService::makeContext()
 {
-    grpc::ClientContext context;
+    QSharedPointer<grpc::ClientContext> context;
     QString meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value.toStdString());
+    context.get()->AddMetadata("authorization", meta_value.toStdString());
     return context;
 }

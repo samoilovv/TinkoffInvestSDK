@@ -18,7 +18,7 @@ public:
 protected:
     const QString m_token;
     const QString prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg);
-    ClientContext makeContext();
+    inline QSharedPointer<grpc::ClientContext> makeContext();
 };
 
 #endif // CUSTOMTINKOFFSERVICE_H

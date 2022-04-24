@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(SDK)
+project(TinkoffInvestSDK)
 
 include(cmake/common.cmake)
 
@@ -33,24 +33,11 @@ execute_process(
     RESULT_VARIABLE result
     )
 
-#execute_process(
-#    COMMAND "sed -i -- 's/namespace public {/namespace public1 {/g' ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK/*.pb.h ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK/*.pb.cc
-#    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK
-#    RESULT_VARIABLE result
-#    )
-
-#execute_process(
-#    COMMAND "sed -i -- 's/tinkoff::public::/tinkoff::public1::/g' ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK/*.pb.h ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK/*.pb.cc"
-#    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK
-#    RESULT_VARIABLE result
-#    )
-
-if(result EQUAL 0)
+if (result EQUAL 0)
     message(STATUS "public keyword has been changed to public1 in all autogen source files")
+else()
+    message(STATUS "public-public1 chenging error, see fix_keywords.sh for more details")
 endif()
-
-# Include generated *.pb.h files
-#include_directories(${CMAKE_BINARY_DIR}/src/plugins/tinkoffInvest/SDK)
 
 # hw_grpc_proto
 add_library(hw_grpc_proto

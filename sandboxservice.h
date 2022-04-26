@@ -8,13 +8,13 @@
 
 using grpc::Channel;
 
-class SandboxService : public CustomService
+class Sandbox: public CustomService
 {
     Q_OBJECT
     Q_CLASSINFO("sandbox", "Sandbox Service")
 
 public:  
-    explicit SandboxService(std::shared_ptr<Channel> channel, const QString &token);
+    explicit Sandbox(std::shared_ptr<Channel> channel, const QString &token);
 
 public slots:
     QString OpenSandboxAccount();

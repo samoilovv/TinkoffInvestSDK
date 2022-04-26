@@ -3,14 +3,13 @@
 #include <QMetaMethod>
 #include <QVariant>
 #include <QSharedPointer>
-
 #include "investapiclient.h"
 #include "sandboxservice.h" 
 
 InvestApiClient::InvestApiClient(const QString &host, const QString &pass) :
     CustomApiClient(pass)
 {
-    m_services["sandbox"] = QSharedPointer<SandboxService>::create(grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
+    m_services["sandbox"] = QSharedPointer<Sandbox>::create(grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
 }
 
 QVector<QVariant> InvestApiClient::getServiceMethods(const QString &serviceName)
@@ -37,4 +36,5 @@ CustomApiClient::CustomApiClient(const QString &token)
 {
     QString meta_value = "Bearer " + token;
     context.AddMetadata("authorization", meta_value.toStdString());
+    context.AddMetadata("x-app-name", "samoilovv/TinkoffInvestBot");
 }

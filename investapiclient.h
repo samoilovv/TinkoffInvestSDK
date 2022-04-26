@@ -18,24 +18,21 @@ using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 
-class CustomApiClient : public QObject {
+//class CustomApiClient : public QObject {
 
-    Q_OBJECT
+//    Q_OBJECT
 
-public:
-    CustomApiClient(const QString &token);
+//public:
+//    CustomApiClient(const QString &token);
 
-protected:
-    ClientContext context;
-};
+//};
 
-class InvestApiClient : public CustomApiClient {
+class InvestApiClient : public QObject {
 
   Q_OBJECT
 
 public:
 
-    //explicit InvestApiClient(std::shared_ptr<Channel> channel, const std::string& token);
     explicit InvestApiClient(const QString &host, const QString &pass);
     QVector<QVariant> getServiceMethods(const QString &serviceName);
     QSharedPointer<CustomService> service(const QString &serviceName);

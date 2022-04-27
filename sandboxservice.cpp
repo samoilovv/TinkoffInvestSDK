@@ -1,7 +1,5 @@
 #include "sandboxservice.h"
 
-using namespace tinkoff::public1::invest::api::contract::v1;
-
 Sandbox::Sandbox(std::shared_ptr<grpc::Channel> channel, const QString &token) :
     CustomService(token),
     m_sandboxService(tinkoff::public1::invest::api::contract::v1::SandboxService::NewStub(channel))

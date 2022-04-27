@@ -7,25 +7,13 @@
 #include <QVector>
 #include <QVariant>
 #include <QSharedPointer>
-
-#include "customservice.h"
 #include <grpcpp/grpcpp.h>
 #include "sandbox.grpc.pb.h"
-
 #include "sandboxservice.h"
 
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
-
-//class CustomApiClient : public QObject {
-
-//    Q_OBJECT
-
-//public:
-//    CustomApiClient(const QString &token);
-
-//};
 
 class InvestApiClient : public QObject {
 

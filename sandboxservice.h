@@ -7,6 +7,7 @@
 #include "sandbox.grpc.pb.h"
 
 using grpc::Channel;
+using namespace tinkoff::public1::invest::api::contract::v1;
 
 class Sandbox: public CustomService
 {
@@ -30,7 +31,7 @@ public slots:
     QString SandboxPayIn();
 
 private:
-    std::unique_ptr<::tinkoff::public1::invest::api::contract::v1::SandboxService::Stub> m_sandboxService;
+    std::unique_ptr<SandboxService::Stub> m_sandboxService;
 };
 
 #endif // SANDBOXSERVICE_H

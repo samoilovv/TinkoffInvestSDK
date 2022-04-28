@@ -56,7 +56,9 @@ target_link_libraries(hw_grpc_proto
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
 
-add_library(${PROJECT_NAME} STATIC
+add_library(${PROJECT_NAME} SHARED
+    servicereply.h
+    servicereply.cpp
     investapiclient.h
     investapiclient.cpp
     customservice.h

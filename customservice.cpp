@@ -5,9 +5,23 @@ CustomService::CustomService(const QString &token) : m_token(token)
 
 }
 
-const QString CustomService::prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg)
+const ServiceReply CustomService::prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg)
 {
-    return status.ok() ? QString::fromStdString(protoMsg.DebugString()) : "RPC failed";
+
+
+
+    ServiceReply result(nullptr);
+    return result;
+
+//    ServiceReply result;
+//    if (status.ok())
+//    {
+//        result << QString::fromStdString(protoMsg.DebugString());
+//    } else {
+//        result << "RPC failed";
+//    }
+//    return result;
+//    return status.ok() ? QString::fromStdString(protoMsg.DebugString()) : "RPC failed";
 }
 
 QSharedPointer<grpc::ClientContext> CustomService::makeContext()
@@ -15,5 +29,6 @@ QSharedPointer<grpc::ClientContext> CustomService::makeContext()
     auto context = QSharedPointer<grpc::ClientContext>::create();
     QString meta_value = "Bearer " + m_token;
     context.get()->AddMetadata("authorization", meta_value.toStdString());
+    context.get()->AddMetadata("x-app-name", "samoilovv.TinkoffInvestSDK");
     return context;
 }

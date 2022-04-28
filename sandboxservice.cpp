@@ -1,98 +1,107 @@
 #include "sandboxservice.h"
 
-SandboxService::SandboxService(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+Sandbox::Sandbox(std::shared_ptr<grpc::Channel> channel, const QString &token) :
     CustomService(token),
-    m_sandboxService(tinkoff::public1::invest::api::contract::v1::SandboxService::NewStub(channel))
+    m_sandboxService(SandboxService::NewStub(channel))
 {
 
 }
 
-QString SandboxService::OpenSandboxAccount()
+ServiceReply Sandbox::OpenSandboxAccount()
 {
-    ::tinkoff::public1::invest::api::contract::v1::OpenSandboxAccountRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::OpenSandboxAccountResponse reply;
+    OpenSandboxAccountRequest request;
+    OpenSandboxAccountResponse reply;
     Status status = m_sandboxService->OpenSandboxAccount(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::GetSandboxAccounts()
+ServiceReply Sandbox::GetSandboxAccounts()
 {
-    ::tinkoff::public1::invest::api::contract::v1::GetAccountsRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::GetAccountsResponse reply;
+    GetAccountsRequest request;
+    GetAccountsResponse reply;
     Status status = m_sandboxService->GetSandboxAccounts(makeContext().get(), request, &reply);
-    return prepareServiceAnswer(status, reply);
+    ServiceReply result;
+    if (status.ok())
+    {
+        //auto res = std::make_shared<GetAccountsResponse>(new GetAccountsResponse(reply));
+        auto res = std::make_shared<GetAccountsResponse>(reply);
+        ServiceReply result(res);
+        return result;
+    } else {
+        ServiceReply result(nullptr);
+        return result;
+    }
+    //return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::CloseSandboxAccount()
+ServiceReply Sandbox::CloseSandboxAccount()
 {
-    ::tinkoff::public1::invest::api::contract::v1::CloseSandboxAccountRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::CloseSandboxAccountResponse reply;
+    CloseSandboxAccountRequest request;
+    CloseSandboxAccountResponse reply;
     Status status = m_sandboxService->CloseSandboxAccount(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::PostSandboxOrder()
+ServiceReply Sandbox::PostSandboxOrder()
 {
-    ::tinkoff::public1::invest::api::contract::v1::PostOrderRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::PostOrderResponse reply;
+    PostOrderRequest request;
+    PostOrderResponse reply;
     Status status = m_sandboxService->PostSandboxOrder(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::GetSandboxOrders()
+ServiceReply Sandbox::GetSandboxOrders()
 {
-    ::tinkoff::public1::invest::api::contract::v1::GetOrdersRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::GetOrdersResponse reply;
+    GetOrdersRequest request;
+    GetOrdersResponse reply;
     Status status = m_sandboxService->GetSandboxOrders(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::CancelSandboxOrder()
+ServiceReply Sandbox::CancelSandboxOrder()
 {
-    ::tinkoff::public1::invest::api::contract::v1::CancelOrderRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::CancelOrderResponse reply;
+    CancelOrderRequest request;
+    CancelOrderResponse reply;
     Status status = m_sandboxService->CancelSandboxOrder(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::GetSandboxOrderState()
+ServiceReply Sandbox::GetSandboxOrderState()
 {
-//    ::tinkoff::public1::invest::api::contract::v1::GetOrderStateRequest request;
-//    ::tinkoff::public1::invest::api::contract::v1::GetOrderStateResponse reply;
-//    Status status = m_sandboxService->GetSandboxOrderState(makeContext().get(), request, &reply);
-//    return prepareServiceAnswer(status, reply);
-    return "";
+    GetOrderStateRequest request;
+    OrderState reply;
+    Status status = m_sandboxService->GetSandboxOrderState(makeContext().get(), request, &reply);
+    return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::GetSandboxPositions()
+ServiceReply Sandbox::GetSandboxPositions()
 {
-//    ::tinkoff::public1::invest::api::contract::v1::GetPositionsRequest request;
-//    ::tinkoff::public1::invest::api::contract::v1::GetPositionsResponse reply;
-//    Status status = m_sandboxService->GetSandboxAccounts(makeContext().get(), request, &reply);
-//    return prepareServiceAnswer(status, reply);
-    return "";
+    PositionsRequest request;
+    PositionsResponse reply;
+    Status status = m_sandboxService->GetSandboxPositions(makeContext().get(), request, &reply);
+    return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::GetSandboxOperations()
+ServiceReply Sandbox::GetSandboxOperations()
 {
-    ::tinkoff::public1::invest::api::contract::v1::OperationsRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::OperationsResponse reply;
+    OperationsRequest request;
+    OperationsResponse reply;
     Status status = m_sandboxService->GetSandboxOperations(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::GetSandboxPortfolio()
+ServiceReply Sandbox::GetSandboxPortfolio()
 {
-    ::tinkoff::public1::invest::api::contract::v1::PortfolioRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::PortfolioResponse reply;
+    PortfolioRequest request;
+    PortfolioResponse reply;
     Status status = m_sandboxService->GetSandboxPortfolio(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }
 
-QString SandboxService::SandboxPayIn()
+ServiceReply Sandbox::SandboxPayIn()
 {
-    ::tinkoff::public1::invest::api::contract::v1::SandboxPayInRequest request;
-    ::tinkoff::public1::invest::api::contract::v1::SandboxPayInResponse reply;
+    SandboxPayInRequest request;
+    SandboxPayInResponse reply;
     Status status = m_sandboxService->SandboxPayIn(makeContext().get(), request, &reply);
     return prepareServiceAnswer(status, reply);
 }

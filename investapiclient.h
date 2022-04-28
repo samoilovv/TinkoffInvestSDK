@@ -11,11 +11,13 @@
 #include "sandbox.grpc.pb.h"
 #include "sandboxservice.h"
 
+#include "tinkoffinvestsdk_export.h"
+
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 
-class InvestApiClient : public QObject {
+class TINKOFFINVESTSDK_EXPORT InvestApiClient : public QObject {
 
   Q_OBJECT
 
@@ -26,7 +28,6 @@ public:
     QSharedPointer<CustomService> service(const QString &serviceName);
 
 private:
-    std::unique_ptr<::tinkoff::public1::invest::api::contract::v1::SandboxService::Stub> m_sandboxService;
     QMap<QString, QSharedPointer<CustomService>> m_services;
 
 };

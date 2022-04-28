@@ -5,9 +5,23 @@ CustomService::CustomService(const QString &token) : m_token(token)
 
 }
 
-const QString CustomService::prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg)
+const ServiceReply CustomService::prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg)
 {
-    return status.ok() ? QString::fromStdString(protoMsg.DebugString()) : "RPC failed";
+
+
+
+    ServiceReply result(nullptr);
+    return result;
+
+//    ServiceReply result;
+//    if (status.ok())
+//    {
+//        result << QString::fromStdString(protoMsg.DebugString());
+//    } else {
+//        result << "RPC failed";
+//    }
+//    return result;
+//    return status.ok() ? QString::fromStdString(protoMsg.DebugString()) : "RPC failed";
 }
 
 QSharedPointer<grpc::ClientContext> CustomService::makeContext()

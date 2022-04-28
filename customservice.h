@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 #include <grpcpp/grpcpp.h>
 #include "google/protobuf/message.h"
+#include "servicereply.h"
 
 using grpc::ClientContext;
 using grpc::Status;
@@ -18,7 +19,7 @@ public:
 
 protected:
     const QString m_token;
-    const QString prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg);
+    const ServiceReply prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg);
     QSharedPointer<grpc::ClientContext> makeContext();
 
 };

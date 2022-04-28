@@ -2,12 +2,12 @@
 
 Sandbox::Sandbox(std::shared_ptr<grpc::Channel> channel, const QString &token) :
     CustomService(token),
-    m_sandboxService(tinkoff::public1::invest::api::contract::v1::SandboxService::NewStub(channel))
+    m_sandboxService(SandboxService::NewStub(channel))
 {
 
 }
 
-QString Sandbox::OpenSandboxAccount()
+ServiceReply Sandbox::OpenSandboxAccount()
 {
     OpenSandboxAccountRequest request;
     OpenSandboxAccountResponse reply;
@@ -15,15 +15,26 @@ QString Sandbox::OpenSandboxAccount()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::GetSandboxAccounts()
+ServiceReply Sandbox::GetSandboxAccounts()
 {
     GetAccountsRequest request;
     GetAccountsResponse reply;
     Status status = m_sandboxService->GetSandboxAccounts(makeContext().get(), request, &reply);
-    return prepareServiceAnswer(status, reply);
+    ServiceReply result;
+    if (status.ok())
+    {
+        //auto res = std::make_shared<GetAccountsResponse>(new GetAccountsResponse(reply));
+        auto res = std::make_shared<GetAccountsResponse>(reply);
+        ServiceReply result(res);
+        return result;
+    } else {
+        ServiceReply result(nullptr);
+        return result;
+    }
+    //return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::CloseSandboxAccount()
+ServiceReply Sandbox::CloseSandboxAccount()
 {
     CloseSandboxAccountRequest request;
     CloseSandboxAccountResponse reply;
@@ -31,7 +42,7 @@ QString Sandbox::CloseSandboxAccount()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::PostSandboxOrder()
+ServiceReply Sandbox::PostSandboxOrder()
 {
     PostOrderRequest request;
     PostOrderResponse reply;
@@ -39,7 +50,7 @@ QString Sandbox::PostSandboxOrder()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::GetSandboxOrders()
+ServiceReply Sandbox::GetSandboxOrders()
 {
     GetOrdersRequest request;
     GetOrdersResponse reply;
@@ -47,7 +58,7 @@ QString Sandbox::GetSandboxOrders()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::CancelSandboxOrder()
+ServiceReply Sandbox::CancelSandboxOrder()
 {
     CancelOrderRequest request;
     CancelOrderResponse reply;
@@ -55,7 +66,7 @@ QString Sandbox::CancelSandboxOrder()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::GetSandboxOrderState()
+ServiceReply Sandbox::GetSandboxOrderState()
 {
     GetOrderStateRequest request;
     OrderState reply;
@@ -63,7 +74,7 @@ QString Sandbox::GetSandboxOrderState()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::GetSandboxPositions()
+ServiceReply Sandbox::GetSandboxPositions()
 {
     PositionsRequest request;
     PositionsResponse reply;
@@ -71,7 +82,7 @@ QString Sandbox::GetSandboxPositions()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::GetSandboxOperations()
+ServiceReply Sandbox::GetSandboxOperations()
 {
     OperationsRequest request;
     OperationsResponse reply;
@@ -79,7 +90,7 @@ QString Sandbox::GetSandboxOperations()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::GetSandboxPortfolio()
+ServiceReply Sandbox::GetSandboxPortfolio()
 {
     PortfolioRequest request;
     PortfolioResponse reply;
@@ -87,7 +98,7 @@ QString Sandbox::GetSandboxPortfolio()
     return prepareServiceAnswer(status, reply);
 }
 
-QString Sandbox::SandboxPayIn()
+ServiceReply Sandbox::SandboxPayIn()
 {
     SandboxPayInRequest request;
     SandboxPayInResponse reply;

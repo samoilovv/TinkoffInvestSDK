@@ -5,9 +5,11 @@
 #include <QSharedPointer>
 #include "investapiclient.h"
 #include "sandboxservice.h" 
+#include "servicereply.h"
 
 InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
 {
+    qRegisterMetaType<ServiceReply>();
     m_services["sandbox"] = QSharedPointer<Sandbox>::create(grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
 }
 

@@ -39,7 +39,7 @@ execute_process(
 if (result EQUAL 0)
     message(STATUS "public keyword has been changed to public1 in all autogen source files")
 else()
-    message(STATUS "public-public1 chenging error, see fix_keywords.sh for more details")
+    message(STATUS "public-public1 changing error, see fix_keywords.sh for more details")
 endif()
 
 # hw_grpc_proto
@@ -56,7 +56,9 @@ target_link_libraries(hw_grpc_proto
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
 
-add_library(${PROJECT_NAME} STATIC
+add_library(${PROJECT_NAME} SHARED
+    servicereply.h
+    servicereply.cpp
     investapiclient.h
     investapiclient.cpp
     customservice.h

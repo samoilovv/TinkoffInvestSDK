@@ -1,24 +1,24 @@
 #include "customservice.h"
+//#include "sandbox.grpc.pb.h"
 
 CustomService::CustomService(const QString &token) : m_token(token)
 {
 
 }
 
-const ServiceReply CustomService::prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg)
-{
-    ServiceReply result;
-    return result;
-//    ServiceReply result;
+//template<class T>
+//const ServiceReply CustomService::prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg)
+//{
 //    if (status.ok())
 //    {
-//        result << QString::fromStdString(protoMsg.DebugString());
+//        auto res = std::make_shared<T>(protoMsg);
+//        ServiceReply result(res);
+//        return result;
 //    } else {
-//        result << "RPC failed";
+//        ServiceReply result(nullptr);
+//        return result;
 //    }
-//    return result;
-//    return status.ok() ? QString::fromStdString(protoMsg.DebugString()) : "RPC failed";
-}
+//}
 
 QSharedPointer<grpc::ClientContext> CustomService::makeContext()
 {

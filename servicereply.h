@@ -18,7 +18,7 @@ public:
     const std::shared_ptr<google::protobuf::Message> replyPtr();
 
     template<class T>
-    static const ServiceReply prepareServiceAnswer(const Status &status, const T &protoMsg);
+    static const ServiceReply prepareServiceAnswer(const Status &status, const T &protoMsg)
     {
         return (status.ok()) ? ServiceReply(std::make_shared<T>(protoMsg)) : ServiceReply(nullptr);
     }

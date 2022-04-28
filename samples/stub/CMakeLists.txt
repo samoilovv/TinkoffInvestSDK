@@ -17,4 +17,9 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 add_executable(stub
   main.cpp
 )
-target_link_libraries(stub Qt${QT_VERSION_MAJOR}::Core)
+
+target_link_libraries(stub
+    Qt${QT_VERSION_MAJOR}::Core
+    hw_grpc_proto
+    TinkoffInvestSDK
+    )

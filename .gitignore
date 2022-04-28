@@ -13,3 +13,4 @@ _deps
 
 # my settings
 *.autosave
+setenv.sh

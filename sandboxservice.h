@@ -28,7 +28,7 @@ public slots:
     ServiceReply GetSandboxOrderState();
     ServiceReply GetSandboxPositions();
     ServiceReply GetSandboxOperations();
-    ServiceReply GetSandboxPortfolio();
+    ServiceReply GetSandboxPortfolio(QString accountId);
     ServiceReply SandboxPayIn();
 
 private:

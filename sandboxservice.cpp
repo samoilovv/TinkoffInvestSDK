@@ -79,9 +79,10 @@ ServiceReply Sandbox::GetSandboxOperations()
     return ServiceReply::prepareServiceAnswer<OperationsResponse>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxPortfolio()
+ServiceReply Sandbox::GetSandboxPortfolio(QString accountId)
 {
     PortfolioRequest request;
+    request.set_account_id(accountId.toStdString());
     PortfolioResponse reply;
     Status status = m_sandboxService->GetSandboxPortfolio(makeContext().get(), request, &reply);
     return ServiceReply::prepareServiceAnswer<PortfolioResponse>(status, reply);

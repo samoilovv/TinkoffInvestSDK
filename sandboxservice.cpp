@@ -21,17 +21,17 @@ ServiceReply Sandbox::GetSandboxAccounts()
     GetAccountsResponse reply;
     Status status = m_sandboxService->GetSandboxAccounts(makeContext().get(), request, &reply);
     ServiceReply result;
-    if (status.ok())
-    {
-        //auto res = std::make_shared<GetAccountsResponse>(new GetAccountsResponse(reply));
-        auto res = std::make_shared<GetAccountsResponse>(reply);
-        ServiceReply result(res);
-        return result;
-    } else {
-        ServiceReply result(nullptr);
-        return result;
-    }
-    //return prepareServiceAnswer(status, reply);
+//    if (status.ok())
+//    {
+//        //auto res = std::make_shared<GetAccountsResponse>(new GetAccountsResponse(reply));
+//        auto res = std::make_shared<GetAccountsResponse>(reply);
+//        ServiceReply result(res);
+//        return result;
+//    } else {
+//        ServiceReply result(nullptr);
+//        return result;
+//    }
+    return prepareServiceAnswer(status, reply);
 }
 
 ServiceReply Sandbox::CloseSandboxAccount()

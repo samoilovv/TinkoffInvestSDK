@@ -1,6 +1,11 @@
 #include "servicereply.h"
 
-ServiceReply::ServiceReply(const std::shared_ptr<google::protobuf::Message>  &protoMsg) : m_replyPtr(protoMsg)
+ServiceReply::ServiceReply()
+{
+
+}
+
+ServiceReply::ServiceReply(const std::shared_ptr<google::protobuf::Message>  protoMsg) : m_replyPtr(protoMsg)
 {
 
 }

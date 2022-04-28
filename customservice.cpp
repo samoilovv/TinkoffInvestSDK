@@ -7,12 +7,8 @@ CustomService::CustomService(const QString &token) : m_token(token)
 
 const ServiceReply CustomService::prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg)
 {
-
-
-
-    ServiceReply result(nullptr);
+    ServiceReply result;
     return result;
-
 //    ServiceReply result;
 //    if (status.ok())
 //    {

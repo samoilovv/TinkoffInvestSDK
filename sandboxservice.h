@@ -22,14 +22,14 @@ public slots:
     ServiceReply OpenSandboxAccount();
     ServiceReply GetSandboxAccounts();
     ServiceReply CloseSandboxAccount(std::string accountId);
-    ServiceReply PostSandboxOrder();
-    ServiceReply GetSandboxOrders();
-    ServiceReply CancelSandboxOrder();
-    ServiceReply GetSandboxOrderState();
-    ServiceReply GetSandboxPositions();
-    ServiceReply GetSandboxOperations();
+    ServiceReply PostSandboxOrder(std::string figi, int64_t quantity, int64_t units, int32_t nano);
+    ServiceReply GetSandboxOrders(std::string accountId);
+    ServiceReply CancelSandboxOrder(std::string accountId, std::string orderId);
+    ServiceReply GetSandboxOrderState(std::string accountId, std::string orderId);
+    ServiceReply GetSandboxPositions(std::string accountId);
+    ServiceReply GetSandboxOperations(std::string accountId, int64_t fromseconds, int32_t fromnanos);
     ServiceReply GetSandboxPortfolio(std::string accountId);
-    ServiceReply SandboxPayIn();
+    ServiceReply SandboxPayIn(std::string accountId, std::string currency, int64_t units, int32_t nano);
 
 private:
     std::unique_ptr<SandboxService::Stub> m_sandboxService;

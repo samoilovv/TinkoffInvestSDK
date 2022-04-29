@@ -21,14 +21,14 @@ public:
 public slots:
     ServiceReply OpenSandboxAccount();
     ServiceReply GetSandboxAccounts();
-    ServiceReply CloseSandboxAccount();
+    ServiceReply CloseSandboxAccount(std::string accountId);
     ServiceReply PostSandboxOrder();
     ServiceReply GetSandboxOrders();
     ServiceReply CancelSandboxOrder();
     ServiceReply GetSandboxOrderState();
     ServiceReply GetSandboxPositions();
     ServiceReply GetSandboxOperations();
-    ServiceReply GetSandboxPortfolio(QString accountId);
+    ServiceReply GetSandboxPortfolio(std::string accountId);
     ServiceReply SandboxPayIn();
 
 private:

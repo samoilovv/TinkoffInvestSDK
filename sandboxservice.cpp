@@ -23,9 +23,10 @@ ServiceReply Sandbox::GetSandboxAccounts()
     return ServiceReply::prepareServiceAnswer<GetAccountsResponse>(status, reply);
 }
 
-ServiceReply Sandbox::CloseSandboxAccount()
+ServiceReply Sandbox::CloseSandboxAccount(std::string accountId)
 {
     CloseSandboxAccountRequest request;
+    request.set_account_id(accountId);
     CloseSandboxAccountResponse reply;
     Status status = m_sandboxService->CloseSandboxAccount(makeContext().get(), request, &reply);
     return ServiceReply::prepareServiceAnswer<CloseSandboxAccountResponse>(status, reply);
@@ -79,10 +80,10 @@ ServiceReply Sandbox::GetSandboxOperations()
     return ServiceReply::prepareServiceAnswer<OperationsResponse>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxPortfolio(QString accountId)
+ServiceReply Sandbox::GetSandboxPortfolio(std::string accountId)
 {
     PortfolioRequest request;
-    request.set_account_id(accountId.toStdString());
+    request.set_account_id(accountId);
     PortfolioResponse reply;
     Status status = m_sandboxService->GetSandboxPortfolio(makeContext().get(), request, &reply);
     return ServiceReply::prepareServiceAnswer<PortfolioResponse>(status, reply);

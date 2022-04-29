@@ -19,7 +19,6 @@ public:
 
 protected:
     const QString m_token;
-    //template<class T> const ServiceReply prepareServiceAnswer(const Status &status, const google::protobuf::Message &protoMsg);
     QSharedPointer<grpc::ClientContext> makeContext();
 
 };

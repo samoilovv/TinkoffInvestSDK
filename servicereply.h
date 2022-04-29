@@ -15,7 +15,9 @@ class TINKOFFINVESTSDK_EXPORT ServiceReply
 public:
     ServiceReply();
     ServiceReply(const std::shared_ptr<google::protobuf::Message> protoMsg);
-    const std::shared_ptr<google::protobuf::Message> replyPtr();
+    const std::shared_ptr<google::protobuf::Message> ptr();
+    const std::string accountID(const int i);
+    int accountCount();
 
     template<class T>
     static const ServiceReply prepareServiceAnswer(const Status &status, const T &protoMsg)

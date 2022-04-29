@@ -19,7 +19,16 @@ public:
     MarketData(std::shared_ptr<Channel> channel, const QString &token);
 
 public slots:
-    ServiceReply OpenSandboxAccount();
+    //Метод запроса исторических свечей по инструменту
+    ServiceReply GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, CandleInterval interval = CandleInterval::CANDLE_INTERVAL_UNSPECIFIED);
+    //Метод запроса последних цен по инструментам
+    ServiceReply GetLastPrices(const std::vector<std::string> &figis);
+    //Метод получения стакана по инструменту
+    ServiceReply GetOrderBook(const std::string &figi, int32_t depth);
+    //Метод запроса статуса торгов по инструментам
+    ServiceReply GetTradingStatus(const std::string &figi);
+    //Метод запроса последних обезличенных сделок по инструменту
+    ServiceReply GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos);
 
 private:
     std::unique_ptr<MarketDataService::Stub> m_marketDataService;

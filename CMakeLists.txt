@@ -67,6 +67,8 @@ add_library(${PROJECT_NAME} SHARED
     sandboxservice.cpp
     usersservice.h
     usersservice.cpp
+    marketdataservice.h
+    marketdataservice.cpp
 )
 
 generate_export_header(${PROJECT_NAME})

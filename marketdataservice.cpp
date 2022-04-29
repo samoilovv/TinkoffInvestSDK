@@ -58,19 +58,19 @@ ServiceReply MarketData::GetTradingStatus(const std::string &figi)
 
 ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos)
 {
-    GetLastTradesRequest request;
-    request.set_figi(figi);
-    google::protobuf::Timestamp * from = new google::protobuf::Timestamp();
-    from->set_seconds(fromseconds);
-    from->set_nanos(fromnanos);
-    request.set_allocated_from(from);
-    google::protobuf::Timestamp * to = new google::protobuf::Timestamp();
-    to->set_seconds(fromseconds);
-    to->set_nanos(fromnanos);
-    request.set_allocated_to(to);
-    GetLastTradesResponse reply;
-    Status status = m_marketDataService->GetLastTrades(makeContext().get(), request, &reply);
-    return ServiceReply::prepareServiceAnswer<GetLastTradesResponse>(status, reply);
+//    GetLastTradesRequest request;
+//    request.set_figi(figi);
+//    google::protobuf::Timestamp * from = new google::protobuf::Timestamp();
+//    from->set_seconds(fromseconds);
+//    from->set_nanos(fromnanos);
+//    request.set_allocated_from(from);
+//    google::protobuf::Timestamp * to = new google::protobuf::Timestamp();
+//    to->set_seconds(fromseconds);
+//    to->set_nanos(fromnanos);
+//    request.set_allocated_to(to);
+//    GetLastTradesResponse reply;
+//    Status status = m_marketDataService->GetLastTrades(makeContext().get(), request, &reply);
+//    return ServiceReply::prepareServiceAnswer<GetLastTradesResponse>(status, reply);
 }
 
 ServiceReply MarketData::MarketDataStream()

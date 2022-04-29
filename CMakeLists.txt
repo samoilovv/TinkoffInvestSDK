@@ -88,5 +88,4 @@ target_link_libraries(${PROJECT_NAME}
     ${_PROTOBUF_LIBPROTOBUF}
     )
 
-add_subdirectory(samples/stub)
-add_subdirectory(samples/stream)
+add_subdirectory(samples)

@@ -1,4 +1,7 @@
 #include "marketdataservice.h"
+#include <memory.h>
+
+using grpc::ClientReader;
 
 MarketData::MarketData(std::shared_ptr<grpc::Channel> channel, const QString &token) :
     CustomService(token),
@@ -44,6 +47,15 @@ ServiceReply MarketData::GetOrderBook(const std::string &figi, int32_t depth)
     return ServiceReply::prepareServiceAnswer<GetOrderBookResponse>(status, reply);
 }
 
+ServiceReply MarketData::GetTradingStatus(const std::string &figi)
+{
+    GetTradingStatusRequest request;
+    request.set_figi(figi);
+    GetTradingStatusResponse reply;
+    Status status = m_marketDataService->GetTradingStatus(makeContext().get(), request, &reply);
+    return ServiceReply::prepareServiceAnswer<GetTradingStatusResponse>(status, reply);
+}
+
 ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos)
 {
     GetLastTradesRequest request;
@@ -59,6 +71,11 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
     GetLastTradesResponse reply;
     Status status = m_marketDataService->GetLastTrades(makeContext().get(), request, &reply);
     return ServiceReply::prepareServiceAnswer<GetLastTradesResponse>(status, reply);
+}
+
+ServiceReply MarketData::MarketDataStream()
+{
+    return ServiceReply(nullptr);
 }
 
 

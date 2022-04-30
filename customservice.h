@@ -15,7 +15,7 @@ class CustomService : public QObject
 
 public:
     CustomService(const QString &token);
-//    virtual ~CustomService() = default;
+    virtual ~CustomService() = default;
 
 protected:
     const QString m_token;

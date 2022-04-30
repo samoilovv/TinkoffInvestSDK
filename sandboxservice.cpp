@@ -7,6 +7,11 @@ Sandbox::Sandbox(std::shared_ptr<grpc::Channel> channel, const QString &token) :
 
 }
 
+Sandbox::~Sandbox()
+{
+
+}
+
 ServiceReply Sandbox::OpenSandboxAccount()
 {
     OpenSandboxAccountRequest request;
@@ -23,7 +28,7 @@ ServiceReply Sandbox::GetSandboxAccounts()
     return ServiceReply::prepareServiceAnswer<GetAccountsResponse>(status, reply);
 }
 
-ServiceReply Sandbox::CloseSandboxAccount(std::string accountId)
+ServiceReply Sandbox::CloseSandboxAccount(const std::string &accountId)
 {
     CloseSandboxAccountRequest request;
     request.set_account_id(accountId);
@@ -32,7 +37,7 @@ ServiceReply Sandbox::CloseSandboxAccount(std::string accountId)
     return ServiceReply::prepareServiceAnswer<CloseSandboxAccountResponse>(status, reply);
 }
 
-ServiceReply Sandbox::PostSandboxOrder(std::string figi, int64_t quantity, int64_t units, int32_t nano)
+ServiceReply Sandbox::PostSandboxOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano)
 {
     PostOrderRequest request;
     request.set_figi(figi);
@@ -47,7 +52,7 @@ ServiceReply Sandbox::PostSandboxOrder(std::string figi, int64_t quantity, int64
     return ServiceReply::prepareServiceAnswer<PostOrderResponse>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxOrders(std::string accountId)
+ServiceReply Sandbox::GetSandboxOrders(const std::string &accountId)
 {
     GetOrdersRequest request;
     request.set_account_id(accountId);
@@ -56,7 +61,7 @@ ServiceReply Sandbox::GetSandboxOrders(std::string accountId)
     return ServiceReply::prepareServiceAnswer<GetOrdersResponse>(status, reply);
 }
 
-ServiceReply Sandbox::CancelSandboxOrder(std::string accountId, std::string orderId)
+ServiceReply Sandbox::CancelSandboxOrder(const std::string &accountId, const std::string &orderId)
 {
     CancelOrderRequest request;
     request.set_account_id(accountId);
@@ -66,7 +71,7 @@ ServiceReply Sandbox::CancelSandboxOrder(std::string accountId, std::string orde
     return ServiceReply::prepareServiceAnswer<CancelOrderResponse>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxOrderState(std::string accountId, std::string orderId)
+ServiceReply Sandbox::GetSandboxOrderState(const std::string &accountId,  const std::string &orderId)
 {
     GetOrderStateRequest request;
     request.set_account_id(accountId);
@@ -76,7 +81,7 @@ ServiceReply Sandbox::GetSandboxOrderState(std::string accountId, std::string or
     return ServiceReply::prepareServiceAnswer<OrderState>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxPositions(std::string accountId)
+ServiceReply Sandbox::GetSandboxPositions(const std::string &accountId)
 {
     PositionsRequest request;
     request.set_account_id(accountId);
@@ -85,7 +90,7 @@ ServiceReply Sandbox::GetSandboxPositions(std::string accountId)
     return ServiceReply::prepareServiceAnswer<PositionsResponse>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxOperations(std::string accountId, int64_t fromseconds, int32_t fromnanos)
+ServiceReply Sandbox::GetSandboxOperations(const std::string &accountId, int64_t fromseconds, int32_t fromnanos)
 {
     OperationsRequest request;
     request.set_account_id(accountId);
@@ -102,7 +107,7 @@ ServiceReply Sandbox::GetSandboxOperations(std::string accountId, int64_t fromse
     return ServiceReply::prepareServiceAnswer<OperationsResponse>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxPortfolio(std::string accountId)
+ServiceReply Sandbox::GetSandboxPortfolio(const std::string &accountId)
 {
     PortfolioRequest request;
     request.set_account_id(accountId);
@@ -111,7 +116,7 @@ ServiceReply Sandbox::GetSandboxPortfolio(std::string accountId)
     return ServiceReply::prepareServiceAnswer<PortfolioResponse>(status, reply);
 }
 
-ServiceReply Sandbox::SandboxPayIn(std::string accountId, std::string currency, int64_t units, int32_t nano)
+ServiceReply Sandbox::SandboxPayIn(const std::string &accountId, const std::string &currency, int64_t units, int32_t nano)
 {
     SandboxPayInRequest request;
     request.set_account_id(accountId);

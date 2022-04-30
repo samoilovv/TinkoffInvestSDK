@@ -7,6 +7,11 @@ Users::Users(std::shared_ptr<grpc::Channel> channel, const QString &token) :
 
 }
 
+Users::~Users()
+{
+
+}
+
 ServiceReply Users::GetAccounts()
 {
     GetAccountsRequest request;
@@ -15,7 +20,7 @@ ServiceReply Users::GetAccounts()
     return ServiceReply::prepareServiceAnswer<GetAccountsResponse>(status, reply);
 }
 
-ServiceReply Users::GetMarginAttributes(std::string accountId)
+ServiceReply Users::GetMarginAttributes(const std::string &accountId)
 {
     GetMarginAttributesRequest request;
     request.set_account_id(accountId);

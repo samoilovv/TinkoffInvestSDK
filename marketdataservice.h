@@ -17,6 +17,7 @@ class MarketData: public CustomService
 
 public:  
     MarketData(std::shared_ptr<Channel> channel, const QString &token);
+    ~MarketData();
 
 public slots:
     //Метод запроса исторических свечей по инструменту

@@ -10,6 +10,11 @@ MarketData::MarketData(std::shared_ptr<grpc::Channel> channel, const QString &to
 
 }
 
+MarketData::~MarketData()
+{
+
+}
+
 ServiceReply MarketData::GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, CandleInterval interval)
 {
     GetCandlesRequest request;
@@ -71,6 +76,7 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
 //    GetLastTradesResponse reply;
 //    Status status = m_marketDataService->GetLastTrades(makeContext().get(), request, &reply);
 //    return ServiceReply::prepareServiceAnswer<GetLastTradesResponse>(status, reply);
+    return ServiceReply(nullptr);
 }
 
 ServiceReply MarketData::MarketDataStream()

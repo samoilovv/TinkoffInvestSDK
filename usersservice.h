@@ -17,12 +17,13 @@ class Users: public CustomService
 
 public:  
     Users(std::shared_ptr<Channel> channel, const QString &token);
+    ~Users();
 
 public slots:
     //Метод получения счетов пользователя.
     ServiceReply GetAccounts();
     //Расчёт маржинальных показателей по счёту.
-    ServiceReply GetMarginAttributes(std::string accountId);
+    ServiceReply GetMarginAttributes(const std::string &accountId);
     //Запрос тарифа пользователя.
     ServiceReply GetUserTariff();
     //Метод получения информации о пользователе.

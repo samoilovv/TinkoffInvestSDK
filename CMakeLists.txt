@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.11)
 
 project(TinkoffInvestSDK)
 
+set(CMAKE_AUTOMOC ON)
+
 include(GenerateExportHeader)
 include(cmake/common.cmake)
 
@@ -87,5 +89,7 @@ target_link_libraries(${PROJECT_NAME}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}
     )
+
+set(CMAKE_AUTOMOC ON)
 
 add_subdirectory(samples)

@@ -1,4 +1,4 @@
-#ifndef MARKETDATAERVICE_H
+#ifndef MARKETDATASERVICE_H
 #define MARKETDATASERVICE_H
 
 #include <QObject>
@@ -34,7 +34,7 @@ public slots:
 
 private:
     std::unique_ptr<MarketDataService::Stub> m_marketDataService;
-    std::unique_ptr<MarketDataService::StreamedUnaryService> m_marketDataStreamService;
+//    std::unique_ptr<MarketDataService::StreamedUnaryService> m_marketDataStreamService;
 
 };
 

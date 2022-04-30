@@ -24,7 +24,6 @@ class TINKOFFINVESTSDK_EXPORT InvestApiClient : public QObject {
 public:
 
     InvestApiClient(const QString &host, const QString &pass);
-    ~InvestApiClient();
     QVector<QVariant> getServiceMethods(const QString &serviceName);
     QSharedPointer<CustomService> service(const QString &serviceName);
 

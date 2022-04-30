@@ -13,11 +13,6 @@ InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
     m_services["sandbox"] = QSharedPointer<Sandbox>::create(grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
 }
 
-InvestApiClient::~InvestApiClient()
-{
-
-}
-
 QVector<QVariant> InvestApiClient::getServiceMethods(const QString &serviceName)
 {
     QVector<QVariant> result;

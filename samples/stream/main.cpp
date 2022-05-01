@@ -11,7 +11,7 @@ int main()
          std::cout << serviceList[i].toStringList()[0].toStdString() << std::endl;
 
     auto marketdata = greeter.service("marketdata");
-    auto marketdataPtr = qSharedPointerCast<MarketData>(sandbox).get();
+    auto marketdataPtr = qSharedPointerCast<MarketData>(marketdata).get();
 
     //streamed
     marketdataPtr->MarketDataStream();

@@ -20,7 +20,7 @@ public:
     ~MarketData();
 
 public slots:
-//    //Метод запроса исторических свечей по инструменту
+    //Метод запроса исторических свечей по инструменту
     ServiceReply GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, CandleInterval interval);
     //Метод запроса последних цен по инструментам
     ServiceReply GetLastPrices(const std::vector<std::string> &figis);
@@ -30,8 +30,10 @@ public slots:
     ServiceReply GetTradingStatus(const std::string &figi);
     //Метод запроса последних обезличенных сделок по инструменту
     ServiceReply GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos);
-    //Bi-directional стрим предоставления биржевой информации.
-    ServiceReply MarketDataStream();
+    //Bi-directional стрим предоставления биржевой информации
+    void MarketDataStream(const std::string &figi, int32_t depth);
+    void MarketDataStream(const std::vector<std::string> &figis);
+    void UnsabscribeMarketData();
 
 private:
     std::unique_ptr<MarketDataService::Stub> m_marketDataService;

@@ -80,45 +80,114 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
     return ServiceReply::prepareServiceAnswer<GetLastTradesResponse>(status, reply);
 }
 
-ServiceReply MarketData::MarketDataStream()
+void MarketData::MarketDataStream(const std::string &figi, int32_t depth)
 {
     ClientContext context;
     QString meta_value = "Bearer " + m_token;
     context.AddMetadata("authorization", meta_value.toStdString());
-    context.AddMetadata("x-app-name", "samoilovv.TinkoffInvestSDK");
-
+    context.AddMetadata("x-app-name", APP_NAME);
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
         m_marketDataStreamService->MarketDataStream(&context));
 
-    std::thread writer([stream]() {
-
-
     MarketDataRequest request;
-        SubscribeCandlesRequest scr;
-        SubscribeOrderBookRequest * sobr = new SubscribeOrderBookRequest();
-        sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
-        auto obi = sobr->add_instruments();
-        std::string * figi = new std::string("BBG000BWPXQ8");
-        obi->set_allocated_figi(figi);
-        obi->set_depth(10);
-        request.set_allocated_subscribe_order_book_request(sobr);
+    SubscribeOrderBookRequest * sobr = new SubscribeOrderBookRequest();
+    sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    auto obi = sobr->add_instruments();
+    std::string * f = new std::string(figi);
+    obi->set_allocated_figi(f);
+    obi->set_depth(depth);
+    request.set_allocated_subscribe_order_book_request(sobr);
 
-
+    std::thread writer([stream, request]() {
         stream->Write(request);
         stream->WritesDone();
     });
 
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
-        std::cout << "Got message " << /*reply <<*/ std::endl;
+        std::cout << "Got message " << reply.DebugString() << std::endl;
     }
     writer.join();
     Status status = stream->Finish();
     if (!status.ok()) {
         std::cout << "MarketDataStream rpc failed." << std::endl;
     }
+}
 
-    return ServiceReply(nullptr);
+void MarketData::MarketDataStream(const std::vector<std::string> &figis)
+{
+    ClientContext context;
+    QString meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value.toStdString());
+    context.AddMetadata("x-app-name", APP_NAME);
+    std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
+        m_marketDataStreamService->MarketDataStream(&context));
+
+    MarketDataRequest request;
+    SubscribeLastPriceRequest * slpr = new SubscribeLastPriceRequest();
+    for (auto &figi: figis)
+    {
+        auto obi = slpr->add_instruments();
+        obi->set_figi(figi);
+    }
+    slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    request.set_allocated_subscribe_last_price_request(slpr);
+
+    std::thread writer([stream, request]() {
+        stream->Write(request);
+        stream->WritesDone();
+    });
+
+    MarketDataResponse reply;
+    while (stream->Read(&reply)) {
+        std::cout << "Got message " << reply.DebugString() << std::endl;
+    }
+    writer.join();
+    Status status = stream->Finish();
+    if (!status.ok()) {
+        std::cout << "MarketDataStream rpc failed." << std::endl;
+    }
+}
+
+void MarketData::UnsabscribeMarketData()
+{
+    ClientContext context;
+    QString meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value.toStdString());
+    context.AddMetadata("x-app-name", APP_NAME);
+    std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
+        m_marketDataStreamService->MarketDataStream(&context));
+
+    MarketDataRequest request;
+
+    auto scr = new SubscribeCandlesRequest();
+    auto sir = new SubscribeInfoRequest();
+    auto slpr = new SubscribeLastPriceRequest();
+    auto sobr = new SubscribeOrderBookRequest();
+    auto str = new SubscribeTradesRequest();
+    scr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    request.set_allocated_subscribe_candles_request(scr);
+    request.set_allocated_subscribe_info_request(sir);
+    request.set_allocated_subscribe_last_price_request(slpr);
+    request.set_allocated_subscribe_order_book_request(sobr);
+    request.set_allocated_subscribe_trades_request(str);
+    std::thread writer([stream, request]() {
+        stream->Write(request);
+        stream->WritesDone();
+    });
+
+    MarketDataResponse reply;
+    while (stream->Read(&reply)) {
+        std::cout << "Got message " << reply.DebugString() << std::endl;
+    }
+    writer.join();
+    Status status = stream->Finish();
+    if (!status.ok()) {
+        std::cout << "MarketDataStream rpc failed." << std::endl;
+    }
 }
 
 

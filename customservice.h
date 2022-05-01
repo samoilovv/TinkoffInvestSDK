@@ -10,6 +10,8 @@
 using grpc::ClientContext;
 using grpc::Status;
 
+static const std::string APP_NAME = "samoilovv.TinkoffInvestSDK";
+
 class CustomService : public QObject
 {
 
@@ -20,7 +22,6 @@ public:
 protected:
     const QString m_token;
     std::shared_ptr<grpc::ClientContext> makeContext();
-    void metadata(grpc::ClientContext &&cc);
 
 };
 

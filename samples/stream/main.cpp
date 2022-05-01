@@ -1,3 +1,4 @@
+#include <thread>
 #include "investapiclient.h"
 #include "marketdataservice.h"
 
@@ -17,7 +18,9 @@ int main()
     std::cout << prices.ptr().get()->DebugString();
 
     //streamed
-    marketdataPtr->MarketDataStream();
+    marketdataPtr->MarketDataStream({"BBG000BWPXQ8", "BBG00844BD08"});
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    marketdataPtr->UnsabscribeMarketData();
 
     return 0;
 }

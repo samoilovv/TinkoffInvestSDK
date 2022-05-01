@@ -6,6 +6,7 @@ int main()
 {
     InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
+
     //print list of marketdata functions
     auto serviceList = greeter.getServiceMethods("marketdata");
     for (int i = 0; i < serviceList.count(); i++)

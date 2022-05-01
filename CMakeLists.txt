@@ -59,18 +59,18 @@ target_link_libraries(hw_grpc_proto
 find_package(Qt5 REQUIRED COMPONENTS Core)
 
 add_library(${PROJECT_NAME} SHARED
-    servicereply.h
-    servicereply.cpp
     investapiclient.h
     investapiclient.cpp
-    customservice.h
-    customservice.cpp
-    sandboxservice.h
-    sandboxservice.cpp
-    usersservice.h
-    usersservice.cpp
-    marketdataservice.h
-    marketdataservice.cpp
+    services/servicereply.h
+    services/servicereply.cpp
+    services/customservice.h
+    services/customservice.cpp
+    services/sandboxservice.h
+    services/sandboxservice.cpp
+    services/usersservice.h
+    services/usersservice.cpp
+    services/marketdataservice.h
+    services/marketdataservice.cpp
 )
 
 generate_export_header(${PROJECT_NAME})
@@ -79,6 +79,8 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC
         ${CMAKE_CURRENT_BINARY_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_BINARY_DIR}/services
+        ${CMAKE_CURRENT_SOURCE_DIR}/services
     )
 
 target_link_libraries(${PROJECT_NAME}
@@ -89,7 +91,5 @@ target_link_libraries(${PROJECT_NAME}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}
     )
-
-set(CMAKE_AUTOMOC ON)
 
 add_subdirectory(samples)

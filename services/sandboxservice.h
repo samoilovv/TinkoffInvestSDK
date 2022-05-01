@@ -20,16 +20,27 @@ public:
     ~Sandbox();
 
 public slots:
+    //Метод регистрации счёта в песочнице
     ServiceReply OpenSandboxAccount();
+    //Метод получения счетов в песочнице
     ServiceReply GetSandboxAccounts();
+    //Метод закрытия счёта в песочнице
     ServiceReply CloseSandboxAccount(const std::string &accountId);
+    //Метод выставления торгового поручения в песочнице
     ServiceReply PostSandboxOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano);
+    //Метод получения списка активных заявок по счёту в песочнице
     ServiceReply GetSandboxOrders(const std::string &accountId);
+    //Метод отмены торгового поручения в песочнице
     ServiceReply CancelSandboxOrder(const std::string &accountId, const std::string  &orderId);
+    //Метод получения статуса заявки в песочнице
     ServiceReply GetSandboxOrderState(const std::string  &accountId, const std::string  &orderId);
+    //Метод получения позиций по виртуальному счёту песочницы
     ServiceReply GetSandboxPositions(const std::string  &accountId);
+    //Метод получения операций в песочнице по номеру счёта
     ServiceReply GetSandboxOperations(const std::string  &accountId, int64_t fromseconds, int32_t fromnanos);
+    //Метод получения портфолио в песочнице
     ServiceReply GetSandboxPortfolio(const std::string  &accountId);
+    //Метод пополнения счёта в песочнице
     ServiceReply SandboxPayIn(const std::string &accountId, const std::string  &currency, int64_t units, int32_t nano);
 
 private:

@@ -5,12 +5,17 @@
 #include <QSharedPointer>
 #include "investapiclient.h"
 #include "sandboxservice.h" 
+#include "marketdataservice.h"
+#include "usersservice.h"
 #include "servicereply.h"
 
 InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
 {
     qRegisterMetaType<ServiceReply>();
-    m_services["sandbox"] = QSharedPointer<Sandbox>::create(grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
+    auto channel = grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions()));
+//    m_services["sandbox"] = QSharedPointer<Sandbox>::create(channel, pass);
+//    m_services["users"] = QSharedPointer<Users>::create(channel, pass);
+    m_services["marketdata"] = QSharedPointer<MarketData>::create(grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
 }
 
 InvestApiClient::~InvestApiClient()

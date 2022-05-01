@@ -20,8 +20,8 @@ public:
     ~MarketData();
 
 public slots:
-    //Метод запроса исторических свечей по инструменту
-    ServiceReply GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, CandleInterval interval = CandleInterval::CANDLE_INTERVAL_UNSPECIFIED);
+//    //Метод запроса исторических свечей по инструменту
+    ServiceReply GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, CandleInterval interval);
     //Метод запроса последних цен по инструментам
     ServiceReply GetLastPrices(const std::vector<std::string> &figis);
     //Метод получения стакана по инструменту
@@ -35,7 +35,7 @@ public slots:
 
 private:
     std::unique_ptr<MarketDataService::Stub> m_marketDataService;
-    std::unique_ptr<MarketDataStreamService::Stub> m_marketDataStreamService;
+    std::shared_ptr<MarketDataStreamService::Stub> m_marketDataStreamService;
 
 };
 

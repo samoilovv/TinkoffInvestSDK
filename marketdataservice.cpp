@@ -2,9 +2,6 @@
 #include <memory.h>
 #include <thread>
 
-using grpc::ClientReader;
-using grpc::ServerWriter;
-using grpc::ClientWriter;
 using grpc::ClientReaderWriter;
 
 MarketData::MarketData(std::shared_ptr<grpc::Channel> channel, const QString &token) :
@@ -85,21 +82,25 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
 
 ServiceReply MarketData::MarketDataStream()
 {
-    MarketDataRequest request;
-    SubscribeCandlesRequest scr;
-//    scr.set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
-//    request.set_allocated_subscribe_candles_request(scr);
-    SubscribeOrderBookRequest * sobr = new SubscribeOrderBookRequest();
-    sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
-    auto obi = sobr->add_instruments();
-    obi->set_figi("BBG000BWPXQ8");
-    obi->set_depth(5);
-    request.set_allocated_subscribe_order_book_request(sobr);
+    ClientContext context;
 
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
-        m_marketDataStreamService->MarketDataStream(makeContext().get()));
+        m_marketDataStreamService->MarketDataStream(&context));
 
-    std::thread writer([stream, request]() {
+    std::thread writer([stream]() {
+
+
+    MarketDataRequest request;
+        SubscribeCandlesRequest scr;
+        SubscribeOrderBookRequest * sobr = new SubscribeOrderBookRequest();
+        sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+        auto obi = sobr->add_instruments();
+        std::string * figi = new std::string("BBG000BWPXQ8");
+        obi->set_allocated_figi(figi);
+        obi->set_depth(10);
+        request.set_allocated_subscribe_order_book_request(sobr);
+
+
         stream->Write(request);
         stream->WritesDone();
     });

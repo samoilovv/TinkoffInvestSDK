@@ -13,6 +13,9 @@ int main()
     auto marketdata = greeter.service("marketdata");
     auto marketdataPtr = qSharedPointerCast<MarketData>(marketdata).get();
 
+    auto prices = marketdataPtr->GetLastPrices({"BBG000BWPXQ8", "BBG00844BD08"});
+    std::cout << prices.ptr().get()->DebugString();
+
     //streamed
     marketdataPtr->MarketDataStream();
 

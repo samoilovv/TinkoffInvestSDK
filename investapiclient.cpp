@@ -13,8 +13,8 @@ InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
 {
     qRegisterMetaType<ServiceReply>();
     auto channel = grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions()));
-//    m_services["sandbox"] = QSharedPointer<Sandbox>::create(channel, pass);
-//    m_services["users"] = QSharedPointer<Users>::create(channel, pass);
+    m_services["sandbox"] = QSharedPointer<Sandbox>::create(channel, pass);
+    m_services["users"] = QSharedPointer<Users>::create(channel, pass);
     m_services["marketdata"] = QSharedPointer<MarketData>::create(grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
 }
 

@@ -105,7 +105,8 @@ void MarketData::MarketDataStream(const std::string &figi, int32_t depth)
 
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
-        std::cout << "Got message " << reply.DebugString() << std::endl;
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        emitServiceData(data);
     }
     writer.join();
     Status status = stream->Finish();
@@ -140,7 +141,8 @@ void MarketData::MarketDataStream(const std::vector<std::string> &figis)
 
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
-        std::cout << "Got message " << reply.DebugString() << std::endl;
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        emitServiceData(data);
     }
     writer.join();
     Status status = stream->Finish();
@@ -159,7 +161,6 @@ void MarketData::UnsabscribeMarketData()
         m_marketDataStreamService->MarketDataStream(&context));
 
     MarketDataRequest request;
-
     auto scr = new SubscribeCandlesRequest();
     auto sir = new SubscribeInfoRequest();
     auto slpr = new SubscribeLastPriceRequest();
@@ -169,6 +170,7 @@ void MarketData::UnsabscribeMarketData()
     sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    str->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     request.set_allocated_subscribe_candles_request(scr);
     request.set_allocated_subscribe_info_request(sir);
     request.set_allocated_subscribe_last_price_request(slpr);

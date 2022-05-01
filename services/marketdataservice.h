@@ -33,7 +33,7 @@ public slots:
     //Bi-directional стрим предоставления биржевой информации
     void MarketDataStream(const std::string &figi, int32_t depth);
     void MarketDataStream(const std::vector<std::string> &figis);
-    void UnsabscribeMarketData();
+    void UnsabscribeMarketData();  
 
 private:
     std::unique_ptr<MarketDataService::Stub> m_marketDataService;

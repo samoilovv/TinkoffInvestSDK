@@ -2,7 +2,6 @@
 #define CUSTOMTINKOFFSERVICE_H
 
 #include <QObject>
-#include <QSharedPointer>
 #include <grpcpp/grpcpp.h>
 #include "google/protobuf/message.h"
 #include "servicereply.h"
@@ -14,14 +13,19 @@ static const std::string APP_NAME = "samoilovv.TinkoffInvestSDK";
 
 class CustomService : public QObject
 {
+    Q_OBJECT
 
 public:
     CustomService(const QString &token);
     virtual ~CustomService() = default;
 
+signals:
+    void sendData(ServiceReply);
+
 protected:
     const QString m_token;
     std::shared_ptr<grpc::ClientContext> makeContext();
+    void emitServiceData(const ServiceReply &data);
 
 };
 

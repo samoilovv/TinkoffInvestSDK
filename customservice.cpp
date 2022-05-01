@@ -5,11 +5,18 @@ CustomService::CustomService(const QString &token) : m_token(token)
 
 }
 
-QSharedPointer<grpc::ClientContext> CustomService::makeContext()
+std::shared_ptr<grpc::ClientContext> CustomService::makeContext()
 {
-    auto context = QSharedPointer<grpc::ClientContext>::create();
+    auto context = std::shared_ptr<grpc::ClientContext>(new grpc::ClientContext());
     QString meta_value = "Bearer " + m_token;
-    context.get()->AddMetadata("authorization", meta_value.toStdString());
-    context.get()->AddMetadata("x-app-name", "samoilovv.TinkoffInvestSDK");
+    context->AddMetadata("authorization", meta_value.toStdString());
+    context->AddMetadata("x-app-name", "samoilovv.TinkoffInvestSDK");
     return context;
+}
+
+void CustomService::metadata(grpc::ClientContext &&cc)
+{
+    QString meta_value = "Bearer " + m_token;
+    cc.AddMetadata("authorization", meta_value.toStdString());
+    cc.AddMetadata("x-app-name", "samoilovv.TinkoffInvestSDK");
 }

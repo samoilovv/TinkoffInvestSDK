@@ -83,6 +83,9 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
 ServiceReply MarketData::MarketDataStream()
 {
     ClientContext context;
+    QString meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value.toStdString());
+    context.AddMetadata("x-app-name", "samoilovv.TinkoffInvestSDK");
 
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
         m_marketDataStreamService->MarketDataStream(&context));

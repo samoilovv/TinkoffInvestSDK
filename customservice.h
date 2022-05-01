@@ -19,7 +19,8 @@ public:
 
 protected:
     const QString m_token;
-    QSharedPointer<grpc::ClientContext> makeContext();
+    std::shared_ptr<grpc::ClientContext> makeContext();
+    void metadata(grpc::ClientContext &&cc);
 
 };
 

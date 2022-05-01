@@ -35,7 +35,7 @@ public slots:
 
 private:
     std::unique_ptr<MarketDataService::Stub> m_marketDataService;
-//    std::unique_ptr<MarketDataService::StreamedUnaryService> m_marketDataStreamService;
+    std::unique_ptr<MarketDataStreamService::Stub> m_marketDataStreamService;
 
 };
 

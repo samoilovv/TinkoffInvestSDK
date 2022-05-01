@@ -1,11 +1,16 @@
 #include "marketdataservice.h"
 #include <memory.h>
+#include <thread>
 
 using grpc::ClientReader;
+using grpc::ServerWriter;
+using grpc::ClientWriter;
+using grpc::ClientReaderWriter;
 
 MarketData::MarketData(std::shared_ptr<grpc::Channel> channel, const QString &token) :
     CustomService(token),
-    m_marketDataService(MarketDataService::NewStub(channel))
+    m_marketDataService(MarketDataService::NewStub(channel)),
+    m_marketDataStreamService(MarketDataStreamService::NewStub(channel))
 {
 
 }
@@ -80,6 +85,35 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
 
 ServiceReply MarketData::MarketDataStream()
 {
+    MarketDataRequest request;
+    SubscribeCandlesRequest scr;
+//    scr.set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+//    request.set_allocated_subscribe_candles_request(scr);
+    SubscribeOrderBookRequest * sobr = new SubscribeOrderBookRequest();
+    sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    auto obi = sobr->add_instruments();
+    obi->set_figi("BBG000BWPXQ8");
+    obi->set_depth(5);
+    request.set_allocated_subscribe_order_book_request(sobr);
+
+    std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
+        m_marketDataStreamService->MarketDataStream(makeContext().get()));
+
+    std::thread writer([stream, request]() {
+        stream->Write(request);
+        stream->WritesDone();
+    });
+
+    MarketDataResponse reply;
+    while (stream->Read(&reply)) {
+        std::cout << "Got message " << /*reply <<*/ std::endl;
+    }
+    writer.join();
+    Status status = stream->Finish();
+    if (!status.ok()) {
+        std::cout << "MarketDataStream rpc failed." << std::endl;
+    }
+
     return ServiceReply(nullptr);
 }
 

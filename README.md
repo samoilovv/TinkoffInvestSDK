@@ -53,7 +53,7 @@ marketdataPtr->MarketDataStream({"BBG000BWPXQ8", "BBG00844BD08"});
 
 ```
 subscribe_last_price_response {
-  tracking_id: "626f561485de8897ce89f15598f5a6e6"
+  tracking_id: "8442ce626f5a6e6"
   last_price_subscriptions {
     figi: "BBG000BWPXQ8"
     subscription_status: SUBSCRIPTION_STATUS_SUCCESS

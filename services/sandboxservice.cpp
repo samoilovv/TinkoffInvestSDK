@@ -46,7 +46,6 @@ ServiceReply Sandbox::PostSandboxOrder(const std::string &figi, int64_t quantity
     price->set_units(units);
     price->set_nano(nano);
     request.set_allocated_price(price);
-
     PostOrderResponse reply;
     Status status = m_sandboxService->PostSandboxOrder(makeContext().get(), request, &reply);
     return ServiceReply::prepareServiceAnswer<PostOrderResponse>(status, reply);

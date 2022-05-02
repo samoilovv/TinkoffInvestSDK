@@ -19,6 +19,8 @@ cmake ..
 make
 ``` 
 
+## Примеры
+
 Примеры доступны [здесь](https://github.com/samoilovv/TinkoffInvestSDK/tree/main/samples). Для запуска примеров необходимо добавить токен в переменную окружения.
 
 <!-- termynal -->
@@ -31,21 +33,22 @@ $ export TOKEN=YOUR_TOKEN
 
 ```cpp
 
-    InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
-    //get reference to marketdata service
-    auto marketdataPtr = qSharedPointerCast<MarketData>(greeter.service("marketdata")).get();
+//get reference to marketdata service
+auto marketdataPtr = qSharedPointerCast<MarketData>(greeter.service("marketdata")).get();
 
-    //handle replies in lambda function
-    QObject::connect(marketdata.get(), &CustomService::sendData, [marketdataPtr](ServiceReply reply){
-        std::cout << reply.ptr()->DebugString() << std::endl;
-    });
+//handle replies in lambda function
+QObject::connect(marketdata.get(), &CustomService::sendData, [marketdataPtr](ServiceReply reply){
+    std::cout << reply.ptr()->DebugString() << std::endl;
+});
 
-    //start streaming and subscribe on British American Tobacco and Visa Inc. prices
-    marketdataPtr->MarketDataStream({"BBG000BWPXQ8", "BBG00844BD08"});
+//start streaming and subscribe on British American Tobacco and Visa Inc. prices
+marketdataPtr->MarketDataStream({"BBG000BWPXQ8", "BBG00844BD08"});
 ```
 
 Вывод:
+
 <!-- termynal -->
 
 ```

@@ -1,5 +1,4 @@
 #include <QDebug>
-#include <QCoreApplication>
 #include <QMetaMethod>
 #include <QVariant>
 #include <QSharedPointer>
@@ -7,6 +6,7 @@
 #include "sandboxservice.h" 
 #include "marketdataservice.h"
 #include "usersservice.h"
+#include "instrumentsservice.h"
 #include "servicereply.h"
 
 InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
@@ -15,7 +15,8 @@ InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
     auto channel = grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions()));
     m_services["sandbox"] = QSharedPointer<Sandbox>::create(channel, pass);
     m_services["users"] = QSharedPointer<Users>::create(channel, pass);
-    m_services["marketdata"] = QSharedPointer<MarketData>::create(grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
+    m_services["marketdata"] = QSharedPointer<MarketData>::create(channel, pass);
+    m_services["instruments"] = QSharedPointer<Instruments>::create(channel, pass);
 }
 
 InvestApiClient::~InvestApiClient()

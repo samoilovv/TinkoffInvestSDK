@@ -42,7 +42,7 @@ ServiceReply Sandbox::PostSandboxOrder(const std::string &figi, int64_t quantity
     PostOrderRequest request;
     request.set_figi(figi);
     request.set_quantity(quantity);
-    Quotation * price = new Quotation();
+    auto price = new Quotation();
     price->set_units(units);
     price->set_nano(nano);
     request.set_allocated_price(price);

@@ -1,0 +1,43 @@
+#ifndef OPERATIONSSERVICE_H
+#define OPERATIONSSERVICE_H
+
+#include <QObject>
+#include "customservice.h"
+#include <grpcpp/grpcpp.h>
+#include "operations.grpc.pb.h"
+#include "servicereply.h"
+
+using grpc::Channel;
+using namespace tinkoff::public1::invest::api::contract::v1;
+
+class Operations: public CustomService
+{
+    Q_OBJECT
+    Q_CLASSINFO("operations", "Operations Service")
+
+public:  
+    Operations(std::shared_ptr<Channel> channel, const QString &token);
+    ~Operations();
+
+public slots:
+    //Метод получения списка операций по счёту.
+    ServiceReply GetOperations(const std::string &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos, OperationState state, const std::string  &figi);
+    //Метод получения портфеля по счёту.
+    ServiceReply GetPortfolio(const std::string &accountId);
+    //Метод получения списка позиций по счёту.
+    ServiceReply GetPositions(const std::string &accountId);
+    //Метод получения доступного остатка для вывода средств.
+    ServiceReply GetWithdrawLimits(const std::string &accountId);
+    //Метод получения брокерского отчёта.
+    ServiceReply GetBrokerReport(const std::string  &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
+    ServiceReply GetBrokerReport(const std::string  &taskId, int32_t page);
+    //Метод получения отчёта "Справка о доходах за пределами РФ".
+    ServiceReply GetDividendsForeignIssuer(const std::string  &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
+    ServiceReply GetDividendsForeignIssuer(const std::string &taskId, int32_t page);
+
+private:
+    std::unique_ptr<OperationsService::Stub> m_operationsService;
+
+};
+
+#endif // OPERATIONSSERVICE_H

@@ -29,6 +29,29 @@ make
 $ export TOKEN=YOUR_TOKEN
 ```
 
+Пример использования унарных запросов: открытие счета в песочнице и получение информации о нем.
+
+```cpp
+
+InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+
+//get reference to sandbox service
+auto sandbox = qSharedPointerCast<Sandbox>(greeter.service("sandbox"));
+
+//open account
+sandboxPtr->OpenSandboxAccount();
+
+//print info about your account
+auto accounts = sandbox->GetSandboxAccounts();
+auto portfolio = sandbox->GetSandboxPortfolio(accounts.accountID(0));
+std::cout << portfolio.ptr()->DebugString() << std::endl;
+
+//close account
+sandbox->CloseSandboxAccount(accountId);
+
+```
+
+
 Пример использования потокового запроса: подписка на получение последних цен.
 
 ```cpp
@@ -36,10 +59,10 @@ $ export TOKEN=YOUR_TOKEN
 InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
 //get reference to marketdata service
-auto marketdataPtr = qSharedPointerCast<MarketData>(greeter.service("marketdata")).get();
+auto marketdata = qSharedPointerCast<MarketData>(greeter.service("marketdata"));
 
 //handle replies in lambda function
-QObject::connect(marketdataPtr, &CustomService::sendData, [marketdataPtr](ServiceReply reply){
+QObject::connect(marketdataPtr, &CustomService::sendData, [](ServiceReply reply){
     std::cout << reply.ptr()->DebugString() << std::endl;
 });
 

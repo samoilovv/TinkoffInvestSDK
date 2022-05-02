@@ -17,7 +17,7 @@ MarketData::~MarketData()
 
 }
 
-ServiceReply MarketData::GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, CandleInterval interval)
+ServiceReply MarketData::GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos, CandleInterval interval)
 {
     GetCandlesRequest request;
     request.set_figi(figi);
@@ -63,7 +63,7 @@ ServiceReply MarketData::GetTradingStatus(const std::string &figi)
     return ServiceReply::prepareServiceAnswer<GetTradingStatusResponse>(status, reply);
 }
 
-ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos)
+ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos)
 {
     GetLastTradesRequest request;
     request.set_figi(figi);
@@ -72,8 +72,8 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
     from->set_nanos(fromnanos);
     request.set_allocated_from(from);
     google::protobuf::Timestamp * to = new google::protobuf::Timestamp();
-    to->set_seconds(fromseconds);
-    to->set_nanos(fromnanos);
+    to->set_seconds(toseconds);
+    to->set_nanos(tonanos);
     request.set_allocated_to(to);
     GetLastTradesResponse reply;
     Status status = m_marketDataService->GetLastTrades(makeContext().get(), request, &reply);

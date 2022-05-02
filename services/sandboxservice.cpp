@@ -90,7 +90,7 @@ ServiceReply Sandbox::GetSandboxPositions(const std::string &accountId)
     return ServiceReply::prepareServiceAnswer<PositionsResponse>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxOperations(const std::string &accountId, int64_t fromseconds, int32_t fromnanos)
+ServiceReply Sandbox::GetSandboxOperations(const std::string &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos)
 {
     OperationsRequest request;
     request.set_account_id(accountId);
@@ -99,8 +99,8 @@ ServiceReply Sandbox::GetSandboxOperations(const std::string &accountId, int64_t
     from->set_nanos(fromnanos);
     request.set_allocated_from(from);
     google::protobuf::Timestamp * to = new google::protobuf::Timestamp();
-    to->set_seconds(fromseconds);
-    to->set_nanos(fromnanos);
+    to->set_seconds(toseconds);
+    to->set_nanos(tonanos);
     request.set_allocated_to(to);
     OperationsResponse reply;
     Status status = m_sandboxService->GetSandboxOperations(makeContext().get(), request, &reply);

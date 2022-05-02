@@ -21,7 +21,7 @@ public:
 
 public slots:
     //Метод запроса исторических свечей по инструменту
-    ServiceReply GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, CandleInterval interval);
+    ServiceReply GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos, CandleInterval interval);
     //Метод запроса последних цен по инструментам
     ServiceReply GetLastPrices(const std::vector<std::string> &figis);
     //Метод получения стакана по инструменту
@@ -29,7 +29,7 @@ public slots:
     //Метод запроса статуса торгов по инструментам
     ServiceReply GetTradingStatus(const std::string &figi);
     //Метод запроса последних обезличенных сделок по инструменту
-    ServiceReply GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos);
+    ServiceReply GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
     //Bi-directional стрим предоставления биржевой информации
     void MarketDataStream(const std::string &figi, int32_t depth);
     void MarketDataStream(const std::vector<std::string> &figis);

@@ -37,7 +37,7 @@ public slots:
     //Метод получения позиций по виртуальному счёту песочницы
     ServiceReply GetSandboxPositions(const std::string  &accountId);
     //Метод получения операций в песочнице по номеру счёта
-    ServiceReply GetSandboxOperations(const std::string  &accountId, int64_t fromseconds, int32_t fromnanos);
+    ServiceReply GetSandboxOperations(const std::string  &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
     //Метод получения портфолио в песочнице
     ServiceReply GetSandboxPortfolio(const std::string  &accountId);
     //Метод пополнения счёта в песочнице

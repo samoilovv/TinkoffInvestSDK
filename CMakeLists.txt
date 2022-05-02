@@ -71,6 +71,8 @@ add_library(${PROJECT_NAME} SHARED
     services/usersservice.cpp
     services/marketdataservice.h
     services/marketdataservice.cpp
+    services/instrumentsservice.h
+    services/instrumentsservice.cpp
 )
 
 generate_export_header(${PROJECT_NAME})

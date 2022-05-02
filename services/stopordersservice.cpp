@@ -30,7 +30,7 @@ ServiceReply StopOrders::PostStopOrder(const std::string &figi, int64_t quantity
     request.set_account_id(accountId);
     request.set_expiration_type(expirationType);
     request.set_stop_order_type(stopOrderType);
-    google::protobuf::Timestamp * expireDate = new google::protobuf::Timestamp();
+    google::protobuf::Timestamp * expireDate = new google::protobuf::Timestamp();   
     expireDate->set_seconds(expireSeconds);
     expireDate->set_nanos(expireNanos);
     request.set_allocated_expire_date(expireDate);
@@ -39,12 +39,21 @@ ServiceReply StopOrders::PostStopOrder(const std::string &figi, int64_t quantity
     return ServiceReply::prepareServiceAnswer<PostStopOrderResponse>(status, reply);
 }
 
-ServiceReply StopOrders::GetStopOrders()
+ServiceReply StopOrders::GetStopOrders(const std::string &accountId)
 {
-
+    PostStopOrderRequest request;
+    request.set_account_id(accountId);
+    GetStopOrdersResponse reply;
+    Status status = m_stopOrdersService->GetStopOrders(makeContext().get(), request, &reply);
+    return ServiceReply::prepareServiceAnswer<GetStopOrdersResponse>(status, reply);
 }
 
-ServiceReply StopOrders::CancelStopOrder()
+ServiceReply StopOrders::CancelStopOrder(const std::string &accountId, const std::string &stopOrderId)
 {
-
+    CancelStopOrderRequest request;
+    request.set_account_id(accountId);
+    request.set_stop_order_id(stopOrderId);
+    CancelStopOrderResponse reply;
+    Status status = m_stopOrdersService->CancelStopOrder(makeContext().get(), request, &reply);
+    return ServiceReply::prepareServiceAnswer<CancelStopOrderResponse>(status, reply);
 }

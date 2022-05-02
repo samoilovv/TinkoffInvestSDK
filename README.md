@@ -39,7 +39,7 @@ InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 auto sandbox = qSharedPointerCast<Sandbox>(greeter.service("sandbox"));
 
 //open account
-sandboxPtr->OpenSandboxAccount();
+sandbox->OpenSandboxAccount();
 
 //print info about your account
 auto accounts = sandbox->GetSandboxAccounts();

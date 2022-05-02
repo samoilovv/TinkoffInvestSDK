@@ -43,7 +43,7 @@ QObject::connect(marketdataPtr, &CustomService::sendData, [marketdataPtr](Servic
     std::cout << reply.ptr()->DebugString() << std::endl;
 });
 
-//start streaming and subscribe on British American Tobacco and Visa Inc. prices
+//subscribe on British American Tobacco and Visa Inc. prices and start streaming 
 marketdataPtr->MarketDataStream({"BBG000BWPXQ8", "BBG00844BD08"});
 ```
 

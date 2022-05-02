@@ -41,7 +41,7 @@ ServiceReply StopOrders::PostStopOrder(const std::string &figi, int64_t quantity
 
 ServiceReply StopOrders::GetStopOrders(const std::string &accountId)
 {
-    PostStopOrderRequest request;
+    GetStopOrdersRequest request;
     request.set_account_id(accountId);
     GetStopOrdersResponse reply;
     Status status = m_stopOrdersService->GetStopOrders(makeContext().get(), request, &reply);

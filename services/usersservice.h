@@ -20,13 +20,13 @@ public:
     ~Users();
 
 public slots:
-    //Метод получения счетов пользователя.
+    //Метод получения счетов пользователя
     ServiceReply GetAccounts();
-    //Расчёт маржинальных показателей по счёту.
+    //Расчёт маржинальных показателей по счёту
     ServiceReply GetMarginAttributes(const std::string &accountId);
-    //Запрос тарифа пользователя.
+    //Запрос тарифа пользователя
     ServiceReply GetUserTariff();
-    //Метод получения информации о пользователе.
+    //Метод получения информации о пользователе
     ServiceReply GetInfo();
 
 private:

@@ -1,7 +1,6 @@
 #ifndef TINKOFFSDK_H
 #define TINKOFFSDK_H
 
-#include <QDebug>
 #include <QObject>
 #include <QMap>
 #include <QVector>
@@ -9,8 +8,7 @@
 #include <QSharedPointer>
 #include <grpcpp/grpcpp.h>
 #include "sandbox.grpc.pb.h"
-#include "sandboxservice.h"
-
+#include "customservice.h"
 #include "tinkoffinvestsdk_export.h"
 
 using grpc::Channel;

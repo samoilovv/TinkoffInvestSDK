@@ -8,6 +8,8 @@
 #include "usersservice.h"
 #include "instrumentsservice.h"
 #include "operationsservice.h"
+#include "ordersservice.h"
+#include "stopordersservice.h"
 #include "servicereply.h"
 
 InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
@@ -19,6 +21,8 @@ InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
     m_services["marketdata"] = QSharedPointer<MarketData>::create(channel, pass);
     m_services["instruments"] = QSharedPointer<Instruments>::create(channel, pass);
     m_services["operations"] = QSharedPointer<Operations>::create(channel, pass);
+    m_services["orders"] = QSharedPointer<Orders>::create(channel, pass);
+    m_services["stoporders"] = QSharedPointer<StopOrders>::create(channel, pass);
 }
 
 InvestApiClient::~InvestApiClient()

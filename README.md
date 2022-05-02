@@ -39,7 +39,7 @@ InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 auto marketdataPtr = qSharedPointerCast<MarketData>(greeter.service("marketdata")).get();
 
 //handle replies in lambda function
-QObject::connect(marketdata.get(), &CustomService::sendData, [marketdataPtr](ServiceReply reply){
+QObject::connect(marketdataPtr, &CustomService::sendData, [marketdataPtr](ServiceReply reply){
     std::cout << reply.ptr()->DebugString() << std::endl;
 });
 

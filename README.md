@@ -62,12 +62,12 @@ InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 auto marketdata = qSharedPointerCast<MarketData>(greeter.service("marketdata"));
 
 //handle replies in lambda function
-QObject::connect(marketdataPtr, &CustomService::sendData, [](ServiceReply reply){
+QObject::connect(marketdata->get(), &CustomService::sendData, [](ServiceReply reply){
     std::cout << reply.ptr()->DebugString() << std::endl;
 });
 
 //subscribe on British American Tobacco and Visa Inc. prices and start streaming 
-marketdataPtr->MarketDataStream({"BBG000BWPXQ8", "BBG00844BD08"});
+marketdata->MarketDataStream({"BBG000BWPXQ8", "BBG00844BD08"});
 ```
 
 Вывод:

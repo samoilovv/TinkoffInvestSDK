@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: head-orders</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">head-orders </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Сервис работы с торговыми поручениями</p>
+<h2><a class="anchor" id="autotoc_md136"></a>
+Статусная модель торговых поручений</h2>
+<p><img src="/investAPI/img/order_status_diagram.png" alt="Диаграмма статусов торговых поручений" title="Диаграмма статусов торговых поручений" class="inline"/></p>
+<h2><a class="anchor" id="autotoc_md137"></a>
+Метод выставления торговых поручений</h2>
+<p>Одной из главных функций торгового робота, безусловно, является выставление на бирже торговых поручений. Для решения этой задачи можно использовать unary-метод <a href="/investAPI/orders#postorder">postOrder</a>.</p>
+<p>Unary-метод <a href="/investAPI/orders#postorder">postOrder</a> позволяет выставлять все типы торговых поручений (рыночные, лимитные). Подробнее о торговых поручениях, их видах и особенностях исполнения на биржах можно почитать в статье: <a href="/investAPI/faq_orders/">Работа с торговыми поручениями</a>.</p>
+<p><b>Важно!</b> Для исключения дублирования торговых поручений в процессе работы используется параметр <em>order_id</em>, который требуется сгенерировать любым удобным способом перед вызовом метода. Если сервис получит несколько запросов с одинаковым <em>order_id</em>, то на биржу выставится только одно торговое поручение. Все последующие запросы, содержащие существующий <em>order_id</em>, будут возвращать статус этого торгового поручения.</p>
+<p><a class="anchor" id="coupon"></a> При выполнении <b>операций с облигациями</b> следует также учитывать <a href="/investAPI/glossary#coupon">накопленный купонный доход</a>. Размер НКД можно узнать при помощи параметра <em>aci_value</em> методов получения информации по облигациям или метода выставления торгового поручения. Обратите внимание, что в параметре <em>aci_value</em> возвращается размер НКД в валюте расчётов за 1 лот. <b>Т.е. при покупке облигаций к стоимости сделки будет добавлено произведение НКД на количество лотов в сделке (<em>aci_value</em>**quantity*), при продаже на это произведение сумма сделки будет уменьшена.</b></p>
+<h2><a class="anchor" id="autotoc_md138"></a>
+Получение списка активных торговых поручений по счёту</h2>
+<p>Для того, чтобы торговому роботу более эффективно управлять торговыми поручениями, ему нужно иметь возможность получать список активных на данный момент заявок. Для решения этой задачи используется метод <a href="/investAPI/orders#getorders">getOrders</a>. Обратите внимание, что данный метод возвращает только активные торговые поручения, т.е. после исполнения заявка пропадает из возвращаемого списка.</p>
+<h2><a class="anchor" id="autotoc_md139"></a>
+Получение статуса торгового поручения</h2>
+<p>Несмотря на то, что статус исполнения поданного торгового поручения можно получить повторным вызовом метода выставления (с тем же параметром <em>order_id</em>), рекомендуется использовать для этих целей метод <a href="/investAPI/orders#getorderstate">getOrderState</a>. Данный метод возвращает, в том числе, стадии выполнения заявки (массив <em>stages</em>).</p>
+<p><b>Важно!</b> Метод получения статуса торгового поручения не предусмотрен для получения глубокой истории и может не возвращать информацию по поручениям "старше" одних суток.</p>
+<h2><a class="anchor" id="autotoc_md140"></a>
+Отмена торгового поручения</h2>
+<p>Далеко не все торговые поручения, выставляемые на торговую площадку, могут и должны быть исполнено. Ситуация на рынке меняется динамично, поэтому торговому роботу необходима возможность отменять выставленные заявки. Для реализации этой функциональности используется метод <a href="/investAPI/orders#cancelorder">cancelOrder</a>.</p>
+<h2><a class="anchor" id="autotoc_md141"></a>
+Stream исполнения поручений пользователя</h2>
+<p>TINKOFF INVEST API предоставляет stream с трансляцией исполнения сделок. В данный стрим попадают все совершённые сделки по всем счетам пользователя.</p>
+<p>Для сохранения стабильного подключения при отсутствии данных в stream-соединении сервером периодически отправляется ping-пакет. Клиенту реагировать на него нет необходимости. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

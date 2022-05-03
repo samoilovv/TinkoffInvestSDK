@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: deadlines</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">deadlines </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Дедлайны запросов</p>
+<p>TINKOFF INVEST API работает по протоколу <a href="/investAPI/grpc/">gRPC</a>, который предполагает использование параметра deadline на стороне клиента. Данный параметр отвечает за обозначение крайнего срока выполнения запроса, т.е. по истечению объявленного срока запрос будет прерван принудительно. В TINKOFF INVEST API не существует жёсткого регулирования, полученного дедлайна, однако, стоит учитывать, что время выполнения запроса зависит от множества факторов (объёма данных, скорости их обработки, сложности вычислений и т.п.) Поэтому команда TINKOFF INVEST API рекомендует не использовать параметр deadline ниже обозначенных в таблице ниже.</p>
+<p><em>Подробнее про deadline: <a href="https://grpc.io/blog/deadlines/">gRPC and Deadlines</a>.</em></p>
+<h2><a class="anchor" id="autotoc_md26"></a>
+Рекомендованные минимальные дедлайны запросов</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Метод TINKOFF INVEST API </th><th class="markdownTableHeadLeft">Рекомендованный deadline (ms)  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/users#getaccounts">GetAccounts</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/users#getmarginattributes">GetMarginAttributes</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/users#getusertariff">GetUserTariff</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/users#getinfo">GetInfo</a> </td><td class="markdownTableBodyLeft">1000  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#tradingschedules">TradingSchedules</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#bondby">BondBy</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#bonds">Bonds</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#currencyby">CurrencyBy</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#currencies">Currencies</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#etfby">EtfBy</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#etfs">Etfs</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#futureby">FutureBy</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#futures">Futures</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#stockby">StockBy</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#stocks">Stocks</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#getaccruedinterests">GetAccruedInterests</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#getfuturesmargin">GetFuturesMargin</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/instruments#getinstrumentby">GetInstrumentBy</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/orders#postorder">PostOrder</a> </td><td class="markdownTableBodyLeft">1500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/orders#cancelorder">CancelOrder</a> </td><td class="markdownTableBodyLeft">1500  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/orders#getorderstate">GetOrderState</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/orders#getorders">GetOrders</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/operations#getoperations">GetOperations</a> </td><td class="markdownTableBodyLeft">1500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/operations#getportfolio">GetPortfolio</a> </td><td class="markdownTableBodyLeft">1500  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/operations#getpositions">GetPositions</a> </td><td class="markdownTableBodyLeft">1000  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/operations#getwithdrawlimits">GetWithdrawLimits</a> </td><td class="markdownTableBodyLeft">1000  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/marketdata#getcandles">GetCandles</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/marketdata#getlastprices">GetLastPrices</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/marketdata#getorderbook">GetOrderBook</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/marketdata#gettradingstatus">GetTradingStatus</a> </td><td class="markdownTableBodyLeft">500  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/stoporders#poststoporder">PostStopOrder</a> </td><td class="markdownTableBodyLeft">1500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/stoporders#getstoporders">GetStopOrders</a> </td><td class="markdownTableBodyLeft">1500  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/stoporders#cancelstoporder">CancelStopOrder</a> </td><td class="markdownTableBodyLeft">1500  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#opensandboxaccount">OpenSandboxAccount</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#getsandboxaccounts">GetSandboxAccounts</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#closesandboxaccount">CloseSandboxAccount</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#postsandboxorder">PostSandboxOrder</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#getsandboxorders">GetSandboxOrders</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#cancelsandboxorder">CancelSandboxOrder</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#getsandboxorderstate">GetSandboxOrderState</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#getsandboxpositions">GetSandboxPositions</a> </td><td class="markdownTableBodyLeft">2000  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#getsandboxoperations">GetSandboxOperations</a> </td><td class="markdownTableBodyLeft">2000  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#getsandboxportfolio">GetSandboxPortfolio</a> </td><td class="markdownTableBodyLeft">2000  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a href="/investAPI/sandbox#sandboxpayin">SandboxPayIn</a> </td><td class="markdownTableBodyLeft">300  </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

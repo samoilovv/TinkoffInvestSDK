@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Что такое шаг цены?</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Что такое шаг цены? </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Шаг цены — это минимальное изменение цены определенного инструмента.</p>
+<h3><a class="anchor" id="autotoc_md67"></a>
+Пример</h3>
+<p>Шаг цены для инструмента = <code>0.1</code>, а последняя цена = <code>10.5</code> — это означает, что заявка может быть выставлена по одной из следующих цен:</p>
+<ul>
+<li>10.4</li>
+<li>10.5</li>
+<li>10.6</li>
+</ul>
+<p>Цена <code>10.55</code> будет некорректной и заявка не будет выставлена.</p>
+<div class="fragment"><div class="line">def isValidPrice(price: BigDecimal, increment: BigDecimal): Boolean = {</div>
+<div class="line">    price % increment == 0</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">isValidPrice(10.1, 0.1) // true</div>
+<div class="line">isValidPrice(10.16, 0.1) // false</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md68"></a>
+Отличие лотов и количества инструментов</h2>
+<p>При работе с сервисом TINKOFF INVEST API следует обращать особое внимание на различия понятий лот и количество ценных бумаг. Все цены в <a href="/investAPI/head-marketdata/">сервисе котировок</a> предоставляются за одну ценную бумагу. Данное правило касается методов <a href="/investAPI/marketdata#getlastprices">GetLastPrice</a>, <a href="/investAPI/marketdata#getcandles">GetCandles</a>, а так же подписки на эти данные в рамках <a href="/investAPI/marketdata#marketdatastreamservice">stream-соединений</a> данного сервиса.</p>
+<p>При получении данных по стакану или сделкам объём этих сделок отображается в лотах. Т.е. параметр quantity метода <a href="/investAPI/marketdata#getorderbook">GetOrderBook</a> и пакета <a href="/investAPI/marketdata#trade">trade</a> в рамках <a href="/investAPI/marketdata#marketdatastreamservice">stream-соединений</a> сервиса отображается в <b>лотах</b></p>
+<h2><a class="anchor" id="autotoc_md69"></a>
+Цены облигаций и фьючерсов</h2>
+<p>Цены облигаций и фьючерсов в TINKOFF INVEST API предоставляются в пунктах. Методика расчёта стоимости лота в валюте отличается в зависимости от типа биржевого инструмента.</p>
+<h3><a class="anchor" id="autotoc_md70"></a>
+Перевод цены облигации в валюту</h3>
+<p>Пункты цены для котировок облигаций представляют собой проценты номинала облигации. Для пересчёта пунктов в валюту можно воспользоваться формулой:</p>
+<blockquote class="doxtable">
+<p><b>price</b> / 100 * <b>nominal</b> </p>
+</blockquote>
+<p>Где</p>
+<ul>
+<li><b>price</b> — текущая котировка ценной бумаги;</li>
+<li><b>nominal</b> — номинал облигации.</li>
+</ul>
+<p><a class="anchor" id="futures"></a> </p>
+<h3><a class="anchor" id="autotoc_md71"></a>
+Перевод цены фьючерса в валюту</h3>
+<p>Стоимость фьючерсов так же предоставляется в пунктах, для пересчёта можно воспользоваться формулой: </p><blockquote class="doxtable">
+<p><b>price</b> / <b>min_price_increment</b> * <b>min_price_increment_amount</b> </p>
+</blockquote>
+<p>Где</p>
+<ul>
+<li><b>price</b> — текущая котировка ценной бумаги;</li>
+<li><b>min_price_increment</b> — шаг цены;</li>
+<li><b>min_price_increment_amount</b> — стоимость шага цены.</li>
+</ul>
+<p>Так же при работе с фьючерсами важно учитывать размер гарантийного обеспечения. Узнать эти параметры фьючерсов можно при помощи метода: <a href="/investAPI/instruments#getfuturesmargin">getFuturesMargin</a>. Подробнее про срочный рынок читайте <a href="https://help.tinkoff.ru/forts/">тут</a></p>
+<h2><a class="anchor" id="autotoc_md72"></a>
+Какие интервалы доступны при запросе исторических свечей?</h2>
+<p>Метод <a href="/investAPI/marketdata#getcandles">GetCandles</a> позволяет получать исторические свечи разных таймфреймов. Существует ограничение на максимальный и минимальный период запроса для каждого интервала свечей:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Запрошенный интервал свечей </th><th class="markdownTableHeadRight">Допустимый период запроса  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">CANDLE_INTERVAL_1_MIN </td><td class="markdownTableBodyRight">от 1 минут до 1 дня  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">CANDLE_INTERVAL_5_MIN </td><td class="markdownTableBodyRight">от 5 минут до 1 дня  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">CANDLE_INTERVAL_15_MIN </td><td class="markdownTableBodyRight">от 15 минут до 1 дня  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">CANDLE_INTERVAL_HOUR </td><td class="markdownTableBodyRight">от 1 часа до 1 недели  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">CANDLE_INTERVAL_DAY </td><td class="markdownTableBodyRight">от 1 дня до 1 года  </td></tr>
+</table>
+<p><b>Важно!</b> При запросе дневных свечей CANDLE_INTERVAL_DAY время, переданное в поля from и to игнорируется, Т.е. при запросе дневной свечи по интервалу с 12:00 01.01.2021 по 07:00 02.01.2021 вернётся две дневных свечи за 01.01.2021 и за 02.01.2021</p>
+<h2><a class="anchor" id="autotoc_md73"></a>
+Как одним запросом получить последние цены по нескольким инструментам?</h2>
+<p>Для получения цен последних сделок по массиву инструментов можно методом <a href="/investAPI/marketdata#getlastprices">GetLastPrices</a>. Во входные параметры метода можно передать массив идентификаторов инструментов.</p>
+<h2><a class="anchor" id="autotoc_md74"></a>
+Как подписаться на разные типы данных в рамках stream-соединения сервиса котировок.</h2>
+<p>Bi-directional stream Сервиса котировок поддерживает одновременную подписку на разные типы данных (свечи, стаканы, сделки и т.п.) в рамках одного соединения. Для этого следует последовательно отправить пакеты подписки на разные данные. Т.е. отдельно реализуется подписка на свечи, отдельно на стаканы и т.п. Подробнее можно узнать в примерах выбранного вами SDK.</p>
+<h2><a class="anchor" id="autotoc_md75"></a>
+Внебиржевые инструменты в TINKOFF INVEST API</h2>
+<p>В данный момент TINKOFF INVEST API предполагает работу только с биржевыми инструментами.</p>
+<h2><a class="anchor" id="autotoc_md76"></a>
+Торговля бумагами Тинькофф через TINKOFF INVEST API</h2>
+<p>Из-за огромного количества скальперских сделок мы закрыли торговлю БПИФ от УК "Тинькофф Капитал" в TINKOFF INVEST API. Список бумаг смотрите <a href="https://tinkoff.github.io/invest-openapi/">здесь</a>.</p>
+<h2><a class="anchor" id="autotoc_md77"></a>
+Валюты в TINKOFF INVEST API</h2>
+<p>Получить список доступных валют можно при помощи метода <a href="/investAPI/instruments#currencies">getInstruments/currencies</a>.</p>
+<p>Обратите внимание, что лотность валют ограничена лотностью, которая предоставляет биржа. Например, операции с Евро и Долларами возможны только на количества кратные 1000.</p>
+<h2><a class="anchor" id="autotoc_md78"></a>
+Почему отличаются исторические цены в TINKOFF INVEST API и других источниках?</h2>
+<p>Исторические данные <a href="https://www.tinkoff.ru/invest/">Тинькофф Инвестиций</a> могут отличаться от данных, которые предоставляют другие сервисы. Связано это может быть как с различными источниками первичных данных, так и с различными алгоритмами их обработки и агрегации. <br  />
+ </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: grpc</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">grpc </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Протокол взаимодействия с TINKOFF INVEST API</p>
+<p>Вся работа с TINKOFF INVEST API происходит по протоколу gRPC, документацию которого можно найти по ссылке: <a href="https://grpc.io/docs/">https://grpc.io/docs/</a>.</p>
+<p>Одной из ключевых особенностей протокола следует назвать Bidirectional-stream — это особый режим работы, при котором открывается одно стрим-соединение, отправлять сообщения в которое могут оба участника взаимодействия. Это позволяет более гибко и оперативно реализовать работу. Например, bidirectional-stream <a href="/investAPI/head-marketdata/">сервиса котировок</a> в одном и том же соединении принимает сообщения об изменении статуса подписки и предоставляет различные виды биржевой информации (стаканы, свечи, поток обезличенных сделок и т.д.). Подробнее о данном режиме работы можно ознакомиться в <a href="https://grpc.io/docs/what-is-grpc/core-concepts/">документации протокола</a>.</p>
+<h2><a class="anchor" id="autotoc_md116"></a>
+Авторизация в TINKOFF INVEST API</h2>
+<p>Для успешной работы с TINKOFF INVEST API требуется передавать токен доступа в metadata каждого запроса.</p>
+<p>Формат заголовка: <code>Authorization: Bearer [токен доступ]</code></p>
+<p>Например: <code>Authorization: Bearer t.QtEo8ahkNFX4RTpbqp0u4z4GDZq27HzUp6AotJASBx7_DVqmqZMHfM2Cy7JmUjS80boI9eVg</code></p>
+<p><a class="anchor" id="tracking"></a> </p>
+<h2><a class="anchor" id="autotoc_md117"></a>
+tracking-id запросов</h2>
+<p>Во все ответы unary-методов TINKOFF INVEST API добавляется заголовок <b>x-tracking-id</b>. Это уникальный uuid-идентификатор запроса, который необходим технической поддержке для разбора различных инцидентов. При обращении в службу технической поддержки обязательно указывайте <b>tracking-id</b> запроса, это ускорит решение вашего вопроса.</p>
+<p><em>Для сообщений управления статусом подписки в рамках stream-соединений <b>tracking-id</b> передаётся явно в виде выходного параметра.</em></p>
+<h2><a class="anchor" id="autotoc_md118"></a>
+Appname запросов</h2>
+<p>TINKOFF INVEST API позволяет в запросах добавлять служебный заголовок <b>x-app-name</b>, который нужен для сбора статистики по используемым инструментам. Если вы разработчик SDK, рекомендуется использовать app-name формата *&lt;Ник в GitHub&gt;.&lt;Название репозитория&gt;*. Например, <b>user.tinkoffSDK</b>.</p>
+<h2><a class="anchor" id="autotoc_md119"></a>
+Рекомендации по тестированию методов TINKOFF INVEST API</h2>
+<p>Для тестирования работы TINKOFF INVEST API можно использовать любой доступный grpc-клиент. Ниже приведены краткие инструкции по настройке двух наиболее популярных из них.</p>
+<h3><a class="anchor" id="autotoc_md120"></a>
+Kreya</h3>
+<p>Данный бесплатный gRPC-клиент предоставляет довольно широкий набор функциональности и возможностей. Скачать его можно с официального сайта <a href="https://kreya.app/">kreya.app</a>.</p>
+<ol type="1">
+<li>После установки и запуска приложения перейдите в меню Project — Importers. <img src="/investAPI/img/Kreya-1.png" alt="Интерфейс Kreya" title="Интерфейс Kreya" class="inline"/></li>
+<li>Нажмите <em>New importer</em>. Укажите название источника данных и его тип (<em>gRPC proto files</em>). <img src="/investAPI/img/Kreya-2.png" alt="Интерфейс Kreya" title="Интерфейс Kreya" class="inline"/></li>
+<li>Нажмите <em>Add proto directory</em> и укажите папку со скаченными proto-контрактами сервиса TINKOFF INVEST API. Скачать актуальную версию контрактов можно по ссылке: <a href="https://github.com/Tinkoff/investAPI/tree/main/src/docs/contracts">TINKOFF INVEST API</a>. <img src="/investAPI/img/Kreya-3.png" alt="Интерфейс Kreya" title="Интерфейс Kreya" class="inline"/></li>
+<li>Сохраните изменения и нажмите <em>Back</em>.</li>
+<li>В левом окне нажмите на появившуюся папку <em>Tinkoff</em>. Укажите Endpoint сервиса: <a href="https://invest-public-api.tinkoff.ru:443">https://invest-public-api.tinkoff.ru:443</a>. Остальные настройки укажите в соответствии со скриншотом. Обратите внимание на блок <em>Metadata</em>, в нём требуется указать заголовок Authorization, в значении которого передаётся строка **"Bearer &lt;токен доступа&gt;"**. Подробнее о том, как получить токен можно узнать по ссылке: <a href="/investAPI/token/">Токен доступа</a> <img src="/investAPI/img/Kreya-4.png" alt="Интерфейс Kreya" title="Интерфейс Kreya" class="inline"/></li>
+<li>Теперь вы можете выполнять запросы к сервису. <img src="/investAPI/img/Kreya-5.png" alt="Интерфейс Kreya" title="Интерфейс Kreya" class="inline"/></li>
+</ol>
+<p>Kreya позволяет увидеть служебные заголовки ответа сервера: <img src="/investAPI/img/Kreya-6.png" alt="Интерфейс Kreya" title="Интерфейс Kreya" class="inline"/></p>
+<ul>
+<li><b>x-ratelimit-limit</b> — показывает настройки текущего лимита пользователя по данному методу.</li>
+<li><b>x-ratelimit-remaining</b> — количество оставшихся запросов данного типа в минуту.</li>
+<li><b>x-ratelimit-reset</b> — время в секундах до обнуления счётчика запросов.</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md121"></a>
+BloomRPC</h3>
+<p>Скачать данный клиент можно по ссылке: <a href="https://github.com/uw-labs/bloomrpc/releases">bloomrpc releases</a>.</p>
+<p>Интерфейс утилиты достаточно прост, для старта работы требуется указать домен сервиса и импортировать все proto-файлы.</p>
+<ol type="1">
+<li>Импортируйте скаченные poroto-контракты сервиса. <img src="/investAPI/img/Bloom-1.png" alt="Интерфейс BloomRPC" title="Интерфейс BloomRPC" class="inline"/></li>
+<li>Укажите адрес сервера invest-public-api.tinkoff.ru:443 и заполните поле metadata значением (подставьте своё значение <a href="/investAPI/token/">токена доступа</a>).</li>
+</ol>
+<p>`{ "Authorization": "Bearer t.QtEo8ahkNFX4RTpbqp0u4z4GDZq27HzUp6AotJASBx7_DVqmqZMHfM2Cy7JmUjS80boI9eVg" }` <img src="/investAPI/img/Bloom-2.png" alt="Интерфейс BloomRPC" title="Интерфейс BloomRPC" class="inline"/></p><ol type="1">
+<li>При выполнении запросов следует обязательно указывать тип TLS-подключения: <img src="/investAPI/img/Bloom-3.png" alt="Интерфейс BloomRPC" title="Интерфейс BloomRPC" class="inline"/></li>
+<li>Теперь вы можете выполнять запросы к сервису. <img src="/investAPI/img/Bloom-4.png" alt="Интерфейс BloomRPC" title="Интерфейс BloomRPC" class="inline"/></li>
+</ol>
+<p>BloomRPC не позволяет увидеть заголовки ответа сервера, поэтому команда TINKOFF INVEST API рекомендует использовать Kreya. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

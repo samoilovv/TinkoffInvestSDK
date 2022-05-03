@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: stoporders</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">stoporders </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="autotoc_md668"></a>
+StopOrdersService</h2>
+<p>Сервис предназначен для работы со стоп-заявками: <b>1</b>. выставление; <b>2</b>. отмена; <b>3</b>. получение списка стоп-заявок.</p>
+<h3><a class="anchor" id="autotoc_md669"></a>
+Методы сервиса</h3>
+<h4><a class="anchor" id="autotoc_md670"></a>
+PostStopOrder</h4>
+<p>Метод выставления стоп-заявки.</p>
+<ul>
+<li>Тело запроса — <a href="#poststoporderrequest">PostStopOrderRequest</a></li>
+<li>Тело ответа — <a href="#poststoporderresponse">PostStopOrderResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md671"></a>
+GetStopOrders</h4>
+<p>Метод получения списка активных стоп заявок по счёту.</p>
+<ul>
+<li>Тело запроса — <a href="#getstopordersrequest">GetStopOrdersRequest</a></li>
+<li>Тело ответа — <a href="#getstopordersresponse">GetStopOrdersResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md672"></a>
+CancelStopOrder</h4>
+<p>Метод отмены стоп-заявки.</p>
+<ul>
+<li>Тело запроса — <a href="#cancelstoporderrequest">CancelStopOrderRequest</a></li>
+<li>Тело ответа — <a href="#cancelstoporderresponse">CancelStopOrderResponse</a></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md673"></a>
+Сообщения методов</h3>
+<h4><a class="anchor" id="autotoc_md674"></a>
+PostStopOrderRequest</h4>
+<p>Запрос выставления стоп-заявки.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">quantity </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Количество лотов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">price </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">stop_price </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Стоп-цена заявки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">direction </td><td class="markdownTableBodyNone"><a href="#stoporderdirection">StopOrderDirection</a> </td><td class="markdownTableBodyNone">Направление операции.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Номер счёта.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">expiration_type </td><td class="markdownTableBodyNone"><a href="#stoporderexpirationtype">StopOrderExpirationType</a> </td><td class="markdownTableBodyNone">Тип экспирации заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">stop_order_type </td><td class="markdownTableBodyNone"><a href="#stopordertype">StopOrderType</a> </td><td class="markdownTableBodyNone">Тип заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">expire_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время окончания действия стоп-заявки в часовом поясе UTC. <b>Для ExpirationType = GoodTillDate заполнение обязательно</b>.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md675"></a>
+PostStopOrderResponse</h4>
+<p>Результат выставления стоп-заявки.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">stop_order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор стоп-заявки.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md676"></a>
+GetStopOrdersRequest</h4>
+<p>Запрос получения списка активных стоп-заявок.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор счёта клиента.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md677"></a>
+GetStopOrdersResponse</h4>
+<p>Список активных стоп-заявок.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">stop_orders </td><td class="markdownTableBodyNone">Массив объектов <a href="#stoporder">StopOrder</a> </td><td class="markdownTableBodyNone">Массив стоп-заявок по счёту.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md678"></a>
+CancelStopOrderRequest</h4>
+<p>Запрос отмены выставленной стоп-заявки.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор счёта клиента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">stop_order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор стоп-заявки.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md679"></a>
+CancelStopOrderResponse</h4>
+<p>Результат отмены выставленной стоп-заявки.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время отмены заявки в часовом поясе UTC.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md680"></a>
+StopOrder</h4>
+<p>Информация о стоп-заявке.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">stop_order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор-идентификатор стоп-заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">lots_requested </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Запрошено лотов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">direction </td><td class="markdownTableBodyNone"><a href="#stoporderdirection">StopOrderDirection</a> </td><td class="markdownTableBodyNone">Направление операции.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта стоп-заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">order_type </td><td class="markdownTableBodyNone"><a href="#stopordertype">StopOrderType</a> </td><td class="markdownTableBodyNone">Тип стоп-заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">create_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время выставления заявки в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">activation_date_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время конвертации стоп-заявки в биржевую в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">expiration_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время снятия заявки в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Цена заявки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">stop_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Цена активации стоп-заявки за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.  </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md681"></a>
+Enums</h3>
+<h4><a class="anchor" id="autotoc_md682"></a>
+StopOrderDirection</h4>
+<p>Направление сделки стоп-заявки.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">STOP_ORDER_DIRECTION_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Значение не указано.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">STOP_ORDER_DIRECTION_BUY </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Покупка.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">STOP_ORDER_DIRECTION_SELL </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Продажа.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md683"></a>
+StopOrderExpirationType</h4>
+<p>Тип экспирации стоп-заявке.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">STOP_ORDER_EXPIRATION_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Значение не указано.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_CANCEL </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Действительно до отмены.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">STOP_ORDER_EXPIRATION_TYPE_GOOD_TILL_DATE </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Действительно до даты снятия.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md684"></a>
+StopOrderType</h4>
+<p>Тип стоп-заявки.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">STOP_ORDER_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Значение не указано.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">STOP_ORDER_TYPE_TAKE_PROFIT </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Take-profit заявка.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">STOP_ORDER_TYPE_STOP_LOSS </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Stop-loss заявка.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">STOP_ORDER_TYPE_STOP_LIMIT </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Stop-limit заявка.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md685"></a>
+SecurityTradingStatus</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Торговый статус не определён  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Недоступен для торгов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_OPENING_PERIOD </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Период открытия торгов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_CLOSING_PERIOD </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Период закрытия торгов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_BREAK_IN_TRADING </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Перерыв в торговле  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_NORMAL_TRADING </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">Нормальная торговля  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_CLOSING_AUCTION </td><td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">Аукцион закрытия  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DARK_POOL_AUCTION </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Аукцион крупных пакетов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DISCRETE_AUCTION </td><td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">Дискретный аукцион  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD </td><td class="markdownTableBodyNone">9 </td><td class="markdownTableBodyNone">Аукцион открытия  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE </td><td class="markdownTableBodyNone">10 </td><td class="markdownTableBodyNone">Период торгов по цене аукциона закрытия  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_ASSIGNED </td><td class="markdownTableBodyNone">11 </td><td class="markdownTableBodyNone">Сессия назначена  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_CLOSE </td><td class="markdownTableBodyNone">12 </td><td class="markdownTableBodyNone">Сессия закрыта  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_OPEN </td><td class="markdownTableBodyNone">13 </td><td class="markdownTableBodyNone">Сессия открыта  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING </td><td class="markdownTableBodyNone">14 </td><td class="markdownTableBodyNone">Доступна торговля в режиме внутренней ликвидности брокера  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING </td><td class="markdownTableBodyNone">15 </td><td class="markdownTableBodyNone">Перерыв торговли в режиме внутренней ликвидности брокера  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyNone">16 </td><td class="markdownTableBodyNone">Недоступна торговля в режиме внутренней ликвидности брокера  </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md686"></a>
+Нестандартные типы данных</h3>
+<h4><a class="anchor" id="autotoc_md687"></a>
+MoneyValue</h4>
+<p>Денежная сумма в определенной валюте</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Строковый ISO-код валюты  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">units </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Целая часть суммы, может быть отрицательным числом  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nano </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Дробная часть суммы, может быть отрицательным числом  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md688"></a>
+Quotation</h4>
+<p>Котировка - денежная сумма без указания валюты</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">units </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Целая часть суммы, может быть отрицательным числом  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nano </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Дробная часть суммы, может быть отрицательным числом  </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

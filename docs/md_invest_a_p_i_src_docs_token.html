@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: token</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">token </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Токен для работы с TINKOFF INVEST API</p>
+<p>Токен – это набор символов, в котором зашифрована информация о владельце, правах доступ и прочей необходимой для авторизации в TINKOFF INVEST API информации. В процессе работы с TINKOFF INVEST API токен следует передавать в metadata каждого unary-запроса, а также в запросах на установление всех видов stream-соединение. Работа с TINKOFF INVEST API без выпуска и использования токена невозможна.</p>
+<h2><a class="anchor" id="autotoc_md691"></a>
+Виды токенов</h2>
+<p>В TINKOFF INVEST API существует несколько видов токенов с разным набором доступных прав — вы можете выпустить несколько токенов для решения разных задач алгоритмической торговли или мониторинга рынка ценных бумаг.</p>
+<ul>
+<li><b>Readonly token</b> — данный тип токена предназначен только для получения различной информации, такой как состояние портфеля, расписание торгов различных торговых площадок, текущие котировки, исторические данные и т.п. С данным типом токена невозможно выставление торговых поручений.</li>
+<li><b>Full-access token</b> — с данным типом токена доступно выполнение всех методов TINKOFF INVEST API. Это основной тип токена для реальной работы с TINKOFF INVEST API.</li>
+<li><b>Токен с доступом к конкретному счёту</b> — данный вид токена позволяет получить доступ только к одному конкретному счёту пользователя. Уровень прав доступа (readonly, full-access) при этом так же можно настроить.</li>
+<li><b><a class="el" href="class_sandbox.html" title="Сервис для работы с песочницей">Sandbox</a> token</b> – токен для работы с песочницей. Песочница – это эмуляция работы торговых площадок, основанная на реальных данных, но не ведущая к изменению состава портфеля или баланса вашего счёта. Данный тип токена предназначен в первую очередь для тестирования вашего робота и проверки работоспособности всех алгоритмов.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md692"></a>
+Получение токена</h2>
+<ol type="1">
+<li>Перейдите в настройки профиля Тинькофф Инвестиции по ссылке: <a href="https://www.tinkoff.ru/invest/settings/">https://www.tinkoff.ru/invest/settings/</a></li>
+<li>Авторизуйтесь в системе, если это требуется.</li>
+<li>Функция "Подтверждение сделок кодом" должна быть отключена. <b>Обратите внимание, что сделки на сумму выше 6 000 000 рублей или $100 000, или €100 000 требуют подтверждения, т.е. будут недоступны через API.</b></li>
+<li>Выпустите токен TINKOFF INVEST API для биржи и/или <a class="el" href="class_sandbox.html" title="Сервис для работы с песочницей">Sandbox</a>. Возможно, система попросит вас авторизоваться еще раз. Не беспокойтесь, это необходимо для подключения робота к торговой платформе.</li>
+<li>Скопируйте токен и сохраните его. Токен отображается только один раз, просмотреть его позже не получится. Тем не менее вы можете выпускать неограниченное количество токенов.</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md693"></a>
+Срок жизни токена</h2>
+<p>Срок жизни токена составляет три месяца с даты последнего использования.</p>
+<h2><a class="anchor" id="autotoc_md694"></a>
+Отзыв токена</h2>
+<p>Отозвать токен TINKOFF INVEST API можно на странице <a href="https://id.tinkoff.ru/account">https://id.tinkoff.ru/account</a>. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

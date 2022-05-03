@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: head-operations</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">head-operations </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Сервис получения информации о портфеле по конкретному счёту</p>
+<h2><a class="anchor" id="autotoc_md131"></a>
+Получение списка операций по счёту</h2>
+<p>В процессе работы торговому роботу требуется получать информацию об операциях по счёту. Например, чтобы корректно рассчитывать доходности и собирать статистику своей работы. Для реализации данных потребностей можно использовать метод <a href="/investAPI/operations#getoperations">getOperations</a>.</p>
+<p>Данный метод, в том числе, возвращает отменённые операции (параметр <em>state</em>), это нужно обязательно учитывать в алгоритме работы.</p>
+<p>Команда TINKOFF INVEST API не рекомендует использовать метод получения операций для идентификации изменения статусов торговых поручений, т.к. некоторые операции могут происходить с задержкой относительно реального исполнения. Для получения статусов исполнения торговых поручений рекомендуется использовать соответствующий stream <a href="/investAPI/head-orders/">сервиса работы с торговыми поручениями</a>.</p>
+<h2><a class="anchor" id="autotoc_md132"></a>
+Получение портфолио</h2>
+<p>Для получения торговым роботом текущего состояния портфеля по счёту используется метод <a href="/investAPI/operations#getportfolio">getPortfolio</a>. Данный метод в отличие от метода <a href="/investAPI/operations#getpositions">getPositions</a> возвращает также статистическую информацию по портфелю (абсолютные и относительные доходности, текущую стоимость активов и т.п.).</p>
+<p>Обратите внимание, что для расчёта суммарной стоимости активов используются текущие цены биржевых инструментов. Если торги в данный момент не ведутся, то берётся цена закрытия последней торговой сессии.</p>
+<p><b>Значения средних цен покупки инструментов (параметры <em>average_position_price</em>, <em>average_position_price_pt</em> и <em>average_position_price_fifo</em>) рассчитываются асинхронно. Возможна задержка в пересчёте до одной секунды.</b></p>
+<h2><a class="anchor" id="autotoc_md133"></a>
+Получение списка позиций портфеля по счёту</h2>
+<p>Для принятия решений торговому роботу требуется получать список актуальных позиций в портфеле, т.е. количество ценных бумаг, валютных позиций по счёту, включая заблокированные средства. Для этого используется метод <a href="/investAPI/operations#getpositions">getPositions</a>. Команда TINKOFF INVEST API рекомендует использовать именно этот метод, когда требуется получить актуальный список позиций, т.к. он является более быстрым и "лёгким" по сравнению с методом получения портфолио.</p>
+<p><b>Важно</b>. Данный метод не возвращает объём средств, заблокированных под гарантийное обеспечение фьючерсов. Для получения этой информации воспользуйтесь методом <a href="/investAPI/operations#getwithdrawlimits">getWithdrawLimits</a>.</p>
+<h2><a class="anchor" id="autotoc_md134"></a>
+Получение доступного остатка для вывода денежных средств</h2>
+<p>Метод <a href="/investAPI/operations#getwithdrawlimits">getWithdrawLimits</a> позволяет в удобном виде получить доступный для вывода баланс денежных средств, а также количество заблокированных валютных позиций.</p>
+<h2><a class="anchor" id="autotoc_md135"></a>
+Получение различных отчётов</h2>
+<p>TINKOFF INVEST API позволяет получать различные отчёты. Например, <a href="/investAPI/operations#getbrokerreport">брокерский отчёт</a> или <a href="/investAPI/operations#getdividendsforeignissuer">справка о доходах за пределами РФ</a>. Обратите внимание, что операции формирования отчётов достаточно трудоёмки, поэтому существуют ограничения на период формирования отчёта и лимиты на количество вызовов соответствующих методов. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

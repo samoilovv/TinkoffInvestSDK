@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: faq_custom_types</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">faq_custom_types </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Нестандартные типы данных TINKOFF INVEST API</p>
+<h2><a class="anchor" id="autotoc_md42"></a>
+Timestamp</h2>
+<p>Тип данных Timestamp является основным для передачи времени <a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#timestamp">в формате protoсol-buffers</a> и представляет собой значение в диапазоне интервала дат от 0001-01-01T00:00:00Z до 9999-12-31T23:59:59.999999999Z</p>
+<p>Timestamp всегда работает в формате UTC с нулевым смещением. Тип Timestamp состоит из двух полей целого типа: seconds и nanos.</p>
+<p>Seconds содержит количество секунд с полуночи (00:00:00) 01.01.1970, а nanos принимает значение от 0 до 999999999.</p>
+<h4><a class="anchor" id="autotoc_md43"></a>
+Примеры timestamp</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Seconds </th><th class="markdownTableHeadLeft">Nanos </th><th class="markdownTableHeadLeft">Значение  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">1645718039 </td><td class="markdownTableBodyLeft">0 </td><td class="markdownTableBodyLeft">24 February 2022, 15:53:59.000  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">1 </td><td class="markdownTableBodyLeft">500000000 </td><td class="markdownTableBodyLeft">1 January 1970, 0:00:01.500  </td></tr>
+</table>
+<p>{ //Пример конвертации из POSIX функции time() Timestamp timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0); }</p>
+<pre class="fragment">{
+    //Пример конвертации из POSIX функции gettimeofday()
+    struct timeval tv;
+    gettimeofday(&amp;tv, NULL);
+
+    Timestamp timestamp;
+    timestamp.set_seconds(tv.tv_sec);
+    timestamp.set_nanos(tv.tv_usec * 1000);
+}
+
+
+{
+    //Пример конвертации из Windows функции GetSystemTimeAsFileTime()
+    FILETIME ft;
+    GetSystemTimeAsFileTime(&amp;ft);
+    UINT64 ticks = (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;
+
+    // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+    //  is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+    Timestamp timestamp;
+    timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+    timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+}
+</pre><h2><a class="anchor" id="autotoc_md44"></a>
+MoneyValue</h2>
+<p>Данный тип данных используется для параметров, имеющих денежный эквивалент. Например, стоимость ценных бумаг.</p>
+<p>Тип состоит из трёх параметров:</p>
+<ul>
+<li>currency — строковый <a href="https://ru.wikipedia.org/wiki/ISO_4217">ISO-код валюты</a>. Например, RUB или USD.</li>
+<li>units — целая часть суммы.</li>
+<li>nano — дробная часть суммы.</li>
+</ul>
+<p>Для корректной работы с данным типом данных требуется его конвертация в стандартные типы языка программирования, который используется для написания торгового робота.</p>
+<h3><a class="anchor" id="autotoc_md45"></a>
+Пример конвертации на Java</h3>
+<pre class="fragment">{
+//MoneyValue - конвертация из BigDecimal в MoneyValue и обратно
+    BigDecimal value = new BigDecimal("123.456");
+    String currency = "RUB";
+    MoneyValue moneyValue = MoneyValue.newBuilder() 
+        .setCurrency(currency)
+        .setUnits(value != null ? value.longValue() : 0)
+        .setNano(value != null ? value.remainder(BigDecimal.ONE).multiply(BigDecimal.valueOf(1_000_000_000)).intValue() : 0)
+        .build();
+    BigDecimal bigDecimal = moneyValue.getUnits() == 0 &amp;&amp; moneyValue.getNano() == 0 ? BigDecimal.ZERO : BigDecimal.valueOf(moneyValue.getUnits()).add(BigDecimal.valueOf(moneyValue.getNano(), 9));
+}
+</pre><h4><a class="anchor" id="autotoc_md46"></a>
+Примеры конвертированных значений</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Сумма в валюте </th><th class="markdownTableHeadLeft">Сумма в MoneyValue  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">114,25 рублей </td><td class="markdownTableBodyLeft"><code>{</code><code>"currency": "RUB",</code><code>"units": "114",</code><code>"nano": 250000000</code><code>}</code>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">-200,20 долларов </td><td class="markdownTableBodyLeft"><code>{</code><code>"currency": "USD",</code><code>"units": "-200",</code><code>"nano": -200000000</code><code>}</code>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">-0.01 юаней </td><td class="markdownTableBodyLeft"><code>{</code><code>"currency": "CNY",</code><code>"units": "-0",</code><code>"nano": -10000000</code><code>}</code>  </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md47"></a>
+Quotation</h2>
+<p>Данный тип данных аналогичен MoneyValue с той лишь разницей, что в нём не содержится информации о валюте.</p>
+<ul>
+<li>units — целая часть суммы.</li>
+<li>nano — дробная часть суммы.</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md48"></a>
+Пример конвертации на Java</h3>
+<pre class="fragment">{
+//Пример конвертации из BigDecimal в Quotation и обратно
+    BigDecimal value = new BigDecimal("123.456");
+    Quotation quotation = Quotation.newBuilder()
+        .setUnits(value != null ? value.longValue() : 0)
+        .setNano(value != null ? value.remainder(BigDecimal.ONE).multiply(BigDecimal.valueOf(1_000_000_000)).intValue() : 0)
+        .build();
+    BigDecimal bigDecimal = quotation.getUnits() == 0 &amp;&amp; quotation.getNano() == 0 ? BigDecimal.ZERO : BigDecimal.valueOf(quotation.getUnits()).add(BigDecimal.valueOf(quotation.getNano(), 9));
+}
+</pre><h4><a class="anchor" id="autotoc_md49"></a>
+Примеры конвертированных значений</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Сумма </th><th class="markdownTableHeadLeft">Сумма в Quotation  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">114,25 </td><td class="markdownTableBodyLeft"><code>{</code><code>"units": "114",</code><code>"nano": 250000000</code><code>}</code>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">-200,20 </td><td class="markdownTableBodyLeft"><code>{</code><code>"units": "-200",</code><code>"nano": -200000000</code><code>}</code>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">-0.01 </td><td class="markdownTableBodyLeft"><code>{</code><code>"units": "-0",</code><code>"nano": -10000000</code><code>}</code>  </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

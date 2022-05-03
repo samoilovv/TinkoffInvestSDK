@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: errors</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">errors </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Ошибки TINKOFF INVEST API</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Код ошибки </th><th class="markdownTableHeadNone">Тип ошибки </th><th class="markdownTableHeadNone">Текст ошибки </th><th class="markdownTableHeadNone">Причины возникновения и  рекомендации по устранению  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30001 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'from' </td><td class="markdownTableBodyNone">Входной параметр <em>from</em> является обязательным.  Укажите корректный параметр <em>from</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30002 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">the required period should not exceed 7 days </td><td class="markdownTableBodyNone">Запрошенный период не может превышать 7 дней.  Укажите корректный период.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30003 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'from' can't be less than the current date </td><td class="markdownTableBodyNone">Входной параметр <em>from</em> не может быть меньше текущей даты.  Укажите корректный параметр <em>from</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30004 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'to' </td><td class="markdownTableBodyNone">Входной параметр <em>to</em> является обязательным.  Укажите корректный параметр <em>to</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30005 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'id_type' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>id_type</em> имеет некорректное значение.Список доступных значений: <a href="https://tinkoff.github.io/investAPI/instruments#instrumentidtype"><em>id_type</em></a>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30006 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'id_type' </td><td class="markdownTableBodyNone">Входной параметр <em>id_type</em> является обязательным.  Укажите корректный параметр <em>id_type</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30007 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'id' </td><td class="markdownTableBodyNone">Входной параметр <em>id</em> является обязательным.  Укажите корректный параметр <em>id</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30008 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'figi' </td><td class="markdownTableBodyNone">Входной параметр <em>figi</em> является обязательным.  Укажите корректный параметр <em>figi</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30009 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'from' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>from</em> имеет некорректное значение.Укажите корректный параметр <em>from</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30010 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'to' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>to</em> имеет некорректное значение.Укажите корректный параметр <em>to</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30011 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">interval is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>interval</em> имеет некорректное значение.Список доступных значений: <a href="https://tinkoff.github.io/investAPI/marketdata#subscriptioninterval"><em>interval</em></a>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30012 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'to' can't be less than 'from' </td><td class="markdownTableBodyNone">Входной параметр <em>to</em> не может быть меньше параметра <em>from</em>. Укажите корректные параметры <em>from</em> и <em>to</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30013 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'class_code' require for 'id_type' = 'ticker' </td><td class="markdownTableBodyNone">Входной параметр <em>class_code</em> не может быть пустым при поиске по тикеру. Укажите корректный параметр <em>class_code</em>. Подробнее: <a href="https://tinkoff.github.io/investAPI/faq_identification/">Идентификация инструментов</a>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30014 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">the maximum request period for the given candle interval has been exceeded </td><td class="markdownTableBodyNone">Превышен максимальный период запроса для данного интервала свечи. Укажите корректный интервал.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30015 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'quantity' </td><td class="markdownTableBodyNone">Входной параметр <em>quantity</em> является обязательным.  Укажите корректный параметр <em>quantity</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30016 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'quantity' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>quantity</em> имеет некорректное значение.Укажите корректный параметр <em>quantity</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30017 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'price' </td><td class="markdownTableBodyNone">Входной параметр <em>price</em> является обязательным.  Укажите корректный параметр <em>price</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30018 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">price is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>price</em> имеет некорректное значение.Укажите корректный параметр <em>price</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30019 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'direction' </td><td class="markdownTableBodyNone">Входной параметр <em>direction</em> является обязательным.  Укажите корректный параметр <em>direction</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30020 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'direction' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>direction</em> имеет некорректное значение.Список доступных значений: <a href="https://tinkoff.github.io/investAPI/stoporders/#stoporderdirection"><em>direction</em></a>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30021 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'account_id' </td><td class="markdownTableBodyNone">Входной параметр <em>account_id</em> является обязательным.  Укажите корректный параметр <em>account_id</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30025 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'order_type' </td><td class="markdownTableBodyNone">Входной параметр <em>order_type</em> является обязательным.  Укажите корректный параметр <em>order_type</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30027 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'order_id' </td><td class="markdownTableBodyNone">Входной параметр <em>order_id</em> является обязательным.  Укажите корректный параметр <em>order_id</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30031 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'depth' </td><td class="markdownTableBodyNone">Входной параметр <em>depth</em> является обязательным. Укажите корректный параметр <em>depth</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30032 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">depth is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>depth</em> имеет некорректное значение.Укажите корректный параметр <em>depth</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30033 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'trade_clearing_account' or 'class_code' </td><td class="markdownTableBodyNone">Параметр <em>trade_clearing_account</em> или <em>class_code</em> не может быть пустым.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30034 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">not enough balance </td><td class="markdownTableBodyNone">Недостаточно средств для совершения сделки (ошибка песочницы). Пополните баланс нужной валюты.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30036 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'stop_price' </td><td class="markdownTableBodyNone">Входной параметр <em>stop_price</em> является обязательным. Укажите корректный параметр <em>stop_price</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30037 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'stop_order_type' </td><td class="markdownTableBodyNone">Входной параметр <em>stop_order_type</em> является обязательным. Укажите корректный параметр <em>stop_order_type</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30038 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'stop_order_type' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>stop_order_type</em> имеет некорректное значение.Список доступных значений: <a href="https://tinkoff.github.io/investAPI/stoporders/#stopordertype"><em>stop_order_type</em></a>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30040 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'expire_date' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>expire_date</em> имеет некорректное значение.Укажите корректный параметр <em>expire_date</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30041 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">the method is available only for futures </td><td class="markdownTableBodyNone">Метод предназначен только для работы с фьючерсами. Передайте во входные параметры метода идентификатор фьючерса.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30042 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">not enough assets for a margin trade </td><td class="markdownTableBodyNone">Недостаточно активов для маржинальной сделки. Проверьте маржинальные показатели счёта.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30043 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'expiration_type' </td><td class="markdownTableBodyNone">Входной параметр <em>expiration_type</em> является обязательным.  Укажите корректный параметр <em>expiration_type</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30044 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'expiration_type' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>expiration_type</em> имеет некорректное значение.Список доступных значений: <a href="https://tinkoff.github.io/investAPI/stoporders/#stoporderexpirationtype"><em>expiration_type</em></a>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30045 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'ticker' </td><td class="markdownTableBodyNone">Входной параметр <em>ticker</em> является обязательным. Укажите корректный параметр <em>ticker</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30047 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">price currency does not match the settlement currency </td><td class="markdownTableBodyNone">Валюта цены не совпадает с валютой расчётов по инструменту. Укажите корректную валюту цены.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30048 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">instrument type is not bond </td><td class="markdownTableBodyNone">Метод предназначен только для запроса информации по облигации. Передайте во входные параметры метода идентификатор облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30049 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">post order error: s </td><td class="markdownTableBodyNone">Ошибка метода выставления торгового поручения. Подробнее в тексте ошибки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30050 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'instrument_status' is invalid </td><td class="markdownTableBodyNone">Входной параметр <em>instrument_status</em> имеет некорректное значение.Список доступных значений: <a href="https://tinkoff.github.io/investAPI/instruments#instrumentstatus"><em>instrument_status</em></a>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30051 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">account margin status is disabled </td><td class="markdownTableBodyNone">Для данного договора недоступна маржинальная торговля.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30052 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">instrument forbidden for trading by API </td><td class="markdownTableBodyNone">Для данного инструмента недоступна торговля через API.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30053 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">post stop_order error: s </td><td class="markdownTableBodyNone">Ошибка метода выставления стоп-заявки. Подробнее в тексте ошибки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30054 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">instrument type is not a share or etf </td><td class="markdownTableBodyNone">Тип инструмента не инвестиционный фонд или акция  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30055 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">order_id cannot be longer than 36 characters </td><td class="markdownTableBodyNone">order_id не может быть длиннее 36 символов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30056 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">stop order settlement currency is not supported </td><td class="markdownTableBodyNone">Валюта выставления стоп-заявки не поддерживается  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30057 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">the order is a duplicate, but the order report was not found </td><td class="markdownTableBodyNone">Заявка является дублем, но отчет по заявке не найден  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30058 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">task not completed yet, please try again later </td><td class="markdownTableBodyNone">Выполнение задачи еще не завершено, попробуйте позже.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30059 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">cancel order error: s </td><td class="markdownTableBodyNone">Ошибка метода отмены заявки. Подробнее в тексте ошибки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30060 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">cancel stop-order error: s </td><td class="markdownTableBodyNone">Ошибка метода отмены стоп-заявки. Подробнее в тексте ошибки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30061 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'from' value out of range </td><td class="markdownTableBodyNone">Входной параметр <em>from</em> имеет некорректное значение.Укажите значение в пределах от 1970-01-01T00:00:00Z до 2099-12-31T23:59:59.999999999Z включительно.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30062 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'to' value out of range </td><td class="markdownTableBodyNone">Входной параметр <em>to</em> имеет некорректное значение.Укажите значение в пределах от 1970-01-01T00:00:00Z до 2099-12-31T23:59:59.999999999Z включительно.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30063 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'expire_date' value out of range </td><td class="markdownTableBodyNone">Входной параметр <em>expire_date</em> имеет некорректное значение.Дата должна быть не ранее текущей и не позднее 2099-12-31T23:59:59.999999999Z.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30064 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">the required period should not exceed 31 days </td><td class="markdownTableBodyNone">Запрошенный период не может превышать 31 дня.  Укажите корректный период.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30065 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'task_id' </td><td class="markdownTableBodyNone">Входной параметр <em>task_id</em> является обязательным.  Укажите корректный параметр <em>task_id</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30066 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">missing parameter: 'payload' </td><td class="markdownTableBodyNone">Входной параметр <em>payload</em> является обязательным.  Укажите корректный параметр <em>payload</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30067 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">'action_type' is invalid </td><td class="markdownTableBodyNone">Некорректное значение <em>action_type</em>.  Выберите допустимое значение.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30077 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">not available for OTC instruments </td><td class="markdownTableBodyNone">Метод недоступен для внебиржевых инструментов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30078 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">Incorrect minimum price increment </td><td class="markdownTableBodyNone">Некорректный шаг изменения цены.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30079 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">instrument is not available for trading </td><td class="markdownTableBodyNone">Инструмент недоступен для торгов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30080 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">quantity must be positive </td><td class="markdownTableBodyNone">Количество лотов должно быть положительным числом.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30081 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">account status is closed </td><td class="markdownTableBodyNone">Аккаунт закрыт.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30082 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">account status is blocked </td><td class="markdownTableBodyNone">Аккаунт заблокирован.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30083 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">order_type is invalid </td><td class="markdownTableBodyNone">Некорректный тип заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">30084 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">maximum request period has been exceeded </td><td class="markdownTableBodyNone">Превышен лимит запрашиваемого периода.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">30085 </td><td class="markdownTableBodyNone">INVALID_ARGUMENT </td><td class="markdownTableBodyNone">price in points is available only for futures and bonds </td><td class="markdownTableBodyNone">Тип цены в пунктах доступен только для фьючерсов и облигаций.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">40002 </td><td class="markdownTableBodyNone">PERMISSION_DENIED </td><td class="markdownTableBodyNone">insufficient privileges </td><td class="markdownTableBodyNone">Недостаточно прав для совершения операции. Токен доступа имеет уровень прав read-only.Подробнее: <a href="https://tinkoff.github.io/investAPI/index#_2">Виды токенов</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">50001 </td><td class="markdownTableBodyNone">NOT_FOUND </td><td class="markdownTableBodyNone">exchange not found </td><td class="markdownTableBodyNone">Биржа не найдена по переданному <em>exchange_id</em>.Укажите корректный <em>exchange_id</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">50002 </td><td class="markdownTableBodyNone">NOT_FOUND </td><td class="markdownTableBodyNone">instrument not found </td><td class="markdownTableBodyNone">Инструмент не найден.Укажите корректный идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">50004 </td><td class="markdownTableBodyNone">NOT_FOUND </td><td class="markdownTableBodyNone">account not found </td><td class="markdownTableBodyNone">Счёт не найден по переданному <em>account_id</em>.Укажите корректный <em>account_id</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">50005 </td><td class="markdownTableBodyNone">NOT_FOUND </td><td class="markdownTableBodyNone">order not found </td><td class="markdownTableBodyNone">Торговое поручение не найдено по переданному <em>order_id</em>.Укажите корректный <em>order_id</em>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">50006 </td><td class="markdownTableBodyNone">NOT_FOUND </td><td class="markdownTableBodyNone">stop-order not found </td><td class="markdownTableBodyNone">Стоп-заявка не найдена по переданному <em>stop_order_id</em>.Укажите корректный <em>stop_order_id</em>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">50007 </td><td class="markdownTableBodyNone">NOT_FOUND </td><td class="markdownTableBodyNone">task not found </td><td class="markdownTableBodyNone">Задача не найдена.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">50008 </td><td class="markdownTableBodyNone">NOT_FOUND </td><td class="markdownTableBodyNone">no orderbook provider </td><td class="markdownTableBodyNone">Отсутствует источник данных по стаканам.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">50009 </td><td class="markdownTableBodyNone">NOT_FOUND </td><td class="markdownTableBodyNone">asset not found </td><td class="markdownTableBodyNone">Актив не найден.Укажите корректный идентификатор актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">70001 </td><td class="markdownTableBodyNone">INTERNAL </td><td class="markdownTableBodyNone">internal error </td><td class="markdownTableBodyNone">Внутренняя ошибка сервиса.Если ошибка повторяется, обратитесь в службу технической поддержки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">70002 </td><td class="markdownTableBodyNone">INTERNAL </td><td class="markdownTableBodyNone">internal network error </td><td class="markdownTableBodyNone">Неизвестная сетевая ошибка, попробуйте выполнить запрос позднее.Если ошибка повторяется, обратитесь в службу технической поддержки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">70003 </td><td class="markdownTableBodyNone">INTERNAL </td><td class="markdownTableBodyNone">internal error, please try again later </td><td class="markdownTableBodyNone">Внутренняя ошибка сервиса, попробуйте выполнить запрос позднее.Если ошибка повторяется, обратитесь в службу технической поддержки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">80001 </td><td class="markdownTableBodyNone">RESOURCE_EXHAUSTED </td><td class="markdownTableBodyNone">limit of open streams exceeded </td><td class="markdownTableBodyNone">Превышен лимит одновременных открытых stream-соединений. Подробнее: <a href="https://tinkoff.github.io/investAPI/limits/">Лимитная политика</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">80002 </td><td class="markdownTableBodyNone">RESOURCE_EXHAUSTED </td><td class="markdownTableBodyNone">request limit exceeded </td><td class="markdownTableBodyNone">Превышен лимит запросов в минуту. Подробнее: <a href="https://tinkoff.github.io/investAPI/limits/">Лимитная политика</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">90001 </td><td class="markdownTableBodyNone">FAILED_PRECONDITION </td><td class="markdownTableBodyNone">need confirmation: s </td><td class="markdownTableBodyNone">Требуется подтверждение операции. Подробнее в тексте ошибки.  </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

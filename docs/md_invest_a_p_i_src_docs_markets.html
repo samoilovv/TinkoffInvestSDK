@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Режимы торгов и особенности работы торговых площадок</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Режимы торгов и особенности работы торговых площадок </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Все время указано для Москвы (UTC +3)</p>
+<h1><a class="anchor" id="autotoc_md309"></a>
+Московская биржа</h1>
+<p><a href="https://www.moex.com/">Московская биржа</a> предоставляет пользователям возможность торговли ценными бумагами российских эмитентов, валютой, производными инструментами и рядом зарубежных инструментов.</p>
+<h2><a class="anchor" id="autotoc_md310"></a>
+Режимы торгов</h2>
+<ol type="1">
+<li>Аукцион открытия (премаркет) — время перед началом основных торгов, предназначенное для определения цены открытия. Данная цена определяется специальным алгоритмом биржи исходя из полученных заявок. Аукцион открытия длится с 9:50 до 10:00 по московскому времени.</li>
+<li>Основная торговая сессия — режим основных торгов московской биржи длится с 10:00 до 18:40.</li>
+<li>Аукцион закрытия (постмаркет) — время после окончания основных торгов, во время которого по аналогии с аукционом открытия биржей определяется цена закрытия. Проходит с 18:40 до 18:50.</li>
+<li>Аукцион открытия вечерней (дополнительной) сессии — с 19:00 до 19:05, принцип аналогичен аукциону открытия основной торговой сессии.</li>
+<li>Вечерняя сессия — с 19:05 до 23:50. Торги во время вечерней сессии производятся только самыми ликвидными инструментами, полный список можно получить по <a href="https://www.moex.com/msn/stock-instruments#/?evening=" title="1">ссылке</a>.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md311"></a>
+Санкт-Петербургская биржа</h1>
+<p><a href="https://spbexchange.ru/">Санкт-Петербургская биржа</a> предоставляет пользователям возможность торговли иностранные ценными бумагами, еврооблигациями и прочими торговыми инструментами.</p>
+<h2><a class="anchor" id="autotoc_md312"></a>
+Режимы торгов</h2>
+<ol type="1">
+<li>Утренняя дополнительная секция — с 7:00 до 10:00, торги производятся для следующих <a href="https://spbexchange.ru/ru/stocks/inostrannye/raspisanie/morning/">ценных бумаг</a>.</li>
+<li>Основная торговая сессия — с 10:00 до 23:00.</li>
+<li>Дополнительная торговая сессия — с 23:00 до 1:45 следующего календарного дня.</li>
+<li>Аукцион закрытия — с 23:00 до 1:45 следующего календарного дня. Не производится для бумаг, определённых <a href="https://spbexchange.ru/ru/stocks/inostrannye/raspisanie/perechen_instrumentov_bez_az.aspx">перечнем</a>.</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md313"></a>
+Период дополнительной ликвидности</h2>
+<p>До 14:30(МСК) по летнему американскому времени все торги на Санкт-Петербургской бирже производятся без привлечения дополнительной ликвидности бирж США, т.е. происходят исключительно внутри биржи. В 14:30 подключается дополнительный пул ликвидности США, который значительно повышает объёмы сделок. Связано это с открытием торгов на иностранных торговых площадках. <a href="/investAPI/faq_orders/">Читать подробнее</a> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: TinkoffInvestSDK</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">TinkoffInvestSDK </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Qt client for Tinkoff invest API</p>
+<h1><a class="anchor" id="autotoc_md722"></a>
+OpenAPI SDK для Тинькофф Инвестиций</h1>
+<p>Данный проект представляет собой инструментарий на языке C++/Qt для работы с grpc-интерфейсом торговой платформы <a href="https://www.tinkoff.ru/invest/">Тинькофф Инвестиции</a>, который можно использовать для создания торговых роботов.</p>
+<h2><a class="anchor" id="autotoc_md723"></a>
+Начало работы</h2>
+<h3><a class="anchor" id="autotoc_md724"></a>
+Сборка</h3>
+<p>Перейдите в директорию проекта и выполните следующие команды:</p>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ..</div>
+<div class="line">make</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md725"></a>
+Примеры</h2>
+<p>Примеры доступны <a href="https://github.com/samoilovv/TinkoffInvestSDK/tree/main/samples">здесь</a>. Для запуска примеров необходимо добавить токен в переменную окружения.</p>
+<div class="fragment"><div class="line">$ export TOKEN=YOUR_TOKEN</div>
+</div><!-- fragment --><p>Пример использования унарных запросов: открытие счета в песочнице и получение информации о нем.</p>
+<div class="fragment"><div class="line"><a class="code" href="class_invest_api_client.html">InvestApiClient</a> greeter(<span class="stringliteral">&quot;invest-public-api.tinkoff.ru:443&quot;</span>, getenv(<span class="stringliteral">&quot;TOKEN&quot;</span>));</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">//get reference to sandbox service</span></div>
+<div class="line"><span class="keyword">auto</span> sandbox = qSharedPointerCast&lt;Sandbox&gt;(greeter.service(<span class="stringliteral">&quot;sandbox&quot;</span>));</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">//open account</span></div>
+<div class="line">sandbox-&gt;OpenSandboxAccount();</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">//print info about your account</span></div>
+<div class="line"><span class="keyword">auto</span> accounts = sandbox-&gt;GetSandboxAccounts();</div>
+<div class="line"><span class="keyword">auto</span> portfolio = sandbox-&gt;GetSandboxPortfolio(accounts.accountID(0));</div>
+<div class="line">std::cout &lt;&lt; portfolio.ptr()-&gt;DebugString() &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">//close account</span></div>
+<div class="line">sandbox-&gt;CloseSandboxAccount(accountId);</div>
+</div><!-- fragment --><p>Пример использования потокового запроса: подписка на получение последних цен.</p>
+<div class="fragment"><div class="line"><a class="code" href="class_invest_api_client.html">InvestApiClient</a> greeter(<span class="stringliteral">&quot;invest-public-api.tinkoff.ru:443&quot;</span>, getenv(<span class="stringliteral">&quot;TOKEN&quot;</span>));</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">//get reference to marketdata service</span></div>
+<div class="line"><span class="keyword">auto</span> marketdata = qSharedPointerCast&lt;MarketData&gt;(greeter.service(<span class="stringliteral">&quot;marketdata&quot;</span>));</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">//handle replies in lambda function</span></div>
+<div class="line">QObject::connect(marketdata-&gt;get(), &amp;CustomService::sendData, [](<a class="code" href="class_service_reply.html">ServiceReply</a> reply){</div>
+<div class="line">    std::cout &lt;&lt; reply.ptr()-&gt;DebugString() &lt;&lt; std::endl;</div>
+<div class="line">});</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">//subscribe on British American Tobacco and Visa Inc. prices and start streaming </span></div>
+<div class="line">marketdata-&gt;MarketDataStream({<span class="stringliteral">&quot;BBG000BWPXQ8&quot;</span>, <span class="stringliteral">&quot;BBG00844BD08&quot;</span>});</div>
+</div><!-- fragment --><p>Вывод:</p>
+<div class="fragment"><div class="line">subscribe_last_price_response {</div>
+<div class="line">  tracking_id: &quot;8442ce626f5a6e6&quot;</div>
+<div class="line">  last_price_subscriptions {</div>
+<div class="line">    figi: &quot;BBG000BWPXQ8&quot;</div>
+<div class="line">    subscription_status: SUBSCRIPTION_STATUS_SUCCESS</div>
+<div class="line">  }</div>
+<div class="line">  last_price_subscriptions {</div>
+<div class="line">    figi: &quot;BBG00844BD08&quot;</div>
+<div class="line">    subscription_status: SUBSCRIPTION_STATUS_SUCCESS</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">last_price {</div>
+<div class="line">  figi: &quot;BBG000BWPXQ8&quot;</div>
+<div class="line">  price {</div>
+<div class="line">    units: 41</div>
+<div class="line">    nano: 500000000</div>
+<div class="line">  }</div>
+<div class="line">  time {</div>
+<div class="line">    seconds: 1651270899</div>
+<div class="line">    nanos: 146644771</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">last_price {</div>
+<div class="line">  figi: &quot;BBG00844BD08&quot;</div>
+<div class="line">  price {</div>
+<div class="line">    units: 100</div>
+<div class="line">    nano: 120000000</div>
+<div class="line">  }</div>
+<div class="line">  time {</div>
+<div class="line">    seconds: 1585063374</div>
+<div class="line">    nanos: 334361000</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md726"></a>
+Документация</h2>
+<p>Подробную документацию по InvestApi можно найти по <a href="https://tinkoff.github.io/investAPI/">ссылке</a>. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<div class="ttc" id="aclass_invest_api_client_html"><div class="ttname"><a href="class_invest_api_client.html">InvestApiClient</a></div><div class="ttdoc">Qt клиент для Tinkoff invest API.</div><div class="ttdef"><b>Definition:</b> investapiclient.h:26</div></div>
+<div class="ttc" id="aclass_service_reply_html"><div class="ttname"><a href="class_service_reply.html">ServiceReply</a></div><div class="ttdoc">Класс-обертка над proto-ответами сервисов</div><div class="ttdef"><b>Definition:</b> servicereply.h:16</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: load_history</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">load_history </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Загрузка исторических котировок</p>
+<p>TINKOFF INVEST API предоставляет своим пользователям возможность получения исторических рыночных данных по инструментам. Для загрузки истории котировок можно воспользоваться unary-методом <a href="#getcandles">GetCandles</a> <a href="/investAPI/head-marketdata">сервиса котировок</a>.</p>
+<p>Обратите внимание, что глубина исторических данных по одному и тому же инструменту может отличаться на разных интервалах свечей. Также глубина исторических данных может быть разной для разных инструментов. <br  />
+ Связано это с особенностями получения исторических данных в <a href="https://www.tinkoff.ru/invest/">Тинькофф Инвестициях</a>.</p>
+<p>С целью сокращения нагрузки на инфраструктуру системы в TINKOFF INVEST API имеется ограничение на максимальную длину запрашиваемого интервала. Ограничение зависит от интервала свечи:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Интервал свечи </th><th class="markdownTableHeadLeft">Допустимы период  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">1 минута </td><td class="markdownTableBodyLeft">от 1 минут до 1 дня  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">5 минут </td><td class="markdownTableBodyLeft">от 5 минут до 1 дня  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">15 минут </td><td class="markdownTableBodyLeft">от 15 минут до 1 дня  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">1 час </td><td class="markdownTableBodyLeft">от 1 часа до 1 недели  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">1 день </td><td class="markdownTableBodyLeft">от 1 дня до 1 года  </td></tr>
+</table>
+<p>Таким образом загрузку исторических данных за весь интересующий период следует организовывать порционно. В связи с разной глубиной истории начинать следует с конца интересующего периода и постепенно двигаться в "прошлое" до момента получения пустых ответов. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: orders</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">orders </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="autotoc_md357"></a>
+OrdersStreamService</h2>
+<h3><a class="anchor" id="autotoc_md358"></a>
+Методы сервиса</h3>
+<h4><a class="anchor" id="autotoc_md359"></a>
+TradesStream</h4>
+<p>Stream сделок пользователя</p>
+<ul>
+<li>Тело запроса — <a href="#tradesstreamrequest">TradesStreamRequest</a></li>
+<li>Тело ответа — <a href="#tradesstreamresponse">TradesStreamResponse</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md360"></a>
+OrdersService</h2>
+<p>Сервис предназначен для работы с торговыми поручениями: <b>1</b>. выставление; <b>2</b>. отмена; <b>3</b>. получение статуса; <b>4</b>. расчёт полной стоимости; <b>5</b>. получение списка заявок.</p>
+<h3><a class="anchor" id="autotoc_md361"></a>
+Методы сервиса</h3>
+<h4><a class="anchor" id="autotoc_md362"></a>
+PostOrder</h4>
+<p>Метод выставления заявки.</p>
+<ul>
+<li>Тело запроса — <a href="#postorderrequest">PostOrderRequest</a></li>
+<li>Тело ответа — <a href="#postorderresponse">PostOrderResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md363"></a>
+CancelOrder</h4>
+<p>Метод отмены биржевой заявки.</p>
+<ul>
+<li>Тело запроса — <a href="#cancelorderrequest">CancelOrderRequest</a></li>
+<li>Тело ответа — <a href="#cancelorderresponse">CancelOrderResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md364"></a>
+GetOrderState</h4>
+<p>Метод получения статуса торгового поручения.</p>
+<ul>
+<li>Тело запроса — <a href="#getorderstaterequest">GetOrderStateRequest</a></li>
+<li>Тело ответа — <a href="#orderstate">OrderState</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md365"></a>
+GetOrders</h4>
+<p>Метод получения списка активных заявок по счёту.</p>
+<ul>
+<li>Тело запроса — <a href="#getordersrequest">GetOrdersRequest</a></li>
+<li>Тело ответа — <a href="#getordersresponse">GetOrdersResponse</a></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md366"></a>
+Сообщения методов</h3>
+<h4><a class="anchor" id="autotoc_md367"></a>
+TradesStreamRequest</h4>
+<p>Запрос установки соединения.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">accounts </td><td class="markdownTableBodyNone">Массив объектов <a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификаторы счетов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md368"></a>
+TradesStreamResponse</h4>
+<p>Информация о торговых поручениях.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">order_trades </td><td class="markdownTableBodyNone"><a href="#ordertrades">OrderTrades</a> </td><td class="markdownTableBodyNone">Информация об исполнении торгового поручения.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ping </td><td class="markdownTableBodyNone"><a href="#ping">Ping</a> </td><td class="markdownTableBodyNone">Проверка активности стрима.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md369"></a>
+OrderTrades</h4>
+<p>Информация об исполнении торгового поручения.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор торгового поручения.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">created_at </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время создания сообщения в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">direction </td><td class="markdownTableBodyNone"><a href="#orderdirection">OrderDirection</a> </td><td class="markdownTableBodyNone">Направление сделки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">trades </td><td class="markdownTableBodyNone">Массив объектов <a href="#ordertrade">OrderTrade</a> </td><td class="markdownTableBodyNone">Массив сделок.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор счёта.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md370"></a>
+OrderTrade</h4>
+<p>Информация о сделке.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">date_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время совершения сделки в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">price </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Цена одного инструмента, по которой совершена сделка.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">quantity </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Количество лотов в сделке.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md371"></a>
+PostOrderRequest</h4>
+<p>Запрос выставления торгового поручения.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">quantity </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Количество лотов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">price </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Цена одного инструмента. Для получения стоимости лота требуется умножить на лотность инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">direction </td><td class="markdownTableBodyNone"><a href="#orderdirection">OrderDirection</a> </td><td class="markdownTableBodyNone">Направление операции.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Номер счёта.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">order_type </td><td class="markdownTableBodyNone"><a href="#ordertype">OrderType</a> </td><td class="markdownTableBodyNone">Тип заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор запроса выставления поручения для целей идемпотентности. Максимальная длина 36 символов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md372"></a>
+PostOrderResponse</h4>
+<p>Информация о выставлении поручения.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">execution_report_status </td><td class="markdownTableBodyNone"><a href="#orderexecutionreportstatus">OrderExecutionReportStatus</a> </td><td class="markdownTableBodyNone">Текущий статус заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">lots_requested </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Запрошено лотов.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">lots_executed </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Исполнено лотов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">initial_order_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Начальная цена заявки. Произведение количества запрошенных лотов на цену.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">executed_order_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Исполненная цена заявки. Произведение средней цены покупки на количество лотов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">total_order_amount </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Итоговая стоимость заявки, включающая все комиссии.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">initial_commission </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Начальная комиссия. Комиссия рассчитанная при выставлении заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">executed_commission </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Фактическая комиссия по итогам исполнения заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">aci_value </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Значение НКД (накопленного купонного дохода) на дату. Подробнее: <a href="https://tinkoff.github.io/investAPI/head-orders#coupon">НКД при выставлении торговых поручений</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">direction </td><td class="markdownTableBodyNone"><a href="#orderdirection">OrderDirection</a> </td><td class="markdownTableBodyNone">Направление сделки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">initial_security_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Начальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">order_type </td><td class="markdownTableBodyNone"><a href="#ordertype">OrderType</a> </td><td class="markdownTableBodyNone">Тип заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">message </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Дополнительные данные об исполнении заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">initial_order_price_pt </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Начальная цена заявки в пунктах (для фьючерсов).  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md373"></a>
+CancelOrderRequest</h4>
+<p>Запрос отмены торгового поручения.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Номер счёта.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор заявки.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md374"></a>
+CancelOrderResponse</h4>
+<p>Результат отмены торгового поручения.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время отмены заявки в часовом поясе UTC.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md375"></a>
+GetOrderStateRequest</h4>
+<p>Запрос получения статуса торгового поручения.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Номер счёта.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор заявки.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md376"></a>
+GetOrdersRequest</h4>
+<p>Запрос получения списка активных торговых поручений.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Номер счёта.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md377"></a>
+GetOrdersResponse</h4>
+<p>Список активных торговых поручений.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">orders </td><td class="markdownTableBodyNone">Массив объектов <a href="#orderstate">OrderState</a> </td><td class="markdownTableBodyNone">Массив активных заявок.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md378"></a>
+OrderState</h4>
+<p>Информация о торговом поручении.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">order_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">execution_report_status </td><td class="markdownTableBodyNone"><a href="#orderexecutionreportstatus">OrderExecutionReportStatus</a> </td><td class="markdownTableBodyNone">Текущий статус заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">lots_requested </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Запрошено лотов.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">lots_executed </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Исполнено лотов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">initial_order_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Начальная цена заявки. Произведение количества запрошенных лотов на цену.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">executed_order_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Исполненная цена заявки. Произведение средней цены покупки на количество лотов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">total_order_amount </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Итоговая стоимость заявки, включающая все комиссии.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">average_position_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Средняя цена позиции по сделке.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">initial_commission </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Начальная комиссия. Комиссия, рассчитанная на момент подачи заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">executed_commission </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Фактическая комиссия по итогам исполнения заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">direction </td><td class="markdownTableBodyNone"><a href="#orderdirection">OrderDirection</a> </td><td class="markdownTableBodyNone">Направление заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">initial_security_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Начальная цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">stages </td><td class="markdownTableBodyNone">Массив объектов <a href="#orderstage">OrderStage</a> </td><td class="markdownTableBodyNone">Стадии выполнения заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">service_commission </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Сервисная комиссия.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта заявки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">order_type </td><td class="markdownTableBodyNone"><a href="#ordertype">OrderType</a> </td><td class="markdownTableBodyNone">Тип заявки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">order_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время выставления заявки в часовом поясе UTC.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md379"></a>
+OrderStage</h4>
+<p>Сделки в рамках торгового поручения.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента..  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">quantity </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Количество лотов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">trade_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор торговой операции.  </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md380"></a>
+Enums</h3>
+<h4><a class="anchor" id="autotoc_md381"></a>
+OrderDirection</h4>
+<p>Направление операции</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ORDER_DIRECTION_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Значение не указано  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ORDER_DIRECTION_BUY </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Покупка  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ORDER_DIRECTION_SELL </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Продажа  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md382"></a>
+OrderType</h4>
+<p>Тип заявки</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ORDER_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Значение не указано  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ORDER_TYPE_LIMIT </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Лимитная  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ORDER_TYPE_MARKET </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Рыночная  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md383"></a>
+OrderExecutionReportStatus</h4>
+<p>Текущий статус заявки (поручения)</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">EXECUTION_REPORT_STATUS_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">none  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">EXECUTION_REPORT_STATUS_FILL </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Исполнена  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">EXECUTION_REPORT_STATUS_REJECTED </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Отклонена  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">EXECUTION_REPORT_STATUS_CANCELLED </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Отменена пользователем  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">EXECUTION_REPORT_STATUS_NEW </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Новая  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">EXECUTION_REPORT_STATUS_PARTIALLYFILL </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">Частично исполнена  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md384"></a>
+SecurityTradingStatus</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Торговый статус не определён  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Недоступен для торгов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_OPENING_PERIOD </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Период открытия торгов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_CLOSING_PERIOD </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Период закрытия торгов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_BREAK_IN_TRADING </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Перерыв в торговле  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_NORMAL_TRADING </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">Нормальная торговля  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_CLOSING_AUCTION </td><td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">Аукцион закрытия  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DARK_POOL_AUCTION </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Аукцион крупных пакетов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DISCRETE_AUCTION </td><td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">Дискретный аукцион  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD </td><td class="markdownTableBodyNone">9 </td><td class="markdownTableBodyNone">Аукцион открытия  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE </td><td class="markdownTableBodyNone">10 </td><td class="markdownTableBodyNone">Период торгов по цене аукциона закрытия  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_ASSIGNED </td><td class="markdownTableBodyNone">11 </td><td class="markdownTableBodyNone">Сессия назначена  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_CLOSE </td><td class="markdownTableBodyNone">12 </td><td class="markdownTableBodyNone">Сессия закрыта  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_OPEN </td><td class="markdownTableBodyNone">13 </td><td class="markdownTableBodyNone">Сессия открыта  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING </td><td class="markdownTableBodyNone">14 </td><td class="markdownTableBodyNone">Доступна торговля в режиме внутренней ликвидности брокера  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING </td><td class="markdownTableBodyNone">15 </td><td class="markdownTableBodyNone">Перерыв торговли в режиме внутренней ликвидности брокера  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyNone">16 </td><td class="markdownTableBodyNone">Недоступна торговля в режиме внутренней ликвидности брокера  </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md385"></a>
+Нестандартные типы данных</h3>
+<h4><a class="anchor" id="autotoc_md386"></a>
+MoneyValue</h4>
+<p>Денежная сумма в определенной валюте</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Строковый ISO-код валюты  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">units </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Целая часть суммы, может быть отрицательным числом  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nano </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Дробная часть суммы, может быть отрицательным числом  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md387"></a>
+Quotation</h4>
+<p>Котировка - денежная сумма без указания валюты</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">units </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Целая часть суммы, может быть отрицательным числом  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nano </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Дробная часть суммы, может быть отрицательным числом  </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

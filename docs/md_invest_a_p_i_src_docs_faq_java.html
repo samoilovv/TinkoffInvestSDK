@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: SDK для Java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">SDK для Java </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h3><a class="anchor" id="autotoc_md58"></a>
+Официальные SDK:</h3>
+<ul>
+<li><a href="https://github.com/Tinkoff/invest-api-java-sdk">invest-api-java-sdk</a></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md59"></a>
+Неофициальные SDK:</h3>
+<h1><a class="anchor" id="autotoc_md60"></a>
+Примеры взаимодействия:</h1>
+<p>Примеры подключения и получения данных доступны в репозитории официальной SDK: <a href="https://github.com/Tinkoff/invest-api-java-sdk/blob/main/example/src/main/java/ru/tinkoff/piapi/example/Example.java">/tinkoff/piapi/example/Example.java</a></p>
+<h2><a class="anchor" id="autotoc_md61"></a>
+Основные классы для работы</h2>
+<p><code>ManagedChannel</code> - абстракция канала до сервера. Следует переиспользовать один и тот же канал во всем приложении.</p>
+<p>При создании канала следует использовать метод <code>io.grpc.ManagedChannelBuilder#useTransportSecurity</code>, т.к. сервер API поддерживает только защищенное соединение.</p>
+<p>Для автоматической проверки работоспособности канала следует использовать метод <code>io.grpc.ManagedChannelBuilder#keepAliveTime</code> при иницииализации. Допускается время <code>keepAlive</code> не менее 10 секунд.</p>
+<p><code>*Stub</code> - сгенерированные классы клиентов для сервисов API. Существует три варианта клиентов:</p><ol type="1">
+<li>Неблокирующий - <code>ServiceNameStub</code>, например <code>InstrumentsServiceStub</code>. Все методы такого клиента принимают два параметра: запрос и обработчик результата вызова <code>io.grpc.stub.StreamObserver</code>. Методы обработчика будут вызваны после получения результата. Не рекомендуется выполнять блокирующие операции (I/O, любые операции с ожиданием завершения) в методах обработчика.</li>
+<li>Блокирующий - <code>ServiceNameBlockingStub</code>, например <code>InstrumentsServiceBlockingStub</code>. Все методы такого клиента принимают один параметр - запрос и возвращают результат либо выбрасывают исключение. Вызов метода блокирует поток исполнения до получения результата или исключения.</li>
+<li>Асинхронный - <code>ServiceNameFutureStub</code>, например <code>InstrumentsServiceFutureStub</code>. Все методы такого клиента принимают один параметр - запрос и возвращают объект типа <code>com.google.common.util.concurrent.ListenableFuture</code>.</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md62"></a>
+Таймаут запроса</h2>
+<p>В gRPC используется deadline вместо таймаута - время в будущем, до наступления которого будет проводится ожидание выполнения вызова. Если результат не получен, и время deadline наступило - на клиенте возникнет ошибка с кодом <code>DEADLINE_EXCEEDED</code>. При этом возможна ситуация, что на сервере API операция была обработана успешно. Для критичных действий предлагается использовать ключ идемпотентности.</p>
+<p>Рекомендуемый способ установки deadline: вызов метода <code>io.grpc.stub.AbstractStub#withDeadlineAfter</code>. Обратите внимание, что период времени начинает отсчитываться сразу после выполениня этого метода.</p>
+<h2><a class="anchor" id="autotoc_md63"></a>
+Метаданные</h2>
+<p>Метаданные - аналог заголовков в HTTP. </p>
+<h3><a class="anchor" id="autotoc_md64"></a>
+Передача метаданных запроса</h3>
+<p>Для использования API необходимо передавать метаданные с ключом <code>"Authorization"</code> и значением <code>"bearer {token}"</code>. <a href="https://tinkoff.github.io/investAPI/token/">Подробнее здесь</a>. Можно добавить перехватчик в канал с помощью метода <code>io.grpc.ManagedChannelBuilder#intercept(io.grpc.ClientInterceptor...)</code>. Пример авторизационого перехватичка: </p><div class="fragment"><div class="line"><span class="keyword">public</span> <span class="keyword">class </span>AuthInterceptor <span class="keyword">implements</span> ClientInterceptor {</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String AUTH_HEADER_NAME = <span class="stringliteral">&quot;Authorization&quot;</span>;</div>
+<div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Metadata.Key&lt;String&gt; AUTH_HEADER = Metadata.Key.of(AUTH_HEADER_NAME, Metadata.ASCII_STRING_MARSHALLER);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String authHeaderValue;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> AuthInterceptor(String token) {</div>
+<div class="line">        this.authHeaderValue = <span class="stringliteral">&quot;Bearer &quot;</span> + token;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    @Override</div>
+<div class="line">    public &lt;ReqT, RespT&gt; ClientCall&lt;ReqT, RespT&gt; interceptCall(MethodDescriptor&lt;ReqT, RespT&gt; methodDescriptor, CallOptions callOptions, Channel channel) {</div>
+<div class="line">        var call = channel.newCall(methodDescriptor, callOptions);</div>
+<div class="line">        <span class="keywordflow">return</span> <span class="keyword">new</span> ForwardingClientCall.SimpleForwardingClientCall&lt;&gt;(call) {</div>
+<div class="line">            @Override</div>
+<div class="line">            <span class="keyword">public</span> <span class="keywordtype">void</span> start(Listener&lt;RespT&gt; responseListener, Metadata headers) {</div>
+<div class="line">                headers.put(AUTH_HEADER, authHeaderValue);</div>
+<div class="line">                super.start(responseListener, headers);</div>
+<div class="line">            }</div>
+<div class="line">        };</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md65"></a>
+Получение метаданных ответа</h3>
+<p>В метаданных ответа для unary-методов передаются <a href="https://tinkoff.github.io/investAPI/grpc/#tracking-id">идентификатор отслеживания</a> и описание ошибки. Для получения метаданных ответа можно использовать перехватчик <code>io.grpc.stub.MetadataUtils#newCaptureMetadataInterceptor</code>, например: </p><div class="fragment"><div class="line">var headersCapture = <span class="keyword">new</span> AtomicReference&lt;Metadata&gt;();</div>
+<div class="line">var trailersCapture = <span class="keyword">new</span> AtomicReference&lt;Metadata&gt;();</div>
+<div class="line">instruments.withInterceptors(MetadataUtils.newCaptureMetadataInterceptor(headersCapture, trailersCapture)).getInstrumentBy(...);</div>
+</div><!-- fragment --><p>После выполнения метода переменная <code>headersCapture</code> будет содержать метаданные ответа.</p>
+<p>При работе с методами клиентов исключения следует конвертировать в статус с помощью <code>io.grpc.Status#fromThrowable</code>. В поле <code>description</code> статуса будет содержаться <a href="https://tinkoff.github.io/investAPI/errors/">код ошибки</a>. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

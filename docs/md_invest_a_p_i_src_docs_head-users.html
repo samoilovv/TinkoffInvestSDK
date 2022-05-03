@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: head-users</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">head-users </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Сервис предоставления справочной информации о пользователе Тинькофф Инвестиций</p>
+<h2><a class="anchor" id="autotoc_md149"></a>
+Получение списка счетов пользователя</h2>
+<p><a href="https://www.tinkoff.ru/invest/">Тинькофф Инвестиции</a> позволяют открывать несколько счетов каждому пользователю. Счета так же могут иметь различные типы (брокерский счёт, ИИС, инвесткопилка). Для получения списка счетов, их статусов и типов используется метод <a href="/investAPI/users#getaccounts">getAccounts</a>.</p>
+<p>Данный метод возвращает полный список счетов пользователя, в том числе закрытые или находящиеся в процессе открытия. Для определения доступности счёта для торговли используется параметр <em>status</em>.</p>
+<h2><a class="anchor" id="autotoc_md150"></a>
+Получение текущих лимитов запросов пользователя.</h2>
+<p>TINKOFF INVEST API обладает системой динамического назначения лимитов запросов для пользователя. Подробнее о тарифной политике можно почитать по ссылке: <a href="/investAPI/limits/">Лимиты в TINKOFF INVEST API</a>.</p>
+<p>В ответе данного метода можно получить информацию по лимитам для каждого метода сервиса TINKOFF INVEST API, а также лимиты, касающиеся stream-соединений.</p>
+<h2><a class="anchor" id="autotoc_md151"></a>
+Получение маржинальных показателей по счёту</h2>
+<p>TINKOFF INVEST API предоставляет своим пользователям возможность использовать маржинальную торговлю. Маржинальная торговля — это режим, в котором можно совершать сделки не только со своими деньгами и ценными бумагами, но и с активами, которые вы как бы берёте в долг у брокера. Подробнее о маржинальной торговле: <a href="https://help.tinkoff.ru/margin-trade/">Маржинальная торговля</a>.</p>
+<p>Для получения показателей маржинальной торговли используется метод <a href="/investAPI/users#getmarginattributes">getMarginAttributes</a>.</p>
+<h2><a class="anchor" id="autotoc_md152"></a>
+Получение информации о статусе пользователя</h2>
+<p>Для определения различных атрибутов пользователя можно использовать метод <a href="/investAPI/users#getinfo">getInfo</a>. Данный метод позволяет узнать имеет ли пользователь статус квалифицированного инвестора, является ли премиальным клиентом, а также получить список типов инструментов, к которым имеет доступ по итогам тестирования. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

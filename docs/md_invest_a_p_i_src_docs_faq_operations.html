@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Можно ли узнать идентификатор поручения из операции?</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Можно ли узнать идентификатор поручения из операции? </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Нет, в данный момент такой информации в операции нет, но мы работаем над этим.</p>
+<h2><a class="anchor" id="autotoc_md83"></a>
+Почему в операции пустой Figi?</h2>
+<p>Такое возможно для операций завода денежных средств, т.к. нет связанного с операцией биржевого инструмента</p>
+<h2><a class="anchor" id="autotoc_md84"></a>
+Будут ли отображаться операции по бумагам, которые прошли делистинг?</h2>
+<p>Да, такие операции отображаться будут. В том числе будут отображаться операции по бумагам после различных корпоративных действий. Подробнее: <a href="/investAPI/faq_corp_action/">Корпоративные действия</a>.</p>
+<h2><a class="anchor" id="autotoc_md85"></a>
+Параметр quantity в лотах или количествах?</h2>
+<p>В рамках сервиса операций данный параметр всегда передаётся в лотах инструмента.</p>
+<h2><a class="anchor" id="autotoc_md86"></a>
+Как с помощью TINKOFF INVEST API получить брокерский отчёт?</h2>
+<p>Для получения брокерского отчёта можно воспользоваться методом <a href="/investAPI/operations#getbrokerreport">GetBrokerReport</a>. Обратите внимание, что получение брокерского отчёта асинхронно, т.е. сперва вы запрашиваете формирование отчёта (отправляя пакет <a href="/investAPI/operations#generatebrokerreportrequest">generate_broker_report_request</a>), получаете идентификатор задачи формирования отчёта (параметр task_id). После этого вы можете запросить отчёт по его идентификатору, в случае если формирование отчёта ещё не закончено, вы получите соответствующее сообщение об ошибке.</p>
+<p>Подробнее о брокерском отчёте: <a href="https://www.tinkoff.ru/invest/account/help/trade-on-bs/get-report/">Отчёты и справки</a>. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

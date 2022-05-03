@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Цены облигаций и фьючерсов</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Цены облигаций и фьючерсов </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Цены облигаций и фьючерсов в TINKOFF INVEST API предоставляются в пунктах. Методика расчёта стоимости лота в валюте отличается в зависимости от типа биржевого инструмента.</p>
+<h2><a class="anchor" id="autotoc_md393"></a>
+Перевод цены облигации в валюту</h2>
+<p>Пункты цены для котировок облигаций представляют собой проценты номинала облигации. Для пересчёта пунктов в валюту можно воспользоваться формулой:</p>
+<blockquote class="doxtable">
+<p><b>price</b> / 100 * <b>nominal</b> </p>
+</blockquote>
+<p>Где</p>
+<ul>
+<li><b>price</b> — текущая котировка ценной бумаги;</li>
+<li><b>nominal</b> — номинал облигации.</li>
+</ul>
+<p><a class="anchor" id="futures"></a> </p>
+<h2><a class="anchor" id="autotoc_md394"></a>
+Перевод цены фьючерса в валюту</h2>
+<p>Стоимость фьючерсов так же предоставляется в пунктах, для пересчёта можно воспользоваться формулой: </p><blockquote class="doxtable">
+<p><b>price</b> / <b>min_price_increment</b> * <b>min_price_increment_amount</b> </p>
+</blockquote>
+<p>Где</p>
+<ul>
+<li><b>price</b> — текущая котировка ценной бумаги;</li>
+<li><b>min_price_increment</b> — шаг цены;</li>
+<li><b>min_price_increment_amount</b> — стоимость шага цены.</li>
+</ul>
+<p>Так же при работе с фьючерсами важно учитывать размер гарантийного обеспечения. Узнать эти параметры фьючерсов можно при помощи метода: <a href="/investAPI/instruments#getfuturesmargin">getFuturesMargin</a>. Подробнее про срочный рынок читайте <a href="https://help.tinkoff.ru/forts/">тут</a></p>
+<h1><a class="anchor" id="autotoc_md395"></a>
+В каких параметрах методов используются пункты цены?</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Сервис </th><th class="markdownTableHeadLeft">Метод </th><th class="markdownTableHeadLeft">Параметры </th><th class="markdownTableHeadLeft">share/etf/currency </th><th class="markdownTableHeadLeft">bond/futures  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a class="el" href="class_instruments.html" title="Сервис для работы с различными инструментами">Instruments</a> </td><td class="markdownTableBodyLeft">Все методы сервиса </td><td class="markdownTableBodyLeft">Все параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a class="el" href="class_market_data.html" title="Сервис получения биржевой информации">MarketData</a> </td><td class="markdownTableBodyLeft">Все методы сервиса </td><td class="markdownTableBodyLeft">Все параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В пунктах цены  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a class="el" href="class_operations.html" title="Сервис операций по счету">Operations</a> </td><td class="markdownTableBodyLeft">Все методы сервиса </td><td class="markdownTableBodyLeft">Все параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a class="el" href="class_orders.html" title="Сервис торговых поручений">Orders</a> </td><td class="markdownTableBodyLeft">PostOrder </td><td class="markdownTableBodyLeft">Входные параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В зависимости от price_type  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft">Выходные параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft">Прочие методы сервиса </td><td class="markdownTableBodyLeft">Все параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a class="el" href="class_stop_orders.html" title="Сервис работы со стоп-заявками">StopOrders</a> </td><td class="markdownTableBodyLeft">PostStopOrder </td><td class="markdownTableBodyLeft">Входные параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В зависимости от price_type  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft">Выходные параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft">Прочие методы сервиса </td><td class="markdownTableBodyLeft">Все параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"><a class="el" href="class_operations.html" title="Сервис операций по счету">Operations</a> </td><td class="markdownTableBodyLeft">Все методы сервиса </td><td class="markdownTableBodyLeft">Все параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a class="el" href="class_sandbox.html" title="Сервис для работы с песочницей">Sandbox</a> </td><td class="markdownTableBodyLeft">PostSandboxOrder </td><td class="markdownTableBodyLeft">Входные параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В зависимости от price_type  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft">Выходные параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyLeft">Прочие методы сервиса </td><td class="markdownTableBodyLeft">Все параметры </td><td class="markdownTableBodyLeft">В валюте расчётов </td><td class="markdownTableBodyLeft">В валюте расчётов  </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

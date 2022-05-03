@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: head-marketdata</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">head-marketdata </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Сервис котировок</p>
+<p>Данный сервис предназначен для получения различной (в т.ч. исторической) биржевой информации. Существует два варианта взаимодействия с сервисом котировок:</p>
+<ol type="1">
+<li><b>Unary-методы</b> — данный вариант следует использовать в случаях, когда не требуется оперативность получения информации или для загрузки исторических данных. Существует ограничение на количество запросов в минуту, подробнее: <a href="/investAPI/limits">Лимитная политика</a>.</li>
+<li><b>Bidirectional-stream</b> — используется для получения биржевой информации в реальном времени с минимально возможными задержками. Для работы со стрим-соединениями также существуют ограничения, согласно <a href="/investAPI/limits">лимитной политике</a>.</li>
+</ol>
+<p><b>Важно!</b> В сервисе TINKOFF INVEST API для отображения цен облигаций и фьючерсов используются пункты. Для облигаций один пункт равен одному проценту номинала облигации. Для расчёта реальной стоимости фьючерса можно воспользоваться формулой:</p>
+<blockquote class="doxtable">
+<p><b>price</b> / <b>min_price_increment</b> * <b>min_price_increment_amount</b> </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md126"></a>
+Получение исторических свечей</h2>
+<p>В процессе разработки торгового робота требуется анализировать различную историческую информацию. Например, свечи. Для получения исторических свечей по инструменту можно использовать метод <a href="/investAPI/marketdata#getcandles">getCandles</a>.</p>
+<p>Обратите внимание, что максимально допустимый период получения свечей за один запрос — 1 календарный год. Получение данных за более длинный период возможно поочередным вызовом метода.</p>
+<h2><a class="anchor" id="autotoc_md127"></a>
+Получение последних цен</h2>
+<p>В процессе работы алгоритма торговли может потребоваться получение цены последней сделки по инструменту или инструментам. Для реализации данной потребности следует использовать метод <a href="/investAPI/marketdata#getlastprices">getLastPrices</a>. Используя данный метод вы можете получить последние цены всех доступных для торговли инструментов — для этого требуется передать пустой массив <em>instruments</em>.</p>
+<p>Если для реализации алгоритма требуется оперативно получать информацию о цене последней сделки, то команда TINKOFF INVEST API рекомендует использовать <a href="/investAPI/marketdata#subscribetradesrequest">подписку на поток обезличенных сделок</a> в рамках <a href="/investAPI/marketdata#marketdatastream">stream-соединения сервиса</a>.</p>
+<h2><a class="anchor" id="autotoc_md128"></a>
+Получение текущего стакана</h2>
+<p>Биржевой стакан — один из ключевых показателей торгового инструмента. Стакан содержит заявки пользователей на покупку или продажу определённого инструмента (подробнее: <a href="https://www.tinkoff.ru/invest/account/help/trade-on-bs/bids/#q13">Биржевой стакан</a>). Для получения стакана можно использовать метод <a href="/investAPI/marketdata#getorderbook">getOrderbook</a>.</p>
+<p>Для высоколиквидных инструментов на бирже стакан может изменяться несколько раз за секунду, поэтому использование unary-метода не всегда будет удобным. Поэтому рекомендуется использовать <a href="/investAPI/marketdata#subscribeorderbookrequest">подписку на стаканы</a> в рамках <a href="/investAPI/marketdata#marketdatastream">stream-соединения сервиса</a>.</p>
+<p><a class="anchor" id="stream"></a></p>
+<h2><a class="anchor" id="autotoc_md129"></a>
+Bidirectional-stream получения биржевой информации</h2>
+<p>В рамках stream-соединения можно получать поток интересующих данных. В рамках одного соединения пользователь может подписаться на получение:</p>
+<ol type="1">
+<li>стаканов (с глубиной 1, 10, 20, 30, 40 или 50);</li>
+<li>свечей;</li>
+<li>потока обезличенных сделок;</li>
+<li>статуса торговли инструментов.</li>
+</ol>
+<p><b>Важно.</b> В рамках одного запроса можно управлять подпиской только одного типа данных. Т.е. чтобы подписаться на свечи и стаканы требуется отправить два запроса <a href="/investAPI/marketdata#marketdatarequest">marketdataRequest</a>, содержащие информацию об изменении статуса подписки на свечи и стаканы соответственно.</p>
+<p>Для сохранения стабильного подключения при отсутствии данных в stream-соединении сервером периодически отправляется ping-пакет. Клиенту реагировать на него нет необходимости.</p>
+<p>Обратите внимание, что максимальное количество подписок на одно соединение ограничено <a href="/investAPI/limits/">лимитной политикой</a> TINKOFF INVEST API. Однако, это ограничение <b>не распространяется</b> на подписку <em>info</em> (получение торгового статуса инструмента).</p>
+<h3><a class="anchor" id="autotoc_md130"></a>
+Особенности трансляции свечей</h3>
+<p>Свечи в рамках bidirectional-stream собираются "на лету" из ленты обезличенных сделок. Свечи отправляются не чаще одного раза в 300мс + свеча закрытия периода сбора. Однако, бывают ситуации, что сделки с биржи фактически доходят уже после окончания периода сбора свечи, в таком случае в стрим отправляется ещё одна (или более) "корректирующая" свеча. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

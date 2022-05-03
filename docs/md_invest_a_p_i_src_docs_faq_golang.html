@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Пример подключения на Golang</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Пример подключения на Golang </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><div class="fragment"><div class="line">package main</div>
+<div class="line"> </div>
+<div class="line">import (</div>
+<div class="line"> &quot;context&quot;</div>
+<div class="line"> &quot;crypto/tls&quot;</div>
+<div class="line"> &quot;fmt&quot;</div>
+<div class="line"> &quot;golang.org/x/oauth2&quot;</div>
+<div class="line"> &quot;google.golang.org/grpc&quot;</div>
+<div class="line"> &quot;google.golang.org/grpc/credentials&quot;</div>
+<div class="line"> &quot;google.golang.org/grpc/credentials/oauth&quot;</div>
+<div class="line"> &quot;log&quot;</div>
+<div class="line"> &quot;os&quot;</div>
+<div class="line"> t &quot;tink-grpc-robot/Tinkoff/investAPI&quot;</div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line">func main() {</div>
+<div class="line"> </div>
+<div class="line"> conn, err := grpc.Dial(&quot;invest-public-api.tinkoff.ru:443&quot;,</div>
+<div class="line">  grpc.WithTransportCredentials(credentials.NewTLS(&amp;tls.Config{})),</div>
+<div class="line">  grpc.WithPerRPCCredentials(oauth.NewOauthAccess(&amp;oauth2.Token{</div>
+<div class="line">   AccessToken: os.Getenv(&quot;TINK_TOKEN&quot;),</div>
+<div class="line">  })))</div>
+<div class="line"> if err != nil {</div>
+<div class="line">  log.Fatalf(&quot;did not connect: %v&quot;, err)</div>
+<div class="line"> }</div>
+<div class="line"> defer conn.Close()</div>
+<div class="line"> </div>
+<div class="line"> instr, err := t.NewInstrumentsServiceClient(conn).GetInstrumentBy(context.Background(), &amp;t.InstrumentRequest{</div>
+<div class="line">  IdType:    t.InstrumentIdType_INSTRUMENT_ID_TYPE_TICKER,</div>
+<div class="line">  ClassCode: &quot;SPBXM&quot;,</div>
+<div class="line">  Id:        &quot;SPCE&quot;,</div>
+<div class="line"> })</div>
+<div class="line"> if err != nil {</div>
+<div class="line">  panic(err)</div>
+<div class="line"> }</div>
+<div class="line"> </div>
+<div class="line"> dataStream, err := t.NewMarketDataStreamServiceClient(conn).MarketDataStream(context.Background())</div>
+<div class="line"> err = dataStream.Send(&amp;t.MarketDataRequest{</div>
+<div class="line">  Payload: &amp;t.MarketDataRequest_SubscribeCandlesRequest{</div>
+<div class="line">   SubscribeCandlesRequest: &amp;t.SubscribeCandlesRequest{</div>
+<div class="line">    SubscriptionAction: t.SubscriptionAction_SUBSCRIPTION_ACTION_SUBSCRIBE,</div>
+<div class="line">    Instruments: []*t.CandleInstrument{</div>
+<div class="line">     {</div>
+<div class="line">      Figi:     instr.Instrument.Figi,</div>
+<div class="line">      Interval: t.SubscriptionInterval_SUBSCRIPTION_INTERVAL_ONE_MINUTE,</div>
+<div class="line">     },</div>
+<div class="line">    },</div>
+<div class="line">   },</div>
+<div class="line">  },</div>
+<div class="line"> })</div>
+<div class="line"> if err != nil {</div>
+<div class="line">  panic(err)</div>
+<div class="line"> }</div>
+<div class="line"> </div>
+<div class="line"> for {</div>
+<div class="line">  recv, err := dataStream.Recv()</div>
+<div class="line">  if err != nil {</div>
+<div class="line">   panic(err)</div>
+<div class="line">  }</div>
+<div class="line">  fmt.Println(recv.Payload)</div>
+<div class="line"> }</div>
+<div class="line"> </div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

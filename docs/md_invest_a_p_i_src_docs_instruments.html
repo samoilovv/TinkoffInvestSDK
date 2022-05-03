@@ -1,0 +1,1594 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: instruments</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">instruments </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="autotoc_md156"></a>
+InstrumentsService</h2>
+<p>Сервис предназначен для получения:**1**. информации об инструментах;**2**. расписания торговых сессий;**3**. календаря выплат купонов по облигациям;**4**. размера гарантийного обеспечения по фьючерсам;**5**. дивидендов по ценной бумаге.</p>
+<h3><a class="anchor" id="autotoc_md157"></a>
+Методы сервиса</h3>
+<h4><a class="anchor" id="autotoc_md158"></a>
+TradingSchedules</h4>
+<p>Метод получения расписания торгов торговых площадок.</p>
+<ul>
+<li>Тело запроса — <a href="#tradingschedulesrequest">TradingSchedulesRequest</a></li>
+<li>Тело ответа — <a href="#tradingschedulesresponse">TradingSchedulesResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md159"></a>
+BondBy</h4>
+<p>Метод получения облигации по её идентификатору.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentrequest">InstrumentRequest</a></li>
+<li>Тело ответа — <a href="#bondresponse">BondResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md160"></a>
+Bonds</h4>
+<p>Метод получения списка облигаций.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentsrequest">InstrumentsRequest</a></li>
+<li>Тело ответа — <a href="#bondsresponse">BondsResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md161"></a>
+GetBondCoupons</h4>
+<p>Метод получения графика выплат купонов по облигации</p>
+<ul>
+<li>Тело запроса — <a href="#getbondcouponsrequest">GetBondCouponsRequest</a></li>
+<li>Тело ответа — <a href="#getbondcouponsresponse">GetBondCouponsResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md162"></a>
+CurrencyBy</h4>
+<p>Метод получения валюты по её идентификатору.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentrequest">InstrumentRequest</a></li>
+<li>Тело ответа — <a href="#currencyresponse">CurrencyResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md163"></a>
+Currencies</h4>
+<p>Метод получения списка валют.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentsrequest">InstrumentsRequest</a></li>
+<li>Тело ответа — <a href="#currenciesresponse">CurrenciesResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md164"></a>
+EtfBy</h4>
+<p>Метод получения инвестиционного фонда по его идентификатору.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentrequest">InstrumentRequest</a></li>
+<li>Тело ответа — <a href="#etfresponse">EtfResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md165"></a>
+Etfs</h4>
+<p>Метод получения списка инвестиционных фондов.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentsrequest">InstrumentsRequest</a></li>
+<li>Тело ответа — <a href="#etfsresponse">EtfsResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md166"></a>
+FutureBy</h4>
+<p>Метод получения фьючерса по его идентификатору.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentrequest">InstrumentRequest</a></li>
+<li>Тело ответа — <a href="#futureresponse">FutureResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md167"></a>
+Futures</h4>
+<p>Метод получения списка фьючерсов.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentsrequest">InstrumentsRequest</a></li>
+<li>Тело ответа — <a href="#futuresresponse">FuturesResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md168"></a>
+ShareBy</h4>
+<p>Метод получения акции по её идентификатору.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentrequest">InstrumentRequest</a></li>
+<li>Тело ответа — <a href="#shareresponse">ShareResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md169"></a>
+Shares</h4>
+<p>Метод получения списка акций.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentsrequest">InstrumentsRequest</a></li>
+<li>Тело ответа — <a href="#sharesresponse">SharesResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md170"></a>
+GetAccruedInterests</h4>
+<p>Метод получения накопленного купонного дохода по облигации.</p>
+<ul>
+<li>Тело запроса — <a href="#getaccruedinterestsrequest">GetAccruedInterestsRequest</a></li>
+<li>Тело ответа — <a href="#getaccruedinterestsresponse">GetAccruedInterestsResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md171"></a>
+GetFuturesMargin</h4>
+<p>Метод получения размера гарантийного обеспечения по фьючерсам.</p>
+<ul>
+<li>Тело запроса — <a href="#getfuturesmarginrequest">GetFuturesMarginRequest</a></li>
+<li>Тело ответа — <a href="#getfuturesmarginresponse">GetFuturesMarginResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md172"></a>
+GetInstrumentBy</h4>
+<p>Метод получения основной информации об инструменте.</p>
+<ul>
+<li>Тело запроса — <a href="#instrumentrequest">InstrumentRequest</a></li>
+<li>Тело ответа — <a href="#instrumentresponse">InstrumentResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md173"></a>
+GetDividends</h4>
+<p>Метод для получения событий выплаты дивидендов по инструменту.</p>
+<ul>
+<li>Тело запроса — <a href="#getdividendsrequest">GetDividendsRequest</a></li>
+<li>Тело ответа — <a href="#getdividendsresponse">GetDividendsResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md174"></a>
+GetAssetBy</h4>
+<p>Метод получения актива по его идентификатору.</p>
+<ul>
+<li>Тело запроса — <a href="#assetrequest">AssetRequest</a></li>
+<li>Тело ответа — <a href="#assetresponse">AssetResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md175"></a>
+GetAssets</h4>
+<p>Метод получения списка активов.</p>
+<ul>
+<li>Тело запроса — <a href="#assetsrequest">AssetsRequest</a></li>
+<li>Тело ответа — <a href="#assetsresponse">AssetsResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md176"></a>
+GetFavorites</h4>
+<p>Метод получения избранных инструментов.</p>
+<ul>
+<li>Тело запроса — <a href="#getfavoritesrequest">GetFavoritesRequest</a></li>
+<li>Тело ответа — <a href="#getfavoritesresponse">GetFavoritesResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md177"></a>
+EditFavorites</h4>
+<p>Метод редактирования избранных инструментов.</p>
+<ul>
+<li>Тело запроса — <a href="#editfavoritesrequest">EditFavoritesRequest</a></li>
+<li>Тело ответа — <a href="#editfavoritesresponse">EditFavoritesResponse</a></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md178"></a>
+Сообщения методов</h3>
+<h4><a class="anchor" id="autotoc_md179"></a>
+TradingSchedulesRequest</h4>
+<p>Запрос расписания торгов</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">exchange </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование биржи или расчетного календаря. Если не передаётся, возвращается информация по всем доступным торговым площадкам.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">from </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Начало периода по часовому поясу UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">to </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Окончание периода по часовому поясу UTC.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md180"></a>
+TradingSchedulesResponse</h4>
+<p>Список торговых площадок</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">exchanges </td><td class="markdownTableBodyNone">Массив объектов <a href="#tradingschedule">TradingSchedule</a> </td><td class="markdownTableBodyNone">Список торговых площадок и режимов торгов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md181"></a>
+TradingSchedule</h4>
+<p>Данные по торговой площадке.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">exchange </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование торговой площадки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">days </td><td class="markdownTableBodyNone">Массив объектов <a href="#tradingday">TradingDay</a> </td><td class="markdownTableBodyNone">Массив с торговыми и неторговыми днями.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md182"></a>
+TradingDay</h4>
+<p>Информация о времени торгов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">is_trading_day </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак торгового дня на бирже.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">start_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время начала торгов по часовому поясу UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">end_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время окончания торгов по часовому поясу UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">opening_auction_start_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время начала аукциона открытия в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">closing_auction_end_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время окончания аукциона закрытия в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">evening_opening_auction_start_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время начала аукциона открытия вечерней сессии в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">evening_start_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время начала вечерней сессии в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">evening_end_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время окончания вечерней сессии в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">clearing_start_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время начала основного клиринга в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">clearing_end_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время окончания основного клиринга в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">premarket_start_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время начала премаркета в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">premarket_end_time </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Время окончания премаркета в часовом поясе UTC.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md183"></a>
+InstrumentRequest</h4>
+<p>Запрос получения инструмента по идентификатору.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">id_type </td><td class="markdownTableBodyNone"><a href="#instrumentidtype">InstrumentIdType</a> </td><td class="markdownTableBodyNone">Тип идентификатора инструмента. Возможные значения: figi, ticker. Подробнее об идентификации инструментов: <a href="https://tinkoff.github.io/investAPI/faq_identification/">Идентификация инструментов</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор class_code. Обязателен при id_type = ticker.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор запрашиваемого инструмента.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md184"></a>
+InstrumentsRequest</h4>
+<p>Запрос получения инструментов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument_status </td><td class="markdownTableBodyNone"><a href="#instrumentstatus">InstrumentStatus</a> </td><td class="markdownTableBodyNone">Статус запрашиваемых инструментов. Возможные значения: <a href="#instrumentstatus">InstrumentStatus</a>  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md185"></a>
+BondResponse</h4>
+<p>Информация об облигации.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument </td><td class="markdownTableBodyNone"><a href="#bond">Bond</a> </td><td class="markdownTableBodyNone">Информация об облигации.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md186"></a>
+BondsResponse</h4>
+<p>Список облигаций.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#bond">Bond</a> </td><td class="markdownTableBodyNone">Массив облигаций.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md187"></a>
+GetBondCouponsRequest</h4>
+<p>Запрос купонов по облигации.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">from </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Начало запрашиваемого периода в часовом поясе UTC. Фильтрация по coupon_date (дата выплаты купона)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">to </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Окончание запрашиваемого периода в часовом поясе UTC. Фильтрация по coupon_date (дата выплаты купона)  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md188"></a>
+GetBondCouponsResponse</h4>
+<p>Купоны по облигации.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">events </td><td class="markdownTableBodyNone">Массив объектов <a href="#coupon">Coupon</a> </td><td class="markdownTableBodyNone"></td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md189"></a>
+Coupon</h4>
+<p>Объект передачи информации о купоне облигации.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">coupon_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата выплаты купона  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">coupon_number </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Номер купона  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">fix_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">(Опционально) Дата фиксации реестра для выплаты купона  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">pay_one_bond </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Выплата на одну облигацию  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">coupon_type </td><td class="markdownTableBodyNone"><a href="#coupontype">CouponType</a> </td><td class="markdownTableBodyNone">Тип купона  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">coupon_start_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Начало купонного периода.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">coupon_end_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Окончание купонного периода.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">coupon_period </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Купонный период в днях.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md190"></a>
+CurrencyResponse</h4>
+<p>Данные по валюте.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument </td><td class="markdownTableBodyNone"><a href="#currency">Currency</a> </td><td class="markdownTableBodyNone">Информация о валюте.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md191"></a>
+CurrenciesResponse</h4>
+<p>Данные по валютам.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#currency">Currency</a> </td><td class="markdownTableBodyNone">Массив валют.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md192"></a>
+EtfResponse</h4>
+<p>Данные по фонду.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument </td><td class="markdownTableBodyNone"><a href="#etf">Etf</a> </td><td class="markdownTableBodyNone">Информация о фонде.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md193"></a>
+EtfsResponse</h4>
+<p>Данные по фондам.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#etf">Etf</a> </td><td class="markdownTableBodyNone">Массив фондов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md194"></a>
+FutureResponse</h4>
+<p>Данные по фьючерсу.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument </td><td class="markdownTableBodyNone"><a href="#future">Future</a> </td><td class="markdownTableBodyNone">Информация о фьючерсу.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md195"></a>
+FuturesResponse</h4>
+<p>Данные по фьючерсам.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#future">Future</a> </td><td class="markdownTableBodyNone">Массив фьючерсов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md196"></a>
+ShareResponse</h4>
+<p>Данные по акции.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument </td><td class="markdownTableBodyNone"><a href="#share">Share</a> </td><td class="markdownTableBodyNone">Информация об акции.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md197"></a>
+SharesResponse</h4>
+<p>Данные по акциям.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#share">Share</a> </td><td class="markdownTableBodyNone">Массив акций.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md198"></a>
+Bond</h4>
+<p>Объект передачи информации об облигации.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ticker </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тикер инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Класс-код (секция торгов).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">isin </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Isin-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">lot </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру <em>lot</em>. Подробнее: <a href="https://tinkoff.github.io/investAPI/glossary#lot">лот</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта расчётов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">klong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска длинной позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">kshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска короткой позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">short_enabled_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для операций в шорт.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Название инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">exchange </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Торговая площадка.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">coupon_quantity_per_year </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Количество выплат по купонам в год.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">maturity_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата погашения облигации в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Номинал облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">state_reg_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата выпуска облигации в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">placement_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата размещения в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">placement_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Цена размещения.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">aci_value </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Значение НКД (накопленного купонного дохода) на дату.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">country_of_risk </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">country_of_risk_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">sector </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Сектор экономики.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">issue_kind </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Форма выпуска. Возможные значения: **documentary** — документарная; **non_documentary** — бездокументарная.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_size </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Размер выпуска.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">issue_size_plan </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Плановый размер выпуска.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">trading_status </td><td class="markdownTableBodyNone"><a href="#securitytradingstatus">SecurityTradingStatus</a> </td><td class="markdownTableBodyNone">Текущий режим торгов инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">otc_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак внебиржевой ценной бумаги.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">buy_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для покупки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sell_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для продажи.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">floating_coupon_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак облигации с плавающим купоном.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">perpetual_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак бессрочной облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">amortization_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак облигации с амортизацией долга.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">min_price_increment </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Шаг цены.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">api_trade_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности торгов через API.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">real_exchange </td><td class="markdownTableBodyNone"><a href="#realexchange">RealExchange</a> </td><td class="markdownTableBodyNone">Реальная площадка исполнения расчётов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md199"></a>
+Currency</h4>
+<p>Объект передачи информации о валюте.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ticker </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тикер инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Класс-код (секция торгов).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">isin </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Isin-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">lot </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру <em>lot</em>. Подробнее: <a href="https://tinkoff.github.io/investAPI/glossary#lot">лот</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта расчётов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">klong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска длинной позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">kshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска короткой позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">short_enabled_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для операций в шорт.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Название инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">exchange </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Торговая площадка.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Номинал.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">country_of_risk </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">country_of_risk_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">trading_status </td><td class="markdownTableBodyNone"><a href="#securitytradingstatus">SecurityTradingStatus</a> </td><td class="markdownTableBodyNone">Текущий режим торгов инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">otc_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак внебиржевой ценной бумаги.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">buy_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для покупки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sell_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для продажи.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">iso_currency_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Строковый ISO-код валюты.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">min_price_increment </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Шаг цены.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">api_trade_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности торгов через API.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">real_exchange </td><td class="markdownTableBodyNone"><a href="#realexchange">RealExchange</a> </td><td class="markdownTableBodyNone">Реальная площадка исполнения расчётов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md200"></a>
+Etf</h4>
+<p>Объект передачи информации об инвестиционном фонде.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ticker </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тикер инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Класс-код (секция торгов).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">isin </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Isin-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">lot </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру <em>lot</em>. Подробнее: <a href="https://tinkoff.github.io/investAPI/glossary#lot">лот</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта расчётов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">klong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска длинной позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">kshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска короткой позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">short_enabled_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для операций в шорт.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Название инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">exchange </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Торговая площадка.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">fixed_commission </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Размер фиксированной комиссии фонда.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">focus_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Возможные значения: **equity** — акции;**fixed_income** — облигации;**mixed_allocation** — смешанный;**money_market** — денежный рынок;**real_estate** — недвижимость;**commodity** — товары;**specialty** — специальный;**private_equity** — private equity;**alternative_investment** — альтернативные инвестиции.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">released_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата выпуска в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">num_shares </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Количество акций фонда в обращении.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">country_of_risk </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">country_of_risk_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sector </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Сектор экономики.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">rebalancing_freq </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Частота ребалансировки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">trading_status </td><td class="markdownTableBodyNone"><a href="#securitytradingstatus">SecurityTradingStatus</a> </td><td class="markdownTableBodyNone">Текущий режим торгов инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">otc_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак внебиржевой ценной бумаги.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">buy_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для покупки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">sell_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для продажи.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">min_price_increment </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Шаг цены.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">api_trade_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности торгов через API.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">real_exchange </td><td class="markdownTableBodyNone"><a href="#realexchange">RealExchange</a> </td><td class="markdownTableBodyNone">Реальная площадка исполнения расчётов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md201"></a>
+Future</h4>
+<p>Объект передачи информации о фьючерсе.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ticker </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тикер инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Класс-код (секция торгов).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">lot </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру <em>lot</em>. Подробнее: <a href="https://tinkoff.github.io/investAPI/glossary#lot">лот</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта расчётов.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">klong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска длинной позиции по клиенту.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">kshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска короткой позиции по клиенту.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dlong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dlong_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dshort_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">short_enabled_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для операций шорт.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Название инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">exchange </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Торговая площадка.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">first_trade_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата начала обращения контракта в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">last_trade_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата в часовом поясе UTC, до которой возможно проведение операций с фьючерсом.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">futures_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип фьючерса. Возможные значения: **physical_delivery** — физические поставки; **cash_settlement** — денежный эквивалент.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">asset_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип актива. Возможные значения: **commodity** — товар; **currency** — валюта; **security** — ценная бумага; **index** — индекс.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">basic_asset </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Основной актив.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">basic_asset_size </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Размер основного актива.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">country_of_risk </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">country_of_risk_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">sector </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Сектор экономики.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">expiration_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата истечения срока в часов поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">trading_status </td><td class="markdownTableBodyNone"><a href="#securitytradingstatus">SecurityTradingStatus</a> </td><td class="markdownTableBodyNone">Текущий режим торгов инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">otc_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак внебиржевой ценной бумаги.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">buy_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для покупки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sell_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для продажи.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">min_price_increment </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Шаг цены.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">api_trade_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности торгов через API.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">real_exchange </td><td class="markdownTableBodyNone"><a href="#realexchange">RealExchange</a> </td><td class="markdownTableBodyNone">Реальная площадка исполнения расчётов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md202"></a>
+Share</h4>
+<p>Объект передачи информации об акции.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ticker </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тикер инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Класс-код (секция торгов).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">isin </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Isin-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">lot </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру <em>lot</em>. Подробнее: <a href="https://tinkoff.github.io/investAPI/glossary#lot">лот</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта расчётов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">klong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска длинной позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">kshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска короткой позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">short_enabled_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для операций в шорт.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Название инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">exchange </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Торговая площадка.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ipo_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата IPO акции в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_size </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Размер выпуска.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">country_of_risk </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">country_of_risk_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sector </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Сектор экономики.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_size_plan </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Плановый размер выпуска.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Номинал.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">trading_status </td><td class="markdownTableBodyNone"><a href="#securitytradingstatus">SecurityTradingStatus</a> </td><td class="markdownTableBodyNone">Текущий режим торгов инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">otc_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак внебиржевой ценной бумаги.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">buy_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для покупки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sell_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для продажи.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">div_yield_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак наличия дивидендной доходности.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">share_type </td><td class="markdownTableBodyNone"><a href="#sharetype">ShareType</a> </td><td class="markdownTableBodyNone">Тип акции. Возможные значения: <a href="https://tinkoff.github.io/investAPI/instruments#sharetype">ShareType</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">min_price_increment </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Шаг цены.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">api_trade_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности торгов через API.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">real_exchange </td><td class="markdownTableBodyNone"><a href="#realexchange">RealExchange</a> </td><td class="markdownTableBodyNone">Реальная площадка исполнения расчётов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md203"></a>
+GetAccruedInterestsRequest</h4>
+<p>Запрос НКД по облигации</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">from </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Начало запрашиваемого периода в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">to </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Окончание запрашиваемого периода в часовом поясе UTC.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md204"></a>
+GetAccruedInterestsResponse</h4>
+<p>НКД облигации</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">accrued_interests </td><td class="markdownTableBodyNone">Массив объектов <a href="#accruedinterest">AccruedInterest</a> </td><td class="markdownTableBodyNone">Массив операций начисления купонов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md205"></a>
+AccruedInterest</h4>
+<p>Операция начисления купонов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время выплаты в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">value </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Величина выплаты.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">value_percent </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Величина выплаты в процентах от номинала.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Номинал облигации.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md206"></a>
+GetFuturesMarginRequest</h4>
+<p>Запрос информации о фьючерсе</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор инструмента.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md207"></a>
+GetFuturesMarginResponse</h4>
+<p>Данные по фьючерсу</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">initial_margin_on_buy </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Гарантийное обеспечение при покупке.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">initial_margin_on_sell </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Гарантийное обеспечение при продаже.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">min_price_increment </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Шаг цены.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">min_price_increment_amount </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Стоимость шага цены.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md208"></a>
+InstrumentResponse</h4>
+<p>Данные по инструменту.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument </td><td class="markdownTableBodyNone"><a href="#instrument">Instrument</a> </td><td class="markdownTableBodyNone">Основная информация об инструменте.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md209"></a>
+Instrument</h4>
+<p>Объект передачи основной информации об инструменте.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ticker </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тикер инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Класс-код инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">isin </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Isin-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">lot </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Лотность инструмента. Возможно совершение операций только на количества ценной бумаги, кратные параметру <em>lot</em>. Подробнее: <a href="https://tinkoff.github.io/investAPI/glossary#lot">лот</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта расчётов.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">klong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска длинной позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">kshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Коэффициент ставки риска короткой позиции по инструменту.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска минимальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dlong_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в лонг. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/long/risk-rate/">ставка риска в лонг</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dshort_min </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка риска начальной маржи в шорт. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/risk-rate/">ставка риска в шорт</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">short_enabled_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для операций в шорт.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Название инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">exchange </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Торговая площадка.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">country_of_risk </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">country_of_risk_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование страны риска, т.е. страны, в которой компания ведёт основной бизнес.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">instrument_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">trading_status </td><td class="markdownTableBodyNone"><a href="#securitytradingstatus">SecurityTradingStatus</a> </td><td class="markdownTableBodyNone">Текущий режим торгов инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">otc_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак внебиржевой ценной бумаги.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">buy_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для покупки.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sell_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности для продажи.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">min_price_increment </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Шаг цены.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">api_trade_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности торгов через API.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">real_exchange </td><td class="markdownTableBodyNone"><a href="#realexchange">RealExchange</a> </td><td class="markdownTableBodyNone">Реальная площадка исполнения расчётов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md210"></a>
+GetDividendsRequest</h4>
+<p>Запрос дивидендов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">from </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Начало запрашиваемого периода в часовом поясе UTC. Фильтрация происходит по параметру <em>record_date</em> (дата фиксации реестра).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">to </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Окончание запрашиваемого периода в часовом поясе UTC. Фильтрация происходит по параметру <em>record_date</em> (дата фиксации реестра).  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md211"></a>
+GetDividendsResponse</h4>
+<p>Дивиденды.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dividends </td><td class="markdownTableBodyNone">Массив объектов <a href="#dividend">Dividend</a> </td><td class="markdownTableBodyNone"></td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md212"></a>
+Dividend</h4>
+<p>Информация о выплате.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dividend_net </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Величина дивиденда на 1 ценную бумагу (включая валюту).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">payment_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата фактических выплат в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">declared_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата объявления дивидендов в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">last_buy_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Последний день (включительно) покупки для получения выплаты в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">dividend_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип выплаты. Возможные значения: Regular Cash – регулярные выплаты, Cancelled – выплата отменена, Daily Accrual – ежедневное начисление, Return of Capital – возврат капитала, прочие типы выплат.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">record_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата фиксации реестра в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">regularity </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Регулярность выплаты. Возможные значения: Annual – ежегодная, Semi-Anl – каждые полгода, прочие типы выплат.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">close_price </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Цена закрытия инструмента на момент ex_dividend_date.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">yield_value </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Величина доходности.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">created_at </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время создания записи в часовом поясе UTC.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md213"></a>
+AssetRequest</h4>
+<p>Запрос актива по идентификатору.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">uid-идентификатор актива.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md214"></a>
+AssetResponse</h4>
+<p>Данные по активу.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">asset </td><td class="markdownTableBodyNone"><a href="#assetfull">AssetFull</a> </td><td class="markdownTableBodyNone">Актив.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md215"></a>
+AssetsRequest</h4>
+<p>Запрос списка активов.</p>
+<h4><a class="anchor" id="autotoc_md216"></a>
+AssetsResponse</h4>
+<p>Список активов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">assets </td><td class="markdownTableBodyNone">Массив объектов <a href="#asset">Asset</a> </td><td class="markdownTableBodyNone">Активы.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md217"></a>
+AssetFull</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">type </td><td class="markdownTableBodyNone"><a href="#assettype">AssetType</a> </td><td class="markdownTableBodyNone">Тип актива.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">name_brief </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Короткое наименование актива.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">description </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Описание актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">deleted_at </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время удаления актива.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">required_tests </td><td class="markdownTableBodyNone">Массив объектов <a href="#string">string</a> </td><td class="markdownTableBodyNone">Тестирование клиентов.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#assetcurrency">AssetCurrency</a> </td><td class="markdownTableBodyNone">Валюта. Обязательно и заполняется только для type = "ASSET_TYPE_CURRENCY".  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">security </td><td class="markdownTableBodyNone"><a href="#assetsecurity">AssetSecurity</a> </td><td class="markdownTableBodyNone">Ценная бумага. Обязательно и заполняется только для type = "ASSET_TYPE_SECURITY".  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">gos_reg_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Номер государственной регистрации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">cfi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код CFI.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">code_nsd </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код НРД инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">status </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Статус актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">brand </td><td class="markdownTableBodyNone"><a href="#brand">Brand</a> </td><td class="markdownTableBodyNone">Бренд.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">updated_at </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата и время последнего обновления записи.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">br_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код типа ц.б. по классификации Банка России.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">br_code_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование кода типа ц.б. по классификации Банка России.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#assetinstrument">AssetInstrument</a> </td><td class="markdownTableBodyNone">Массив идентификаторов инструментов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md218"></a>
+Asset</h4>
+<p>Информация об активе.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Уникальный идентификатор актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">type </td><td class="markdownTableBodyNone"><a href="#assettype">AssetType</a> </td><td class="markdownTableBodyNone">Тип актива.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#assetinstrument">AssetInstrument</a> </td><td class="markdownTableBodyNone">Массив идентификаторов инструментов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md219"></a>
+AssetCurrency</h4>
+<p>Валюта.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">base_currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">ISO-код валюты.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md220"></a>
+AssetSecurity</h4>
+<p>Ценная бумага.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">isin </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">ISIN-идентификатор ценной бумаги.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип ценной бумаги.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">share </td><td class="markdownTableBodyNone"><a href="#assetshare">AssetShare</a> </td><td class="markdownTableBodyNone">Акция. Заполняется только для акций (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = share).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">bond </td><td class="markdownTableBodyNone"><a href="#assetbond">AssetBond</a> </td><td class="markdownTableBodyNone">Облигация. Заполняется только для облигаций (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = bond).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">sp </td><td class="markdownTableBodyNone"><a href="#assetstructuredproduct">AssetStructuredProduct</a> </td><td class="markdownTableBodyNone">Структурная нота. Заполняется только для структурных продуктов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = sp).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">etf </td><td class="markdownTableBodyNone"><a href="#assetetf">AssetEtf</a> </td><td class="markdownTableBodyNone">Фонд. Заполняется только для фондов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = etf).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">clearing_certificate </td><td class="markdownTableBodyNone"><a href="#assetclearingcertificate">AssetClearingCertificate</a> </td><td class="markdownTableBodyNone">Клиринговый сертификат участия. Заполняется только для клиринговых сертификатов (тип актива asset.type = "ASSET_TYPE_SECURITY" и security.type = clearing_certificate).  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md221"></a>
+AssetShare</h4>
+<p>Акция.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">type </td><td class="markdownTableBodyNone"><a href="#sharetype">ShareType</a> </td><td class="markdownTableBodyNone">Тип акции.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">issue_size </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Объем выпуска (шт.).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Номинал.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal_currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта номинала.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">primary_index </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Индекс (Bloomberg).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">dividend_rate </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка дивиденда (для привилегированных акций).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">preferred_share_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип привилегированных акций.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ipo_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата IPO.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">registry_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата регистрации.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">div_yield_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак наличия дивидендной доходности.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_kind </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Форма выпуска ФИ.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">placement_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата размещения акции.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">repres_isin </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">ISIN базового актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">issue_size_plan </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Объявленное количество шт.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">total_float </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Количество акций в свободном обращении.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md222"></a>
+AssetBond</h4>
+<p>Облигация.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">current_nominal </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Текущий номинал.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">borrow_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование заемщика.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_size </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Объем эмиссии облигации (стоимость).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Номинал облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nominal_currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта номинала.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">issue_kind </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Форма выпуска облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">interest_kind </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Форма дохода облигации.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">coupon_quantity_per_year </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Количество выплат в год.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">indexed_nominal_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак облигации с индексируемым номиналом.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">subordinated_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак субординированной облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">collateral_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак обеспеченной облигации.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">tax_free_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак показывает, что купоны облигации не облагаются налогом (для mass market).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">amortization_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак облигации с амортизацией долга.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">floating_coupon_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак облигации с плавающим купоном.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">perpetual_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак бессрочной облигации.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">maturity_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата погашения облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">return_condition </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Описание и условия получения дополнительного дохода.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">state_reg_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата выпуска облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">placement_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата размещения облигации.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">placement_price </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Цена размещения облигации.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_size_plan </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Объявленное количество шт.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md223"></a>
+AssetStructuredProduct</h4>
+<p>Структурная нота.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">borrow_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование заемщика.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Номинал.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nominal_currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта номинала.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">type </td><td class="markdownTableBodyNone"><a href="#structuredproducttype">StructuredProductType</a> </td><td class="markdownTableBodyNone">Тип структурной ноты.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">logic_portfolio </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Стратегия портфеля.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">asset_type </td><td class="markdownTableBodyNone"><a href="#assettype">AssetType</a> </td><td class="markdownTableBodyNone">Тип базового актива.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">basic_asset </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Вид базового актива в зависимости от типа базового актива.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">safety_barrier </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Барьер сохранности (в процентах).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">maturity_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата погашения.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">issue_size_plan </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Объявленное количество шт.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_size </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Объем размещения.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">placement_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата размещения ноты.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_kind </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Форма выпуска.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md224"></a>
+AssetEtf</h4>
+<p>Фонд.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">total_expense </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Суммарные расходы фонда (в %).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">hurdle_rate </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Барьерная ставка доходности после которой фонд имеет право на perfomance fee (в процентах).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">performance_fee </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Комиссия за успешные результаты фонда (в процентах).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">fixed_commission </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Фиксированная комиссия за управление (в процентах).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">payment_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип распределения доходов от выплат по бумагам.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">watermark_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак необходимости выхода фонда в плюс для получения комиссии.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">buy_premium </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Премия (надбавка к цене) при покупке доли в фонде (в процентах).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sell_discount </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ставка дисконта (вычет из цены) при продаже доли в фонде (в процентах).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">rebalancing_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак ребалансируемости портфеля фонда.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">rebalancing_freq </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Периодичность ребалансировки.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">management_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип управления.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">primary_index </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Индекс, который реплицирует (старается копировать) фонд.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">focus_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">База ETF.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">leveraged_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак использования заемных активов (плечо).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">num_share </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Количество акций в обращении.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ucits_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак обязательства по отчетности перед регулятором.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">released_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата выпуска.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">description </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Описание фонда.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">primary_index_description </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Описание индекса, за которым следует фонд.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">primary_index_company </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Основные компании, в которые вкладывается фонд.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">index_recovery_period </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Срок восстановления индекса (после просадки).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">inav_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">IVAV-код.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">div_yield_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак наличия дивидендной доходности.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">expense_commission </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Комиссия на покрытие расходов фонда (в процентах).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">primary_index_tracking_error </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Ошибка следования за индексом (в процентах).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">rebalancing_plan </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Плановая ребалансировка портфеля.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">tax_rate </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Ставки налогообложения дивидендов и купонов.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">rebalancing_dates </td><td class="markdownTableBodyNone">Массив объектов <a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Даты ребалансировок.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">issue_kind </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Форма выпуска.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Номинал.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nominal_currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта номинала.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md225"></a>
+AssetClearingCertificate</h4>
+<p>Клиринговый сертификат участия.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nominal </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Номинал.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nominal_currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Валюта номинала.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md226"></a>
+Brand</h4>
+<p>Бренд.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">uid идентификатор бренда.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование бренда.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">description </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Описание.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">info </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Информация о бренде.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">company </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Компания.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">sector </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Сектор.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">country_of_risk </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Код страны риска.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">country_of_risk_name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование страны риска.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md227"></a>
+AssetInstrument</h4>
+<p>Идентификаторы инструмента.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">uid идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">figi идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ticker </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тикер инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Класс-код (секция торгов).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">links </td><td class="markdownTableBodyNone">Массив объектов <a href="#instrumentlink">InstrumentLink</a> </td><td class="markdownTableBodyNone">Массив связанных инструментов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md228"></a>
+InstrumentLink</h4>
+<p>Связь с другим инструментом.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип связи.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">instrument_uid </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">uid идентификатор связанного инструмента.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md229"></a>
+GetFavoritesRequest</h4>
+<p>Запрос избранных инструментов.</p>
+<h4><a class="anchor" id="autotoc_md230"></a>
+GetFavoritesResponse</h4>
+<p>Ответ избранных инструментов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">favorite_instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#favoriteinstrument">FavoriteInstrument</a> </td><td class="markdownTableBodyNone">Массив инструментов  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md231"></a>
+FavoriteInstrument</h4>
+<p>Избранный инструмент.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ticker </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тикер инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">class_code </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Класс-код инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">isin </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Isin-идентификатор инструмента.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instrument_type </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Тип инструмента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">otc_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак внебиржевой ценной бумаги.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">api_trade_available_flag </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак доступности торгов через API.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md232"></a>
+EditFavoritesRequest</h4>
+<p>Запрос редактирования избранных инструментов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#editfavoritesrequestinstrument">EditFavoritesRequestInstrument</a> </td><td class="markdownTableBodyNone">Массив инструментов.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">action_type </td><td class="markdownTableBodyNone"><a href="#editfavoritesactiontype">EditFavoritesActionType</a> </td><td class="markdownTableBodyNone">Тип действия со списком.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md233"></a>
+EditFavoritesRequestInstrument</h4>
+<p>Избранный инструмент для редактирования.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">figi </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Figi-идентификатор инструмента.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md234"></a>
+EditFavoritesResponse</h4>
+<p>Результат редактирования избранных инструментов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">favorite_instruments </td><td class="markdownTableBodyNone">Массив объектов <a href="#favoriteinstrument">FavoriteInstrument</a> </td><td class="markdownTableBodyNone">Массив инструментов  </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md235"></a>
+Enums</h3>
+<h4><a class="anchor" id="autotoc_md236"></a>
+CouponType</h4>
+<p>Тип купонов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">COUPON_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Неопределенное значение  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">COUPON_TYPE_CONSTANT </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Постоянный  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">COUPON_TYPE_FLOATING </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Плавающий  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">COUPON_TYPE_DISCOUNT </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Дисконт  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">COUPON_TYPE_MORTGAGE </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Ипотечный  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">COUPON_TYPE_FIX </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">Фиксированный  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">COUPON_TYPE_VARIABLE </td><td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">Переменный  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">COUPON_TYPE_OTHER </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Прочее  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md237"></a>
+InstrumentIdType</h4>
+<p>Тип идентификатора инструмента. Подробнее об идентификации инструментов: <a href="https://tinkoff.github.io/investAPI/faq_identification/">Идентификация инструментов</a></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">INSTRUMENT_ID_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Значение не определено.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">INSTRUMENT_ID_TYPE_FIGI </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Figi.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">INSTRUMENT_ID_TYPE_TICKER </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Ticker.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">INSTRUMENT_ID_TYPE_UID </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Уникальный идентификатор.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md238"></a>
+InstrumentStatus</h4>
+<p>Статус запрашиваемых инструментов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">INSTRUMENT_STATUS_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Значение не определено.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">INSTRUMENT_STATUS_BASE </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Базовый список инструментов (по умолчанию). Инструменты доступные для торговли через TINKOFF INVEST API.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">INSTRUMENT_STATUS_ALL </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Список всех инструментов.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md239"></a>
+ShareType</h4>
+<p>Тип акций.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SHARE_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Значение не определено.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SHARE_TYPE_COMMON </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Обыкновенная  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SHARE_TYPE_PREFERRED </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Привилегированная  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SHARE_TYPE_ADR </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Американские депозитарные расписки  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SHARE_TYPE_GDR </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Глобальные депозитарные расписки  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SHARE_TYPE_MLP </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">Товарищество с ограниченной ответственностью  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SHARE_TYPE_NY_REG_SHRS </td><td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">Акции из реестра Нью-Йорка  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SHARE_TYPE_CLOSED_END_FUND </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Закрытый инвестиционный фонд  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SHARE_TYPE_REIT </td><td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">Траст недвижимости  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md240"></a>
+AssetType</h4>
+<p>Тип актива.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ASSET_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Тип не определён.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ASSET_TYPE_CURRENCY </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Валюта.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ASSET_TYPE_COMMODITY </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Товар.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ASSET_TYPE_INDEX </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Индекс.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ASSET_TYPE_SECURITY </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Ценная бумага.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md241"></a>
+StructuredProductType</h4>
+<p>Тип структурной ноты.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SP_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Тип не определён.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SP_TYPE_DELIVERABLE </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Поставочный.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SP_TYPE_NON_DELIVERABLE </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Беспоставочный.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md242"></a>
+EditFavoritesActionType</h4>
+<p>Тип действия со списком избранных инструментов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">EDIT_FAVORITES_ACTION_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Тип не определён.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">EDIT_FAVORITES_ACTION_TYPE_ADD </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Добавить в список.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">EDIT_FAVORITES_ACTION_TYPE_DEL </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Удалить из списка.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md243"></a>
+RealExchange</h4>
+<p>Реальная площадка исполнения расчётов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">REAL_EXCHANGE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Тип не определён.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">REAL_EXCHANGE_MOEX </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Московская биржа.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">REAL_EXCHANGE_RTS </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Санкт-Петербургская биржа.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">REAL_EXCHANGE_OTC </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Внебиржевой инструмент.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md244"></a>
+SecurityTradingStatus</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Торговый статус не определён  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Недоступен для торгов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_OPENING_PERIOD </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Период открытия торгов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_CLOSING_PERIOD </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Период закрытия торгов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_BREAK_IN_TRADING </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Перерыв в торговле  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_NORMAL_TRADING </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">Нормальная торговля  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_CLOSING_AUCTION </td><td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">Аукцион закрытия  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DARK_POOL_AUCTION </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Аукцион крупных пакетов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DISCRETE_AUCTION </td><td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">Дискретный аукцион  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD </td><td class="markdownTableBodyNone">9 </td><td class="markdownTableBodyNone">Аукцион открытия  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE </td><td class="markdownTableBodyNone">10 </td><td class="markdownTableBodyNone">Период торгов по цене аукциона закрытия  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_ASSIGNED </td><td class="markdownTableBodyNone">11 </td><td class="markdownTableBodyNone">Сессия назначена  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_CLOSE </td><td class="markdownTableBodyNone">12 </td><td class="markdownTableBodyNone">Сессия закрыта  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_OPEN </td><td class="markdownTableBodyNone">13 </td><td class="markdownTableBodyNone">Сессия открыта  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING </td><td class="markdownTableBodyNone">14 </td><td class="markdownTableBodyNone">Доступна торговля в режиме внутренней ликвидности брокера  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING </td><td class="markdownTableBodyNone">15 </td><td class="markdownTableBodyNone">Перерыв торговли в режиме внутренней ликвидности брокера  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyNone">16 </td><td class="markdownTableBodyNone">Недоступна торговля в режиме внутренней ликвидности брокера  </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md245"></a>
+Нестандартные типы данных</h3>
+<h4><a class="anchor" id="autotoc_md246"></a>
+MoneyValue</h4>
+<p>Денежная сумма в определенной валюте</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Строковый ISO-код валюты  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">units </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Целая часть суммы, может быть отрицательным числом  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nano </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Дробная часть суммы, может быть отрицательным числом  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md247"></a>
+Quotation</h4>
+<p>Котировка - денежная сумма без указания валюты</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">units </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Целая часть суммы, может быть отрицательным числом  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nano </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Дробная часть суммы, может быть отрицательным числом  </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

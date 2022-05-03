@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: API Тинькофф Инвестиций</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">API Тинькофф Инвестиций </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Tinkoff Invest API — это интерфейс для взаимодействия с торговой платформой <a href="https://www.tinkoff.ru/invest/">Тинькофф Инвестиции</a>.</p>
+<p><a href="https://tinkoff.github.io/investAPI/">Документация для разработчиков</a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Примеры решаемых задач</h1>
+<h3><a class="anchor" id="autotoc_md2"></a>
+Анализ котировок бумаг</h3>
+<p>Через API можно загрузить как исторические котировки, так и котировки в режиме реального времени по всем бумагам</p>
+<h3><a class="anchor" id="autotoc_md3"></a>
+Сигналы на покупку или продажу</h3>
+<p>Торговлю по алгоритму можно автоматизировать, запрограммировав выставление сигналов</p>
+<h3><a class="anchor" id="autotoc_md4"></a>
+Ведение собственной системы статистики</h3>
+<p>Если не хватает существующей функциональности по анализу портфеля, то легко сделать свою собственную</p>
+<h3><a class="anchor" id="autotoc_md5"></a>
+Тестирование стратегий на истории</h3>
+<p>Tinkoff Invest API позволит протестировать торговую гипотезу на основе исторических данных</p>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Создание торговых роботов</h3>
+<p>При помощи Tinkoff Invest API можно создать своего торгового робота, осуществляющего полностью автоматическую торговлю по стратегии</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Функциональные возможности</h1>
+<p>API позволяет автоматизировать торговлю ценными бумагами, предоставляя возможность:</p><ul>
+<li>выгрузки торговых инструментов и их параметров;</li>
+<li>выгрузки истории котировок и текущие рыночные котировки;</li>
+<li>выставление и отмены поручений;</li>
+<li>просмотр текущего портфеля и операций;</li>
+<li>времени работы бирж;</li>
+<li>ставки риска инструментов;</li>
+<li>подписку на поток сделок;</li>
+</ul>
+<p>и многое другое</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Об API и протоколе</h1>
+<p>API реализован на быстром, удобном и функциональном протоколе <a href="https://grpc.io/docs/">gRPC</a>.</p>
+<p>Для поддержки web-клиентов, например браузерных JS скриптов, внедрена поддержка <a href="https://grpc.io/docs/platforms/web/basics/">gRPC-web</a>.</p>
+<p>А для клиентов, привыкших работать с REST API, реализован прокси <a href="https://tinkoff.github.io/investAPI/swagger-ui/">Swagger</a></p>
+<p><a href="https://tinkoff.github.io/investAPI/">Документация для разработчиков</a></p>
+<h1><a class="anchor" id="autotoc_md9"></a>
+SDK</h1>
+<p>Вы можете как самостоятельно создать обертку по <a href="https://github.com/Tinkoff/investAPI/tree/main/src/docs/contracts">proto-контрактам</a> так воспользоваться одним из SDK:</p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Официальные</h2>
+<ul>
+<li><a href="https://github.com/Tinkoff/invest-python">python</a></li>
+<li><a href="https://github.com/Tinkoff/invest-api-java-sdk">java</a></li>
+<li><a href="https://github.com/Tinkoff/invest-api-csharp-sdk">csharp</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Неофициальные</h2>
+<ul>
+<li><a href="https://github.com/betslus1/unofficial-tinkoff-invest-api_v2-lazy-sdk-NODEJS">nodejs</a></li>
+<li><a href="https://github.com/metaseller/tinkoff-invest-api-v2-php">php</a></li>
+<li><a href="https://packagist.org/packages/metaseller/tinkoff-invest-api-v2-yii2">php YII2</a></li>
+<li><a href="https://github.com/JohnReeze/TinkoffInvestSwiftSDK">swift</a></li>
+<li><a href="https://github.com/ovr/tinkoff-invest-rust">rust</a></li>
+</ul>
+<p>SDK на других языках в процессе разработки.</p>
+<h1><a class="anchor" id="autotoc_md12"></a>
+Как работать с этим репозитарием</h1>
+<p>В <a href="https://github.com/Tinkoff/investAPI/issues">Issues</a> вы можете задать вопрос или найти ответ, если вопрос уже был задан другими пользователями.</p>
+<p>Если вы встретили неточность или хотели бы что-то дополнить, то мы будем рады принять от вас pull request.</p>
+<h1><a class="anchor" id="autotoc_md13"></a>
+Сообщество</h1>
+<ul>
+<li><a href="https://t.me/tinkoffinvestopenapi">Telegram-канал</a></li>
+<li><a href="https://t.me/joinchat/VaW05CDzcSdsPULM">Telegram-чат по общим вопросам</a></li>
+<li><a href="https://t.me/tinkoff_invest_robot_development">Telegram-чат для заказчиков и разработчиков торговых роботов</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md14"></a>
+Разработчикам ПО для широкого круга пользователей</h1>
+<p>Если Вы разрабатываете публичное ПО, использующее Tinkoff Invest API, то необходимо написать на <a href="#" onclick="location.href='mai'+'lto:'+'al.'+'a.'+'vol'+'ko'+'v@t'+'in'+'kof'+'f.'+'ru'; return false;">al.a.<span style="display: none;">.nosp@m.</span>volk<span style="display: none;">.nosp@m.</span>ov@ti<span style="display: none;">.nosp@m.</span>nkof<span style="display: none;">.nosp@m.</span>f.ru</a> краткую информацию о проекте для регистрации выделенного appname и получения дополнительной техподдержки. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

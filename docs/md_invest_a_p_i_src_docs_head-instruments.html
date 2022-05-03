@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: head-instruments</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">head-instruments </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Сервис предоставления справочной информации о ценных бумагах</p>
+<h2><a class="anchor" id="autotoc_md122"></a>
+Получение параметров ценных бумаг</h2>
+<p>Получение справочной информации об инструментах, торгуемых на бирже, является первоочередной задачей, которая стоит перед разработчиком торгового робота. Для реализации этой потребности в TINKOFF INVEST API существует набор unary-методов.</p>
+<p>Обратите внимание, что методы разделены по типам инструментов (акции, облигации, фонды и т.д.). Например, для получения списка облигаций используется метод <a href="/investAPI/instruments#bonds">getInstruments/bonds</a>, а для получения информации по конкретной облигации метод <a href="/investAPI/instruments#bondby">getInstruments/bondBy</a>.</p>
+<p>Методы получения информации по конкретному инструменту позволяют использовать в качестве идентификатора figi, isin или связку тикер плюс класс-код. Подробнее об особенностях идентификации инструментов можно почитать по ссылке: <a href="/investAPI/faq_identification/">Идентификация инструментов</a></p>
+<h2><a class="anchor" id="autotoc_md123"></a>
+Получение расписания торгов</h2>
+<p>Для определения времени запуска или остановки торгового робота разработчику требуется также учитывать расписание торгов на той или иной торговой площадке (<a href="/investAPI/markets/">Подробнее о режимах торгов</a>). Такая информация предоставляется методом <a href="/investAPI/instruments#tradingschedules">getTradingSchedules</a>. Данный метод позволяет получить информацию как по конкретной бирже, так и по всему списку доступных в TINKOFF INVEST API торговых площадок. Обратите внимание, что расписание торгов может меняться в связи с какими-либо внешними обстоятельствами — специалисты Тинькофф стараются максимально оперативно реагировать на такие изменения. Поэтому разумнее не ориентироваться на расписание, запрошенное по длительному периоду, а запрашивать режимы торгов на более короткие интервалы, например, на текущий день.</p>
+<p>Метод <a href="/investAPI/instruments#tradingschedules">getTradingSchedules</a> позволяет получать расписание торгов на период не длиннее одной недели с текущего дня (запрос раписания в прошлом недоступен).</p>
+<p>Так же важно понимать, что в процессе работы торговой площадки могут случаться моменты приостановки торгов по той или иной ценной бумаге (например, в следствии резко возросшей волатильности). Поэтому для определения доступности в данный момент торгов по конкретному инструменту лучше использовать параметр <em>trading_status</em>, который возвращается в рамках подписки на получение статуса инструмента <a href="/investAPI/head-marketdata/">сервиса котировок</a>.</p>
+<h2><a class="anchor" id="autotoc_md124"></a>
+Получение расписания выплаты купонов по облигациям</h2>
+<p>Облигация — это долговая ценная бумага, почти как долговая расписка. Выпуская облигации, компания или государство берет деньги в долг и затем возвращает их с процентами(<a href="https://help.tinkoff.ru/invest-to/invest-to-bonds/">Подробнее про облигации</a>).</p>
+<p>Операции по регулярным выплатам процентов по облигации называются купонами. Для получения графика таких выплат используется метод <a href="/investAPI/instruments#getaccruedinterests">getAccruedInterests</a>. Метод позволяет получить график выплаты купонов для запрошенного периода времени.</p>
+<h2><a class="anchor" id="autotoc_md125"></a>
+Получения размера гарантийного обеспечения по фьючерсу</h2>
+<p>Фьючерс — это договор между покупателем и продавцом о поставке базового актива в будущем или о выплате одной из сторон другой стороне разницы между стоимостью контракта и стоимостью базового актива в будущем (<a href="https://help.tinkoff.ru/forts/">Срочный рынок</a>).</p>
+<p>Для операций с фьючерсами брокером "замораживается" определённый размер гарантийного обеспечения на счёте пользователя. Для получения информации о размере этого обеспечения используется метод <a href="/investAPI/instruments#getfuturesmargin">getFuturesMargin</a>. Обратите внимание, что размер гарантийного обеспечения может отличаться для операций покупки и продажи фьючерса. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: users</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">users </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="autotoc_md695"></a>
+UsersService</h2>
+<p>Сервис предназначен для получения:  <b>1</b>. списка счетов пользователя;  <b>2</b>. маржинальных показателе по счёту.</p>
+<h3><a class="anchor" id="autotoc_md696"></a>
+Методы сервиса</h3>
+<h4><a class="anchor" id="autotoc_md697"></a>
+GetAccounts</h4>
+<p>Метод получения счетов пользователя.</p>
+<ul>
+<li>Тело запроса — <a href="#getaccountsrequest">GetAccountsRequest</a></li>
+<li>Тело ответа — <a href="#getaccountsresponse">GetAccountsResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md698"></a>
+GetMarginAttributes</h4>
+<p>Расчёт маржинальных показателей по счёту.</p>
+<ul>
+<li>Тело запроса — <a href="#getmarginattributesrequest">GetMarginAttributesRequest</a></li>
+<li>Тело ответа — <a href="#getmarginattributesresponse">GetMarginAttributesResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md699"></a>
+GetUserTariff</h4>
+<p>Запрос тарифа пользователя.</p>
+<ul>
+<li>Тело запроса — <a href="#getusertariffrequest">GetUserTariffRequest</a></li>
+<li>Тело ответа — <a href="#getusertariffresponse">GetUserTariffResponse</a></li>
+</ul>
+<h4><a class="anchor" id="autotoc_md700"></a>
+GetInfo</h4>
+<p>Метод получения информации о пользователе.</p>
+<ul>
+<li>Тело запроса — <a href="#getinforequest">GetInfoRequest</a></li>
+<li>Тело ответа — <a href="#getinforesponse">GetInfoResponse</a></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md701"></a>
+Сообщения методов</h3>
+<h4><a class="anchor" id="autotoc_md702"></a>
+GetAccountsRequest</h4>
+<p>Запрос получения счетов пользователя.</p>
+<h4><a class="anchor" id="autotoc_md703"></a>
+GetAccountsResponse</h4>
+<p>Список счетов пользователя.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">accounts </td><td class="markdownTableBodyNone">Массив объектов <a href="#account">Account</a> </td><td class="markdownTableBodyNone">Массив счетов клиента.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md704"></a>
+Account</h4>
+<p>Информация о счёте.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор счёта.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">type </td><td class="markdownTableBodyNone"><a href="#accounttype">AccountType</a> </td><td class="markdownTableBodyNone">Тип счёта.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">name </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Название счёта.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">status </td><td class="markdownTableBodyNone"><a href="#accountstatus">AccountStatus</a> </td><td class="markdownTableBodyNone">Статус счёта.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">opened_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата открытия счёта в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">closed_date </td><td class="markdownTableBodyNone"><a href="#googleprotobuftimestamp">google.protobuf.Timestamp</a> </td><td class="markdownTableBodyNone">Дата закрытия счёта в часовом поясе UTC.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">access_level </td><td class="markdownTableBodyNone"><a href="#accesslevel">AccessLevel</a> </td><td class="markdownTableBodyNone">Уровень доступа к текущему счёту (определяется токеном).  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md705"></a>
+GetMarginAttributesRequest</h4>
+<p>Запрос маржинальных показателей по счёту</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">account_id </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Идентификатор счёта пользователя.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md706"></a>
+GetMarginAttributesResponse</h4>
+<p>Маржинальные показатели по счёту.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">liquid_portfolio </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Ликвидная стоимость портфеля. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/liquid-portfolio/">что такое ликвидный портфель?</a>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">starting_margin </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Начальная маржа — начальное обеспечение для совершения новой сделки. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/initial-and-maintenance-margin/">начальная и минимальная маржа</a>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">minimal_margin </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Минимальная маржа — это минимальное обеспечение для поддержания позиции, которую вы уже открыли. Подробнее: <a href="https://help.tinkoff.ru/margin-trade/short/initial-and-maintenance-margin/">начальная и минимальная маржа</a>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">funds_sufficiency_level </td><td class="markdownTableBodyNone"><a href="#quotation">Quotation</a> </td><td class="markdownTableBodyNone">Уровень достаточности средств. Соотношение стоимости ликвидного портфеля к начальной марже.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">amount_of_missing_funds </td><td class="markdownTableBodyNone"><a href="#moneyvalue">MoneyValue</a> </td><td class="markdownTableBodyNone">Объем недостающих средств. Разница между стартовой маржой и ликвидной стоимости портфеля.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md707"></a>
+GetUserTariffRequest</h4>
+<p>Запрос текущих лимитов пользователя.</p>
+<h4><a class="anchor" id="autotoc_md708"></a>
+GetUserTariffResponse</h4>
+<p>Текущие лимиты пользователя.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">unary_limits </td><td class="markdownTableBodyNone">Массив объектов <a href="#unarylimit">UnaryLimit</a> </td><td class="markdownTableBodyNone">Массив лимитов пользователя по unary-запросам  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">stream_limits </td><td class="markdownTableBodyNone">Массив объектов <a href="#streamlimit">StreamLimit</a> </td><td class="markdownTableBodyNone">Массив лимитов пользователей для stream-соединений  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md709"></a>
+UnaryLimit</h4>
+<p>Лимит unary-методов.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">limit_per_minute </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Количество unary-запросов в минуту  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">methods </td><td class="markdownTableBodyNone">Массив объектов <a href="#string">string</a> </td><td class="markdownTableBodyNone">Названия методов  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md710"></a>
+StreamLimit</h4>
+<p>Лимит stream-соединений.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">limit </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Максимальное количество stream-соединений  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">streams </td><td class="markdownTableBodyNone">Массив объектов <a href="#string">string</a> </td><td class="markdownTableBodyNone">Названия stream-методов  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md711"></a>
+GetInfoRequest</h4>
+<p>Запрос информации о пользователе.</p>
+<h4><a class="anchor" id="autotoc_md712"></a>
+GetInfoResponse</h4>
+<p>Информация о пользователе.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">prem_status </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак премиум клиента.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">qual_status </td><td class="markdownTableBodyNone"><a href="#bool">bool</a> </td><td class="markdownTableBodyNone">Признак квалифицированного инвестора.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">qualified_for_work_with </td><td class="markdownTableBodyNone">Массив объектов <a href="#string">string</a> </td><td class="markdownTableBodyNone">Набор требующих тестирования инструментов и возможностей, с которыми может работать пользователь.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">tariff </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Наименование тарифа пользователя.  </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md713"></a>
+Enums</h3>
+<h4><a class="anchor" id="autotoc_md714"></a>
+AccountType</h4>
+<p>Тип счёта.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ACCOUNT_TYPE_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Тип аккаунта не определён.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ACCOUNT_TYPE_TINKOFF </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Брокерский счёт Тинькофф.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ACCOUNT_TYPE_TINKOFF_IIS </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">ИИС счёт.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ACCOUNT_TYPE_INVEST_BOX </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Инвесткопилка.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md715"></a>
+AccountStatus</h4>
+<p>Статус счёта.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ACCOUNT_STATUS_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Статус счёта не определён.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ACCOUNT_STATUS_NEW </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Новый, в процессе открытия.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ACCOUNT_STATUS_OPEN </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Открытый и активный счёт.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ACCOUNT_STATUS_CLOSED </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Закрытый счёт.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md716"></a>
+AccessLevel</h4>
+<p>Уровень доступа к счёту.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ACCOUNT_ACCESS_LEVEL_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Уровень доступа не определён.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ACCOUNT_ACCESS_LEVEL_FULL_ACCESS </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Полный доступ к счёту.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ACCOUNT_ACCESS_LEVEL_READ_ONLY </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Доступ с уровнем прав "только чтение".  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ACCOUNT_ACCESS_LEVEL_NO_ACCESS </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Доступ отсутствует.  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md717"></a>
+SecurityTradingStatus</h4>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Name </th><th class="markdownTableHeadNone">Number </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_UNSPECIFIED </td><td class="markdownTableBodyNone">0 </td><td class="markdownTableBodyNone">Торговый статус не определён  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Недоступен для торгов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_OPENING_PERIOD </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Период открытия торгов  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_CLOSING_PERIOD </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Период закрытия торгов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_BREAK_IN_TRADING </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Перерыв в торговле  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_NORMAL_TRADING </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">Нормальная торговля  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_CLOSING_AUCTION </td><td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">Аукцион закрытия  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DARK_POOL_AUCTION </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Аукцион крупных пакетов  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DISCRETE_AUCTION </td><td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">Дискретный аукцион  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_OPENING_AUCTION_PERIOD </td><td class="markdownTableBodyNone">9 </td><td class="markdownTableBodyNone">Аукцион открытия  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_TRADING_AT_CLOSING_AUCTION_PRICE </td><td class="markdownTableBodyNone">10 </td><td class="markdownTableBodyNone">Период торгов по цене аукциона закрытия  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_ASSIGNED </td><td class="markdownTableBodyNone">11 </td><td class="markdownTableBodyNone">Сессия назначена  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_CLOSE </td><td class="markdownTableBodyNone">12 </td><td class="markdownTableBodyNone">Сессия закрыта  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_SESSION_OPEN </td><td class="markdownTableBodyNone">13 </td><td class="markdownTableBodyNone">Сессия открыта  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_NORMAL_TRADING </td><td class="markdownTableBodyNone">14 </td><td class="markdownTableBodyNone">Доступна торговля в режиме внутренней ликвидности брокера  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_BREAK_IN_TRADING </td><td class="markdownTableBodyNone">15 </td><td class="markdownTableBodyNone">Перерыв торговли в режиме внутренней ликвидности брокера  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SECURITY_TRADING_STATUS_DEALER_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyNone">16 </td><td class="markdownTableBodyNone">Недоступна торговля в режиме внутренней ликвидности брокера  </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md718"></a>
+Нестандартные типы данных</h3>
+<h4><a class="anchor" id="autotoc_md719"></a>
+MoneyValue</h4>
+<p>Денежная сумма в определенной валюте</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">currency </td><td class="markdownTableBodyNone"><a href="#string">string</a> </td><td class="markdownTableBodyNone">Строковый ISO-код валюты  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">units </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Целая часть суммы, может быть отрицательным числом  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">nano </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Дробная часть суммы, может быть отрицательным числом  </td></tr>
+</table>
+<h4><a class="anchor" id="autotoc_md720"></a>
+Quotation</h4>
+<p>Котировка - денежная сумма без указания валюты</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Field </th><th class="markdownTableHeadNone">Type </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">units </td><td class="markdownTableBodyNone"><a href="#int64">int64</a> </td><td class="markdownTableBodyNone">Целая часть суммы, может быть отрицательным числом  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">nano </td><td class="markdownTableBodyNone"><a href="#int32">int32</a> </td><td class="markdownTableBodyNone">Дробная часть суммы, может быть отрицательным числом  </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

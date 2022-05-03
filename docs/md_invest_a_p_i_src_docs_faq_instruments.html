@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Что такое Figi инструмента?</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Что такое Figi инструмента? </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><b>FIGI</b>(<em>англ.:</em> Financial Instrument Global Identifier) — глобальный идентификатор финансового инструмента. Представляет собой 12-символьный код из латинских букв и цифр, определяется как идентификатор ценной бумаги на торговой площадке (бирже), которая является некоторым *"источником цен"*.</p>
+<p>В контексте работы с TINKOFF INVEST API основным идентификатором инструмента является Figi. Нужно понимать, что не все инструменты, доступные в Тинькофф Инвестициях, имеют общепринятый Figi. Поэтому не гарантируется уникальность инструментов с другими источниками. Узнать актуальный Figi-идентификатор инструмента можно при помощи методов <a href="/investAPI/instruments/">сервиса инструментов</a>.</p>
+<p>В будущем планируется переход на использование абстрактного идентификатора инструмента внутри Тинькофф Инвестиций (uid), чтобы избежать возможной путаницы.</p>
+<h2><a class="anchor" id="autotoc_md52"></a>
+Как мне найти Figi инструмента по его названию, тикеру или isin?</h2>
+<p>Методы поиска инструментов по идентификатору (<a href="/investAPI/instruments#bondby">BondBy</a>, <a href="/investAPI/instruments#currencyby">CurrencyBy</a>, <a href="/investAPI/instruments#etfby">EtfBy</a>, <a href="/instruments#futureby">FutureBy</a>, <a href="/investAPI/instruments#shareby">ShareBy</a>) позволяют получить информацию об инструменте зная его Figi или связку ticker + class_code. Если же эти идентификаторы вам неизвестны, вы можете получить полный список инструментов определённого типа методами запроса списков инструментов (<a href="/investAPI/instruments#bonds">Bonds</a>, <a href="/investAPI/instruments#currencies">Currencies</a>, <a href="/investAPI/instruments#etfs">Etfs</a>, <a href="/instruments#futures">Futures</a>, <a href="/investAPI/instruments#shares">Shares</a>) и выполнить поиск по известным параметрам самостоятельно. Сделать это можно в коде робота или при помощи любого доступного gRPC-клиента, например, Kreya. Инструкция по настройке Kreya доступна по <a href="/investAPI/grpc#kreya">ссылке</a>.</p>
+<h2><a class="anchor" id="autotoc_md53"></a>
+Что такое class_code и где его найти?</h2>
+<p>Сlass_code — это технический параметр "Режим торгов", используемый для обозначения секции биржи, на которой торгуется данный инструмент. Узнать его можно, получив детали по инструменту методами сервиса инструментов.</p>
+<h2><a class="anchor" id="autotoc_md54"></a>
+Как понять, что бумага доступна для торговли через TINKOFF INVEST API?</h2>
+<p>Чтобы получить все доступные для торговли инструменты определённого типа можно воспользоваться соответствующими методами, передав параметр <b>instrument_status</b> = <em><b>INSTRUMENT_STATUS_BASE</b></em>:</p><ul>
+<li><a href="/investAPI/instruments#bonds">Bonds</a></li>
+<li><a href="/investAPI/instruments#currencies">Currencies</a></li>
+<li><a href="/investAPI/instruments#etfs">Etfs</a></li>
+<li><a href="/instruments#futures">Futures</a></li>
+<li><a href="/investAPI/instruments#shares">Shares</a></li>
+</ul>
+<p>Если же нет необходимости получать полный список инструментов, можно использовать параметр <b>api_trade_available_flag</b> из ответа метода получения инструмента по его идентификатору (<a href="/investAPI/instruments#bondby">BondBy</a>, <a href="/investAPI/instruments#currencyby">CurrencyBy</a>, <a href="/investAPI/instruments#etfby">EtfBy</a>, <a href="/instruments#futureby">FutureBy</a>, <a href="/investAPI/instruments#shareby">ShareBy</a>). Этот флаг отвечает за доступность инструмента для торгов через TINKOFF INVEST API.</p>
+<p>Кроме того следует учитывать расписание работы бирж и торговый статус инструмента. Подробнее: <a href="/investAPI/faq_trading_status/">Торговые статусы инструментов и расписание торгов</a>.</p>
+<h2><a class="anchor" id="autotoc_md55"></a>
+Что такое накопленный купонный доход облигации и как его узнать?</h2>
+<p><b>Купон, или купонный доход</b> — это процентные выплаты держателям облигаций со стороны эмитента, то есть компании или госоргана, выпустивших этот тип ценных бумаг. Даты выплат процентов по облигациям и размер купона известны заранее. Размер купона задается в процентах от номинала — то есть от цены облигации при ее выпуске. Величина купона может быть фиксированной или плавающей — то есть привязанной к инфляции, ключевой ставке Центробанка России или другим ориентирам. Иногда у облигации может вовсе не быть купона. <a href="https://www.tinkoff.ru/invest/account/help/get-profit/coupon-yield">Купонный доход по облигациям</a>.</p>
+<p>Получить календарь купонных выплат можно методом <a href="/investAPI/instruments#getaccruedinterests">GetAccruedInterests</a>.</p>
+<h2><a class="anchor" id="autotoc_md56"></a>
+Как узнать стоимость шага цены (min_price_increment_amount) фьючерса?</h2>
+<p>Данный параметр может изменяться довольно часто в течении дня, поэтому для его получения существует отдельный метод сервиса инструментов <a href="/investAPI/instruments#getfuturesmargin">GetFuturesMargin</a>. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

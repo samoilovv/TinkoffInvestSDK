@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: faq_trading_status</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">faq_trading_status </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>#Торговые статусы инструментов и расписание торгов</p>
+<p>Получить актуальный торговый статус инструмента можно методом <a href="/investAPI/marketdata#gettradingstatus">GetTradingStatus</a> или подпиской <a href="/investAPI/marketdata#subscribeinforequest">Info</a> в рамках <a href="/investAPI/marketdata#marketdatastream">stream-соединения сервиса котировок</a>.</p>
+<p>В зависимости от торгового статуса определяется возможность выставления торговых поручений определённого типа:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Наименование статуса торговли </th><th class="markdownTableHeadLeft">Описание статуса </th><th class="markdownTableHeadLeft">Возможность выставлять лимитные заявки </th><th class="markdownTableHeadLeft">Возможность выставлять рыночные заявки  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">UNSPECIFIED </td><td class="markdownTableBodyLeft">Торговый статус не определён </td><td class="markdownTableBodyLeft">Нет </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyLeft">Недоступен для торгов </td><td class="markdownTableBodyLeft">Нет </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">OPENING_PERIOD </td><td class="markdownTableBodyLeft">Период открытия торгов </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">CLOSING_PERIOD </td><td class="markdownTableBodyLeft">Период закрытия торгов </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">BREAK_IN_TRADING </td><td class="markdownTableBodyLeft">Перерыв в торговле </td><td class="markdownTableBodyLeft">Нет </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">NORMAL_TRADING </td><td class="markdownTableBodyLeft">Нормальная торговля </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Да  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">CLOSING_AUCTION </td><td class="markdownTableBodyLeft">Аукцион закрытия </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">DARK_POOL_AUCTION </td><td class="markdownTableBodyLeft">Аукцион крупных пакетов </td><td class="markdownTableBodyLeft">Нет </td><td class="markdownTableBodyLeft">Да  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">DISCRETE_AUCTION </td><td class="markdownTableBodyLeft">Дискретный аукцион </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">OPENING_AUCTION_PERIOD </td><td class="markdownTableBodyLeft">Аукцион открытия </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">TRADING_AT_CLOSING_AUCTION_PRICE </td><td class="markdownTableBodyLeft">Период торгов по цене аукциона закрытия </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">SESSION_ASSIGNED </td><td class="markdownTableBodyLeft">Сессия назначена </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">SESSION_CLOSE </td><td class="markdownTableBodyLeft">Сессия закрыта </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">SESSION_OPEN </td><td class="markdownTableBodyLeft">Сессия открыта </td><td class="markdownTableBodyLeft">Да </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">DEALER_NORMAL_TRADING </td><td class="markdownTableBodyLeft">Доступна торговля в режиме внутренней ликвидности брокера </td><td class="markdownTableBodyLeft">Нет </td><td class="markdownTableBodyLeft">Да  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">DEALER_BREAK_IN_TRADING </td><td class="markdownTableBodyLeft">Перерыв торговли в режиме внутренней ликвидности брокера </td><td class="markdownTableBodyLeft">Нет </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">DEALER_NOT_AVAILABLE_FOR_TRADING </td><td class="markdownTableBodyLeft">Недоступна торговля в режиме внутренней ликвидности брокера </td><td class="markdownTableBodyLeft">Нет </td><td class="markdownTableBodyLeft">Нет  </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md112"></a>
+Описание торговых статусов</h2>
+<p>UNSPECIFIED — служебное значение торгового статуса. Устанавливается, если от биржи пришёл неизвестный торговый статус инструмента.</p>
+<p>NOT_AVAILABLE_FOR_TRADING — торговля инструментом недоступна. Данный статус возвращается, когда торги по инструменту недоступны. Например, при закрытии торговой площадки.</p>
+<p>OPENING_PERIOD — период открытия торгов (премаркет). По инструменту происходит аукцион открытия. Это особый режим торгов, когда биржа собирает заявки на покупку/продажу в биржевой стакан. По результатам аукциона открытия при помощи специального алгоритма биржи определяется цена открытия торгов основной сессии. В данном режиме торгов доступно выставление только лимитных поручений.</p>
+<p>CLOSING_PERIOD — период закрытия торгов (постмаркет). По инструменту происходит аукцион закрытия. Это режим торгов, когда биржа собирается заявки для определения цены закрытия сессии. Доступны только лимитные заявки.</p>
+<p>BREAK_IN_TRADING — перерыв в торговле инструментов. Перерыв в торгах по конкретным или всем инструментам биржа может устанавливать по разным причинам. Например, технические сбои или высокая волатильность на рынке. В данном статусе недоступно выставление поручений по инструменту.</p>
+<p>NORMAL_TRADING — нормальный режим торгов по инструменту. В данном режиме доступны все виды поручений.</p>
+<p>CLOSING_AUCTION — то же, что и CLOSING_PERIOD.</p>
+<p>DARK_POOL_AUCTION — режим торгов крупными пакетами (Dark Pool). Это режим торгов со скрытым стаканом для заключения крупных сделок. Торги проходят в формате непрерывного заключения сделок (при наличии встречных заявок) по Цене аукциона. Цена аукциона определяется перед его началом на основе заявок в Режиме основных торгов. В данном режиме доступно выставление только рыночных торговых поручений с ограничением на минимальный объём заявки.</p>
+<p>DISCRETE_AUCTION — дискретный аукцион. Особый режим, который применяется вместо перерыва в торгах в моменты высокой волатильности рынков. В данном режиме возможно выставление только лимитных заявок, исполнение сделок не происходит до момента возобновления торгов. Отсутствуют механизмы расчёта "рыночной цены".</p>
+<p>OPENING_AUCTION_PERIOD — то же, что и OPENING_PERIOD.</p>
+<p>TRADING_AT_CLOSING_AUCTION_PRICE — режим торгов по цене аукциона закрытия. В данном режиме возможно выставление рыночных заявок и лимитных заявок с ценой аукциона закрытия. Все заявки во время данного режима исполняются по цене аукциона закрытия (при наличии встречных предложений).</p>
+<p>SESSION_ASSIGNED — торговая сессия назначена. Технический статус, время клиринга. В данном режиме выставление всех видов торговых поручений недоступно.</p>
+<p>SESSION_CLOSE — то же, что и NOT_AVAILABLE_FOR_TRADING.</p>
+<p>SESSION_OPEN — то же, что и NOT_AVAILABLE_FOR_TRADING.</p>
+<p>DEALER_NORMAL_TRADING — торги в режиме внутренней ликвидности брокера. Данный статус устанавливается брокером (Тинькофф Инвестиции) во время торговли по выходным. В этом режиме недоступно выставление лимитных заявок. Исполняются только рыночные заявки по цене, сформированной по алгоритмам брокера (при наличии встречных предложений).</p>
+<p>DEALER_BREAK_IN_TRADING — перерыв в торгах в режиме внутренней ликвидности брокера. Выставление торговых поручений недоступно.</p>
+<p>DEALER_NOT_AVAILABLE_FOR_TRADING — то же, что и NOT_AVAILABLE_FOR_TRADING. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

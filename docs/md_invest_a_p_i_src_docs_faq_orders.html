@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Для чего используется параметр order_id метода &lt;a href=&quot;/investAPI/orders#postorder&quot;&gt;PostOrder&lt;/a&gt;?</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">Для чего используется параметр order_id метода <a href="/investAPI/orders#postorder">PostOrder</a>? </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Данный параметр используется в качестве ключа идемпотентности. Это значит, что многократный вызов метода <a href="/investAPI/orders#postorder">PostOrder</a> с одинаковым order_id не приведёт к выставлению более одного торгового поручения. При вызове метода происходит проверка уникальности связки order_id и account_id, если указанная пара не найдена, то создаётся новое торговое поручение, а если указанная связка уже существует (поручение с данным order_id по данному номеру счёта было выставлено раньше), то метод <a href="/investAPI/orders#postorder">PostOrder</a> вернёт статус уже выставленного торгового поручения, т.е. отработает согласно логике метода <a href="/investAPI/orders#getorderstate">GetOrderState</a>.</p>
+<h2><a class="anchor" id="autotoc_md88"></a>
+Можно ли увидеть ключ идемпотентности (&lt;a href="/investAPI/orders#postorderrequest"&gt;order_id&lt;/a&gt;) в операциях, выставленных поручениях и т.п.?</h2>
+<p>В данный момент order_id используется исключительно как ключ идемпотентности и не "прокидывается" в другие сущности системы. Есть планы в будущем отображать переданный ключ в операциях.</p>
+<h2><a class="anchor" id="autotoc_md89"></a>
+Как долго хранится ключ идемпотентности (order_id) на стороне брокера?</h2>
+<p>Ключ хранится бессрочно, но пока никаких гарантий его сохранности дать не можем (механизм вероятно будет пересматриваться). Пока подразумевается полная уникальность переданного order_id в разрезе номера счёта (account_id).</p>
+<h2><a class="anchor" id="autotoc_md90"></a>
+Что передавать в параметр quantity метода &lt;a href="/investAPI/orders#postorder"&gt;PostOrder&lt;/a&gt;? Количество бумаг или количество лотов?</h2>
+<p>Метод <a href="/investAPI/orders#postorder">PostOrder</a> принимает в качестве параметра quantity требуемое количество <b>лотов</b>. Многие инструменты имеют <a href="/investAPI/glossary#lot">лотность</a> отличную от единицы, это следует обязательно учитывать при выставлении торговых поручений.</p>
+<h2><a class="anchor" id="autotoc_md91"></a>
+Как рассчитать полную стоимость сделки?</h2>
+<p>Полная стоимость сделки включает в себя не только сумму операции покупки или продажи биржевого инструмента, но и комиссии брокера, сервисные комиссии, гарантийное обеспечение для операций с фьючерсами и т.п. Рассчитать размеры комиссий можно из описания вашего тарифа, но нужно учитывать, что комиссии берутся за сделки, а не за поручение, т.е. одно торговое поручение может рождать несколько сделок. Размер начальной комиссии и фактической можно узнать в деталях торгового поручения (методом <a href="/investAPI/orders#getorderstate">GetOrderState</a>).</p>
+<p>Подробнее про расчёт стоимости сделок с фьючерсами и облигациями: <a href="/investAPI/faq#_5">Цены облигаций и фьючерсов</a>.</p>
+<h2><a class="anchor" id="autotoc_md92"></a>
+Можно ли получить список уже исполненных торговых поручений?</h2>
+<p>В данный момент метод <a href="/investAPI/orders#getorders">GetOrders</a> возвращает только список активных торговых поручений, т.е. поручений, которые ещё не исполнены и не отменены. Получить полный список уже исполненных торговых поручений в данный момент невозможно.</p>
+<h2><a class="anchor" id="autotoc_md93"></a>
+Какие статусы торговых поручений бывают и что они значат?</h2>
+<p>Описание статусной модели торговых поручений: <a href="/investAPI/head-orders#_2">Статусная модель торговых поручений</a>.</p>
+<p>Некоторые нюансы исполнения поручений: <a href="/investAPI/orders_details/">Алгоритм и особенности исполнения торговых поручений</a>.</p>
+<h2><a class="anchor" id="autotoc_md94"></a>
+Почему лимитная заявка исполнилась по другой цене?</h2>
+<p>Лимитное торговое поручение исполняется либо по указанной при её выставлении цене, либо по цене "лучше" для определённого направления сделки. Этот механизм на бирже называется Best Execution и подразумевает исполнение торгового поручения по цене выгоднее, указанной в поручении.</p>
+<h2><a class="anchor" id="autotoc_md95"></a>
+Как перевести цену поручения в тип Quotation?</h2>
+<p>Подробнее о работе с нестандартными типами данных: <a href="/investAPI/faq_custom_types/">Нестандартные типы данных TINKOFF INVEST API</a> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

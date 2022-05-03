@@ -80,9 +80,9 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
     return ServiceReply::prepareServiceAnswer<GetLastTradesResponse>(status, reply);
 }
 
-void MarketData::MarketDataStream(std::vector<std::pair<std::string, Subscribtion>>)
+void MarketData::MarketDataStream(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments)
 {
-    SubscribtionInterval
+
     ClientContext context;
     QString meta_value = "Bearer " + m_token;
     context.AddMetadata("authorization", meta_value.toStdString());
@@ -93,12 +93,13 @@ void MarketData::MarketDataStream(std::vector<std::pair<std::string, Subscribtio
     MarketDataRequest request;
     SubscribeCandlesRequest * scr = new SubscribeCandlesRequest();
     scr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
-
-    auto obi = sobr->add_instruments();
-    std::string * f = new std::string(figi);
-    obi->set_allocated_figi(f);
-    obi->set_depth(depth);
-    request.set_allocated_subscribe_order_book_request(sobr);
+    for (auto &candleInstrument: candleInstruments)
+    {
+        auto instr = scr->add_instruments();
+        instr->set_figi(candleInstrument.first);
+        instr->set_interval(candleInstrument.second);
+    }
+    request.set_allocated_subscribe_candles_request(scr);
 
     std::thread writer([stream, request]() {
         stream->Write(request);

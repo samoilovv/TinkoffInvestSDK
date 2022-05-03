@@ -40,7 +40,7 @@ public slots:
     /// Метод запроса последних обезличенных сделок по инструменту
     ServiceReply GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
     /// Запрос подписки на свечи
-    void MarketDataStream();
+    void MarketDataStream(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments);
     /// Запрос подписки на стаканы
     void MarketDataStream(const std::string &figi, int32_t depth);
     /// Запрос подписки на последние цены

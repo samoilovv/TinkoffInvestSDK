@@ -1,1 +1,3 @@
 *.html linguist-detectable=false
+cmake export-ignore
+docs export-ignore

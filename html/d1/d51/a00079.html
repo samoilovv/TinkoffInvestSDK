@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Класс CustomService</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">Сигналы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pro-methods">Защищенные члены</a> &#124;
+<a href="#pro-attribs">Защищенные данные</a> &#124;
+<a href="../../db/df8/a00076.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс CustomService</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Родительский класс для всех сервисов  
+ <a href="../../d1/d51/a00079.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../db/db2/a00020_source.html">customservice.h</a>&gt;</code></p>
+
+<p>Базовые классы:QObject.</p>
+
+<p>Производные классы:<a class="el" href="../../d2/d1f/a00083.html">Instruments</a>, <a class="el" href="../../d1/d1e/a00087.html">MarketData</a>, <a class="el" href="../../da/d82/a00091.html">Operations</a>, <a class="el" href="../../d9/d77/a00095.html">Orders</a>, <a class="el" href="../../da/d74/a00099.html">Sandbox</a>, <a class="el" href="../../df/d98/a00107.html">StopOrders</a> и <a class="el" href="../../dd/d6d/a00111.html">Users</a>.</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Сигналы</h2></td></tr>
+<tr class="memitem:aefc12e29c81cb050404c5afc5b39eef3"><td class="memItemLeft" align="right" valign="top"><a id="aefc12e29c81cb050404c5afc5b39eef3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sendData</b> (<a class="el" href="../../d5/d1e/a00103.html">ServiceReply</a>)</td></tr>
+<tr class="separator:aefc12e29c81cb050404c5afc5b39eef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a1903a7af574bff14cbd8bea5cf1ebae6"><td class="memItemLeft" align="right" valign="top"><a id="a1903a7af574bff14cbd8bea5cf1ebae6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CustomService</b> (const QString &amp;token)</td></tr>
+<tr class="separator:a1903a7af574bff14cbd8bea5cf1ebae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Защищенные члены</h2></td></tr>
+<tr class="memitem:a89cfe4a4b512f3a86c65affdd5121765"><td class="memItemLeft" align="right" valign="top"><a id="a89cfe4a4b512f3a86c65affdd5121765"></a>
+std::shared_ptr&lt; grpc::ClientContext &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>makeContext</b> ()</td></tr>
+<tr class="separator:a89cfe4a4b512f3a86c65affdd5121765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38e2dcd7578e2f2ba4427cbd13ea9e1b"><td class="memItemLeft" align="right" valign="top"><a id="a38e2dcd7578e2f2ba4427cbd13ea9e1b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>emitServiceData</b> (const <a class="el" href="../../d5/d1e/a00103.html">ServiceReply</a> &amp;data)</td></tr>
+<tr class="separator:a38e2dcd7578e2f2ba4427cbd13ea9e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Защищенные данные</h2></td></tr>
+<tr class="memitem:aa87ec0064a8fb7866731e3a639ea02d4"><td class="memItemLeft" align="right" valign="top"><a id="aa87ec0064a8fb7866731e3a639ea02d4"></a>
+const QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_token</b></td></tr>
+<tr class="separator:aa87ec0064a8fb7866731e3a639ea02d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Родительский класс для всех сервисов </p>
+</div><hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>services/<a class="el" href="../../db/db2/a00020_source.html">customservice.h</a></li>
+<li>services/customservice.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -27,13 +27,6 @@
 </div>
 <!-- end header part -->
 <!-- Создано системой Doxygen 1.8.17 -->
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Титульная&#160;страница</span></a></li>
-      <li><a href="annotated.html"><span>Классы</span></a></li>
-      <li><a href="files.html"><span>Файлы</span></a></li>
-    </ul>
-  </div>
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
@@ -57,7 +50,7 @@ OpenAPI SDK для Тинькофф Инвестиций</h1>
 <p>Примеры доступны <a href="https://github.com/samoilovv/TinkoffInvestSDK/tree/main/samples">здесь</a>. Для запуска примеров необходимо добавить токен в переменную окружения.</p>
 <div class="fragment"><div class="line">$ export TOKEN=YOUR_TOKEN</div>
 </div><!-- fragment --><p>Пример использования унарных запросов: открытие счета в песочнице и получение информации о нем.</p>
-<div class="fragment"><div class="line"><a class="code" href="class_invest_api_client.html">InvestApiClient</a> greeter(<span class="stringliteral">&quot;invest-public-api.tinkoff.ru:443&quot;</span>, getenv(<span class="stringliteral">&quot;TOKEN&quot;</span>));</div>
+<div class="fragment"><div class="line"><a class="code" href="d9/da5/a00075.html">InvestApiClient</a> greeter(<span class="stringliteral">&quot;invest-public-api.tinkoff.ru:443&quot;</span>, getenv(<span class="stringliteral">&quot;TOKEN&quot;</span>));</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//get reference to sandbox service</span></div>
 <div class="line"><span class="keyword">auto</span> sandbox = qSharedPointerCast&lt;Sandbox&gt;(greeter.service(<span class="stringliteral">&quot;sandbox&quot;</span>));</div>
@@ -73,13 +66,13 @@ OpenAPI SDK для Тинькофф Инвестиций</h1>
 <div class="line"><span class="comment">//close account</span></div>
 <div class="line">sandbox-&gt;CloseSandboxAccount(accountId);</div>
 </div><!-- fragment --><p>Пример использования потокового запроса: подписка на получение последних цен.</p>
-<div class="fragment"><div class="line"><a class="code" href="class_invest_api_client.html">InvestApiClient</a> greeter(<span class="stringliteral">&quot;invest-public-api.tinkoff.ru:443&quot;</span>, getenv(<span class="stringliteral">&quot;TOKEN&quot;</span>));</div>
+<div class="fragment"><div class="line"><a class="code" href="d9/da5/a00075.html">InvestApiClient</a> greeter(<span class="stringliteral">&quot;invest-public-api.tinkoff.ru:443&quot;</span>, getenv(<span class="stringliteral">&quot;TOKEN&quot;</span>));</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//get reference to marketdata service</span></div>
 <div class="line"><span class="keyword">auto</span> marketdata = qSharedPointerCast&lt;MarketData&gt;(greeter.service(<span class="stringliteral">&quot;marketdata&quot;</span>));</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//handle replies in lambda function</span></div>
-<div class="line">QObject::connect(marketdata-&gt;get(), &amp;CustomService::sendData, [](<a class="code" href="class_service_reply.html">ServiceReply</a> reply){</div>
+<div class="line">QObject::connect(marketdata-&gt;get(), &amp;CustomService::sendData, [](<a class="code" href="d5/d1e/a00103.html">ServiceReply</a> reply){</div>
 <div class="line">    std::cout &lt;&lt; reply.ptr()-&gt;DebugString() &lt;&lt; std::endl;</div>
 <div class="line">});</div>
 <div class="line"> </div>
@@ -126,8 +119,8 @@ OpenAPI SDK для Тинькофф Инвестиций</h1>
 <p>Подробную документацию по InvestApi можно найти по <a href="https://tinkoff.github.io/investAPI/">ссылке</a>. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
-<div class="ttc" id="aclass_invest_api_client_html"><div class="ttname"><a href="class_invest_api_client.html">InvestApiClient</a></div><div class="ttdoc">Qt клиент для Tinkoff invest API.</div><div class="ttdef"><b>Definition:</b> investapiclient.h:26</div></div>
-<div class="ttc" id="aclass_service_reply_html"><div class="ttname"><a href="class_service_reply.html">ServiceReply</a></div><div class="ttdoc">Класс-обертка над proto-ответами сервисов</div><div class="ttdef"><b>Definition:</b> servicereply.h:17</div></div>
+<div class="ttc" id="aa00103_html"><div class="ttname"><a href="d5/d1e/a00103.html">ServiceReply</a></div><div class="ttdoc">Класс-обертка над proto-ответами сервисов</div><div class="ttdef"><b>Definition:</b> servicereply.h:17</div></div>
+<div class="ttc" id="aa00075_html"><div class="ttname"><a href="d9/da5/a00075.html">InvestApiClient</a></div><div class="ttdoc">Qt клиент для Tinkoff invest API.</div><div class="ttdef"><b>Definition:</b> investapiclient.h:26</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Создано системой &#160;<a href="http://www.doxygen.org/index.html">

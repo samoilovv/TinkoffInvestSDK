@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['marketdata_71',['MarketData',['../class_market_data.html',1,'']]],
-  ['marketdatastream_72',['MarketDataStream',['../class_market_data.html#a5f3a992263b8028a7362ef97b67f410b',1,'MarketData::MarketDataStream(const std::string &amp;figi, int32_t depth)'],['../class_market_data.html#aa67a722ae614c8401d08edb1ca5bc0f2',1,'MarketData::MarketDataStream(const std::vector&lt; std::string &gt; &amp;figis)']]],
-  ['marketdata_73',['marketdata',['../md_invest_a_p_i_src_docs_marketdata.html',1,'']]]
-];

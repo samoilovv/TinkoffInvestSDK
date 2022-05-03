@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Класс InvestApiClient</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="files.html"><span>Файлы</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="hierarchy.html"><span>Иерархия&#160;классов</span></a></li>
+      <li><a href="functions.html"><span>Члены&#160;классов</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="class_invest_api_client-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс InvestApiClient</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Qt клиент для Tinkoff invest API.  
+ <a href="class_invest_api_client.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="investapiclient_8h_source.html">investapiclient.h</a>&gt;</code></p>
+
+<p>Базовые классы:QObject.</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ac822a1fe77c5b10911e4732506a52a04"><td class="memItemLeft" align="right" valign="top"><a id="ac822a1fe77c5b10911e4732506a52a04"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>InvestApiClient</b> (const QString &amp;host, const QString &amp;pass)</td></tr>
+<tr class="separator:ac822a1fe77c5b10911e4732506a52a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61bfdcc059ebf343e601d149404aefc6"><td class="memItemLeft" align="right" valign="top"><a id="a61bfdcc059ebf343e601d149404aefc6"></a>
+QVector&lt; QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getServiceMethods</b> (const QString &amp;serviceName)</td></tr>
+<tr class="separator:a61bfdcc059ebf343e601d149404aefc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44f535e756375fdf166f8e1e855ee7c9"><td class="memItemLeft" align="right" valign="top"><a id="a44f535e756375fdf166f8e1e855ee7c9"></a>
+QSharedPointer&lt; <a class="el" href="class_custom_service.html">CustomService</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>service</b> (const QString &amp;serviceName)</td></tr>
+<tr class="separator:a44f535e756375fdf166f8e1e855ee7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Qt клиент для Tinkoff invest API. </p>
+<p>Данный класс предоставляет доступ к торговой платформе Тинькофф Инвестиции через grpc-интерфейс. В конструкторе класса необходимо передавать адрес сервера и токен. Все вызовы сервиса выполняются по адресу invest-public-api.tinkoff.ru:443 Токен можно получить в настройках своего профиля Тинькофф Инвестиций </p>
+</div><hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>/home/samoilovv/TinkoffInvestBot/src/plugins/tinkoffInvest/TinkoffInvestSDK/<a class="el" href="investapiclient_8h_source.html">investapiclient.h</a></li>
+<li>/home/samoilovv/TinkoffInvestBot/src/plugins/tinkoffInvest/TinkoffInvestSDK/investapiclient.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

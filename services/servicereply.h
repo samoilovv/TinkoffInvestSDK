@@ -1,7 +1,6 @@
 #ifndef SERVICEREPLY_H
 #define SERVICEREPLY_H
 
-#include <QObject>
 #include <QMetaType>
 #include "google/protobuf/message.h"
 #include <grpcpp/grpcpp.h>

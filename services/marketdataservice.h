@@ -39,9 +39,11 @@ public slots:
     ServiceReply GetTradingStatus(const std::string &figi);
     /// Метод запроса последних обезличенных сделок по инструменту
     ServiceReply GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
-    /// Bi-directional стрим предоставления биржевой информации
+    /// Запрос подписки на свечи
+    void MarketDataStream();
+    /// Запрос подписки на стаканы
     void MarketDataStream(const std::string &figi, int32_t depth);
-    /// Bi-directional стрим предоставления биржевой информации
+    /// Запрос подписки на последние цены
     void MarketDataStream(const std::vector<std::string> &figis);
     /// Метод, позволяющий отписаться от любой информации
     void UnsabscribeMarketData();  

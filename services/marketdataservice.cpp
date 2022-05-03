@@ -80,6 +80,43 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
     return ServiceReply::prepareServiceAnswer<GetLastTradesResponse>(status, reply);
 }
 
+void MarketData::MarketDataStream(std::vector<std::pair<std::string, Subscribtion>>)
+{
+    SubscribtionInterval
+    ClientContext context;
+    QString meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value.toStdString());
+    context.AddMetadata("x-app-name", APP_NAME);
+    std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
+        m_marketDataStreamService->MarketDataStream(&context));
+
+    MarketDataRequest request;
+    SubscribeCandlesRequest * scr = new SubscribeCandlesRequest();
+    scr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+
+    auto obi = sobr->add_instruments();
+    std::string * f = new std::string(figi);
+    obi->set_allocated_figi(f);
+    obi->set_depth(depth);
+    request.set_allocated_subscribe_order_book_request(sobr);
+
+    std::thread writer([stream, request]() {
+        stream->Write(request);
+        stream->WritesDone();
+    });
+
+    MarketDataResponse reply;
+    while (stream->Read(&reply)) {
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        emitServiceData(data);
+    }
+    writer.join();
+    Status status = stream->Finish();
+    if (!status.ok()) {
+        std::cout << "MarketDataStream rpc failed." << std::endl;
+    }
+}
+
 void MarketData::MarketDataStream(const std::string &figi, int32_t depth)
 {
     ClientContext context;

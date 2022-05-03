@@ -11,6 +11,9 @@ using grpc::Status;
 
 static const std::string APP_NAME = "samoilovv.TinkoffInvestSDK";
 
+/*!
+    \brief  Родительский класс для всех сервисов
+*/
 class CustomService : public QObject
 {
     Q_OBJECT

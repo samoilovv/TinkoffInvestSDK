@@ -15,12 +15,19 @@ using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 
+/*!
+    \brief Qt клиент для Tinkoff invest API
+
+    Данный класс предоставляет доступ к торговой платформе Тинькофф Инвестиции через grpc-интерфейс.
+    В конструкторе класса необходимо передавать адрес сервера и токен.
+    Все вызовы сервиса выполняются по адресу invest-public-api.tinkoff.ru:443
+    Токен можно получить в настройках своего профиля Тинькофф Инвестиций
+*/
 class TINKOFFINVESTSDK_EXPORT InvestApiClient : public QObject {
 
   Q_OBJECT
 
 public:
-
     InvestApiClient(const QString &host, const QString &pass);
     ~InvestApiClient();
     QVector<QVariant> getServiceMethods(const QString &serviceName);

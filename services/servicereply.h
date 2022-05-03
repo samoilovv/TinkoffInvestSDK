@@ -9,6 +9,11 @@
 
 using grpc::Status;
 
+/*!
+    \brief Класс-обертка над proto-ответами сервисов
+
+    Данный класс используется при передачи информации от сервисов клиентам
+*/
 class TINKOFFINVESTSDK_EXPORT ServiceReply
 {
 

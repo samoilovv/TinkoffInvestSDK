@@ -10,6 +10,14 @@
 using grpc::Channel;
 using namespace tinkoff::public1::invest::api::contract::v1;
 
+/*!
+    \brief  Сервис работы со стоп-заявками
+
+    Сервис предназначен для работы со стоп-заявками:
+    1.выставление;
+    2.отмена;
+    3.получение списка стоп-заявок.
+*/
 class StopOrders: public CustomService
 {
     Q_OBJECT
@@ -20,11 +28,11 @@ public:
     ~StopOrders();
 
 public slots:
-    //Метод выставления стоп-заявки
+    /// Метод выставления стоп-заявки
     ServiceReply PostStopOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano, int64_t stopunits, int32_t stopnano, StopOrderDirection direction, const std::string &accountId, StopOrderExpirationType expirationType, StopOrderType stopOrderType, const std::string &orderId, int64_t expireSeconds, int32_t expireNanos);
-    //Метод получения списка активных стоп заявок по счёту
+    /// Метод получения списка активных стоп заявок по счёту
     ServiceReply GetStopOrders(const std::string &accountId);
-    //Метод отмены стоп-заявки
+    /// Метод отмены стоп-заявки
     ServiceReply CancelStopOrder(const std::string &accountId, const std::string &stopOrderId);
 
 private:

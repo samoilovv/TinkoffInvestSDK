@@ -10,6 +10,13 @@
 using grpc::Channel;
 using namespace tinkoff::public1::invest::api::contract::v1;
 
+/*!
+    \brief  Сервис работы со счетами пользователя
+
+    Сервис предназначен для получения:
+    1.списка счетов пользователя;
+    2.маржинальных показателе по счёту.
+*/
 class Users: public CustomService
 {
     Q_OBJECT
@@ -20,13 +27,13 @@ public:
     ~Users();
 
 public slots:
-    //Метод получения счетов пользователя
+    /// Метод получения счетов пользователя
     ServiceReply GetAccounts();
-    //Расчёт маржинальных показателей по счёту
+    /// Расчёт маржинальных показателей по счёту
     ServiceReply GetMarginAttributes(const std::string &accountId);
-    //Запрос тарифа пользователя
+    /// Запрос тарифа пользователя
     ServiceReply GetUserTariff();
-    //Метод получения информации о пользователе
+    /// Метод получения информации о пользователе
     ServiceReply GetInfo();
 
 private:

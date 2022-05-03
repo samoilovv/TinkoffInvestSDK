@@ -21,11 +21,11 @@ ServiceReply MarketData::GetCandles(const std::string &figi, int64_t fromseconds
 {
     GetCandlesRequest request;
     request.set_figi(figi);
-    google::protobuf::Timestamp * from = new google::protobuf::Timestamp();
+    auto from = new google::protobuf::Timestamp();
     from->set_seconds(fromseconds);
     from->set_nanos(fromnanos);
     request.set_allocated_from(from);
-    google::protobuf::Timestamp * to = new google::protobuf::Timestamp();
+    auto  to = new google::protobuf::Timestamp();
     to->set_seconds(fromseconds);
     to->set_nanos(fromnanos);
     request.set_allocated_to(to);
@@ -67,11 +67,11 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
 {
     GetLastTradesRequest request;
     request.set_figi(figi);
-    google::protobuf::Timestamp * from = new google::protobuf::Timestamp();
+    auto from = new google::protobuf::Timestamp();
     from->set_seconds(fromseconds);
     from->set_nanos(fromnanos);
     request.set_allocated_from(from);
-    google::protobuf::Timestamp * to = new google::protobuf::Timestamp();
+    auto to = new google::protobuf::Timestamp();
     to->set_seconds(toseconds);
     to->set_nanos(tonanos);
     request.set_allocated_to(to);
@@ -80,9 +80,8 @@ ServiceReply MarketData::GetLastTrades(const std::string &figi, int64_t fromseco
     return ServiceReply::prepareServiceAnswer<GetLastTradesResponse>(status, reply);
 }
 
-void MarketData::MarketDataStream(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments)
+void MarketData::MarketDataStream(std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments)
 {
-
     ClientContext context;
     QString meta_value = "Bearer " + m_token;
     context.AddMetadata("authorization", meta_value.toStdString());
@@ -91,7 +90,7 @@ void MarketData::MarketDataStream(const std::vector<std::pair<std::string, Subsc
         m_marketDataStreamService->MarketDataStream(&context));
 
     MarketDataRequest request;
-    SubscribeCandlesRequest * scr = new SubscribeCandlesRequest();
+    auto scr = new SubscribeCandlesRequest();
     scr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
     for (auto &candleInstrument: candleInstruments)
     {
@@ -128,11 +127,10 @@ void MarketData::MarketDataStream(const std::string &figi, int32_t depth)
         m_marketDataStreamService->MarketDataStream(&context));
 
     MarketDataRequest request;
-    SubscribeOrderBookRequest * sobr = new SubscribeOrderBookRequest();
+    auto sobr = new SubscribeOrderBookRequest();
     sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
     auto obi = sobr->add_instruments();
-    std::string * f = new std::string(figi);
-    obi->set_allocated_figi(f);
+    obi->set_figi(figi);
     obi->set_depth(depth);
     request.set_allocated_subscribe_order_book_request(sobr);
 
@@ -153,7 +151,7 @@ void MarketData::MarketDataStream(const std::string &figi, int32_t depth)
     }
 }
 
-void MarketData::MarketDataStream(const std::vector<std::string> &figis)
+void MarketData::MarketDataStream(InfoInstruments &infoInstruments)
 {
     ClientContext context;
     QString meta_value = "Bearer " + m_token;
@@ -163,8 +161,81 @@ void MarketData::MarketDataStream(const std::vector<std::string> &figis)
         m_marketDataStreamService->MarketDataStream(&context));
 
     MarketDataRequest request;
-    SubscribeLastPriceRequest * slpr = new SubscribeLastPriceRequest();
-    for (auto &figi: figis)
+    auto sir = new SubscribeInfoRequest();
+    for (auto &figi: infoInstruments)
+    {
+        auto obi = sir->add_instruments();
+        obi->set_figi(figi);
+    }
+    sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    request.set_allocated_subscribe_info_request(sir);
+
+    std::thread writer([stream, request]() {
+        stream->Write(request);
+        stream->WritesDone();
+    });
+
+    MarketDataResponse reply;
+    while (stream->Read(&reply)) {
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        emitServiceData(data);
+    }
+    writer.join();
+    Status status = stream->Finish();
+    if (!status.ok()) {
+        std::cout << "MarketDataStream rpc failed." << std::endl;
+    }
+
+}
+
+void MarketData::MarketDataStream(TradeInstruments &trideInstruments)
+{
+    ClientContext context;
+    QString meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value.toStdString());
+    context.AddMetadata("x-app-name", APP_NAME);
+    std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
+        m_marketDataStreamService->MarketDataStream(&context));
+
+    MarketDataRequest request;
+    auto str = new SubscribeTradesRequest();
+    str->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    for (auto &figi: trideInstruments)
+    {
+        auto instr = str->add_instruments();
+        instr->set_figi(figi);
+    }
+    request.set_allocated_subscribe_trades_request(str);
+
+    std::thread writer([stream, request]() {
+        stream->Write(request);
+        stream->WritesDone();
+    });
+
+    MarketDataResponse reply;
+    while (stream->Read(&reply)) {
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        emitServiceData(data);
+    }
+    writer.join();
+    Status status = stream->Finish();
+    if (!status.ok()) {
+        std::cout << "MarketDataStream rpc failed." << std::endl;
+    }
+}
+
+void MarketData::MarketDataStream(LastPriceInstruments &lastPriceInstruments)
+{
+    ClientContext context;
+    QString meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value.toStdString());
+    context.AddMetadata("x-app-name", APP_NAME);
+    std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
+        m_marketDataStreamService->MarketDataStream(&context));
+
+    MarketDataRequest request;
+    auto slpr = new SubscribeLastPriceRequest();
+    for (auto &figi: lastPriceInstruments)
     {
         auto obi = slpr->add_instruments();
         obi->set_figi(figi);
@@ -187,6 +258,12 @@ void MarketData::MarketDataStream(const std::vector<std::string> &figis)
     if (!status.ok()) {
         std::cout << "MarketDataStream rpc failed." << std::endl;
     }
+}
+
+void MarketData::MarketDataStream(const std::vector<std::string> &figis)
+{
+    LastPriceInstruments lpi(figis);
+    MarketDataStream(lpi);
 }
 
 void MarketData::UnsabscribeMarketData()
@@ -230,4 +307,28 @@ void MarketData::UnsabscribeMarketData()
     }
 }
 
+CustomInstruments::CustomInstruments(std::vector<std::string> instruments): m_instruments(instruments)
+{
 
+}
+
+std::string &CustomInstruments::operator[](int index)
+{
+    if (index < 0 || index >= m_instruments.size()) throw std::out_of_range("CustomInstruments::operator[]");
+    return m_instruments[index];
+}
+
+int CustomInstruments::size()
+{
+    return m_instruments.size();
+}
+
+std::vector<std::string>::iterator CustomInstruments::begin()
+{
+    return m_instruments.begin();
+}
+
+std::vector<std::string>::iterator CustomInstruments::end()
+{
+    return m_instruments.end();
+}

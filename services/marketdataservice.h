@@ -6,9 +6,45 @@
 #include <grpcpp/grpcpp.h>
 #include "marketdata.grpc.pb.h"
 #include "servicereply.h"
+#include <vector>
 
 using grpc::Channel;
 using namespace tinkoff::public1::invest::api::contract::v1;
+
+class CustomInstruments
+{
+public:
+    explicit CustomInstruments(std::vector<std::string> instruments);
+    std::string &operator[](int index);
+    int size();
+    std::vector<std::string>::iterator begin();
+    std::vector<std::string>::iterator end();
+
+private:
+    std::vector<std::string> m_instruments;
+
+};
+
+class TradeInstruments: public CustomInstruments
+{
+public:
+    TradeInstruments(std::vector<std::string> instruments): CustomInstruments(instruments) {}
+
+};
+
+class InfoInstruments: public CustomInstruments
+{
+public:
+    InfoInstruments(std::vector<std::string> instruments): CustomInstruments(instruments) {}
+
+};
+
+class LastPriceInstruments: public CustomInstruments
+{
+public:
+    LastPriceInstruments(std::vector<std::string> instruments): CustomInstruments(instruments) {}
+
+};
 
 /*!
     \brief Сервис получения биржевой информации
@@ -40,9 +76,15 @@ public slots:
     /// Метод запроса последних обезличенных сделок по инструменту
     ServiceReply GetLastTrades(const std::string &figi, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
     /// Запрос подписки на свечи
-    void MarketDataStream(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments);
+    void MarketDataStream(std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments);
     /// Запрос подписки на стаканы
     void MarketDataStream(const std::string &figi, int32_t depth);
+    /// Запрос подписки на ленту обезличенных сделок
+    void MarketDataStream(TradeInstruments &tradeInstruments);
+    /// Запрос подписки на торговые статусы инструментов
+    void MarketDataStream(InfoInstruments &infoInstruments);
+    /// Запрос подписки на последние цены
+    void MarketDataStream(LastPriceInstruments &lastPriceInstruments);
     /// Запрос подписки на последние цены
     void MarketDataStream(const std::vector<std::string> &figis);
     /// Метод, позволяющий отписаться от любой информации

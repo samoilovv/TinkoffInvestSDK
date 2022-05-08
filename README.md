@@ -33,10 +33,10 @@ $ export TOKEN=YOUR_TOKEN
 
 ```cpp
 
-InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
 //get reference to sandbox service
-auto sandbox = qSharedPointerCast<Sandbox>(greeter.service("sandbox"));
+auto sandbox = qSharedPointerCast<Sandbox>(tinkoffInvestClient.service("sandbox"));
 
 //open account
 sandbox->OpenSandboxAccount();
@@ -56,10 +56,10 @@ sandbox->CloseSandboxAccount(accountId);
 
 ```cpp
 
-InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
 //get reference to marketdata service
-auto marketdata = qSharedPointerCast<MarketData>(greeter.service("marketdata"));
+auto marketdata = qSharedPointerCast<MarketDataStream>(tinkoffInvestClient.service("marketdatastream"));
 
 //handle replies in lambda function
 QObject::connect(marketdata->get(), &CustomService::sendData, [](ServiceReply reply){
@@ -67,7 +67,7 @@ QObject::connect(marketdata->get(), &CustomService::sendData, [](ServiceReply re
 });
 
 //subscribe on British American Tobacco and Visa Inc. prices and start streaming 
-marketdata->MarketDataStream({"BBG000BWPXQ8", "BBG00844BD08"});
+marketdata->SubscribeLastPrice({"BBG000BWPXQ8", "BBG00844BD08"});
 ```
 
 Вывод:
@@ -114,4 +114,4 @@ last_price {
 
 ## Документация
 
-Подробную документацию по InvestApi можно найти по [ссылке](https://tinkoff.github.io/investAPI/).
+Подробную документацию по InvestApi можно найти по [ссылке](https://samoilovv.github.io/TinkoffInvestSDK/).

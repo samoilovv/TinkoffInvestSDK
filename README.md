@@ -114,4 +114,4 @@ last_price {
 
 ## Документация
 
-Подробную документацию по InvestApi можно найти по [ссылке](https://samoilovv.github.io/TinkoffInvestSDK/).
+Подробную документацию можно найти по [ссылке](https://samoilovv.github.io/TinkoffInvestSDK/).

@@ -58,28 +58,10 @@ target_link_libraries(hw_grpc_proto
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
 
-add_library(${PROJECT_NAME} SHARED
-    investapiclient.h
-    investapiclient.cpp
-    services/servicereply.h
-    services/servicereply.cpp
-    services/customservice.h
-    services/customservice.cpp
-    services/sandboxservice.h
-    services/sandboxservice.cpp
-    services/usersservice.h
-    services/usersservice.cpp
-    services/marketdataservice.h
-    services/marketdataservice.cpp
-    services/instrumentsservice.h
-    services/instrumentsservice.cpp
-    services/operationsservice.h
-    services/operationsservice.cpp
-    services/ordersservice.h
-    services/ordersservice.cpp
-    services/stopordersservice.h
-    services/stopordersservice.cpp
-)
+file(GLOB_RECURSE TARGET_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+file(GLOB_RECURSE TARGET_HDR "${CMAKE_CURRENT_SOURCE_DIR}/*.h" )
+
+add_library(${PROJECT_NAME} SHARED ${TARGET_SRC} ${TARGET_HDR})
 
 generate_export_header(${PROJECT_NAME})
 

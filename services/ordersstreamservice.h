@@ -29,8 +29,6 @@ public:
     OrdersStream(std::shared_ptr<Channel> channel, const QString &token);
     ~OrdersStream();
 
-public slots:
-
 private:
     std::shared_ptr<OrdersStreamService::Stub> m_ordersStreamService;
 

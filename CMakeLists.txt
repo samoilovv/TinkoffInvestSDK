@@ -58,8 +58,8 @@ target_link_libraries(hw_grpc_proto
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
 
-file(GLOB_RECURSE TARGET_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
-file(GLOB_RECURSE TARGET_HDR "${CMAKE_CURRENT_SOURCE_DIR}/*.h" )
+file(GLOB TARGET_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/services/*.cpp")
+file(GLOB TARGET_HDR "${CMAKE_CURRENT_SOURCE_DIR}/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/services/*.h")
 
 add_library(${PROJECT_NAME} SHARED ${TARGET_SRC} ${TARGET_HDR})
 

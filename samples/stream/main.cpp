@@ -7,15 +7,15 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    InvestApiClient greeter("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+    InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //print list of marketdata functions
-    auto serviceList = greeter.getServiceMethods("marketdatastream");
+    auto serviceList = tinkoffInvestClient.getServiceMethods("marketdatastream");
     for (int i = 0; i < serviceList.count(); i++)
          std::cout << serviceList[i].toStringList()[0].toStdString() << std::endl;
 
     //get reference to marketdata service
-    auto marketdata = qSharedPointerCast<MarketDataStream>(greeter.service("marketdatastream"));
+    auto marketdata = qSharedPointerCast<MarketDataStream>(tinkoffInvestClient.service("marketdatastream"));
 
     //get 10 last prices, unsubscribe and quit
     int answersCount = 0;

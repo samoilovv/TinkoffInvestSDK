@@ -19,9 +19,11 @@ InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
     m_services["sandbox"] = QSharedPointer<Sandbox>::create(channel, pass);
     m_services["users"] = QSharedPointer<Users>::create(channel, pass);
     m_services["marketdata"] = QSharedPointer<MarketData>::create(channel, pass);
+    m_services["marketdatastream"] = QSharedPointer<MarketData>::create(channel, pass);
     m_services["instruments"] = QSharedPointer<Instruments>::create(channel, pass);
     m_services["operations"] = QSharedPointer<Operations>::create(channel, pass);
     m_services["orders"] = QSharedPointer<Orders>::create(channel, pass);
+    m_services["ordersstream"] = QSharedPointer<Orders>::create(channel, pass);
     m_services["stoporders"] = QSharedPointer<StopOrders>::create(channel, pass);
 }
 

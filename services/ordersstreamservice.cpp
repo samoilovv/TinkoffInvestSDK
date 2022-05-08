@@ -2,7 +2,7 @@
 
 OrdersStream::OrdersStream(std::shared_ptr<grpc::Channel> channel, const QString &token) :
     CustomService(token),
-    m_ordersStreamService(OrdersService::NewStub(channel))
+    m_ordersStreamService(OrdersStreamService::NewStub(channel))
 {
 
 }

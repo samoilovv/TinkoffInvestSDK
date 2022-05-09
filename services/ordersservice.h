@@ -26,7 +26,7 @@ class Orders: public CustomService
     Q_CLASSINFO("orders", "Orders Service")
 
 public:  
-    Orders(std::shared_ptr<Channel> channel, const QString &token);
+    Orders(std::shared_ptr<Channel> channel, const std::string &token);
     ~Orders();
 
 public slots:

@@ -31,7 +31,7 @@ class OrdersStream: public CustomService
     };
 
 public:
-    OrdersStream(std::shared_ptr<Channel> channel, const QString &token);
+    OrdersStream(std::shared_ptr<Channel> channel, const std::string &token);
     ~OrdersStream();
 
     void GrpcThread();

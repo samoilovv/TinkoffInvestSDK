@@ -1,6 +1,6 @@
 #include "ordersservice.h"
 
-Orders::Orders(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+Orders::Orders(std::shared_ptr<grpc::Channel> channel, const std::string &token) :
     CustomService(token),
     m_ordersService(OrdersService::NewStub(channel))
 {

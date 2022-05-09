@@ -21,7 +21,7 @@ class Sandbox: public CustomService
     Q_CLASSINFO("sandbox", "Sandbox Service")
 
 public:  
-    Sandbox(std::shared_ptr<Channel> channel, const QString &token);
+    Sandbox(std::shared_ptr<Channel> channel, const std::string &token);
     ~Sandbox();
 
 public slots:

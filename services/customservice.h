@@ -19,14 +19,14 @@ class CustomService : public QObject
     Q_OBJECT
 
 public:
-    CustomService(const QString &token);
+    CustomService(const std::string &token);
     virtual ~CustomService() = default;
 
 signals:
     void sendData(ServiceReply);
 
 protected:
-    const QString m_token;
+    const std::string m_token;
     std::shared_ptr<grpc::ClientContext> makeContext();
     void emitServiceData(const ServiceReply &data);
 

@@ -6,13 +6,12 @@
 using grpc::ClientReader;
 
 
-OrdersStream::OrdersStream(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+OrdersStream::OrdersStream(std::shared_ptr<grpc::Channel> channel, const std::string &token) :
     CustomService(token),
     m_ordersStreamService(OrdersStreamService::NewStub(channel))
 {
-
-    QString meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value.toStdString());
+    std::string meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
 
     grpc_thread_.reset(new std::thread(std::bind(&OrdersStream::GrpcThread, this)));
@@ -29,12 +28,12 @@ void OrdersStream::GrpcThread() {
         void * got_tag;
         bool ok = false;
         if (!cq.Next(&got_tag, &ok)) {
-            std::cerr << "Client stream closed. Quitting" << std::endl;
+            std::cerr << "Client stream closed" << std::endl;
             break;
         }
         if (ok) {
             std::cout << std::endl
-                      << "**** Processing completion queue tag " << got_tag
+                      << "Processing completion queue tag " << got_tag
                       << std::endl;
             switch (static_cast<Type>(reinterpret_cast<long>(got_tag))) {
             case Type::READ:
@@ -60,32 +59,14 @@ void OrdersStream::GrpcThread() {
 
 void OrdersStream::TradesStream(const std::vector<std::string> &accounts)
 {
-
     TradesStreamRequest request;
-//    for (auto &account: accounts)
-//    {
-//        request.add_accounts(account);
-//    }
-//    std::shared_ptr<ClientReader<TradesStreamResponse> > reader(
-//        m_ordersStreamService->TradesStream(&context, request)
-//    );
+    for (auto &account: accounts)
+    {
+        request.add_accounts(account);
+    }
 
     reader->StartCall(reinterpret_cast<void*>(Type::CONNECT));
     std::cout << "Got reply: " << reply.DebugString() << std::endl;
     reader->Read(&reply, reinterpret_cast<void*>(Type::READ));
-
-
-
-//    TradesStreamResponse reply;
-//    while (reader->Read(&reply)) {
-//        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(reply));
-//        std::cout << reply.DebugString() << std::endl;
-//        emitServiceData(data);
-//    }
-//    writer.join();
-//    Status status = reader->Finish();
-//    if (!status.ok()) {
-//        std::cout << "TradesStream rpc failed." << std::endl;
-//    }
 }
 

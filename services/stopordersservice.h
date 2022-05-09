@@ -24,7 +24,7 @@ class StopOrders: public CustomService
     Q_CLASSINFO("stoporders", "StopOrders Service")
 
 public:  
-    StopOrders(std::shared_ptr<Channel> channel, const QString &token);
+    StopOrders(std::shared_ptr<Channel> channel, const std::string &token);
     ~StopOrders();
 
 public slots:

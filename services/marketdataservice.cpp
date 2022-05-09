@@ -4,7 +4,7 @@
 
 using grpc::ClientReaderWriter;
 
-MarketData::MarketData(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+MarketData::MarketData(std::shared_ptr<grpc::Channel> channel, const std::string &token) :
     CustomService(token),
     m_marketDataService(MarketDataService::NewStub(channel))
 {

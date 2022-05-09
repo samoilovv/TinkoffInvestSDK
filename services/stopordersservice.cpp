@@ -1,7 +1,7 @@
 #include "google/protobuf/timestamp.pb.h"
 #include "stopordersservice.h"
 
-StopOrders::StopOrders(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+StopOrders::StopOrders(std::shared_ptr<grpc::Channel> channel, const std::string &token) :
     CustomService(token),
     m_stopOrdersService(StopOrdersService::NewStub(channel))
 {

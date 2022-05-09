@@ -1,6 +1,6 @@
 #include "instrumentsservice.h"
 
-Instruments::Instruments(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+Instruments::Instruments(std::shared_ptr<grpc::Channel> channel, const std::string &token) :
     CustomService(token),
     m_instrumentsService(InstrumentsService::NewStub(channel))
 {

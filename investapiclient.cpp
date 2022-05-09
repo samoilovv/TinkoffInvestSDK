@@ -12,10 +12,10 @@
 #include "stopordersservice.h"
 #include "servicereply.h"
 
-InvestApiClient::InvestApiClient(const QString &host, const QString &pass)
+InvestApiClient::InvestApiClient(const std::string &host, const std::string &pass)
 {
     qRegisterMetaType<ServiceReply>();
-    auto channel = grpc::CreateChannel(host.toStdString(), grpc::SslCredentials(grpc::SslCredentialsOptions()));
+    auto channel = grpc::CreateChannel(host, grpc::SslCredentials(grpc::SslCredentialsOptions()));
     m_services["sandbox"] = QSharedPointer<Sandbox>::create(channel, pass);
     m_services["users"] = QSharedPointer<Users>::create(channel, pass);
     m_services["marketdata"] = QSharedPointer<MarketData>::create(channel, pass);

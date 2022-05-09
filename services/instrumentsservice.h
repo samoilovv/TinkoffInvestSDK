@@ -26,7 +26,7 @@ class Instruments: public CustomService
     Q_CLASSINFO("instruments", "Instruments Service")
 
 public:  
-    Instruments(std::shared_ptr<Channel> channel, const QString &token);
+    Instruments(std::shared_ptr<Channel> channel, const std::string &token);
     ~Instruments();
 
 public slots:

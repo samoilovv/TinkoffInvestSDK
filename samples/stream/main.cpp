@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     auto orders = qSharedPointerCast<OrdersStream>(tinkoffInvestClient.service("ordersstream"));
 
     auto prices = marketdata->GetLastPrices({"BBG000PSKYX7", "BBG000BWPXQ8"});
-    std::cout << prices.ptr()->DebugString() << std::endl;
+    std::cout << prices.ptr()-> DebugString() << std::endl;
     //get 10 last prices, unsubscribe and quit
     int answersCount = 0;
     QObject::connect(orders.get(), &CustomService::sendData, [&answersCount, &a, marketdata](ServiceReply reply){

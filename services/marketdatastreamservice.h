@@ -61,7 +61,7 @@ class MarketDataStream: public CustomService
     Q_CLASSINFO("marketdatastream", "MarketDataStream Service")
 
 public:
-    MarketDataStream(std::shared_ptr<Channel> channel, const QString &token);
+    MarketDataStream(std::shared_ptr<Channel> channel, const std::string &token);
     ~MarketDataStream();
 
 public slots:

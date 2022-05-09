@@ -26,7 +26,7 @@ class MarketData: public CustomService
     Q_CLASSINFO("marketdata", "MarketData Service")
 
 public:  
-    MarketData(std::shared_ptr<Channel> channel, const QString &token);
+    MarketData(std::shared_ptr<Channel> channel, const std::string &token);
     ~MarketData();
 
 public slots:

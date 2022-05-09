@@ -26,7 +26,7 @@ class Operations: public CustomService
     Q_CLASSINFO("operations", "Operations Service")
 
 public:  
-    Operations(std::shared_ptr<Channel> channel, const QString &token);
+    Operations(std::shared_ptr<Channel> channel, const std::string &token);
     ~Operations();
 
 public slots:

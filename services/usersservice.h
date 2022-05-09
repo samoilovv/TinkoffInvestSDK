@@ -23,7 +23,7 @@ class Users: public CustomService
     Q_CLASSINFO("users", "Users Service")
 
 public:  
-    Users(std::shared_ptr<Channel> channel, const QString &token);
+    Users(std::shared_ptr<Channel> channel, const std::string &token);
     ~Users();
 
 public slots:

@@ -30,7 +30,7 @@ std::vector<std::string>::iterator CustomInstruments::end()
     return m_instruments.end();
 }
 
-MarketDataStream::MarketDataStream(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+MarketDataStream::MarketDataStream(std::shared_ptr<grpc::Channel> channel, const std::string &token) :
     CustomService(token),
     m_marketDataStreamService(MarketDataStreamService::NewStub(channel))
 {
@@ -45,8 +45,8 @@ MarketDataStream::~MarketDataStream()
 void MarketDataStream::SubscribeCandles(std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments)
 {
     ClientContext context;
-    QString meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value.toStdString());
+    std::string meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
         m_marketDataStreamService->MarketDataStream(&context));
@@ -82,8 +82,8 @@ void MarketDataStream::SubscribeCandles(std::vector<std::pair<std::string, Subsc
 void MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth)
 {
     ClientContext context;
-    QString meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value.toStdString());
+    std::string meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
         m_marketDataStreamService->MarketDataStream(&context));
@@ -116,8 +116,8 @@ void MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth
 void MarketDataStream::SubscribeInfo(InfoInstruments &infoInstruments)
 {
     ClientContext context;
-    QString meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value.toStdString());
+    std::string meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
         m_marketDataStreamService->MarketDataStream(&context));
@@ -153,8 +153,8 @@ void MarketDataStream::SubscribeInfo(InfoInstruments &infoInstruments)
 void MarketDataStream::SubscribeTrades(TradeInstruments &trideInstruments)
 {
     ClientContext context;
-    QString meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value.toStdString());
+    std::string meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
         m_marketDataStreamService->MarketDataStream(&context));
@@ -189,8 +189,8 @@ void MarketDataStream::SubscribeTrades(TradeInstruments &trideInstruments)
 void MarketDataStream::SubscribeLastPrice(LastPriceInstruments &lastPriceInstruments)
 {
     ClientContext context;
-    QString meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value.toStdString());
+    std::string meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
         m_marketDataStreamService->MarketDataStream(&context));
@@ -231,8 +231,8 @@ void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis)
 void MarketDataStream::UnsabscribeMarketData()
 {
     ClientContext context;
-    QString meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value.toStdString());
+    std::string meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
     std::shared_ptr<ClientReaderWriter<MarketDataRequest, MarketDataResponse> > stream(
         m_marketDataStreamService->MarketDataStream(&context));

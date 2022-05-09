@@ -1,6 +1,6 @@
 #include "sandboxservice.h"
 
-Sandbox::Sandbox(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+Sandbox::Sandbox(std::shared_ptr<grpc::Channel> channel, const std::string &token) :
     CustomService(token),
     m_sandboxService(SandboxService::NewStub(channel))
 {

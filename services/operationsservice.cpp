@@ -1,6 +1,6 @@
 #include "operationsservice.h"
 
-Operations::Operations(std::shared_ptr<grpc::Channel> channel, const QString &token) :
+Operations::Operations(std::shared_ptr<grpc::Channel> channel, const std::string &token) :
     CustomService(token),
     m_operationsService(OperationsService::NewStub(channel))
 {

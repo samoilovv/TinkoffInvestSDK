@@ -34,22 +34,23 @@ public:
     OrdersStream(std::shared_ptr<Channel> channel, const std::string &token);
     ~OrdersStream();
 
-    void GrpcThread();
+    /// Поток сделок пользователя, блокирующий вызов
+    void TradesStream(const std::vector<std::string> &accounts, void (*callbackfunc)(ServiceReply));
+    /// Поток сделок пользователя, асинхронный вызов
+    void TradesStreamAsync(const std::vector<std::string> &accounts, void (*callbackfunc)(ServiceReply));
 
-public slots:
-    /// Поток сделок пользователя
-    void TradesStream(const std::vector<std::string> &accounts);
+
 
 private:
     std::unique_ptr<OrdersStreamService::Stub> m_ordersStreamService;
-    std::unique_ptr<std::thread> grpc_thread_;
-    std::unique_ptr<ClientAsyncReader<TradesStreamResponse>> reader;
-    CompletionQueue cq;
-    TradesStreamResponse reply;
-    ClientContext context;
-    TradesStreamRequest request;
-    grpc::Status status = grpc::Status::OK;
-
+    std::unique_ptr<std::thread> m_grpc_thread_;
+    std::unique_ptr<ClientAsyncReader<TradesStreamResponse>> m_reader;
+    CompletionQueue m_cq;
+    TradesStreamResponse m_reply;
+    ClientContext m_context;
+    TradesStreamRequest m_request;
+    grpc::Status m_status = grpc::Status::OK;
+    void GrpcThread();
 };
 
 #endif // ORDERSSTREAMSERVICE_H

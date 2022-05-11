@@ -12,4 +12,5 @@ _deps
 
 # my settings
 *.autosave
+*.swp
 setenv.sh

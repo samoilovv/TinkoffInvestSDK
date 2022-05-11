@@ -62,7 +62,7 @@ InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("
 auto marketdata = qSharedPointerCast<MarketDataStream>(tinkoffInvestClient.service("marketdatastream"));
 
 //handle replies in lambda function
-QObject::connect(marketdata->get(), &CustomService::sendData, [](ServiceReply reply){
+QObject::connect(marketdata.get(), &CustomService::sendData, [](ServiceReply reply){
     std::cout << reply.ptr()->DebugString() << std::endl;
 });
 

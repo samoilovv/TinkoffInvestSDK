@@ -5,10 +5,12 @@
 #include "investapiclient.h"
 #include "sandboxservice.h" 
 #include "marketdataservice.h"
+#include "marketdatastreamservice.h"
 #include "usersservice.h"
 #include "instrumentsservice.h"
 #include "operationsservice.h"
 #include "ordersservice.h"
+#include "ordersstreamservice.h"
 #include "stopordersservice.h"
 #include "servicereply.h"
 
@@ -19,11 +21,11 @@ InvestApiClient::InvestApiClient(const std::string &host, const std::string &pas
     m_services["sandbox"] = QSharedPointer<Sandbox>::create(channel, pass);
     m_services["users"] = QSharedPointer<Users>::create(channel, pass);
     m_services["marketdata"] = QSharedPointer<MarketData>::create(channel, pass);
-    m_services["marketdatastream"] = QSharedPointer<MarketData>::create(channel, pass);
+    m_services["marketdatastream"] = QSharedPointer<MarketDataStream>::create(channel, pass);
     m_services["instruments"] = QSharedPointer<Instruments>::create(channel, pass);
     m_services["operations"] = QSharedPointer<Operations>::create(channel, pass);
     m_services["orders"] = QSharedPointer<Orders>::create(channel, pass);
-    m_services["ordersstream"] = QSharedPointer<Orders>::create(channel, pass);
+    m_services["ordersstream"] = QSharedPointer<OrdersStream>::create(channel, pass);
     m_services["stoporders"] = QSharedPointer<StopOrders>::create(channel, pass);
 }
 

@@ -35,7 +35,17 @@ int main(int argc, char *argv[])
     //subscribe on British American Tobacco and Visa Inc. prices and start streaming
     //marketdatastream->SubscribeLastPrice({"BBG004S68758", "BBG004730JJ5"});
 
-    orders->TradesStreamAsync({""}, tradesStreamCallBack);
+//    orders->TradesStreamAsync({""}, tradesStreamCallBack);
+
+
+
+    std::thread thread_ = std::thread(&OrdersStream::AsyncCompleteRpc, orders.get());
+
+    orders->GladToSeeMe(tradesStreamCallBack);
+
+    thread_.join();
+
+
 
     return a.exec();
 }

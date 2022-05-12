@@ -7,12 +7,12 @@ OrdersStream::OrdersStream(std::shared_ptr<grpc::Channel> channel, const std::st
     CustomService(token),
     m_ordersStreamService(OrdersStreamService::NewStub(channel))
 {
-    std::string meta_value = "Bearer " + m_token;
-    m_context.AddMetadata("authorization", meta_value);
-    m_context.AddMetadata("x-app-name", APP_NAME);
+//    std::string meta_value = "Bearer " + m_token;
+//    m_context.AddMetadata("authorization", meta_value);
+//    m_context.AddMetadata("x-app-name", APP_NAME);
 
-    m_grpc_thread_.reset(new std::thread(std::bind(&OrdersStream::GrpcThread, this)));
-    m_reader = m_ordersStreamService->PrepareAsyncTradesStream(&m_context, m_request, &m_cq);
+//    m_grpc_thread_.reset(new std::thread(std::bind(&OrdersStream::GrpcThread, this)));
+//    m_reader = m_ordersStreamService->PrepareAsyncTradesStream(&m_context, m_request, &m_cq);
 }
 
 OrdersStream::~OrdersStream()
@@ -56,7 +56,7 @@ void OrdersStream::GrpcThread() {
 }
 
 
-void OrdersStream::TradesStreamAsync(const std::vector<std::string> &accounts, void (*callbackfunc)(ServiceReply))
+void OrdersStream::TradesStreamAsync(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback)
 {
     for (auto &account: accounts)
     {
@@ -67,7 +67,7 @@ void OrdersStream::TradesStreamAsync(const std::vector<std::string> &accounts, v
     m_reader->Read(&m_reply, reinterpret_cast<void*>(Type::READ));
 }
 
-void OrdersStream::TradesStream(const std::vector<std::string> &accounts, void (*callbackfunc)(ServiceReply))
+void OrdersStream::TradesStream(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback)
 {
     TradesStreamRequest request;
     TradesStreamResponse reply;
@@ -80,7 +80,7 @@ void OrdersStream::TradesStream(const std::vector<std::string> &accounts, void (
         m_ordersStreamService->TradesStream(&context, request));
     while (reader->Read(&reply)) {
       auto data = ServiceReply(std::make_shared<TradesStreamResponse>(reply));
-      callbackfunc(data);
+      callback(data);
     }
     Status status = reader->Finish();
     if (status.ok()) {

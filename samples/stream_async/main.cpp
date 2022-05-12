@@ -1,9 +1,6 @@
 #include <thread>
 #include "investapiclient.h"
-#include "sandboxservice.h"
 #include "marketdatastreamservice.h"
-#include "marketdataservice.h"
-#include "ordersstreamservice.h"
 
 void tradesStreamCallBack(ServiceReply reply)
 {
@@ -12,24 +9,18 @@ void tradesStreamCallBack(ServiceReply reply)
 
 int main()
 {
-    InvestApiClient tinkClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+    InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get references to Sandbox and OrdersStream service
-    //auto sandbox = std::dynamic_pointer_cast<Sandbox>(tinkClient.service("sandbox"));
-    auto orders = std::dynamic_pointer_cast<OrdersStream>(tinkClient.service("ordersstream"));
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(tinkoffInvestClient.service("makretdatastream"));
 
-    //Get your account Id
-    //auto accountId = sandbox->GetSandboxAccounts().accountID(0);
-    //std::cout << accountId << std::endl;
+    //Start MarketData stream
+    std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());
 
-    //Start Trades stream
-    std::thread thread = std::thread(&OrdersStream::AsyncCompleteRpc, orders.get());
-    orders->TradesStreamAsync({""}, tradesStreamCallBack);
-    //orders->TradesStreamAsync({accountId}, tradesStreamCallBack);
+    //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
+    marketdata->SubscribeLastPriceAsync({"BBG004S68758", "BBG004730JJ5"}, tradesStreamCallBack);
+
     thread.join();
-
-    //Top up your account
-    //sandbox->SandboxPayIn(accountId, "rub", 3000, 0);
 
     return 0;
 }

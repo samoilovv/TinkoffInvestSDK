@@ -305,6 +305,7 @@ void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis,
 
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
+        std::cout << reply.DebugString() << std::endl;
         auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
         callback(data);
     }

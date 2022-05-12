@@ -1,7 +1,6 @@
 #ifndef INSTRUMENTSSERVICE_H
 #define INSTRUMENTSSERVICE_H
 
-#include <QObject>
 #include "customservice.h"
 #include <grpcpp/grpcpp.h>
 #include "instruments.grpc.pb.h"
@@ -22,14 +21,11 @@ using namespace tinkoff::public1::invest::api::contract::v1;
 */
 class Instruments: public CustomService
 {
-    Q_OBJECT
-    Q_CLASSINFO("instruments", "Instruments Service")
 
 public:  
     Instruments(std::shared_ptr<Channel> channel, const std::string &token);
     ~Instruments();
 
-public slots:
     /// Метод получения расписания торгов торговых площадок
     ServiceReply TradingSchedules(const std::string &exchange, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
     /// Метод получения облигации по её идентификатору

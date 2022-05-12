@@ -1,7 +1,6 @@
 #ifndef MARKETDATASERVICE_H
 #define MARKETDATASERVICE_H
 
-#include <QObject>
 #include "customservice.h"
 #include <grpcpp/grpcpp.h>
 #include "marketdata.grpc.pb.h"
@@ -22,14 +21,11 @@ using namespace tinkoff::public1::invest::api::contract::v1;
 */
 class MarketData: public CustomService
 {
-    Q_OBJECT
-    Q_CLASSINFO("marketdata", "MarketData Service")
 
 public:  
     MarketData(std::shared_ptr<Channel> channel, const std::string &token);
     ~MarketData();
 
-public slots:
     /// Метод запроса исторических свечей по инструменту
     ServiceReply GetCandles(const std::string &figi, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos, CandleInterval interval);
     /// Метод запроса последних цен по инструментам

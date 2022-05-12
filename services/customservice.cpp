@@ -14,9 +14,6 @@ std::shared_ptr<grpc::ClientContext> CustomService::makeContext()
     return context;
 }
 
-void CustomService::emitServiceData(const ServiceReply &data)
-{
-    emit sendData(data);
-}
+
 
 

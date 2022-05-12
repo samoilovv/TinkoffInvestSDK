@@ -1,7 +1,6 @@
 #ifndef OPERATIONSSERVICE_H
 #define OPERATIONSSERVICE_H
 
-#include <QObject>
 #include "customservice.h"
 #include <grpcpp/grpcpp.h>
 #include "operations.grpc.pb.h"
@@ -22,14 +21,11 @@ using namespace tinkoff::public1::invest::api::contract::v1;
 */
 class Operations: public CustomService
 {
-    Q_OBJECT
-    Q_CLASSINFO("operations", "Operations Service")
 
 public:  
     Operations(std::shared_ptr<Channel> channel, const std::string &token);
     ~Operations();
 
-public slots:
     /// Метод получения списка операций по счёту
     ServiceReply GetOperations(const std::string &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos, OperationState state, const std::string  &figi);
     /// Метод получения портфеля по счёту

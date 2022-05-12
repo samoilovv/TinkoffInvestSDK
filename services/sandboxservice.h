@@ -1,7 +1,6 @@
 #ifndef SANDBOXSERVICE_H
 #define SANDBOXSERVICE_H
 
-#include <QObject>
 #include "customservice.h"
 #include <grpcpp/grpcpp.h>
 #include "sandbox.grpc.pb.h"
@@ -17,14 +16,11 @@ using namespace tinkoff::public1::invest::api::contract::v1;
 */
 class Sandbox: public CustomService
 {
-    Q_OBJECT
-    Q_CLASSINFO("sandbox", "Sandbox Service")
 
 public:  
     Sandbox(std::shared_ptr<Channel> channel, const std::string &token);
     ~Sandbox();
 
-public slots:
     /// Регистрация счёта в песочнице
     ServiceReply OpenSandboxAccount();
     /// Получение счетов в песочнице

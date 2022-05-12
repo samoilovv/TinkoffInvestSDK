@@ -1,7 +1,3 @@
-#include <QDebug>
-#include <QMetaMethod>
-#include <QVariant>
-#include <QSharedPointer>
 #include "investapiclient.h"
 #include "sandboxservice.h" 
 #include "marketdataservice.h"
@@ -16,7 +12,6 @@
 
 InvestApiClient::InvestApiClient(const std::string &host, const std::string &pass)
 {
-    qRegisterMetaType<ServiceReply>();
     auto channel = grpc::CreateChannel(host, grpc::SslCredentials(grpc::SslCredentialsOptions()));
     m_services["sandbox"] = std::make_shared<Sandbox>(channel, pass);
     m_services["users"] = std::make_shared<Users>(channel, pass);

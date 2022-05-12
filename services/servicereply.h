@@ -1,7 +1,6 @@
 #ifndef SERVICEREPLY_H
 #define SERVICEREPLY_H
 
-#include <QMetaType>
 #include "google/protobuf/message.h"
 #include <grpcpp/grpcpp.h>
 #include "tinkoffinvestsdk_export.h"
@@ -33,7 +32,5 @@ private:
     std::shared_ptr<google::protobuf::Message> m_replyPtr;
 
 };
-
-Q_DECLARE_METATYPE(ServiceReply);
 
 #endif // SERVICEREPLY_H

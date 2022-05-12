@@ -1,7 +1,6 @@
 #ifndef ORDERSSTREAMSERVICE_H
 #define ORDERSSTREAMSERVICE_H
 
-#include <QObject>
 #include <thread>
 #include "customservice.h"
 #include <grpcpp/grpcpp.h>
@@ -64,8 +63,6 @@ private:
 */
 class OrdersStream: public CustomService
 {
-    Q_OBJECT
-    Q_CLASSINFO("ordersstream", "OrdersStream Service")
 
 public:
     OrdersStream(std::shared_ptr<Channel> channel, const std::string &token);
@@ -76,11 +73,11 @@ public:
     /// Поток сделок пользователя, асинхронный вызов
     void TradesStreamAsync(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback);
     void AsyncCompleteRpc();
+
 private:
     std::unique_ptr<OrdersStreamService::Stub> m_ordersStreamService;
     std::unique_ptr<std::thread> m_grpcThread;
     CompletionQueue m_cq;
-
 
 };
 

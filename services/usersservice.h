@@ -1,7 +1,6 @@
 #ifndef USERSSERVICE_H
 #define USERSSERVICE_H
 
-#include <QObject>
 #include "customservice.h"
 #include <grpcpp/grpcpp.h>
 #include "users.grpc.pb.h"
@@ -19,14 +18,11 @@ using namespace tinkoff::public1::invest::api::contract::v1;
 */
 class Users: public CustomService
 {
-    Q_OBJECT
-    Q_CLASSINFO("users", "Users Service")
 
 public:  
     Users(std::shared_ptr<Channel> channel, const std::string &token);
     ~Users();
 
-public slots:
     /// Метод получения счетов пользователя
     ServiceReply GetAccounts();
     /// Расчёт маржинальных показателей по счёту

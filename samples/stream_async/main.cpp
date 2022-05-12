@@ -31,6 +31,5 @@ int main()
     //Top up your account
     //sandbox->SandboxPayIn(accountId, "rub", 3000, 0);
 
-    //return a.exec();
     return 0;
 }

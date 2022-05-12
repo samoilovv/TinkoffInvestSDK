@@ -30,12 +30,13 @@ class TINKOFFINVESTSDK_EXPORT InvestApiClient : public QObject {
 public:
     InvestApiClient(const std::string &host, const std::string &pass);
     ~InvestApiClient();
-    QVector<QVariant> getServiceMethods(const QString &serviceName);
-    QSharedPointer<CustomService> service(const QString &serviceName);
+//    QVector<QVariant> getServiceMethods(const QString &serviceName);
+    //QSharedPointer<CustomService> service(const QString &serviceName);
+    std::shared_ptr<CustomService> service(const std::string &serviceName);
 
 private:
-    QMap<QString, QSharedPointer<CustomService>> m_services;
-
+//    QMap<QString, QSharedPointer<CustomService>> m_services;
+    std::map<std::string, std::shared_ptr<CustomService>> m_services;
 };
 
 #endif // TINKOFFSDK_H

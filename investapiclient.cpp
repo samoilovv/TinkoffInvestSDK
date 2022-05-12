@@ -18,15 +18,15 @@ InvestApiClient::InvestApiClient(const std::string &host, const std::string &pas
 {
     qRegisterMetaType<ServiceReply>();
     auto channel = grpc::CreateChannel(host, grpc::SslCredentials(grpc::SslCredentialsOptions()));
-    m_services["sandbox"] = QSharedPointer<Sandbox>::create(channel, pass);
-    m_services["users"] = QSharedPointer<Users>::create(channel, pass);
-    m_services["marketdata"] = QSharedPointer<MarketData>::create(channel, pass);
-    m_services["marketdatastream"] = QSharedPointer<MarketDataStream>::create(channel, pass);
-    m_services["instruments"] = QSharedPointer<Instruments>::create(channel, pass);
-    m_services["operations"] = QSharedPointer<Operations>::create(channel, pass);
-    m_services["orders"] = QSharedPointer<Orders>::create(channel, pass);
-    m_services["ordersstream"] = QSharedPointer<OrdersStream>::create(channel, pass);
-    m_services["stoporders"] = QSharedPointer<StopOrders>::create(channel, pass);
+    m_services["sandbox"] = std::make_shared<Sandbox>(channel, pass);
+    m_services["users"] = std::make_shared<Users>(channel, pass);
+    m_services["marketdata"] = std::make_shared<MarketData>(channel, pass);
+    m_services["marketdatastream"] = std::make_shared<MarketDataStream>(channel, pass);
+    m_services["instruments"] = std::make_shared<Instruments>(channel, pass);
+    m_services["operations"] = std::make_shared<Operations>(channel, pass);
+    m_services["orders"] = std::make_shared<Orders>(channel, pass);
+    m_services["ordersstream"] = std::make_shared<OrdersStream>(channel, pass);
+    m_services["stoporders"] = std::make_shared<StopOrders>(channel, pass);
 }
 
 InvestApiClient::~InvestApiClient()
@@ -34,23 +34,23 @@ InvestApiClient::~InvestApiClient()
 
 }
 
-QVector<QVariant> InvestApiClient::getServiceMethods(const QString &serviceName)
-{
-    QVector<QVariant> result;
-    if (m_services.keys().contains(serviceName))
-    {
-        for (int i = m_services[serviceName]->metaObject()->methodOffset();
-                 i < m_services[serviceName]->metaObject()->methodCount(); i++)
-        {
-            auto vFuncName = QString(m_services[serviceName]->metaObject()->method(i).name());
-            result.append(QStringList({vFuncName, serviceName}));
-        }
-    }
-    return result;
-}
+//QVector<QVariant> InvestApiClient::getServiceMethods(const QString &serviceName)
+//{
+//    QVector<QVariant> result;
+//    if (m_services.keys().contains(serviceName))
+//    {
+//        for (int i = m_services[serviceName]->metaObject()->methodOffset();
+//                 i < m_services[serviceName]->metaObject()->methodCount(); i++)
+//        {
+//            auto vFuncName = QString(m_services[serviceName]->metaObject()->method(i).name());
+//            result.append(QStringList({vFuncName, serviceName}));
+//        }
+//    }
+//    return result;
+//}
 
-QSharedPointer<CustomService> InvestApiClient::service(const QString &serviceName)
+std::shared_ptr<CustomService> InvestApiClient::service(const std::string &serviceName)
 {
-    return m_services.keys().contains(serviceName) ? m_services[serviceName] : nullptr;
+    return m_services.count(serviceName) ? m_services[serviceName] : nullptr;
 }
 

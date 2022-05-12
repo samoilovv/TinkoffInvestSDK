@@ -25,27 +25,27 @@ public:
     ~Sandbox();
 
 public slots:
-    /// Метод регистрации счёта в песочнице
+    /// Регистрация счёта в песочнице
     ServiceReply OpenSandboxAccount();
-    /// Метод получения счетов в песочнице
+    /// Получение счетов в песочнице
     ServiceReply GetSandboxAccounts();
-    /// Метод закрытия счёта в песочнице
+    /// Закрытие счёта в песочнице
     ServiceReply CloseSandboxAccount(const std::string &accountId);
-    /// Метод выставления торгового поручения в песочнице
+    /// Выставление торгового поручения в песочнице
     ServiceReply PostSandboxOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano);
-    /// Метод получения списка активных заявок по счёту в песочнице
+    /// Получение списка активных заявок по счёту в песочнице
     ServiceReply GetSandboxOrders(const std::string &accountId);
-    /// Метод отмены торгового поручения в песочнице
+    /// Отмена торгового поручения в песочнице
     ServiceReply CancelSandboxOrder(const std::string &accountId, const std::string  &orderId);
-    /// Метод получения статуса заявки в песочнице
+    /// Получение статуса заявки в песочнице
     ServiceReply GetSandboxOrderState(const std::string  &accountId, const std::string  &orderId);
-    /// Метод получения позиций по виртуальному счёту песочницы
+    /// Получение позиций по виртуальному счёту песочницы
     ServiceReply GetSandboxPositions(const std::string  &accountId);
-    /// Метод получения операций в песочнице по номеру счёта
+    /// Получение операций в песочнице по номеру счёта
     ServiceReply GetSandboxOperations(const std::string  &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
-    /// Метод получения портфолио в песочнице
+    /// Получение портфолио в песочнице
     ServiceReply GetSandboxPortfolio(const std::string  &accountId);
-    /// Метод пополнения счёта в песочнице
+    /// Пополнение счёта в песочнице
     ServiceReply SandboxPayIn(const std::string &accountId, const std::string  &currency, int64_t units, int32_t nano);
 
 private:

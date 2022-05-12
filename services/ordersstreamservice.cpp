@@ -7,7 +7,7 @@ OrdersStream::OrdersStream(std::shared_ptr<grpc::Channel> channel, const std::st
     CustomService(token),
     m_ordersStreamService(OrdersStreamService::NewStub(channel))
 {
-    m_grpcThread.reset(new std::thread(std::bind(&OrdersStream::AsyncCompleteRpc, this)));
+    //m_grpcThread.reset(new std::thread(std::bind(&OrdersStream::AsyncCompleteRpc, this)));
 }
 
 OrdersStream::~OrdersStream()
@@ -78,7 +78,7 @@ void AsyncClientCall::Proceed(bool ok)
 {
     if(callStatus == PROCESS)
     {
-        if(!ok)
+        if (!ok)
         {
             std::cout << "[Proceed1M]: Trying finish" << std::endl;
             responder->Finish(&status, (void*)this);
@@ -86,9 +86,12 @@ void AsyncClientCall::Proceed(bool ok)
             return ;
         }
         responder->Read(&reply, (void*)this);
-        TradesStreamResponse replycopy(reply);
-        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(replycopy));
-        if (callback) callback(data);
+
+        std::cout << reply.DebugString() << std::endl;
+
+//        TradesStreamResponse replycopy(reply);
+//        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(replycopy));
+//        if (callback) callback(data);
     }
     else if(callStatus == FINISH)
     {

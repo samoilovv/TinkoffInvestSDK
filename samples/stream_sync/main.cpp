@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
     InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get reference to marketdata service
-    auto marketdatastream = qSharedPointerCast<MarketDataStream>(tinkoffInvestClient.service("marketdatastream"));
-    auto orders = qSharedPointerCast<OrdersStream>(tinkoffInvestClient.service("ordersstream"));
+    auto marketdatastream = std::dynamic_pointer_cast<MarketDataStream>(tinkoffInvestClient.service("marketdatastream"));
+    auto orders = std::dynamic_pointer_cast<OrdersStream>(tinkoffInvestClient.service("ordersstream"));
 
     //get 10 last prices, unsubscribe and quit
 //    int answersCount = 0;

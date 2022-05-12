@@ -6,14 +6,14 @@ int main()
 {
     InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
-    //print list of sandbox service functions
-    auto serviceList = tinkoffInvestClient.getServiceMethods("sandbox");
-    for (int i = 0; i < serviceList.count(); i++)
-         std::cout << serviceList[i].toStringList()[0].toStdString() << std::endl;
+//    //print list of sandbox service functions
+//    auto serviceList = tinkoffInvestClient.getServiceMethods("sandbox");
+//    for (int i = 0; i < serviceList.count(); i++)
+//         std::cout << serviceList[i].toStringList()[0].toStdString() << std::endl;
 
     //get references to sandbox and marketdata services
-    auto sandbox = qSharedPointerCast<Sandbox>(tinkoffInvestClient.service("sandbox"));
-    auto marketdata = qSharedPointerCast<MarketData>(tinkoffInvestClient.service("marketdata"));
+    auto sandbox = std::dynamic_pointer_cast<Sandbox>(tinkoffInvestClient.service("sandbox"));
+    auto marketdata = std::dynamic_pointer_cast<MarketData>(tinkoffInvestClient.service("marketdata"));
 
     //print last prices of British American Tobacco and Visa Inc.
     auto prices = marketdata->GetLastPrices({"BBG000BWPXQ8", "BBG000PSKYX7"});

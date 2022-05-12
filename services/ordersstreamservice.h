@@ -75,13 +75,13 @@ public:
     void TradesStream(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback);
     /// Поток сделок пользователя, асинхронный вызов
     void TradesStreamAsync(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback);
-
+    void AsyncCompleteRpc();
 private:
     std::unique_ptr<OrdersStreamService::Stub> m_ordersStreamService;
     std::unique_ptr<std::thread> m_grpcThread;
     CompletionQueue m_cq;
 
-    void AsyncCompleteRpc();
+
 };
 
 #endif // ORDERSSTREAMSERVICE_H

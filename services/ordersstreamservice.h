@@ -34,7 +34,7 @@ public:
 
   }
   virtual ~CommonAsyncClientCall(){}
-  virtual void Proceed(bool = true) = 0;
+  //virtual void Proceed(bool = true) = 0;
 };
 
 class AsyncClientCall : public CommonAsyncClientCall
@@ -49,7 +49,7 @@ public:
     CallStatus callStatus;
     Status status;
 
-    virtual void Proceed(bool ok = true);
+    void Proceed(bool ok = true);
 
 private:
     std::unique_ptr<ClientAsyncReader<TradesStreamResponse> > responder;

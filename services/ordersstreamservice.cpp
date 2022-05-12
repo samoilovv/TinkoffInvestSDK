@@ -21,7 +21,7 @@ void OrdersStream::AsyncCompleteRpc()
     bool ok = false;
     while(m_cq.Next(&got_tag, &ok))
     {
-        CommonAsyncClientCall* call = static_cast<CommonAsyncClientCall*>(got_tag);
+        AsyncClientCall * call = static_cast<AsyncClientCall*>(got_tag);
         call->Proceed(ok);
     }
 }
@@ -66,7 +66,7 @@ void OrdersStream::TradesStream(const std::vector<std::string> &accounts, std::f
 }
 
 AsyncClientCall::AsyncClientCall(const TradesStreamRequest &request, grpc::CompletionQueue &cq_, std::unique_ptr<OrdersStreamService::Stub> &stub_, std::string token, std::function<void (ServiceReply)> callback)
-    :CommonAsyncClientCall(token), callback(callback), callStatus(PROCESS)
+    :CommonAsyncClientCall(token), callStatus(PROCESS), callback(callback)
 {
     std::string meta_value = "Bearer " + token;
     context.AddMetadata("authorization", meta_value);

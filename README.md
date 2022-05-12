@@ -1,5 +1,5 @@
 # TinkoffInvestSDK
-Qt client for Tinkoff invest API
+C++ client for Tinkoff invest API
 
 # OpenAPI SDK для Тинькофф Инвестиций
 

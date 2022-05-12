@@ -39,11 +39,11 @@ int main(int argc, char *argv[])
 
 
 
-    std::thread thread_ = std::thread(&OrdersStream::AsyncCompleteRpc, orders.get());
+    //std::thread thread_ = std::thread(&OrdersStream::AsyncCompleteRpc, orders.get());
 
-    orders->GladToSeeMe(tradesStreamCallBack);
+    orders->TradesStreamAsync({""}, tradesStreamCallBack);
 
-    thread_.join();
+    //thread_.join();
 
 
 

@@ -7,12 +7,7 @@ OrdersStream::OrdersStream(std::shared_ptr<grpc::Channel> channel, const std::st
     CustomService(token),
     m_ordersStreamService(OrdersStreamService::NewStub(channel))
 {
-//    std::string meta_value = "Bearer " + m_token;
-//    m_context.AddMetadata("authorization", meta_value);
-//    m_context.AddMetadata("x-app-name", APP_NAME);
-
-//    m_grpc_thread_.reset(new std::thread(std::bind(&OrdersStream::GrpcThread, this)));
-//    m_reader = m_ordersStreamService->PrepareAsyncTradesStream(&m_context, m_request, &m_cq);
+    m_grpcThread.reset(new std::thread(std::bind(&OrdersStream::AsyncCompleteRpc, this)));
 }
 
 OrdersStream::~OrdersStream()
@@ -20,56 +15,36 @@ OrdersStream::~OrdersStream()
 
 }
 
-void OrdersStream::GrpcThread() {
-    while (true) {
-        void * got_tag;
-        bool ok = false;
-        if (!m_cq.Next(&got_tag, &ok)) {
-            std::cerr << "Client stream closed" << std::endl;
-            break;
-        }
-        if (ok) {
-            std::cout << std::endl
-                      << "Processing completion queue tag " << got_tag
-                      << std::endl;
-            switch (static_cast<Type>(reinterpret_cast<long>(got_tag))) {
-            case Type::READ:
-                std::cout << "Read a new message." << std::endl;
-                std::cout << "Got reply: " << m_reply.DebugString() << std::endl;
-                break;
-            case Type::CONNECT:
-                std::cout << "Server connected." << std::endl;
-                break;
-            case Type::FINISH:
-                std::cout << "Client finish; status = "
-                          << (m_status.ok() ? "ok" : "cancelled")
-                          << std::endl;
-                m_context.TryCancel();
-                m_cq.Shutdown();
-                break;
-            default:
-                std::cerr << "Unexpected tag " << got_tag << std::endl;
-                GPR_ASSERT(false);
-            }
-        }
+void OrdersStream::AsyncCompleteRpc()
+{
+    void * got_tag;
+    bool ok = false;
+    while(m_cq.Next(&got_tag, &ok))
+    {
+        CommonAsyncClientCall* call = static_cast<CommonAsyncClientCall*>(got_tag);
+        call->Proceed(ok);
     }
 }
 
-
 void OrdersStream::TradesStreamAsync(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback)
 {
+    TradesStreamRequest request;
     for (auto &account: accounts)
     {
-        m_request.add_accounts(account);
+        if (!account.empty())
+            request.add_accounts(account);
     }
-
-    m_reader->StartCall(reinterpret_cast<void*>(Type::CONNECT));
-    m_reader->Read(&m_reply, reinterpret_cast<void*>(Type::READ));
+    new AsyncClientCall(request, m_cq, m_ordersStreamService, m_token, callback);
 }
 
 void OrdersStream::TradesStream(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback)
 {
     TradesStreamRequest request;
+    for (auto &account: accounts)
+    {
+        if (!account.empty())
+            request.add_accounts(account);
+    }
     TradesStreamResponse reply;
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -90,4 +65,11 @@ void OrdersStream::TradesStream(const std::vector<std::string> &accounts, std::f
     }
 }
 
-
+AsyncClientCall::AsyncClientCall(const TradesStreamRequest &request, grpc::CompletionQueue &cq_, std::unique_ptr<OrdersStreamService::Stub> &stub_, std::string token, std::function<void (ServiceReply)> callback)
+    :CommonAsyncClientCall(token), callback(callback)/*, callStatus(PROCESS)*/
+{
+    std::string meta_value = "Bearer " + token;
+    context.AddMetadata("authorization", meta_value);
+    context.AddMetadata("x-app-name", APP_NAME);
+    responder = stub_->AsyncTradesStream(&context, request, &cq_, (void*)this);
+}

@@ -17,10 +17,10 @@ using namespace tinkoff::public1::invest::api::contract::v1;
 class CommonAsyncClientCall
 {
 public:
-  ClientContext context;
+//  ClientContext context;
   TradesStreamResponse reply;
   enum CallStatus { CREATE, PROCESS, FINISH };
-  CallStatus callStatus ;
+  CallStatus callStatus;
   Status status;
   void printReply(const char* from)
   {
@@ -31,28 +31,26 @@ public:
   }
   explicit CommonAsyncClientCall(std::string token):callStatus(PROCESS)
   {
-      std::string meta_value = "Bearer " + token;
-      context.AddMetadata("authorization", meta_value);
-      context.AddMetadata("x-app-name", APP_NAME);
+
   }
   virtual ~CommonAsyncClientCall(){}
   virtual void Proceed(bool = true) = 0;
 };
 
-class AsyncClientCall1M : public CommonAsyncClientCall
+class AsyncClientCall : public CommonAsyncClientCall
 {
   std::unique_ptr<ClientAsyncReader<TradesStreamResponse> > responder;
   std::function<void(ServiceReply)> callback;
 public:
-  AsyncClientCall1M(const TradesStreamRequest& request, CompletionQueue& cq_, std::unique_ptr<OrdersStreamService::Stub>& stub_, std::string token, std::function<void(ServiceReply)> callback)
-  :CommonAsyncClientCall(token), callback(callback)
-  {
-    std::cout << "[Proceed1M]: new client 1-M" << std::endl;
-    responder = stub_->AsyncTradesStream(&context, request, &cq_, (void*)this);
-    callStatus = PROCESS ;
-  }
+  AsyncClientCall(const TradesStreamRequest& request, CompletionQueue& cq_, std::unique_ptr<OrdersStreamService::Stub>& stub_, std::string token, std::function<void(ServiceReply)> callback);
+//  ~AsyncClientCall(){}
+  ClientContext context;
+//  TradesStreamResponse reply;
+//  enum CallStatus { CREATE, PROCESS, FINISH };
+//  CallStatus callStatus;
+//  Status status;
 
-  virtual void Proceed(bool ok = true) override
+  virtual void Proceed(bool ok = true)
   {
     if(callStatus == PROCESS)
     {
@@ -92,12 +90,6 @@ class OrdersStream: public CustomService
     Q_OBJECT
     Q_CLASSINFO("ordersstream", "OrdersStream Service")
 
-    enum Type {
-        CONNECT = 1,
-        READ = 2,
-        FINISH = 3
-    };
-
 public:
     OrdersStream(std::shared_ptr<Channel> channel, const std::string &token);
     ~OrdersStream();
@@ -107,35 +99,12 @@ public:
     /// Поток сделок пользователя, асинхронный вызов
     void TradesStreamAsync(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback);
 
-    void GladToSeeMe(std::function<void(ServiceReply)> callback)
-    {
-      TradesStreamRequest request;
-
-      new AsyncClientCall1M(request, m_cq, m_ordersStreamService, m_token, callback);
-    }
-
-    void AsyncCompleteRpc()
-    {
-        void* got_tag;
-        bool ok = false;
-        while(m_cq.Next(&got_tag, &ok))
-        {
-            CommonAsyncClientCall* call = static_cast<CommonAsyncClientCall*>(got_tag);
-            call->Proceed(ok);
-        }
-        std::cout << "Completion queue is shutting down." << std::endl;
-    }
-
 private:
     std::unique_ptr<OrdersStreamService::Stub> m_ordersStreamService;
-    std::unique_ptr<std::thread> m_grpc_thread_;
-    std::unique_ptr<ClientAsyncReader<TradesStreamResponse>> m_reader;
+    std::unique_ptr<std::thread> m_grpcThread;
     CompletionQueue m_cq;
-    TradesStreamResponse m_reply;
-    ClientContext m_context;
-    TradesStreamRequest m_request;
-    grpc::Status m_status = grpc::Status::OK;
-    void GrpcThread();
+
+    void AsyncCompleteRpc();
 };
 
 #endif // ORDERSSTREAMSERVICE_H

@@ -18,18 +18,18 @@ class CommonAsyncClientCall
 {
 public:
 //  ClientContext context;
-  TradesStreamResponse reply;
-  enum CallStatus { CREATE, PROCESS, FINISH };
-  CallStatus callStatus;
-  Status status;
-  void printReply(const char* from)
-  {
-    if(!reply.DebugString().empty())
-      std::cout << "[" << from << "]: reply message = " << reply.DebugString() << std::endl;
-    else
-      std::cout << "[" << from << "]: reply message empty" << std::endl;
-  }
-  explicit CommonAsyncClientCall(std::string token):callStatus(PROCESS)
+  //TradesStreamResponse reply;
+  //enum CallStatus { CREATE, PROCESS, FINISH };
+  //CallStatus callStatus;
+  //Status status;
+//  void printReply(const char* from)
+//  {
+//    if(!reply.DebugString().empty())
+//      std::cout << "[" << from << "]: reply message = " << reply.DebugString() << std::endl;
+//    else
+//      std::cout << "[" << from << "]: reply message empty" << std::endl;
+//  }
+  explicit CommonAsyncClientCall(std::string token)/*:callStatus(PROCESS)*/
   {
 
   }
@@ -39,44 +39,21 @@ public:
 
 class AsyncClientCall : public CommonAsyncClientCall
 {
-  std::unique_ptr<ClientAsyncReader<TradesStreamResponse> > responder;
-  std::function<void(ServiceReply)> callback;
-public:
-  AsyncClientCall(const TradesStreamRequest& request, CompletionQueue& cq_, std::unique_ptr<OrdersStreamService::Stub>& stub_, std::string token, std::function<void(ServiceReply)> callback);
-//  ~AsyncClientCall(){}
-  ClientContext context;
-//  TradesStreamResponse reply;
-//  enum CallStatus { CREATE, PROCESS, FINISH };
-//  CallStatus callStatus;
-//  Status status;
 
-  virtual void Proceed(bool ok = true)
-  {
-    if(callStatus == PROCESS)
-    {
-      if(!ok)
-      {
-        std::cout << "[Proceed1M]: Trying finish" << std::endl;
-        responder->Finish(&status, (void*)this);
-        callStatus = FINISH;
-        return ;
-      }
-      responder->Read(&reply, (void*)this);
-      auto replycopy(reply);
-      auto data = ServiceReply(std::make_shared<TradesStreamResponse>(replycopy));
-      if (callback)
-      {
-        callback(data);
-      }
-      printReply("Proceed1M");
-    }
-    else if(callStatus == FINISH)
-    {
-      std::cout << "[Proceed1M]: Good Bye" << std::endl;
-      delete this;
-    }
-    return ;
-  }
+public:
+    AsyncClientCall(const TradesStreamRequest& request, CompletionQueue& cq_, std::unique_ptr<OrdersStreamService::Stub>& stub_, std::string token, std::function<void(ServiceReply)> callback);
+    //  ~AsyncClientCall(){}
+    ClientContext context;
+    TradesStreamResponse reply;
+    enum CallStatus {CREATE, PROCESS, FINISH};
+    CallStatus callStatus;
+    Status status;
+
+    virtual void Proceed(bool ok = true);
+
+private:
+    std::unique_ptr<ClientAsyncReader<TradesStreamResponse> > responder;
+    std::function<void(ServiceReply)> callback;
 
 };
 

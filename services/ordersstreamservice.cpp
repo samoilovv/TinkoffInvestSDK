@@ -66,10 +66,34 @@ void OrdersStream::TradesStream(const std::vector<std::string> &accounts, std::f
 }
 
 AsyncClientCall::AsyncClientCall(const TradesStreamRequest &request, grpc::CompletionQueue &cq_, std::unique_ptr<OrdersStreamService::Stub> &stub_, std::string token, std::function<void (ServiceReply)> callback)
-    :CommonAsyncClientCall(token), callback(callback)/*, callStatus(PROCESS)*/
+    :CommonAsyncClientCall(token), callback(callback), callStatus(PROCESS)
 {
     std::string meta_value = "Bearer " + token;
     context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
     responder = stub_->AsyncTradesStream(&context, request, &cq_, (void*)this);
+}
+
+void AsyncClientCall::Proceed(bool ok)
+{
+    if(callStatus == PROCESS)
+    {
+        if(!ok)
+        {
+            std::cout << "[Proceed1M]: Trying finish" << std::endl;
+            responder->Finish(&status, (void*)this);
+            callStatus = FINISH;
+            return ;
+        }
+        responder->Read(&reply, (void*)this);
+        TradesStreamResponse replycopy(reply);
+        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(replycopy));
+        if (callback) callback(data);
+    }
+    else if(callStatus == FINISH)
+    {
+        std::cout << "[Proceed1M]: Good Bye" << std::endl;
+        delete this;
+    }
+    return;
 }

@@ -33,10 +33,10 @@ $ export TOKEN=YOUR_TOKEN
 
 ```cpp
 
-InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
 //get reference to sandbox service
-auto sandbox = std::dynamic_pointer_cast<Sandbox>(tinkoffInvestClient.service("sandbox"));
+auto sandbox = std::dynamic_pointer_cast<Sandbox>(сlient.service("sandbox"));
 
 //open account
 sandbox->OpenSandboxAccount();
@@ -63,10 +63,10 @@ void tradesStreamCallBack(ServiceReply reply)
 
 int main()
 {
-    InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+    InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get references to Sandbox and OrdersStream service
-    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(tinkoffInvestClient.service("makretdatastream"));
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("makretdatastream"));
 
     //Start MarketData stream
     std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());
@@ -93,7 +93,7 @@ void tradesStreamCallBack(ServiceReply reply)
 
 int main()
 {
-    InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+    InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get references to Sandbox and OrdersStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(tinkoffInvestClient.service("makretdatastream"));

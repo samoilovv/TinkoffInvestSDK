@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(stream LANGUAGES CXX)
+project(stream_async LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

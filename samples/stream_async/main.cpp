@@ -12,11 +12,11 @@ void tradesStreamCallBack(ServiceReply reply)
 
 int main()
 {
-    InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+    InvestApiClient tinkClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get references to Sandbox and OrdersStream service
-    //auto sandbox = std::dynamic_pointer_cast<Sandbox>(tinkoffInvestClient.service("sandbox"));
-    auto orders = std::dynamic_pointer_cast<OrdersStream>(tinkoffInvestClient.service("ordersstream"));
+    //auto sandbox = std::dynamic_pointer_cast<Sandbox>(tinkClient.service("sandbox"));
+    auto orders = std::dynamic_pointer_cast<OrdersStream>(tinkClient.service("ordersstream"));
 
     //Get your account Id
     //auto accountId = sandbox->GetSandboxAccounts().accountID(0);

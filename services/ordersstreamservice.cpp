@@ -65,8 +65,8 @@ void OrdersStream::TradesStream(const std::vector<std::string> &accounts, std::f
     }
 }
 
-AsyncClientCall::AsyncClientCall(const TradesStreamRequest &request, grpc::CompletionQueue &cq_, std::unique_ptr<OrdersStreamService::Stub> &stub_, std::string token, std::function<void (ServiceReply)> callback)
-    :CommonAsyncClientCall(token), callStatus(PROCESS), callback(callback)
+OrdersStream::AsyncClientCall::AsyncClientCall(const TradesStreamRequest &request, grpc::CompletionQueue &cq_, std::unique_ptr<OrdersStreamService::Stub> &stub_, std::string token, std::function<void (ServiceReply)> callback)
+    : callStatus(PROCESS), callback(callback)
 {
     std::string meta_value = "Bearer " + token;
     context.AddMetadata("authorization", meta_value);
@@ -74,29 +74,26 @@ AsyncClientCall::AsyncClientCall(const TradesStreamRequest &request, grpc::Compl
     responder = stub_->AsyncTradesStream(&context, request, &cq_, (void*)this);
 }
 
-void AsyncClientCall::Proceed(bool ok)
+void OrdersStream::AsyncClientCall::Proceed(bool ok)
 {
     if(callStatus == PROCESS)
     {
         if (!ok)
         {
-            std::cout << "[Proceed1M]: Trying finish" << std::endl;
+            std::cout << "Trying finish" << std::endl;
             responder->Finish(&status, (void*)this);
             callStatus = FINISH;
             return ;
         }
         responder->Read(&reply, (void*)this);
-
-        std::cout << reply.DebugString() << std::endl;
-
-//        TradesStreamResponse replycopy(reply);
-//        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(replycopy));
-//        if (callback) callback(data);
+        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(reply));
+        if (callback) callback(data);
     }
     else if(callStatus == FINISH)
     {
-        std::cout << "[Proceed1M]: Good Bye" << std::endl;
+        std::cout << "Finish" << std::endl;
         delete this;
     }
     return;
 }
+

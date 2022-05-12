@@ -315,6 +315,80 @@ void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis,
     }
 }
 
+void MarketDataStream::SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval> > &candleInstruments, std::function<void (ServiceReply)> callback)
+{
+    MarketDataRequest request;
+    auto scr = new SubscribeCandlesRequest();
+    scr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    for (auto &candleInstrument: candleInstruments)
+    {
+        auto instr = scr->add_instruments();
+        instr->set_figi(candleInstrument.first);
+        instr->set_interval(candleInstrument.second);
+    }
+    request.set_allocated_subscribe_candles_request(scr);
+
+    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+}
+
+void MarketDataStream::SubscribeOrderBookAsync(const std::string &figi, int32_t depth, std::function<void (ServiceReply)> callback)
+{
+    MarketDataRequest request;
+    auto sobr = new SubscribeOrderBookRequest();
+    sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    auto obi = sobr->add_instruments();
+    obi->set_figi(figi);
+    obi->set_depth(depth);
+    request.set_allocated_subscribe_order_book_request(sobr);
+
+    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+}
+
+void MarketDataStream::SubscribeTradesAsync(const std::vector<std::string> &figis, std::function<void (ServiceReply)> callback)
+{
+    MarketDataRequest request;
+    auto str = new SubscribeTradesRequest();
+    str->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    for (auto &figi: figis)
+    {
+        auto instr = str->add_instruments();
+        instr->set_figi(figi);
+    }
+    request.set_allocated_subscribe_trades_request(str);
+
+    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+}
+
+void MarketDataStream::SubscribeInfoAsync(const std::vector<std::string> &figis, std::function<void (ServiceReply)> callback)
+{
+    MarketDataRequest request;
+    auto sir = new SubscribeInfoRequest();
+    for (auto &figi: figis)
+    {
+        auto obi = sir->add_instruments();
+        obi->set_figi(figi);
+    }
+    sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    request.set_allocated_subscribe_info_request(sir);
+
+    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+}
+
+void MarketDataStream::SubscribeLastPriceAsync(const std::vector<std::string> &figis, std::function<void (ServiceReply)> callback)
+{
+    MarketDataRequest request;
+    auto slpr = new SubscribeLastPriceRequest();
+    for (auto &figi: figis)
+    {
+        auto obi = slpr->add_instruments();
+        obi->set_figi(figi);
+    }
+    slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    request.set_allocated_subscribe_last_price_request(slpr);
+
+    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+}
+
 void MarketDataStream::UnSubscribeLastPrice()
 {
     ClientContext context;

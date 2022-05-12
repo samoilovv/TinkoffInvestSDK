@@ -39,7 +39,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-slots">Открытые слоты</a> &#124;
 <a href="#pub-methods">Открытые члены</a> &#124;
 <a href="class_stop_orders-members.html">Полный список членов класса</a>  </div>
   <div class="headertitle">
@@ -54,8 +53,11 @@ $(function() {
 
 <p>Базовые классы:<a class="el" href="class_custom_service.html">CustomService</a>.</p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
-Открытые слоты</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ab4cc8aef3cb4ec7bce4127b5d767729d"><td class="memItemLeft" align="right" valign="top"><a id="ab4cc8aef3cb4ec7bce4127b5d767729d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>StopOrders</b> (std::shared_ptr&lt; Channel &gt; channel, const std::string &amp;token)</td></tr>
+<tr class="separator:ab4cc8aef3cb4ec7bce4127b5d767729d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae74e1a9f125371600e170c45aeb01fb8"><td class="memItemLeft" align="right" valign="top"><a id="ae74e1a9f125371600e170c45aeb01fb8"></a>
 <a class="el" href="class_service_reply.html">ServiceReply</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_orders.html#ae74e1a9f125371600e170c45aeb01fb8">PostStopOrder</a> (const std::string &amp;figi, int64_t quantity, int64_t units, int32_t nano, int64_t stopunits, int32_t stopnano, StopOrderDirection direction, const std::string &amp;accountId, StopOrderExpirationType expirationType, StopOrderType stopOrderType, const std::string &amp;orderId, int64_t expireSeconds, int32_t expireNanos)</td></tr>
 <tr class="memdesc:ae74e1a9f125371600e170c45aeb01fb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод выставления стоп-заявки <br /></td></tr>
@@ -68,34 +70,21 @@ $(function() {
 <a class="el" href="class_service_reply.html">ServiceReply</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stop_orders.html#afdd2a6d9a65ca9329c0919ef2e4c3871">CancelStopOrder</a> (const std::string &amp;accountId, const std::string &amp;stopOrderId)</td></tr>
 <tr class="memdesc:afdd2a6d9a65ca9329c0919ef2e4c3871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод отмены стоп-заявки <br /></td></tr>
 <tr class="separator:afdd2a6d9a65ca9329c0919ef2e4c3871"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Открытые члены</h2></td></tr>
-<tr class="memitem:a604fcba93a899642598baa9471375d57"><td class="memItemLeft" align="right" valign="top"><a id="a604fcba93a899642598baa9471375d57"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>StopOrders</b> (std::shared_ptr&lt; Channel &gt; channel, const QString &amp;token)</td></tr>
-<tr class="separator:a604fcba93a899642598baa9471375d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_custom_service"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_custom_service')"><img src="closed.png" alt="-"/>&#160;Открытые члены унаследованные от <a class="el" href="class_custom_service.html">CustomService</a></td></tr>
-<tr class="memitem:a1903a7af574bff14cbd8bea5cf1ebae6 inherit pub_methods_class_custom_service"><td class="memItemLeft" align="right" valign="top"><a id="a1903a7af574bff14cbd8bea5cf1ebae6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CustomService</b> (const QString &amp;token)</td></tr>
-<tr class="separator:a1903a7af574bff14cbd8bea5cf1ebae6 inherit pub_methods_class_custom_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa19bff5965744b7169fe1f27f032640 inherit pub_methods_class_custom_service"><td class="memItemLeft" align="right" valign="top"><a id="afa19bff5965744b7169fe1f27f032640"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CustomService</b> (const std::string &amp;token)</td></tr>
+<tr class="separator:afa19bff5965744b7169fe1f27f032640 inherit pub_methods_class_custom_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Дополнительные унаследованные члены</h2></td></tr>
-<tr class="inherit_header signals_class_custom_service"><td colspan="2" onclick="javascript:toggleInherit('signals_class_custom_service')"><img src="closed.png" alt="-"/>&#160;Сигналы унаследованные от <a class="el" href="class_custom_service.html">CustomService</a></td></tr>
-<tr class="memitem:aefc12e29c81cb050404c5afc5b39eef3 inherit signals_class_custom_service"><td class="memItemLeft" align="right" valign="top"><a id="aefc12e29c81cb050404c5afc5b39eef3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendData</b> (<a class="el" href="class_service_reply.html">ServiceReply</a>)</td></tr>
-<tr class="separator:aefc12e29c81cb050404c5afc5b39eef3 inherit signals_class_custom_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_custom_service"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_custom_service')"><img src="closed.png" alt="-"/>&#160;Защищенные члены унаследованные от <a class="el" href="class_custom_service.html">CustomService</a></td></tr>
 <tr class="memitem:a89cfe4a4b512f3a86c65affdd5121765 inherit pro_methods_class_custom_service"><td class="memItemLeft" align="right" valign="top"><a id="a89cfe4a4b512f3a86c65affdd5121765"></a>
 std::shared_ptr&lt; grpc::ClientContext &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>makeContext</b> ()</td></tr>
 <tr class="separator:a89cfe4a4b512f3a86c65affdd5121765 inherit pro_methods_class_custom_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38e2dcd7578e2f2ba4427cbd13ea9e1b inherit pro_methods_class_custom_service"><td class="memItemLeft" align="right" valign="top"><a id="a38e2dcd7578e2f2ba4427cbd13ea9e1b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>emitServiceData</b> (const <a class="el" href="class_service_reply.html">ServiceReply</a> &amp;data)</td></tr>
-<tr class="separator:a38e2dcd7578e2f2ba4427cbd13ea9e1b inherit pro_methods_class_custom_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_custom_service"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_custom_service')"><img src="closed.png" alt="-"/>&#160;Защищенные данные унаследованные от <a class="el" href="class_custom_service.html">CustomService</a></td></tr>
-<tr class="memitem:aa87ec0064a8fb7866731e3a639ea02d4 inherit pro_attribs_class_custom_service"><td class="memItemLeft" align="right" valign="top"><a id="aa87ec0064a8fb7866731e3a639ea02d4"></a>
-const QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_token</b></td></tr>
-<tr class="separator:aa87ec0064a8fb7866731e3a639ea02d4 inherit pro_attribs_class_custom_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a5b4ea456f710d9e273f32914df5c41 inherit pro_attribs_class_custom_service"><td class="memItemLeft" align="right" valign="top"><a id="a0a5b4ea456f710d9e273f32914df5c41"></a>
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_token</b></td></tr>
+<tr class="separator:a0a5b4ea456f710d9e273f32914df5c41 inherit pro_attribs_class_custom_service"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Сервис работы со стоп-заявками </p>

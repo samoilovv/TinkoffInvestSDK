@@ -49,47 +49,43 @@ $(function() {
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SANDBOXSERVICE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define SANDBOXSERVICE_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;customservice.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;grpcpp/grpcpp.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;sandbox.grpc.pb.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;servicereply.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using</span> grpc::Channel;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using namespace </span>tinkoff::public1::invest::api::contract::v1;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_sandbox.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_sandbox.html">Sandbox</a>: <span class="keyword">public</span> <a class="code" href="class_custom_service.html">CustomService</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    Q_CLASSINFO(<span class="stringliteral">&quot;sandbox&quot;</span>, <span class="stringliteral">&quot;Sandbox Service&quot;</span>)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:  </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_sandbox.html">Sandbox</a>(std::shared_ptr&lt;Channel&gt; channel, <span class="keyword">const</span> QString &amp;token);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    ~<a class="code" href="class_sandbox.html">Sandbox</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> OpenSandboxAccount();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxAccounts();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> CloseSandboxAccount(<span class="keyword">const</span> std::string &amp;accountId);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> PostSandboxOrder(<span class="keyword">const</span> std::string &amp;figi, int64_t quantity, int64_t units, int32_t nano);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxOrders(<span class="keyword">const</span> std::string &amp;accountId);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> CancelSandboxOrder(<span class="keyword">const</span> std::string &amp;accountId, <span class="keyword">const</span> std::string  &amp;orderId);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxOrderState(<span class="keyword">const</span> std::string  &amp;accountId, <span class="keyword">const</span> std::string  &amp;orderId);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxPositions(<span class="keyword">const</span> std::string  &amp;accountId);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxOperations(<span class="keyword">const</span> std::string  &amp;accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxPortfolio(<span class="keyword">const</span> std::string  &amp;accountId);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> SandboxPayIn(<span class="keyword">const</span> std::string &amp;accountId, <span class="keyword">const</span> std::string  &amp;currency, int64_t units, int32_t nano);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::unique_ptr&lt;SandboxService::Stub&gt; m_sandboxService;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif // SANDBOXSERVICE_H</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;customservice.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;grpcpp/grpcpp.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;sandbox.grpc.pb.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;servicereply.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using</span> grpc::Channel;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using namespace </span>tinkoff::public1::invest::api::contract::v1;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_sandbox.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_sandbox.html">Sandbox</a>: <span class="keyword">public</span> <a class="code" href="class_custom_service.html">CustomService</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:  </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_sandbox.html">Sandbox</a>(std::shared_ptr&lt;Channel&gt; channel, <span class="keyword">const</span> std::string &amp;token);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    ~<a class="code" href="class_sandbox.html">Sandbox</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> OpenSandboxAccount();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxAccounts();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> CloseSandboxAccount(<span class="keyword">const</span> std::string &amp;accountId);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> PostSandboxOrder(<span class="keyword">const</span> std::string &amp;figi, int64_t quantity, int64_t units, int32_t nano);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxOrders(<span class="keyword">const</span> std::string &amp;accountId);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> CancelSandboxOrder(<span class="keyword">const</span> std::string &amp;accountId, <span class="keyword">const</span> std::string  &amp;orderId);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxOrderState(<span class="keyword">const</span> std::string  &amp;accountId, <span class="keyword">const</span> std::string  &amp;orderId);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxPositions(<span class="keyword">const</span> std::string  &amp;accountId);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxOperations(<span class="keyword">const</span> std::string  &amp;accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> GetSandboxPortfolio(<span class="keyword">const</span> std::string  &amp;accountId);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_service_reply.html">ServiceReply</a> SandboxPayIn(<span class="keyword">const</span> std::string &amp;accountId, <span class="keyword">const</span> std::string  &amp;currency, int64_t units, int32_t nano);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::unique_ptr&lt;SandboxService::Stub&gt; m_sandboxService;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // SANDBOXSERVICE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_custom_service_html"><div class="ttname"><a href="class_custom_service.html">CustomService</a></div><div class="ttdoc">Родительский класс для всех сервисов</div><div class="ttdef"><b>Definition:</b> customservice.h:17</div></div>
-<div class="ttc" id="aclass_service_reply_html"><div class="ttname"><a href="class_service_reply.html">ServiceReply</a></div><div class="ttdoc">Класс-обертка над proto-ответами сервисов</div><div class="ttdef"><b>Definition:</b> servicereply.h:16</div></div>
-<div class="ttc" id="aclass_sandbox_html"><div class="ttname"><a href="class_sandbox.html">Sandbox</a></div><div class="ttdoc">Сервис для работы с песочницей</div><div class="ttdef"><b>Definition:</b> sandboxservice.h:18</div></div>
+<div class="ttc" id="aclass_custom_service_html"><div class="ttname"><a href="class_custom_service.html">CustomService</a></div><div class="ttdoc">Родительский класс для всех сервисов</div><div class="ttdef"><b>Definition:</b> customservice.h:16</div></div>
+<div class="ttc" id="aclass_service_reply_html"><div class="ttname"><a href="class_service_reply.html">ServiceReply</a></div><div class="ttdoc">Класс-обертка над proto-ответами сервисов</div><div class="ttdef"><b>Definition:</b> servicereply.h:15</div></div>
+<div class="ttc" id="aclass_sandbox_html"><div class="ttname"><a href="class_sandbox.html">Sandbox</a></div><div class="ttdoc">Сервис для работы с песочницей</div><div class="ttdef"><b>Definition:</b> sandboxservice.h:17</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Создано системой &#160;<a href="http://www.doxygen.org/index.html">

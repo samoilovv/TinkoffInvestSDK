@@ -81,7 +81,7 @@ OpenAPI SDK для Тинькофф Инвестиций</h1>
 <div class="line"><span class="keyword">auto</span> marketdata = qSharedPointerCast&lt;MarketDataStream&gt;(tinkoffInvestClient.service(<span class="stringliteral">&quot;marketdatastream&quot;</span>));</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//handle replies in lambda function</span></div>
-<div class="line">QObject::connect(marketdata-&gt;get(), &amp;CustomService::sendData, [](<a class="code" href="class_service_reply.html">ServiceReply</a> reply){</div>
+<div class="line">QObject::connect(marketdata.get(), &amp;CustomService::sendData, [](<a class="code" href="class_service_reply.html">ServiceReply</a> reply){</div>
 <div class="line">    std::cout &lt;&lt; reply.ptr()-&gt;DebugString() &lt;&lt; std::endl;</div>
 <div class="line">});</div>
 <div class="line"> </div>
@@ -128,8 +128,8 @@ OpenAPI SDK для Тинькофф Инвестиций</h1>
 <p>Подробную документацию можно найти по <a href="https://samoilovv.github.io/TinkoffInvestSDK/">ссылке</a>. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
-<div class="ttc" id="aclass_invest_api_client_html"><div class="ttname"><a href="class_invest_api_client.html">InvestApiClient</a></div><div class="ttdoc">Qt клиент для Tinkoff invest API.</div><div class="ttdef"><b>Definition:</b> investapiclient.h:26</div></div>
-<div class="ttc" id="aclass_service_reply_html"><div class="ttname"><a href="class_service_reply.html">ServiceReply</a></div><div class="ttdoc">Класс-обертка над proto-ответами сервисов</div><div class="ttdef"><b>Definition:</b> servicereply.h:16</div></div>
+<div class="ttc" id="aclass_invest_api_client_html"><div class="ttname"><a href="class_invest_api_client.html">InvestApiClient</a></div><div class="ttdoc">C++ клиент для Tinkoff invest API.</div><div class="ttdef"><b>Definition:</b> investapiclient.h:21</div></div>
+<div class="ttc" id="aclass_service_reply_html"><div class="ttname"><a href="class_service_reply.html">ServiceReply</a></div><div class="ttdoc">Класс-обертка над proto-ответами сервисов</div><div class="ttdef"><b>Definition:</b> servicereply.h:15</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Создано системой &#160;<a href="http://www.doxygen.org/index.html">

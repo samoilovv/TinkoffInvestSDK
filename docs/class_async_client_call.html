@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Класс AsyncClientCall</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="class_async_client_call-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс AsyncClientCall</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Базовые классы:<a class="el" href="class_abstract_async_client_call.html">AbstractAsyncClientCall</a>.</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a372d9914ad1d4f1eee1d3326c9c29682"><td class="memItemLeft" align="right" valign="top"><a id="a372d9914ad1d4f1eee1d3326c9c29682"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AsyncClientCall</b> (CompletionQueue &amp;cq_, std::unique_ptr&lt; MarketDataStreamService::Stub &gt; &amp;stub_, const std::string token, MarketDataRequest request_, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
+<tr class="separator:a372d9914ad1d4f1eee1d3326c9c29682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f31764d4b7db85c6450945911d7bd79"><td class="memItemLeft" align="right" valign="top"><a id="a7f31764d4b7db85c6450945911d7bd79"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Proceed</b> (bool ok=true) override</td></tr>
+<tr class="separator:a7f31764d4b7db85c6450945911d7bd79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Дополнительные унаследованные члены</h2></td></tr>
+<tr class="inherit_header pub_types_class_abstract_async_client_call"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_abstract_async_client_call')"><img src="closed.png" alt="-"/>&#160;Открытые типы унаследованные от <a class="el" href="class_abstract_async_client_call.html">AbstractAsyncClientCall</a></td></tr>
+<tr class="memitem:a833d90482167a2ef9827e15d454dec8a inherit pub_types_class_abstract_async_client_call"><td class="memItemLeft" align="right" valign="top"><a id="a833d90482167a2ef9827e15d454dec8a"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>CallStatus</b> { <b>PROCESS</b>, 
+<b>FINISH</b>, 
+<b>DESTROY</b>
+ }</td></tr>
+<tr class="separator:a833d90482167a2ef9827e15d454dec8a inherit pub_types_class_abstract_async_client_call"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_abstract_async_client_call"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_abstract_async_client_call')"><img src="closed.png" alt="-"/>&#160;Открытые атрибуты унаследованные от <a class="el" href="class_abstract_async_client_call.html">AbstractAsyncClientCall</a></td></tr>
+<tr class="memitem:af36acfaa3eb6e97a6c2ee6a337ab84d7 inherit pub_attribs_class_abstract_async_client_call"><td class="memItemLeft" align="right" valign="top"><a id="af36acfaa3eb6e97a6c2ee6a337ab84d7"></a>
+MarketDataResponse&#160;</td><td class="memItemRight" valign="bottom"><b>reply</b></td></tr>
+<tr class="separator:af36acfaa3eb6e97a6c2ee6a337ab84d7 inherit pub_attribs_class_abstract_async_client_call"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a629834392bd8016ccb3d1549bf367443 inherit pub_attribs_class_abstract_async_client_call"><td class="memItemLeft" align="right" valign="top"><a id="a629834392bd8016ccb3d1549bf367443"></a>
+ClientContext&#160;</td><td class="memItemRight" valign="bottom"><b>context</b></td></tr>
+<tr class="separator:a629834392bd8016ccb3d1549bf367443 inherit pub_attribs_class_abstract_async_client_call"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6566d188abfeb470a39ae24cd4358ff8 inherit pub_attribs_class_abstract_async_client_call"><td class="memItemLeft" align="right" valign="top"><a id="a6566d188abfeb470a39ae24cd4358ff8"></a>
+Status&#160;</td><td class="memItemRight" valign="bottom"><b>status</b></td></tr>
+<tr class="separator:a6566d188abfeb470a39ae24cd4358ff8 inherit pub_attribs_class_abstract_async_client_call"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77102215c9c774f40d06c7aa2a02ab0c inherit pub_attribs_class_abstract_async_client_call"><td class="memItemLeft" align="right" valign="top"><a id="a77102215c9c774f40d06c7aa2a02ab0c"></a>
+CallStatus&#160;</td><td class="memItemRight" valign="bottom"><b>callStatus</b></td></tr>
+<tr class="separator:a77102215c9c774f40d06c7aa2a02ab0c inherit pub_attribs_class_abstract_async_client_call"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>services/<a class="el" href="marketdatastreamservice_8h_source.html">marketdatastreamservice.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

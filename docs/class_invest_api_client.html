@@ -46,27 +46,22 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Qt клиент для Tinkoff invest API.  
+<p>C++ клиент для Tinkoff invest API.  
  <a href="class_invest_api_client.html#details">Подробнее...</a></p>
 
 <p><code>#include &lt;<a class="el" href="investapiclient_8h_source.html">investapiclient.h</a>&gt;</code></p>
-
-<p>Базовые классы:QObject.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:ac822a1fe77c5b10911e4732506a52a04"><td class="memItemLeft" align="right" valign="top"><a id="ac822a1fe77c5b10911e4732506a52a04"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>InvestApiClient</b> (const QString &amp;host, const QString &amp;pass)</td></tr>
-<tr class="separator:ac822a1fe77c5b10911e4732506a52a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61bfdcc059ebf343e601d149404aefc6"><td class="memItemLeft" align="right" valign="top"><a id="a61bfdcc059ebf343e601d149404aefc6"></a>
-QVector&lt; QVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getServiceMethods</b> (const QString &amp;serviceName)</td></tr>
-<tr class="separator:a61bfdcc059ebf343e601d149404aefc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44f535e756375fdf166f8e1e855ee7c9"><td class="memItemLeft" align="right" valign="top"><a id="a44f535e756375fdf166f8e1e855ee7c9"></a>
-QSharedPointer&lt; <a class="el" href="class_custom_service.html">CustomService</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>service</b> (const QString &amp;serviceName)</td></tr>
-<tr class="separator:a44f535e756375fdf166f8e1e855ee7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf006f8a3f18309cd832a8abea9c669"><td class="memItemLeft" align="right" valign="top"><a id="afdf006f8a3f18309cd832a8abea9c669"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>InvestApiClient</b> (const std::string &amp;host, const std::string &amp;pass)</td></tr>
+<tr class="separator:afdf006f8a3f18309cd832a8abea9c669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a113f21e8398ac474a020cb5f535a2f98"><td class="memItemLeft" align="right" valign="top"><a id="a113f21e8398ac474a020cb5f535a2f98"></a>
+std::shared_ptr&lt; <a class="el" href="class_custom_service.html">CustomService</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>service</b> (const std::string &amp;serviceName)</td></tr>
+<tr class="separator:a113f21e8398ac474a020cb5f535a2f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
-<div class="textblock"><p>Qt клиент для Tinkoff invest API. </p>
+<div class="textblock"><p>C++ клиент для Tinkoff invest API. </p>
 <p>Данный класс предоставляет доступ к торговой платформе Тинькофф Инвестиции через grpc-интерфейс. В конструкторе класса необходимо передавать адрес сервера и токен. Все вызовы сервиса выполняются по адресу invest-public-api.tinkoff.ru:443 Токен можно получить в настройках своего профиля Тинькофф Инвестиций </p>
 </div><hr/>Объявления и описания членов классов находятся в файлах:<ul>
 <li><a class="el" href="investapiclient_8h_source.html">investapiclient.h</a></li>

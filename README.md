@@ -36,7 +36,7 @@ $ export TOKEN=YOUR_TOKEN
 InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
 //get reference to sandbox service
-auto sandbox = qSharedPointerCast<Sandbox>(tinkoffInvestClient.service("sandbox"));
+auto sandbox = std::dynamic_pointer_cast<Sandbox>(tinkoffInvestClient.service("sandbox"));
 
 //open account
 sandbox->OpenSandboxAccount();
@@ -52,23 +52,60 @@ sandbox->CloseSandboxAccount(accountId);
 ```
 
 
-Пример использования потокового запроса: подписка на получение последних цен.
+Пример использования потокового асинхронного запроса: подписка на получение последних цен.
 
 ```cpp
 
-InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
-
-//get reference to marketdata service
-auto marketdata = qSharedPointerCast<MarketDataStream>(tinkoffInvestClient.service("marketdatastream"));
-
-//handle replies in lambda function
-QObject::connect(marketdata.get(), &CustomService::sendData, [](ServiceReply reply){
+void tradesStreamCallBack(ServiceReply reply)
+{
     std::cout << reply.ptr()->DebugString() << std::endl;
-});
+}
 
-//subscribe on British American Tobacco and Visa Inc. prices and start streaming 
-marketdata->SubscribeLastPrice({"BBG000BWPXQ8", "BBG00844BD08"});
+int main()
+{
+    InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+
+    //get references to Sandbox and OrdersStream service
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(tinkoffInvestClient.service("makretdatastream"));
+
+    //Start MarketData stream
+    std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());
+
+    //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
+    marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);
+
+    thread.join();
+
+    return 0;
+}
+
 ```
+
+
+Пример использования потокового блокирующего вызова: подписка на получение последних цен.
+
+```cpp
+
+void tradesStreamCallBack(ServiceReply reply)
+{
+    std::cout << reply.ptr()->DebugString() << std::endl;
+}
+
+int main()
+{
+    InvestApiClient tinkoffInvestClient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+
+    //get references to Sandbox and OrdersStream service
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(tinkoffInvestClient.service("makretdatastream"));
+
+    //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
+    marketdata->SubscribeLastPrice({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);
+
+    return 0;
+}
+
+```
+
 
 Вывод:
 

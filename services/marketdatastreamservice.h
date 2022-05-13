@@ -43,59 +43,9 @@ class AsyncClientCall : public AbstractAsyncClientCall
     std::function<void (ServiceReply)> callback;
 
 public:
-    AsyncClientCall(CompletionQueue& cq_, std::unique_ptr<MarketDataStreamService::Stub>& stub_, const std::string token, MarketDataRequest request_, std::function<void (ServiceReply)> callback):
-    AbstractAsyncClientCall(), mcounter(0), writing_mode_(true), callback(callback)
-    {
-        std::string meta_value = "Bearer " + token;
-        context.AddMetadata("authorization", meta_value);
-        context.AddMetadata("x-app-name", APP_NAME);
+    AsyncClientCall(CompletionQueue& cq_, std::unique_ptr<MarketDataStreamService::Stub>& stub_, const std::string token, MarketDataRequest request_, std::function<void (ServiceReply)> callback);
+    virtual void Proceed(bool ok = true) override;
 
-        requests.push(request_);
-        responder = stub_->AsyncMarketDataStream(&context, &cq_, (void*)this);
-        callStatus = PROCESS ;
-    }
-    virtual void Proceed(bool ok = true) override
-    {
-        if(callStatus == PROCESS)
-        {
-            if(writing_mode_)
-            {
-                if (!requests.empty())
-                {
-                    responder->Write(requests.front(), (void*)this);
-                    requests.pop();
-                    ++mcounter;
-                }
-                else
-                {
-                    responder->WritesDone((void*)this);
-                    std::cout << "Changing state to reading" << std::endl;
-                    writing_mode_ = false;
-                }
-                return ;
-            }
-            else
-            {
-                if (!ok)
-                {
-                    std::cout << "Trying finish" << std::endl;
-                    callStatus = FINISH;
-                    responder->Finish(&status, (void*)this);
-                    return;
-                }
-                responder->Read(&reply, (void*)this);
-                auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
-                callback(data);
-            }
-            return;
-        }
-        else if(callStatus == FINISH)
-        {
-            std::cout << "Good Bye" << std::endl;
-            delete this;
-        }
-
-    }
 };
 
 /*!
@@ -150,17 +100,7 @@ public:
     void UnsabscribeMarketData();
 
     /// Проверка очереди сообщений от сервера при потоковом асинхронном запросе
-    void AsyncCompleteRpc()
-    {
-        void* got_tag;
-        bool ok = false;
-        while(m_cq.Next(&got_tag, &ok))
-        {
-            AbstractAsyncClientCall * call = static_cast<AbstractAsyncClientCall*>(got_tag);
-            call->Proceed(ok);
-        }
-        std::cout << "Completion queue is shutting down." << std::endl;
-    }
+    void AsyncCompleteRpc();
 
 private:
     std::unique_ptr<MarketDataStreamService::Stub> m_marketDataStreamService;

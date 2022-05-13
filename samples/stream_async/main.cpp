@@ -12,7 +12,7 @@ int main()
     InvestApiClient client("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get references to MarketDataStream service
-    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(client.service("makretdatastream"));
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
     //Start MarketData stream
     std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());

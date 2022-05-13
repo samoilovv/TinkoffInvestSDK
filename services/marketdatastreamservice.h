@@ -96,8 +96,6 @@ public:
     void UnSubscribeLastPrice();
     /// Отмена подписки на торговые статусы инструментов
     void UnSubscribeInfo();
-    /// Метод, позволяющий отписаться от любой информации
-    void UnsabscribeMarketData();
 
     /// Проверка очереди сообщений от сервера при потоковом асинхронном запросе
     void AsyncCompleteRpc();

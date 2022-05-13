@@ -11,7 +11,7 @@ using grpc::ClientAsyncReader;
 using grpc::Channel;
 using grpc::CompletionQueue;
 
-using namespace tinkoff::public1::invest::api::contract::v1;
+using namespace tinkoff::public_::invest::api::contract::v1;
 
 /*!
     \brief  Сервис торговых поручений в режиме стриминга

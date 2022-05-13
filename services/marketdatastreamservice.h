@@ -12,8 +12,11 @@ using grpc::Channel;
 using grpc::ClientAsyncReaderWriter;
 using grpc::CompletionQueue;
 
-using namespace tinkoff::public1::invest::api::contract::v1;
+using namespace tinkoff::public_::invest::api::contract::v1;
 
+/*!
+    \brief  Базовый абстрактный класс для асинхронных вызовов
+*/
 class AbstractAsyncClientCall
 {
 public:
@@ -28,6 +31,9 @@ public:
     virtual void Proceed(bool = true) = 0;
 };
 
+/*!
+    \brief  Класс для асинхронных вызовов потоковых сервисов
+*/
 class AsyncClientCall : public AbstractAsyncClientCall
 {
     std::unique_ptr<ClientAsyncReaderWriter<MarketDataRequest, MarketDataResponse>> responder;
@@ -143,6 +149,7 @@ public:
     /// Метод, позволяющий отписаться от любой информации
     void UnsabscribeMarketData();
 
+    /// Проверка очереди сообщений от сервера при потоковом асинхронном запросе
     void AsyncCompleteRpc()
     {
         void* got_tag;

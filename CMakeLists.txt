@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.11)
 
 project(TinkoffInvestSDK)
 
-set(CMAKE_AUTOMOC ON)
-
 include(GenerateExportHeader)
 include(cmake/common.cmake)
 
@@ -41,7 +39,7 @@ execute_process(
 if (result EQUAL 0)
     message(STATUS "public keyword has been changed to public1 in all autogen source files")
 else()
-    message(STATUS "public-public1 changing error, see fix_keywords.sh for more details")
+    message(STATUS "public-public_ changing error, see fix_keywords.sh for more details")
 endif()
 
 # hw_grpc_proto
@@ -55,8 +53,6 @@ target_link_libraries(hw_grpc_proto
   ${_REFLECTION}
   ${_GRPC_GRPCPP}
   ${_PROTOBUF_LIBPROTOBUF})
-
-find_package(Qt5 REQUIRED COMPONENTS Core)
 
 file(GLOB TARGET_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/services/*.cpp")
 file(GLOB TARGET_HDR "${CMAKE_CURRENT_SOURCE_DIR}/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/services/*.h")
@@ -75,7 +71,6 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
-    Qt5::Core
     hw_grpc_proto
     ${_REFLECTION}
     ${_GRPC_GRPCPP}

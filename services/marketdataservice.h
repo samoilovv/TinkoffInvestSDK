@@ -8,7 +8,7 @@
 #include <vector>
 
 using grpc::Channel;
-using namespace tinkoff::public1::invest::api::contract::v1;
+using namespace tinkoff::public_::invest::api::contract::v1;
 
 /*!
     \brief Сервис получения биржевой информации

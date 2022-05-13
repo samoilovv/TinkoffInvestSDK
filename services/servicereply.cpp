@@ -1,7 +1,7 @@
 #include "servicereply.h"
 #include "sandbox.grpc.pb.h"
 
-using namespace tinkoff::public1::invest::api::contract::v1;
+using namespace tinkoff::public_::invest::api::contract::v1;
 
 ServiceReply::ServiceReply()
 {

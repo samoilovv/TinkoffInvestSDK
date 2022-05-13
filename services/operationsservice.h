@@ -7,7 +7,7 @@
 #include "servicereply.h"
 
 using grpc::Channel;
-using namespace tinkoff::public1::invest::api::contract::v1;
+using namespace tinkoff::public_::invest::api::contract::v1;
 
 /*!
     \brief  Сервис операций по счету

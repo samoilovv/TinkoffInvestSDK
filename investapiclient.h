@@ -24,6 +24,8 @@ class TINKOFFINVESTSDK_EXPORT InvestApiClient
 public:
     InvestApiClient(const std::string &host, const std::string &pass);
     ~InvestApiClient();
+
+    /// Получить ссылку на сервис по его имени
     std::shared_ptr<CustomService> service(const std::string &serviceName);
 
 private:

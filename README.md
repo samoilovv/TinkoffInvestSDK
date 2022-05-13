@@ -68,7 +68,7 @@ int main()
     //get references to MarketDataStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
 
-    //Start MarketData stream
+    //Thread for producer-consumer rpc queue processing 
     std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());
 
     //Subscribe on British American Tobacco and Visa Inc. prices and start streaming

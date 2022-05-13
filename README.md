@@ -65,7 +65,7 @@ int main()
 {
     InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
-    //get references to Sandbox and OrdersStream service
+    //get references to MarketDataStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("makretdatastream"));
 
     //Start MarketData stream
@@ -95,7 +95,7 @@ int main()
 {
     InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
-    //get references to Sandbox and OrdersStream service
+    //get references to MarketDataStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("makretdatastream"));
 
     //Subscribe on British American Tobacco and Visa Inc. prices and start streaming

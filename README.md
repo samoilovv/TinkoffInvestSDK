@@ -66,7 +66,7 @@ int main()
     InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get references to MarketDataStream service
-    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("makretdatastream"));
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
 
     //Start MarketData stream
     std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());
@@ -96,7 +96,7 @@ int main()
     InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get references to MarketDataStream service
-    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("makretdatastream"));
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
 
     //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
     marketdata->SubscribeLastPrice({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);

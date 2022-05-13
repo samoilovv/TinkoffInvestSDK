@@ -44,7 +44,7 @@ void MarketDataStream::SubscribeCandles(const std::vector<std::pair<std::string,
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
         auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
-        callback(data);
+        if (callback) callback(data);
     }
     writer.join();
     Status status = stream->Finish();
@@ -109,7 +109,7 @@ void MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
         auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
-        callback(data);
+        if (callback) callback(data);
     }
     writer.join();
     Status status = stream->Finish();
@@ -175,7 +175,7 @@ void MarketDataStream::SubscribeInfo(const std::vector<std::string> &figis, std:
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
         auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
-        callback(data);
+        if (callback) callback(data);
     }
     writer.join();
     Status status = stream->Finish();
@@ -241,7 +241,7 @@ void MarketDataStream::SubscribeTrades(const std::vector<std::string> &figis, st
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
         auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
-        callback(data);
+        if (callback) callback(data);
     }
     writer.join();
     Status status = stream->Finish();
@@ -306,7 +306,7 @@ void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis,
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
         auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
-        callback(data);
+        if (callback) callback(data);
     }
     writer.join();
     Status status = stream->Finish();
@@ -463,10 +463,14 @@ void MarketDataStream::AsyncCompleteRpc()
 {
     void * got_tag;
     bool ok = false;
-    while(m_cq.Next(&got_tag, &ok))
+
+    while (true)
     {
-        AbstractAsyncClientCall * call = static_cast<AbstractAsyncClientCall*>(got_tag);
-        call->Proceed(ok);
+        while(m_cq.Next(&got_tag, &ok))
+        {
+            AbstractAsyncClientCall * call = static_cast<AbstractAsyncClientCall*>(got_tag);
+            call->Proceed(ok);
+        }
     }
 }
 
@@ -507,9 +511,9 @@ void AsyncClientCall::Proceed(bool ok)
         {
             if (!ok)
             {
-                std::cout << "Trying finish" << std::endl;
-                callStatus = FINISH;
-                responder->Finish(&status, (void*)this);
+//                std::cout << "Trying finish" << std::endl;
+//                callStatus = FINISH;
+//                responder->Finish(&status, (void*)this);
                 return;
             }
             responder->Read(&reply, (void*)this);
@@ -520,7 +524,7 @@ void AsyncClientCall::Proceed(bool ok)
     }
     else if(callStatus == FINISH)
     {
-        std::cout << "Good Bye" << std::endl;
+        std::cout << "Finish" << std::endl;
         delete this;
     }
 }

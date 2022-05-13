@@ -13,8 +13,8 @@ int main()
     //get reference to MarketDataStream service
     auto marketdatastream = std::dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
-    //subscribe on British American Tobacco and Visa Inc. prices and start streaming
-    marketdatastream->SubscribeLastPrice({"BBG004S68758", "BBG004730JJ5"}, tradesStreamCallBack);
+    //subscribe on NVIDIA and Tesla Motors prices and start streaming
+    marketdatastream->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, tradesStreamCallBack);
 
     return 0;
 }

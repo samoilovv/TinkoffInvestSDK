@@ -17,7 +17,7 @@ int main()
     //Start MarketData stream
     std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());
 
-    //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
+    //Subscribe on Bashneft (BANE) and Moscow Exchange (MOEX) prices and start streaming
     marketdata->SubscribeLastPriceAsync({"BBG004S68758", "BBG004730JJ5"}, tradesStreamCallBack);
 
     thread.join();

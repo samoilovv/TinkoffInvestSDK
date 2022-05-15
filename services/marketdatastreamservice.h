@@ -99,7 +99,6 @@ public:
 
     /// Проверка очереди сообщений от сервера при потоковом асинхронном запросе
     void AsyncCompleteRpc();
-    void HandlingRPCThread();
 
     void Test(std::function<void (ServiceReply)> callback);
 

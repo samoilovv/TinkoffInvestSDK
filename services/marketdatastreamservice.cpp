@@ -439,37 +439,6 @@ void MarketDataStream::AsyncCompleteRpc()
 
 }
 
-void MarketDataStream::HandlingRPCThread()
-{
-    void *raw_tag = nullptr;
-    bool ok = false;
-
-    while (m_cq.Next(&raw_tag, &ok))
-    {
-        RpcHandler::TagData *tag = reinterpret_cast<RpcHandler::TagData*>(raw_tag);
-        if (!ok) {
-            // Handle error
-        }
-        else
-        {
-            if (tag->handler)
-            {
-                switch (tag->evt) {
-                case RpcHandler::TagData::Type::start_done:
-                    tag->handler->on_ready();
-                    break;
-                case RpcHandler::TagData::Type::read_done:
-                    tag->handler->on_recv();
-                    break;
-                case RpcHandler::TagData::Type::write_done:
-                    tag->handler->on_write_done();
-                    break;
-                }
-            }
-        }
-    }
-}
-
 void MarketDataStream::Test(std::function<void (ServiceReply)> callback)
 {
     ClientContext context;
@@ -485,7 +454,7 @@ void MarketDataStream::Test(std::function<void (ServiceReply)> callback)
     request.set_allocated_subscribe_last_price_request(slpr);
 
     std::thread t(RpcHandler::handlingThread, &m_cq);
-    // Multiple concurent RPCs sharing the same handling thread:
+
     MarketDataHandler handler(m_marketDataStreamService->PrepareAsyncMarketDataStream(&context, &m_cq), callback);
     handler.send(request);
 

@@ -1,8 +1,6 @@
-#include "rpchandler.h"
-#include "marketdatastreamservice.h"
 #include <memory.h>
-#include <chrono>
 #include <thread>
+#include "marketdatastreamservice.h"
 
 using grpc::ClientReaderWriter;
 
@@ -10,15 +8,18 @@ MarketDataStream::MarketDataStream(std::shared_ptr<grpc::Channel> channel, const
     CustomService(token),
     m_marketDataStreamService(MarketDataStreamService::NewStub(channel))
 {
+    m_grpcThread = std::unique_ptr<std::thread>(
+                   new std::thread(&RpcHandler::handlingThread, &m_cq)
+                );
 
 }
 
 MarketDataStream::~MarketDataStream()
 {
-
+    m_grpcThread->join();
 }
 
-void MarketDataStream::SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, std::function<void(ServiceReply)> callback)
+void MarketDataStream::SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -86,7 +87,7 @@ void MarketDataStream::UnSubscribeCandles()
 
 }
 
-void MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth, std::function<void(ServiceReply)> callback)
+void MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -150,7 +151,7 @@ void MarketDataStream::UnSubscribeOrderBook()
     }
 }
 
-void MarketDataStream::SubscribeInfo(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback)
+void MarketDataStream::SubscribeInfo(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -216,7 +217,7 @@ void MarketDataStream::UnSubscribeInfo()
     }
 }
 
-void MarketDataStream::SubscribeTrades(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback)
+void MarketDataStream::SubscribeTrades(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -281,7 +282,7 @@ void MarketDataStream::UnSubscribeTrades()
     }
 }
 
-void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback)
+void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -305,16 +306,12 @@ void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis,
         stream->WritesDone();
     });
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-
     MarketDataResponse reply;
 
     while (stream->Read(&reply)) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
         auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
         if (callback) callback(data);
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     writer.join();
 
     Status status = stream->Finish();
@@ -323,7 +320,7 @@ void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis,
     }
 }
 
-void MarketDataStream::SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval> > &candleInstruments, std::function<void (ServiceReply)> callback)
+void MarketDataStream::SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval> > &candleInstruments, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto scr = new SubscribeCandlesRequest();
@@ -336,10 +333,10 @@ void MarketDataStream::SubscribeCandlesAsync(const std::vector<std::pair<std::st
     }
     request.set_allocated_subscribe_candles_request(scr);
 
-    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+    SendRequest(request, callback);
 }
 
-void MarketDataStream::SubscribeOrderBookAsync(const std::string &figi, int32_t depth, std::function<void (ServiceReply)> callback)
+void MarketDataStream::SubscribeOrderBookAsync(const std::string &figi, int32_t depth, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto sobr = new SubscribeOrderBookRequest();
@@ -349,10 +346,10 @@ void MarketDataStream::SubscribeOrderBookAsync(const std::string &figi, int32_t 
     obi->set_depth(depth);
     request.set_allocated_subscribe_order_book_request(sobr);
 
-    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+    SendRequest(request, callback);
 }
 
-void MarketDataStream::SubscribeTradesAsync(const std::vector<std::string> &figis, std::function<void (ServiceReply)> callback)
+void MarketDataStream::SubscribeTradesAsync(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto str = new SubscribeTradesRequest();
@@ -364,10 +361,10 @@ void MarketDataStream::SubscribeTradesAsync(const std::vector<std::string> &figi
     }
     request.set_allocated_subscribe_trades_request(str);
 
-    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+    SendRequest(request, callback);
 }
 
-void MarketDataStream::SubscribeInfoAsync(const std::vector<std::string> &figis, std::function<void (ServiceReply)> callback)
+void MarketDataStream::SubscribeInfoAsync(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto sir = new SubscribeInfoRequest();
@@ -379,10 +376,10 @@ void MarketDataStream::SubscribeInfoAsync(const std::vector<std::string> &figis,
     sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
     request.set_allocated_subscribe_info_request(sir);
 
-    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+    SendRequest(request, callback);
 }
 
-void MarketDataStream::SubscribeLastPriceAsync(const std::vector<std::string> &figis, std::function<void (ServiceReply)> callback)
+void MarketDataStream::SubscribeLastPriceAsync(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto slpr = new SubscribeLastPriceRequest();
@@ -394,7 +391,7 @@ void MarketDataStream::SubscribeLastPriceAsync(const std::vector<std::string> &f
     slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
     request.set_allocated_subscribe_last_price_request(slpr);
 
-    new AsyncClientCall(m_cq, m_marketDataStreamService, m_token, request, callback);
+    SendRequest(request, callback);
 }
 
 void MarketDataStream::UnSubscribeLastPrice()
@@ -426,89 +423,11 @@ void MarketDataStream::UnSubscribeLastPrice()
     }
 }
 
-void MarketDataStream::AsyncCompleteRpc()
+void MarketDataStream::SendRequest(const MarketDataRequest &request, CallbackFunc callback)
 {
-    void * got_tag;
-    bool ok = false;
-
-    while(m_cq.Next(&got_tag, &ok))
-    {
-        AbstractAsyncClientCall * call = static_cast<AbstractAsyncClientCall*>(got_tag);
-        call->Proceed(ok);
-    }
-
-}
-
-void MarketDataStream::Test(std::function<void (ServiceReply)> callback)
-{
-    MarketDataRequest request;
-    auto slpr = new SubscribeLastPriceRequest();
-    auto obi = slpr->add_instruments();
-    obi->set_figi("BBG004S68758");
-    slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
-    request.set_allocated_subscribe_last_price_request(slpr);
-
-    std::thread t(RpcHandler::handlingThread, &m_cq);
-    MarketDataHandler handler(m_cq, m_marketDataStreamService, m_token, callback);
-    handler.send(request);
-
-    t.join();
-
-
-
-}
-
-
-AsyncClientCall::AsyncClientCall(grpc::CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string token, MarketDataRequest request_, std::function<void (ServiceReply)> callback) :
-AbstractAsyncClientCall(), mcounter(0), writing_mode_(true), callback(callback)
-{
-    std::string meta_value = "Bearer " + token;
-    context.AddMetadata("authorization", meta_value);
-    context.AddMetadata("x-app-name", APP_NAME);
-
-    requests.push(request_);
-    responder = stub_->AsyncMarketDataStream(&context, &cq_, (void*)this);
-    callStatus = PROCESS ;
-}
-
-void AsyncClientCall::Proceed(bool ok)
-{
-    if(callStatus == PROCESS)
-    {
-        if(writing_mode_)
-        {
-            if (!requests.empty())
-            {
-                responder->Write(requests.front(), (void*)this);
-                requests.pop();
-                ++mcounter;
-            }
-                responder->WritesDone((void*)this);
-                std::cout << "Changing state to reading" << std::endl;
-                writing_mode_ = false;
-                {
-
-            }
-            return ;
-        }
-        else
-        {
-            if (!ok)
-            {
-                std::cout << "Trying finish" << std::endl;
-                callStatus = FINISH;
-                responder->Finish(&status, (void*)this);
-                return;
-            }
-            responder->Read(&reply, (void*)this);
-            auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
-            callback(data);
-        }
-        return;
-    }
-    else if(callStatus == FINISH)
-    {
-        std::cout << "Finish" << std::endl;
-        delete this;
-    }
+    auto handler = std::shared_ptr<MarketDataHandler>(
+                new MarketDataHandler(m_cq, m_marketDataStreamService, m_token, callback)
+                );
+    handler->send(request);
+    m_currentHandlers.insert(handler);
 }

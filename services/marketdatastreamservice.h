@@ -2,11 +2,13 @@
 #define MARKETDATASTREAMSERVICE_H
 
 #include <vector>
-#include <queue>
-#include "customservice.h"
+#include <set>
+#include <thread>
 #include <grpcpp/grpcpp.h>
+#include "customservice.h"
 #include "marketdata.grpc.pb.h"
 #include "servicereply.h"
+#include "rpchandler.h"
 
 using grpc::Channel;
 using grpc::ClientAsyncReaderWriter;
@@ -14,39 +16,7 @@ using grpc::CompletionQueue;
 
 using namespace tinkoff::public_::invest::api::contract::v1;
 
-/*!
-    \brief  Базовый абстрактный класс для асинхронных вызовов
-*/
-class AbstractAsyncClientCall
-{
-public:
-    enum CallStatus { PROCESS, FINISH, DESTROY };
-
-    explicit AbstractAsyncClientCall():callStatus(PROCESS){}
-    virtual ~AbstractAsyncClientCall(){}
-    MarketDataResponse reply;
-    ClientContext context;
-    Status status;
-    CallStatus callStatus ;
-    virtual void Proceed(bool = true) = 0;
-};
-
-/*!
-    \brief  Класс для асинхронных вызовов потоковых сервисов
-*/
-class AsyncClientCall : public AbstractAsyncClientCall
-{
-    std::unique_ptr<ClientAsyncReaderWriter<MarketDataRequest, MarketDataResponse>> responder;
-    unsigned mcounter;
-    bool writing_mode_;
-    std::queue<MarketDataRequest> requests;
-    std::function<void (ServiceReply)> callback;
-
-public:
-    AsyncClientCall(CompletionQueue& cq_, std::unique_ptr<MarketDataStreamService::Stub>& stub_, const std::string token, MarketDataRequest request_, std::function<void (ServiceReply)> callback);
-    virtual void Proceed(bool ok = true) override;
-
-};
+using CallbackFunc = std::function<void (ServiceReply)>;
 
 /*!
     \brief Сервис получения биржевой информации в режиме стриминга
@@ -65,46 +35,45 @@ public:
     ~MarketDataStream();
 
     /// Запрос подписки на свечи, блокирующий вызов
-    void SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, std::function<void(ServiceReply)> callback);
+    void SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback);
     /// Запрос подписки на стаканы, блокирующий вызов
-    void SubscribeOrderBook(const std::string &figi, int32_t depth, std::function<void(ServiceReply)> callback);
+    void SubscribeOrderBook(const std::string &figi, int32_t depth, CallbackFunc callback);
     /// Запрос подписки на ленту обезличенных сделок, блокирующий вызов
-    void SubscribeTrades(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback);
+    void SubscribeTrades(const std::vector<std::string> &figis, CallbackFunc callback);
     /// Запрос подписки на торговые статусы инструментов, блокирующий вызов
-    void SubscribeInfo(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback);
+    void SubscribeInfo(const std::vector<std::string> &figis, CallbackFunc callback);
     /// Запрос подписки на последние цены, блокирующий вызов
-    void SubscribeLastPrice(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback);
+    void SubscribeLastPrice(const std::vector<std::string> &figis, CallbackFunc callback);
 
     /// Запрос подписки на свечи, асинхронный вызов
-    void SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, std::function<void(ServiceReply)> callback);
+    void SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback);
     /// Запрос подписки на стаканы, асинхронный вызов
-    void SubscribeOrderBookAsync(const std::string &figi, int32_t depth, std::function<void(ServiceReply)> callback);
+    void SubscribeOrderBookAsync(const std::string &figi, int32_t depth, CallbackFunc callback);
     /// Запрос подписки на ленту обезличенных сделок, асинхронный вызов
-    void SubscribeTradesAsync(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback);
+    void SubscribeTradesAsync(const std::vector<std::string> &figis, CallbackFunc callback);
     /// Запрос подписки на торговые статусы инструментов, асинхронный вызов
-    void SubscribeInfoAsync(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback);
+    void SubscribeInfoAsync(const std::vector<std::string> &figis, CallbackFunc callback);
     /// Запрос подписки на последние цены, асинхронный вызов
-    void SubscribeLastPriceAsync(const std::vector<std::string> &figis, std::function<void(ServiceReply)> callback);
+    void SubscribeLastPriceAsync(const std::vector<std::string> &figis, CallbackFunc callback);
 
-    /// Отмена подписки на свечи
+    /// Отмена подписки на свечи, блокирующий вызов
     void UnSubscribeCandles();
-    /// Отмена подписки на стаканы
+    /// Отмена подписки на стаканы, блокирующий вызов
     void UnSubscribeOrderBook();
-    /// Отмена подписки на ленту обезличенных сделок
+    /// Отмена подписки на ленту обезличенных сделок, блокирующий вызов
     void UnSubscribeTrades();
-    /// Отмена подписки на последние цены
+    /// Отмена подписки на последние цены, блокирующий вызов
     void UnSubscribeLastPrice();
-    /// Отмена подписки на торговые статусы инструментов
+    /// Отмена подписки на торговые статусы инструментов, блокирующий вызов
     void UnSubscribeInfo();
 
-    /// Проверка очереди сообщений от сервера при потоковом асинхронном запросе
-    void AsyncCompleteRpc();
-
-    void Test(std::function<void (ServiceReply)> callback);
-
 private:
-    std::unique_ptr<MarketDataStreamService::Stub> m_marketDataStreamService;
     CompletionQueue m_cq;
+    std::unique_ptr<MarketDataStreamService::Stub> m_marketDataStreamService;
+    std::unique_ptr<std::thread> m_grpcThread;
+    std::set<std::shared_ptr<MarketDataHandler>> m_currentHandlers;
+
+    void SendRequest(const MarketDataRequest &request, CallbackFunc callback);
 
 };
 

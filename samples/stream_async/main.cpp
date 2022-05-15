@@ -1,4 +1,3 @@
-#include <thread>
 #include "investapiclient.h"
 #include "marketdatastreamservice.h"
 
@@ -14,16 +13,11 @@ int main()
     //get references to MarketDataStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
-    //Start MarketData stream
-    //std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());
+    //Subscribe on Bashneft (BANE) and Moscow Exchange (MOEX) prices
+    marketdata->SubscribeLastPriceAsync({"BBG004S68758", "BBG004730JJ5"}, tradesStreamCallBack);
 
-    //Subscribe on Bashneft (BANE) and Moscow Exchange (MOEX) prices and start streaming
-    //marketdata->SubscribeLastPriceAsync({"BBG004S68758", "BBG004730JJ5"}, tradesStreamCallBack);
-    //std::thread thread(&MarketDataStream::HandlingRPCThread, marketdata.get());
-
-    marketdata->Test(tradesStreamCallBack);
-
-    //thread.join();
+    //Subscribe on orders of Bashneft (BANE) and Moscow Exchange (MOEX)
+    marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, tradesStreamCallBack);
 
     return 0;
 }

@@ -19,16 +19,19 @@ void RpcHandler::handlingThread(CompletionQueue *cq)
         }
         else
         {
-            switch (tag->evt) {
-            case TagData::Type::start_done:
-                tag->handler->on_ready();
-                break;
-            case TagData::Type::read_done:
-                tag->handler->on_recv();
-                break;
-            case TagData::Type::write_done:
-                tag->handler->on_write_done();
-                break;
+            if (tag->handler)
+            {
+                switch (tag->evt) {
+                case TagData::Type::start_done:
+                    tag->handler->on_ready();
+                    break;
+                case TagData::Type::read_done:
+                    tag->handler->on_recv();
+                    break;
+                case TagData::Type::write_done:
+                    tag->handler->on_write_done();
+                    break;
+                }
             }
         }
     }
@@ -89,8 +92,8 @@ void MarketDataHandler::on_ready()
 
 void MarketDataHandler::on_recv()
 {
-    MarketDataResponse reply = std::move(incoming_);
-    auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+//    MarketDataResponse reply = std::move(incoming_);
+    auto data = ServiceReply(std::make_shared<MarketDataResponse>(incoming_));
     responder_->Read(&incoming_, &tags.read_done);
     if (callback_) callback_(data);
 }

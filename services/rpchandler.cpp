@@ -41,7 +41,7 @@ MarketDataHandler::MarketDataHandler(MarketDataHandler::responder_ptr responder,
     responder_->StartCall(&tags.start_done);
 }
 
-MarketDataHandler::MarketDataHandler(grpc::CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, MarketDataRequest request_, std::function<void (ServiceReply)> callback)
+MarketDataHandler::MarketDataHandler(grpc::CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, std::function<void (ServiceReply)> callback)
     : callback_(callback)
 {
     std::lock_guard<std::mutex> lock(mutex_);

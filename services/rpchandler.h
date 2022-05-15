@@ -17,8 +17,7 @@ using grpc::ClientAsyncReaderWriter;
 /*!
     \brief  Базовый класс для асинхронных двунаправленных RPC вызовов
 
-    Базовый класс для асинхронных двунаправленных RPC вызовов необходим,
-    чтобы поток обработки не был ассоциирован с конкрентным RPC методом.
+    Поток обработки не будет ассоциирован с конкрентным RPC методом.
 */
 class RpcHandler {
 
@@ -68,7 +67,7 @@ public:
     using responder_ptr = std::unique_ptr<ClientAsyncReaderWriter<MarketDataRequest, MarketDataResponse>>;
 
     MarketDataHandler(responder_ptr responder, std::function<void (ServiceReply)> callback);
-    MarketDataHandler(CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, MarketDataRequest request_, std::function<void (ServiceReply)> callback);
+    MarketDataHandler(CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, std::function<void (ServiceReply)> callback);
     ~MarketDataHandler();
 
     void send(const MarketDataRequest &msg);

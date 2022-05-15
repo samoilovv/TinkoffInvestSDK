@@ -441,11 +441,6 @@ void MarketDataStream::AsyncCompleteRpc()
 
 void MarketDataStream::Test(std::function<void (ServiceReply)> callback)
 {
-    ClientContext context;
-    std::string meta_value = "Bearer " + m_token;
-    context.AddMetadata("authorization", meta_value);
-    context.AddMetadata("x-app-name", APP_NAME);
-
     MarketDataRequest request;
     auto slpr = new SubscribeLastPriceRequest();
     auto obi = slpr->add_instruments();
@@ -454,8 +449,7 @@ void MarketDataStream::Test(std::function<void (ServiceReply)> callback)
     request.set_allocated_subscribe_last_price_request(slpr);
 
     std::thread t(RpcHandler::handlingThread, &m_cq);
-    MarketDataHandler handler(m_cq, m_marketDataStreamService, m_token, request, callback);
-    //MarketDataHandler handler(m_marketDataStreamService->PrepareAsyncMarketDataStream(&context, &m_cq), callback);
+    MarketDataHandler handler(m_cq, m_marketDataStreamService, m_token, callback);
     handler.send(request);
 
     t.join();

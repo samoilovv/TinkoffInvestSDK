@@ -1,5 +1,7 @@
+#include "rpchandler.h"
 #include "marketdatastreamservice.h"
 #include <memory.h>
+#include <chrono>
 #include <thread>
 
 using grpc::ClientReaderWriter;
@@ -303,12 +305,18 @@ void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis,
         stream->WritesDone();
     });
 
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+
     MarketDataResponse reply;
+
     while (stream->Read(&reply)) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
         auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
         if (callback) callback(data);
     }
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
     writer.join();
+
     Status status = stream->Finish();
     if (!status.ok()) {
         std::cout << "MarketDataStream rpc failed." << std::endl;
@@ -423,14 +431,68 @@ void MarketDataStream::AsyncCompleteRpc()
     void * got_tag;
     bool ok = false;
 
-    while (true)
+    while(m_cq.Next(&got_tag, &ok))
     {
-        while(m_cq.Next(&got_tag, &ok))
+        AbstractAsyncClientCall * call = static_cast<AbstractAsyncClientCall*>(got_tag);
+        call->Proceed(ok);
+    }
+
+}
+
+void MarketDataStream::HandlingRPCThread()
+{
+    void *raw_tag = nullptr;
+    bool ok = false;
+
+    while (m_cq.Next(&raw_tag, &ok))
+    {
+        RpcHandler::TagData *tag = reinterpret_cast<RpcHandler::TagData*>(raw_tag);
+        if (!ok) {
+            // Handle error
+        }
+        else
         {
-            AbstractAsyncClientCall * call = static_cast<AbstractAsyncClientCall*>(got_tag);
-            call->Proceed(ok);
+            if (tag->handler)
+            {
+                switch (tag->evt) {
+                case RpcHandler::TagData::Type::start_done:
+                    tag->handler->on_ready();
+                    break;
+                case RpcHandler::TagData::Type::read_done:
+                    tag->handler->on_recv();
+                    break;
+                case RpcHandler::TagData::Type::write_done:
+                    tag->handler->on_write_done();
+                    break;
+                }
+            }
         }
     }
+}
+
+void MarketDataStream::Test(std::function<void (ServiceReply)> callback)
+{
+    ClientContext context;
+    std::string meta_value = "Bearer " + m_token;
+    context.AddMetadata("authorization", meta_value);
+    context.AddMetadata("x-app-name", APP_NAME);
+
+    MarketDataRequest request;
+    auto slpr = new SubscribeLastPriceRequest();
+    auto obi = slpr->add_instruments();
+    obi->set_figi("BBG004S68758");
+    slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
+    request.set_allocated_subscribe_last_price_request(slpr);
+
+    std::thread t(RpcHandler::handlingThread, &m_cq);
+    // Multiple concurent RPCs sharing the same handling thread:
+    MarketDataHandler handler(m_marketDataStreamService->PrepareAsyncMarketDataStream(&context, &m_cq), callback);
+    handler.send(request);
+
+    t.join();
+
+
+
 }
 
 
@@ -458,11 +520,11 @@ void AsyncClientCall::Proceed(bool ok)
                 requests.pop();
                 ++mcounter;
             }
-            else
-            {
                 responder->WritesDone((void*)this);
                 std::cout << "Changing state to reading" << std::endl;
                 writing_mode_ = false;
+                {
+
             }
             return ;
         }
@@ -470,9 +532,9 @@ void AsyncClientCall::Proceed(bool ok)
         {
             if (!ok)
             {
-//                std::cout << "Trying finish" << std::endl;
-//                callStatus = FINISH;
-//                responder->Finish(&status, (void*)this);
+                std::cout << "Trying finish" << std::endl;
+                callStatus = FINISH;
+                responder->Finish(&status, (void*)this);
                 return;
             }
             responder->Read(&reply, (void*)this);

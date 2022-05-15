@@ -454,8 +454,8 @@ void MarketDataStream::Test(std::function<void (ServiceReply)> callback)
     request.set_allocated_subscribe_last_price_request(slpr);
 
     std::thread t(RpcHandler::handlingThread, &m_cq);
-
-    MarketDataHandler handler(m_marketDataStreamService->PrepareAsyncMarketDataStream(&context, &m_cq), callback);
+    MarketDataHandler handler(m_cq, m_marketDataStreamService, m_token, request, callback);
+    //MarketDataHandler handler(m_marketDataStreamService->PrepareAsyncMarketDataStream(&context, &m_cq), callback);
     handler.send(request);
 
     t.join();

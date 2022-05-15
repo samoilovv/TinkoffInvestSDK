@@ -7,6 +7,8 @@
 
 using grpc::Status;
 
+static const std::string APP_NAME = "samoilovv.TinkoffInvestSDK";
+
 /*!
     \brief Класс-обертка над proto-ответами сервисов
 

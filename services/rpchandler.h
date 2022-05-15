@@ -10,6 +10,7 @@
 
 using namespace tinkoff::public_::invest::api::contract::v1;
 
+using grpc::ClientContext;
 using grpc::CompletionQueue;
 using grpc::ClientAsyncReaderWriter;
 
@@ -20,8 +21,6 @@ using grpc::ClientAsyncReaderWriter;
     чтобы поток обработки не был ассоциирован с конкрентным RPC методом.
 */
 class RpcHandler {
-
-public:
 
     struct TagData
     {
@@ -46,11 +45,13 @@ public:
         TagData write_done;
     };
 
-    RpcHandler();
+public:
 
+    RpcHandler();
     virtual ~RpcHandler() = default;
 
     TagSet tags;
+    ClientContext context;
 
     virtual void on_ready() = 0;
     virtual void on_recv() = 0;
@@ -67,6 +68,7 @@ public:
     using responder_ptr = std::unique_ptr<ClientAsyncReaderWriter<MarketDataRequest, MarketDataResponse>>;
 
     MarketDataHandler(responder_ptr responder, std::function<void (ServiceReply)> callback);
+    MarketDataHandler(CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, MarketDataRequest request_, std::function<void (ServiceReply)> callback);
     ~MarketDataHandler();
 
     void send(const MarketDataRequest &msg);

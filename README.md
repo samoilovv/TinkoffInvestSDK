@@ -52,36 +52,6 @@ sandbox->CloseSandboxAccount(accountId);
 ```
 
 
-Пример использования потокового асинхронного запроса: подписка на получение последних цен.
-
-```cpp
-
-void tradesStreamCallBack(ServiceReply reply)
-{
-    std::cout << reply.ptr()->DebugString() << std::endl;
-}
-
-int main()
-{
-    InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
-
-    //get references to MarketDataStream service
-    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
-
-    //Thread for producer-consumer rpc queue processing 
-    std::thread thread = std::thread(&MarketDataStream::AsyncCompleteRpc, marketdata.get());
-
-    //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
-    marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);
-
-    thread.join();
-
-    return 0;
-}
-
-```
-
-
 Пример использования потокового блокирующего вызова: подписка на получение последних цен.
 
 ```cpp
@@ -106,6 +76,29 @@ int main()
 
 ```
 
+Пример использования потокового асинхронного запроса: подписка на получение последних цен.
+
+```cpp
+
+void tradesStreamCallBack(ServiceReply reply)
+{
+    std::cout << reply.ptr()->DebugString() << std::endl;
+}
+
+int main()
+{
+    InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+
+    //get references to MarketDataStream service
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
+
+    //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
+    marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);
+
+    return 0;
+}
+
+```
 
 Вывод:
 

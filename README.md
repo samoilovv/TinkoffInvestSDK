@@ -52,11 +52,11 @@ sandbox->CloseSandboxAccount(accountId);
 ```
 
 
-Пример использования потокового блокирующего вызова: подписка на получение последних цен.
+Пример использования потокового блокирующего вызова: подписка на получение последних цен акций двух компаний по их идентификторам.
 
 ```cpp
 
-void tradesStreamCallBack(ServiceReply reply)
+void marketStreamCallBack(ServiceReply reply)
 {
     std::cout << reply.ptr()->DebugString() << std::endl;
 }
@@ -69,18 +69,18 @@ int main()
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
 
     //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
-    marketdata->SubscribeLastPrice({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);
+    marketdata->SubscribeLastPrice({"BBG000BWPXQ8", "BBG00844BD08"}, marketStreamCallBack);
 
     return 0;
 }
 
 ```
 
-Пример использования потокового асинхронного запроса: подписка на получение последних цен.
+Пример использования потокового асинхронного запроса: подписка на получение последних цен и на ленту обезличенных сделок. Клиент обрабатывает ответы на все запросы в своем собственном потоке, что сущесвтенно повышает производительность системы. 
 
 ```cpp
 
-void tradesStreamCallBack(ServiceReply reply)
+void marketStreamCallBack(ServiceReply reply)
 {
     std::cout << reply.ptr()->DebugString() << std::endl;
 }
@@ -94,6 +94,9 @@ int main()
 
     //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
     marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);
+    
+    //Subscribe on orders of Bashneft (BANE) and Moscow Exchange (MOEX)
+    marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);    
 
     return 0;
 }
@@ -106,7 +109,7 @@ int main()
 
 ```
 subscribe_last_price_response {
-  tracking_id: "8442ce626f5a6e6"
+  tracking_id: "628164edf8495c0"
   last_price_subscriptions {
     figi: "BBG000BWPXQ8"
     subscription_status: SUBSCRIPTION_STATUS_SUCCESS
@@ -120,12 +123,12 @@ subscribe_last_price_response {
 last_price {
   figi: "BBG000BWPXQ8"
   price {
-    units: 41
-    nano: 500000000
+    units: 42
+    nano: 80000000
   }
   time {
-    seconds: 1651270899
-    nanos: 146644771
+    seconds: 1652481859
+    nanos: 657347773
   }
 }
 
@@ -138,6 +141,18 @@ last_price {
   time {
     seconds: 1585063374
     nanos: 334361000
+  }
+}
+
+subscribe_trades_response {
+  tracking_id: "628164ed2816ca3dab68f498d02ca29b"
+  trade_subscriptions {
+    figi: "BBG004S68758"
+    subscription_status: SUBSCRIPTION_STATUS_SUCCESS
+  }
+  trade_subscriptions {
+    figi: "BBG004730JJ5"
+    subscription_status: SUBSCRIPTION_STATUS_SUCCESS
   }
 }
 ```

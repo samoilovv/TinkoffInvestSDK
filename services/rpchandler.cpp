@@ -102,3 +102,42 @@ void MarketDataHandler::on_write_done()
         sending_ = false;
     }
 }
+
+OrdersHandler::OrdersHandler(OrdersHandler::responder_ptr responder, std::function<void (ServiceReply)> callback)
+    : responder_(std::move(responder)), callback_(callback)
+{
+    responder_->StartCall(&tags.start_done);
+}
+
+OrdersHandler::OrdersHandler(grpc::CompletionQueue &cq_, std::unique_ptr<OrdersStreamService::Stub> &stub_, const std::string &token, TradesStreamRequest &request, CallbackFunc callback)
+    : callback_(callback)
+{
+    std::string meta_value = "Bearer " + token;
+    context.AddMetadata("authorization", meta_value);
+    context.AddMetadata("x-app-name", APP_NAME);
+
+    responder_ = stub_->PrepareAsyncTradesStream(&context, request, &cq_);
+    responder_->StartCall(&tags.start_done);
+}
+
+OrdersHandler::~OrdersHandler()
+{
+
+}
+
+void OrdersHandler::on_ready()
+{
+    responder_->Read(&incoming_, &tags.read_done);
+}
+
+void OrdersHandler::on_recv()
+{
+    auto data = ServiceReply(std::make_shared<TradesStreamResponse>(incoming_));
+    if (callback_) callback_(data);
+    responder_->Read(&incoming_, &tags.read_done);
+}
+
+void OrdersHandler::on_write_done()
+{
+
+}

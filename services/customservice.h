@@ -20,7 +20,8 @@ public:
 
 protected:
     const std::string m_token;
-    std::shared_ptr<grpc::ClientContext> makeContext();
+    std::shared_ptr<ClientContext> makeContext();
+
 
 };
 

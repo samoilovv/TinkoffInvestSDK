@@ -4,6 +4,7 @@
 #include <queue>
 #include <grpcpp/grpcpp.h>
 #include "marketdata.grpc.pb.h"
+#include "orders.grpc.pb.h"
 #include "customservice.h"
 #include "commontypes.h"
 
@@ -12,6 +13,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
 using grpc::ClientContext;
 using grpc::CompletionQueue;
 using grpc::ClientAsyncReaderWriter;
+using grpc::ClientAsyncReader;
 
 /*!
     \brief  Базовый класс для асинхронных двунаправленных RPC вызовов
@@ -85,6 +87,32 @@ private:
     bool sending_ = false;
     bool ready_ = false;
     std::queue<MarketDataRequest> queued_msgs_;
+    CallbackFunc callback_;
+
+};
+
+/*!
+    \brief Обработчик асинхронных двунаправленных RPC вызовов OrdersStream сервиса
+*/
+class OrdersHandler final : public RpcHandler
+{
+
+public:
+    using responder_ptr = std::unique_ptr<ClientAsyncReader<TradesStreamResponse>>;
+
+    OrdersHandler(responder_ptr responder, std::function<void (ServiceReply)> callback);
+    OrdersHandler(CompletionQueue &cq_, std::unique_ptr<OrdersStreamService::Stub> &stub_, const std::string &token, TradesStreamRequest &request, CallbackFunc callback);
+    ~OrdersHandler();
+
+private:
+    void on_ready() override;
+    void on_recv() override;
+    void on_write_done() override;
+
+    responder_ptr responder_;
+    TradesStreamResponse incoming_;
+
+    std::queue<TradesStreamRequest> queued_msgs_;
     CallbackFunc callback_;
 
 };

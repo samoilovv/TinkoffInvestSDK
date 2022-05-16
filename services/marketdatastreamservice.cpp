@@ -1,4 +1,3 @@
-#include <memory.h>
 #include <thread>
 #include "marketdatastreamservice.h"
 

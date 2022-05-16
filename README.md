@@ -71,13 +71,15 @@ int main()
     auto marketdata = dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
     //subscribe to NVIDIA and Tesla Motors prices and start streaming
-    thread th1(
-        [marketdata](){marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);}
+    thread th1([marketdata](){
+            marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);
+        }
     );
 
     //subscribe to Bashneft (BANE) and Moscow Exchange (MOEX) shares transactions and start streaming
-    thread th2(
-        [marketdata](){marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);}
+    thread th2([marketdata](){
+            marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);
+        }
     );
 
     th1.join();

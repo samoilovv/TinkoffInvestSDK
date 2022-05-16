@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TinkoffInvestSDK: Класс MarketDataHandler</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TinkoffInvestSDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.17 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','Поиск');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="class_market_data_handler-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс MarketDataHandler<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Базовые классы:<a class="el" href="class_rpc_handler.html">RpcHandler</a>.</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:a8356fa7e470ce4b7aecffa07eb8ec3af"><td class="memItemLeft" align="right" valign="top"><a id="a8356fa7e470ce4b7aecffa07eb8ec3af"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>responder_ptr</b> = std::unique_ptr&lt; ClientAsyncReaderWriter&lt; MarketDataRequest, MarketDataResponse &gt; &gt;</td></tr>
+<tr class="separator:a8356fa7e470ce4b7aecffa07eb8ec3af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ac1bb706f8005abbfde8791d886910e16"><td class="memItemLeft" align="right" valign="top"><a id="ac1bb706f8005abbfde8791d886910e16"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MarketDataHandler</b> (responder_ptr responder, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
+<tr class="separator:ac1bb706f8005abbfde8791d886910e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70b79078fbe41512160d90d7c09388c4"><td class="memItemLeft" align="right" valign="top"><a id="a70b79078fbe41512160d90d7c09388c4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MarketDataHandler</b> (CompletionQueue &amp;cq_, std::unique_ptr&lt; MarketDataStreamService::Stub &gt; &amp;stub_, const std::string &amp;token, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
+<tr class="separator:a70b79078fbe41512160d90d7c09388c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5761ee2349698c2d3b10b85b73e27f42"><td class="memItemLeft" align="right" valign="top"><a id="a5761ee2349698c2d3b10b85b73e27f42"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> (const MarketDataRequest &amp;msg)</td></tr>
+<tr class="separator:a5761ee2349698c2d3b10b85b73e27f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Дополнительные унаследованные члены</h2></td></tr>
+<tr class="inherit_header pub_static_methods_class_rpc_handler"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_rpc_handler')"><img src="closed.png" alt="-"/>&#160;Открытые статические члены унаследованные от <a class="el" href="class_rpc_handler.html">RpcHandler</a></td></tr>
+<tr class="memitem:a2979872158e209a732d09f8134b4b61e inherit pub_static_methods_class_rpc_handler"><td class="memItemLeft" align="right" valign="top"><a id="a2979872158e209a732d09f8134b4b61e"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>handlingThread</b> (CompletionQueue *cq)</td></tr>
+<tr class="separator:a2979872158e209a732d09f8134b4b61e inherit pub_static_methods_class_rpc_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_class_rpc_handler"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_rpc_handler')"><img src="closed.png" alt="-"/>&#160;Открытые атрибуты унаследованные от <a class="el" href="class_rpc_handler.html">RpcHandler</a></td></tr>
+<tr class="memitem:af54907971a1e83b64f758fd775560d0d inherit pub_attribs_class_rpc_handler"><td class="memItemLeft" align="right" valign="top"><a id="af54907971a1e83b64f758fd775560d0d"></a>
+TagSet&#160;</td><td class="memItemRight" valign="bottom"><b>tags</b></td></tr>
+<tr class="separator:af54907971a1e83b64f758fd775560d0d inherit pub_attribs_class_rpc_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e39a3858edd2b8c80327767f57e9851 inherit pub_attribs_class_rpc_handler"><td class="memItemLeft" align="right" valign="top"><a id="a2e39a3858edd2b8c80327767f57e9851"></a>
+ClientContext&#160;</td><td class="memItemRight" valign="bottom"><b>context</b></td></tr>
+<tr class="separator:a2e39a3858edd2b8c80327767f57e9851 inherit pub_attribs_class_rpc_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>services/<a class="el" href="rpchandler_8h_source.html">rpchandler.h</a></li>
+<li>services/rpchandler.cpp</li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

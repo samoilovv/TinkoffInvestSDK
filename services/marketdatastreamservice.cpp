@@ -11,7 +11,6 @@ MarketDataStream::MarketDataStream(std::shared_ptr<grpc::Channel> channel, const
     m_grpcThread = std::unique_ptr<std::thread>(
                    new std::thread(&RpcHandler::handlingThread, &m_cq)
                 );
-
 }
 
 MarketDataStream::~MarketDataStream()

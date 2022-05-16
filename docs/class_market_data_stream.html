@@ -58,73 +58,66 @@ $(function() {
 <tr class="memitem:a56508798b64fbb926271b9392120a3fd"><td class="memItemLeft" align="right" valign="top"><a id="a56508798b64fbb926271b9392120a3fd"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MarketDataStream</b> (std::shared_ptr&lt; Channel &gt; channel, const std::string &amp;token)</td></tr>
 <tr class="separator:a56508798b64fbb926271b9392120a3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa48dc455045616eeed219da9bd874aac"><td class="memItemLeft" align="right" valign="top"><a id="aa48dc455045616eeed219da9bd874aac"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#aa48dc455045616eeed219da9bd874aac">SubscribeCandles</a> (const std::vector&lt; std::pair&lt; std::string, SubscriptionInterval &gt;&gt; &amp;candleInstruments, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:aa48dc455045616eeed219da9bd874aac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на свечи, блокирующий вызов <br /></td></tr>
-<tr class="separator:aa48dc455045616eeed219da9bd874aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67b88688bca6525722ece9e9b8035188"><td class="memItemLeft" align="right" valign="top"><a id="a67b88688bca6525722ece9e9b8035188"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a67b88688bca6525722ece9e9b8035188">SubscribeOrderBook</a> (const std::string &amp;figi, int32_t depth, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:a67b88688bca6525722ece9e9b8035188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на стаканы, блокирующий вызов <br /></td></tr>
-<tr class="separator:a67b88688bca6525722ece9e9b8035188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba429775a2d7477b93c85cc36bc86df2"><td class="memItemLeft" align="right" valign="top"><a id="aba429775a2d7477b93c85cc36bc86df2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#aba429775a2d7477b93c85cc36bc86df2">SubscribeTrades</a> (const std::vector&lt; std::string &gt; &amp;figis, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:aba429775a2d7477b93c85cc36bc86df2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на ленту обезличенных сделок, блокирующий вызов <br /></td></tr>
-<tr class="separator:aba429775a2d7477b93c85cc36bc86df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae22b5e7bbdcb4cbab2cf079183ee0d9e"><td class="memItemLeft" align="right" valign="top"><a id="ae22b5e7bbdcb4cbab2cf079183ee0d9e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#ae22b5e7bbdcb4cbab2cf079183ee0d9e">SubscribeInfo</a> (const std::vector&lt; std::string &gt; &amp;figis, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:ae22b5e7bbdcb4cbab2cf079183ee0d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на торговые статусы инструментов, блокирующий вызов <br /></td></tr>
-<tr class="separator:ae22b5e7bbdcb4cbab2cf079183ee0d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5c04c84661ab1db53137eecd7668559"><td class="memItemLeft" align="right" valign="top"><a id="ac5c04c84661ab1db53137eecd7668559"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#ac5c04c84661ab1db53137eecd7668559">SubscribeLastPrice</a> (const std::vector&lt; std::string &gt; &amp;figis, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:ac5c04c84661ab1db53137eecd7668559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на последние цены, блокирующий вызов <br /></td></tr>
-<tr class="separator:ac5c04c84661ab1db53137eecd7668559"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69a0ed418ebb8f6ad3dd67754420e171"><td class="memItemLeft" align="right" valign="top"><a id="a69a0ed418ebb8f6ad3dd67754420e171"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a69a0ed418ebb8f6ad3dd67754420e171">SubscribeCandlesAsync</a> (const std::vector&lt; std::pair&lt; std::string, SubscriptionInterval &gt;&gt; &amp;candleInstruments, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:a69a0ed418ebb8f6ad3dd67754420e171"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на свечи, асинхронный вызов <br /></td></tr>
-<tr class="separator:a69a0ed418ebb8f6ad3dd67754420e171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc205a82d9b6f0334eee0a959908dfa8"><td class="memItemLeft" align="right" valign="top"><a id="adc205a82d9b6f0334eee0a959908dfa8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#adc205a82d9b6f0334eee0a959908dfa8">SubscribeOrderBookAsync</a> (const std::string &amp;figi, int32_t depth, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:adc205a82d9b6f0334eee0a959908dfa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на стаканы, асинхронный вызов <br /></td></tr>
-<tr class="separator:adc205a82d9b6f0334eee0a959908dfa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b2ff4f8a9dd533028589f29a23fd569"><td class="memItemLeft" align="right" valign="top"><a id="a2b2ff4f8a9dd533028589f29a23fd569"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a2b2ff4f8a9dd533028589f29a23fd569">SubscribeTradesAsync</a> (const std::vector&lt; std::string &gt; &amp;figis, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:a2b2ff4f8a9dd533028589f29a23fd569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на ленту обезличенных сделок, асинхронный вызов <br /></td></tr>
-<tr class="separator:a2b2ff4f8a9dd533028589f29a23fd569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ace034b05a98bb0660429b0c4f37831"><td class="memItemLeft" align="right" valign="top"><a id="a2ace034b05a98bb0660429b0c4f37831"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a2ace034b05a98bb0660429b0c4f37831">SubscribeInfoAsync</a> (const std::vector&lt; std::string &gt; &amp;figis, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:a2ace034b05a98bb0660429b0c4f37831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на торговые статусы инструментов, асинхронный вызов <br /></td></tr>
-<tr class="separator:a2ace034b05a98bb0660429b0c4f37831"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23ab752c9b9959f786cdbea1ed355409"><td class="memItemLeft" align="right" valign="top"><a id="a23ab752c9b9959f786cdbea1ed355409"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a23ab752c9b9959f786cdbea1ed355409">SubscribeLastPriceAsync</a> (const std::vector&lt; std::string &gt; &amp;figis, std::function&lt; void(<a class="el" href="class_service_reply.html">ServiceReply</a>)&gt; callback)</td></tr>
-<tr class="memdesc:a23ab752c9b9959f786cdbea1ed355409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на последние цены, асинхронный вызов <br /></td></tr>
-<tr class="separator:a23ab752c9b9959f786cdbea1ed355409"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9acf06545cbb8e4f8bc6a7c879f70ca5"><td class="memItemLeft" align="right" valign="top"><a id="a9acf06545cbb8e4f8bc6a7c879f70ca5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a9acf06545cbb8e4f8bc6a7c879f70ca5">SubscribeCandles</a> (const std::vector&lt; std::pair&lt; std::string, SubscriptionInterval &gt;&gt; &amp;candleInstruments, CallbackFunc callback)</td></tr>
+<tr class="memdesc:a9acf06545cbb8e4f8bc6a7c879f70ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на свечи, блокирующий вызов <br /></td></tr>
+<tr class="separator:a9acf06545cbb8e4f8bc6a7c879f70ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aeb202dd70b73b4daf9ec0505ab96a4"><td class="memItemLeft" align="right" valign="top"><a id="a4aeb202dd70b73b4daf9ec0505ab96a4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a4aeb202dd70b73b4daf9ec0505ab96a4">SubscribeOrderBook</a> (const std::string &amp;figi, int32_t depth, CallbackFunc callback)</td></tr>
+<tr class="memdesc:a4aeb202dd70b73b4daf9ec0505ab96a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на стаканы, блокирующий вызов <br /></td></tr>
+<tr class="separator:a4aeb202dd70b73b4daf9ec0505ab96a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a423ffd1c74d7ed93725ef6188febd621"><td class="memItemLeft" align="right" valign="top"><a id="a423ffd1c74d7ed93725ef6188febd621"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a423ffd1c74d7ed93725ef6188febd621">SubscribeTrades</a> (const std::vector&lt; std::string &gt; &amp;figis, CallbackFunc callback)</td></tr>
+<tr class="memdesc:a423ffd1c74d7ed93725ef6188febd621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на ленту обезличенных сделок, блокирующий вызов <br /></td></tr>
+<tr class="separator:a423ffd1c74d7ed93725ef6188febd621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae610e53e4f988e632912fa4602ac7a76"><td class="memItemLeft" align="right" valign="top"><a id="ae610e53e4f988e632912fa4602ac7a76"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#ae610e53e4f988e632912fa4602ac7a76">SubscribeInfo</a> (const std::vector&lt; std::string &gt; &amp;figis, CallbackFunc callback)</td></tr>
+<tr class="memdesc:ae610e53e4f988e632912fa4602ac7a76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на торговые статусы инструментов, блокирующий вызов <br /></td></tr>
+<tr class="separator:ae610e53e4f988e632912fa4602ac7a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52376c9a26061be9f3f56ee7786f9998"><td class="memItemLeft" align="right" valign="top"><a id="a52376c9a26061be9f3f56ee7786f9998"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a52376c9a26061be9f3f56ee7786f9998">SubscribeLastPrice</a> (const std::vector&lt; std::string &gt; &amp;figis, CallbackFunc callback)</td></tr>
+<tr class="memdesc:a52376c9a26061be9f3f56ee7786f9998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на последние цены, блокирующий вызов <br /></td></tr>
+<tr class="separator:a52376c9a26061be9f3f56ee7786f9998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa154e231ff321f31fe779e58a6365869"><td class="memItemLeft" align="right" valign="top"><a id="aa154e231ff321f31fe779e58a6365869"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#aa154e231ff321f31fe779e58a6365869">SubscribeCandlesAsync</a> (const std::vector&lt; std::pair&lt; std::string, SubscriptionInterval &gt;&gt; &amp;candleInstruments, CallbackFunc callback)</td></tr>
+<tr class="memdesc:aa154e231ff321f31fe779e58a6365869"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на свечи, асинхронный вызов <br /></td></tr>
+<tr class="separator:aa154e231ff321f31fe779e58a6365869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e5b39a928dfd84f8c0cc9c11f53045a"><td class="memItemLeft" align="right" valign="top"><a id="a2e5b39a928dfd84f8c0cc9c11f53045a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a2e5b39a928dfd84f8c0cc9c11f53045a">SubscribeOrderBookAsync</a> (const std::string &amp;figi, int32_t depth, CallbackFunc callback)</td></tr>
+<tr class="memdesc:a2e5b39a928dfd84f8c0cc9c11f53045a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на стаканы, асинхронный вызов <br /></td></tr>
+<tr class="separator:a2e5b39a928dfd84f8c0cc9c11f53045a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3588cbecebd57b078c38e5101da37741"><td class="memItemLeft" align="right" valign="top"><a id="a3588cbecebd57b078c38e5101da37741"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a3588cbecebd57b078c38e5101da37741">SubscribeTradesAsync</a> (const std::vector&lt; std::string &gt; &amp;figis, CallbackFunc callback)</td></tr>
+<tr class="memdesc:a3588cbecebd57b078c38e5101da37741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на ленту обезличенных сделок, асинхронный вызов <br /></td></tr>
+<tr class="separator:a3588cbecebd57b078c38e5101da37741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10dfada4dbfc9f98840c37e112bb45b7"><td class="memItemLeft" align="right" valign="top"><a id="a10dfada4dbfc9f98840c37e112bb45b7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a10dfada4dbfc9f98840c37e112bb45b7">SubscribeInfoAsync</a> (const std::vector&lt; std::string &gt; &amp;figis, CallbackFunc callback)</td></tr>
+<tr class="memdesc:a10dfada4dbfc9f98840c37e112bb45b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на торговые статусы инструментов, асинхронный вызов <br /></td></tr>
+<tr class="separator:a10dfada4dbfc9f98840c37e112bb45b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc40911d82e6d82debcecc9be9ce3e1d"><td class="memItemLeft" align="right" valign="top"><a id="afc40911d82e6d82debcecc9be9ce3e1d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#afc40911d82e6d82debcecc9be9ce3e1d">SubscribeLastPriceAsync</a> (const std::vector&lt; std::string &gt; &amp;figis, CallbackFunc callback)</td></tr>
+<tr class="memdesc:afc40911d82e6d82debcecc9be9ce3e1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запрос подписки на последние цены, асинхронный вызов <br /></td></tr>
+<tr class="separator:afc40911d82e6d82debcecc9be9ce3e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ab6885e538c239a097718c119d2c3ef"><td class="memItemLeft" align="right" valign="top"><a id="a3ab6885e538c239a097718c119d2c3ef"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a3ab6885e538c239a097718c119d2c3ef">UnSubscribeCandles</a> ()</td></tr>
-<tr class="memdesc:a3ab6885e538c239a097718c119d2c3ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на свечи <br /></td></tr>
+<tr class="memdesc:a3ab6885e538c239a097718c119d2c3ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на свечи, блокирующий вызов <br /></td></tr>
 <tr class="separator:a3ab6885e538c239a097718c119d2c3ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a844802760f38ba69bc3b47a23268cfd9"><td class="memItemLeft" align="right" valign="top"><a id="a844802760f38ba69bc3b47a23268cfd9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a844802760f38ba69bc3b47a23268cfd9">UnSubscribeOrderBook</a> ()</td></tr>
-<tr class="memdesc:a844802760f38ba69bc3b47a23268cfd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на стаканы <br /></td></tr>
+<tr class="memdesc:a844802760f38ba69bc3b47a23268cfd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на стаканы, блокирующий вызов <br /></td></tr>
 <tr class="separator:a844802760f38ba69bc3b47a23268cfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e222204778d50f11e4385df6a578dee"><td class="memItemLeft" align="right" valign="top"><a id="a6e222204778d50f11e4385df6a578dee"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a6e222204778d50f11e4385df6a578dee">UnSubscribeTrades</a> ()</td></tr>
-<tr class="memdesc:a6e222204778d50f11e4385df6a578dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на ленту обезличенных сделок <br /></td></tr>
+<tr class="memdesc:a6e222204778d50f11e4385df6a578dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на ленту обезличенных сделок, блокирующий вызов <br /></td></tr>
 <tr class="separator:a6e222204778d50f11e4385df6a578dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3876f1a34b5f2cb4103cce6f5e0fb7cf"><td class="memItemLeft" align="right" valign="top"><a id="a3876f1a34b5f2cb4103cce6f5e0fb7cf"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a3876f1a34b5f2cb4103cce6f5e0fb7cf">UnSubscribeLastPrice</a> ()</td></tr>
-<tr class="memdesc:a3876f1a34b5f2cb4103cce6f5e0fb7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на последние цены <br /></td></tr>
+<tr class="memdesc:a3876f1a34b5f2cb4103cce6f5e0fb7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на последние цены, блокирующий вызов <br /></td></tr>
 <tr class="separator:a3876f1a34b5f2cb4103cce6f5e0fb7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59d31ddd051279744b309c871fc049ed"><td class="memItemLeft" align="right" valign="top"><a id="a59d31ddd051279744b309c871fc049ed"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a59d31ddd051279744b309c871fc049ed">UnSubscribeInfo</a> ()</td></tr>
-<tr class="memdesc:a59d31ddd051279744b309c871fc049ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на торговые статусы инструментов <br /></td></tr>
+<tr class="memdesc:a59d31ddd051279744b309c871fc049ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отмена подписки на торговые статусы инструментов, блокирующий вызов <br /></td></tr>
 <tr class="separator:a59d31ddd051279744b309c871fc049ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a212c31b2586361a61a2b7c2d3ac3822c"><td class="memItemLeft" align="right" valign="top"><a id="a212c31b2586361a61a2b7c2d3ac3822c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_market_data_stream.html#a212c31b2586361a61a2b7c2d3ac3822c">UnsabscribeMarketData</a> ()</td></tr>
-<tr class="memdesc:a212c31b2586361a61a2b7c2d3ac3822c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод, позволяющий отписаться от любой информации <br /></td></tr>
-<tr class="separator:a212c31b2586361a61a2b7c2d3ac3822c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e2382434d0ab782a61d56130e275d4d"><td class="memItemLeft" align="right" valign="top"><a id="a1e2382434d0ab782a61d56130e275d4d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AsyncCompleteRpc</b> ()</td></tr>
-<tr class="separator:a1e2382434d0ab782a61d56130e275d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_custom_service"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_custom_service')"><img src="closed.png" alt="-"/>&#160;Открытые члены унаследованные от <a class="el" href="class_custom_service.html">CustomService</a></td></tr>
 <tr class="memitem:afa19bff5965744b7169fe1f27f032640 inherit pub_methods_class_custom_service"><td class="memItemLeft" align="right" valign="top"><a id="afa19bff5965744b7169fe1f27f032640"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>CustomService</b> (const std::string &amp;token)</td></tr>

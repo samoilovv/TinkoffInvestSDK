@@ -40,14 +40,12 @@ void RpcHandler::handlingThread(CompletionQueue *cq)
 MarketDataHandler::MarketDataHandler(MarketDataHandler::responder_ptr responder, std::function<void (ServiceReply)> callback)
     : responder_(std::move(responder)), callback_(callback)
 {
-    std::lock_guard<std::mutex> lock(mutex_);
     responder_->StartCall(&tags.start_done);
 }
 
 MarketDataHandler::MarketDataHandler(grpc::CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, std::function<void (ServiceReply)> callback)
     : callback_(callback)
 {
-    std::lock_guard<std::mutex> lock(mutex_);
     std::string meta_value = "Bearer " + token;
     context.AddMetadata("authorization", meta_value);
     context.AddMetadata("x-app-name", APP_NAME);
@@ -63,7 +61,6 @@ MarketDataHandler::~MarketDataHandler()
 
 void MarketDataHandler::send(const MarketDataRequest &msg)
 {
-    std::lock_guard<std::mutex> lock(mutex_);
     if (ready_ && !sending_)
     {
         sending_ = true;
@@ -76,7 +73,6 @@ void MarketDataHandler::send(const MarketDataRequest &msg)
 
 void MarketDataHandler::on_ready()
 {
-    std::lock_guard<std::mutex> l(mutex_);
     ready_ = true;
 
     if (!queued_msgs_.empty()) {
@@ -92,15 +88,13 @@ void MarketDataHandler::on_ready()
 
 void MarketDataHandler::on_recv()
 {
-//    MarketDataResponse reply = std::move(incoming_);
     auto data = ServiceReply(std::make_shared<MarketDataResponse>(incoming_));
-    responder_->Read(&incoming_, &tags.read_done);
     if (callback_) callback_(data);
+    responder_->Read(&incoming_, &tags.read_done);
 }
 
 void MarketDataHandler::on_write_done()
 {
-    std::lock_guard<std::mutex> lock(mutex_);
     if (!queued_msgs_.empty()) {
         responder_->Write(queued_msgs_.front(), &tags.write_done);
         queued_msgs_.pop();

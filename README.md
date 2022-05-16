@@ -73,7 +73,7 @@ int main()
                 [marketdata](){marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);}
     );
 
-    //subscribe to transactions on shares of Bashneft (BANE) and Moscow Exchange (MOEX) and start streaming
+    //subscribe to Bashneft (BANE) and Moscow Exchange (MOEX) shares transactions and start streaming
     std::thread th2(
                 [marketdata](){marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);}
     );
@@ -105,7 +105,7 @@ int main()
     //subscribe to British American Tobacco and Visa Inc. prices 
     marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, marketStreamCallBack);
     
-    //subscribe to transactions on shares of Bashneft (BANE) and Moscow Exchange (MOEX)
+    //subscribe to Bashneft (BANE) and Moscow Exchange (MOEX) shares transactions
     marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);    
 
     return 0;

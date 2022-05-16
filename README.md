@@ -68,12 +68,12 @@ int main()
     //get reference to MarketDataStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
-    //subscribe on NVIDIA and Tesla Motors prices and start streaming
+    //subscribe to NVIDIA and Tesla Motors prices and start streaming
     std::thread th1(
                 [marketdata](){marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);}
     );
 
-    //Subscribe on orders of Bashneft (BANE) and Moscow Exchange (MOEX)
+    //Subscribe to orders of Bashneft (BANE) and Moscow Exchange (MOEX)
     std::thread th2(
                 [marketdata](){marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);}
     );
@@ -102,10 +102,10 @@ int main()
     //get references to MarketDataStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
 
-    //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
+    //Subscribe to British American Tobacco and Visa Inc. prices and start streaming
     marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);
     
-    //Subscribe on orders of Bashneft (BANE) and Moscow Exchange (MOEX)
+    //Subscribe to orders of Bashneft (BANE) and Moscow Exchange (MOEX)
     marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);    
 
     return 0;

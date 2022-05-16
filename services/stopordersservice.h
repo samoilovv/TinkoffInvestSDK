@@ -25,7 +25,7 @@ public:
     ~StopOrders();
 
     /// Метод выставления стоп-заявки
-    ServiceReply PostStopOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano, int64_t stopunits, int32_t stopnano, StopOrderDirection direction, const std::string &accountId, StopOrderExpirationType expirationType, StopOrderType stopOrderType, const std::string &orderId, int64_t expireSeconds, int32_t expireNanos);
+    ServiceReply PostStopOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano, int64_t stopunits, int32_t stopnano, StopOrderDirection direction, const std::string &accountId, StopOrderExpirationType expirationType, StopOrderType stopOrderType, int64_t expireSeconds, int32_t expireNanos);
     /// Метод получения списка активных стоп заявок по счёту
     ServiceReply GetStopOrders(const std::string &accountId);
     /// Метод отмены стоп-заявки

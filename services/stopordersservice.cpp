@@ -13,7 +13,7 @@ StopOrders::~StopOrders()
 
 }
 
-ServiceReply StopOrders::PostStopOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano, int64_t stopunits, int32_t stopnano, StopOrderDirection direction, const std::string &accountId, StopOrderExpirationType expirationType, StopOrderType stopOrderType, const std::string &orderId, int64_t expireSeconds, int32_t expireNanos)
+ServiceReply StopOrders::PostStopOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano, int64_t stopunits, int32_t stopnano, StopOrderDirection direction, const std::string &accountId, StopOrderExpirationType expirationType, StopOrderType stopOrderType, int64_t expireSeconds, int32_t expireNanos)
 {
     PostStopOrderRequest request;
     request.set_figi(figi);
@@ -29,7 +29,7 @@ ServiceReply StopOrders::PostStopOrder(const std::string &figi, int64_t quantity
     request.set_direction(direction);
     request.set_account_id(accountId);
     request.set_expiration_type(expirationType);
-    request.set_stop_order_type(stopOrderType);
+    request.set_stop_order_type(stopOrderType);    
     google::protobuf::Timestamp * expireDate = new google::protobuf::Timestamp();   
     expireDate->set_seconds(expireSeconds);
     expireDate->set_nanos(expireNanos);

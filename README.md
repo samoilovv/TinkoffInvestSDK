@@ -44,7 +44,7 @@ sandbox->OpenSandboxAccount();
 //print info about your account
 auto accounts = sandbox->GetSandboxAccounts();
 auto portfolio = sandbox->GetSandboxPortfolio(accounts.accountID(0));
-cout << portfolio.ptr()->DebugString() << endl;
+std::cout << portfolio.ptr()->DebugString() << std::endl;
 
 //close account
 sandbox->CloseSandboxAccount(accountId);

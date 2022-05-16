@@ -8,7 +8,7 @@
 #include "ordersservice.h"
 #include "ordersstreamservice.h"
 #include "stopordersservice.h"
-#include "servicereply.h"
+#include "commontypes.h"
 
 InvestApiClient::InvestApiClient(const std::string &host, const std::string &pass)
 {
@@ -20,8 +20,8 @@ InvestApiClient::InvestApiClient(const std::string &host, const std::string &pas
     m_services["operations"] = std::make_shared<Operations>(channel, pass);
     m_services["orders"] = std::make_shared<Orders>(channel, pass);
     m_services["stoporders"] = std::make_shared<StopOrders>(channel, pass);
-    m_services["marketdatastream"] = std::make_shared<MarketDataStream>(grpc::CreateChannel(host, grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
-    m_services["ordersstream"] = std::make_shared<OrdersStream>(grpc::CreateChannel(host, grpc::SslCredentials(grpc::SslCredentialsOptions())), pass);
+    m_services["marketdatastream"] = std::make_shared<MarketDataStream>(channel, pass);
+    m_services["ordersstream"] = std::make_shared<OrdersStream>(channel, pass);
 }
 
 InvestApiClient::~InvestApiClient()

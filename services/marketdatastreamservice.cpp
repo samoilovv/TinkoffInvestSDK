@@ -18,7 +18,7 @@ MarketDataStream::~MarketDataStream()
     m_grpcThread->join();
 }
 
-void MarketDataStream::SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback)
+bool MarketDataStream::SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -50,12 +50,10 @@ void MarketDataStream::SubscribeCandles(const std::vector<std::pair<std::string,
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
+    return status.ok();
 }
 
-void MarketDataStream::UnSubscribeCandles()
+bool MarketDataStream::UnSubscribeCandles()
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -80,13 +78,10 @@ void MarketDataStream::UnSubscribeCandles()
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
-
+    return status.ok();
 }
 
-void MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth, CallbackFunc callback)
+bool MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -115,12 +110,10 @@ void MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
+    return status.ok();
 }
 
-void MarketDataStream::UnSubscribeOrderBook()
+bool MarketDataStream::UnSubscribeOrderBook()
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -145,12 +138,10 @@ void MarketDataStream::UnSubscribeOrderBook()
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
+    return status.ok();
 }
 
-void MarketDataStream::SubscribeInfo(const std::vector<std::string> &figis, CallbackFunc callback)
+bool MarketDataStream::SubscribeInfo(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -181,13 +172,10 @@ void MarketDataStream::SubscribeInfo(const std::vector<std::string> &figis, Call
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
-
+    return status.ok();
 }
 
-void MarketDataStream::UnSubscribeInfo()
+bool MarketDataStream::UnSubscribeInfo()
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -211,12 +199,10 @@ void MarketDataStream::UnSubscribeInfo()
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
+    return status.ok();
 }
 
-void MarketDataStream::SubscribeTrades(const std::vector<std::string> &figis, CallbackFunc callback)
+bool MarketDataStream::SubscribeTrades(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -247,12 +233,10 @@ void MarketDataStream::SubscribeTrades(const std::vector<std::string> &figis, Ca
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
+    return status.ok();
 }
 
-void MarketDataStream::UnSubscribeTrades()
+bool MarketDataStream::UnSubscribeTrades()
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -276,12 +260,10 @@ void MarketDataStream::UnSubscribeTrades()
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
+    return status.ok();
 }
 
-void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis, CallbackFunc callback)
+bool MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -314,9 +296,7 @@ void MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis,
     writer.join();
 
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
+    return status.ok();
 }
 
 void MarketDataStream::SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval> > &candleInstruments, CallbackFunc callback)
@@ -393,7 +373,7 @@ void MarketDataStream::SubscribeLastPriceAsync(const std::vector<std::string> &f
     SendRequest(request, callback);
 }
 
-void MarketDataStream::UnSubscribeLastPrice()
+bool MarketDataStream::UnSubscribeLastPrice()
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -417,9 +397,7 @@ void MarketDataStream::UnSubscribeLastPrice()
     }
     writer.join();
     Status status = stream->Finish();
-    if (!status.ok()) {
-        std::cout << "MarketDataStream rpc failed." << std::endl;
-    }
+    return status.ok();
 }
 
 void MarketDataStream::SendRequest(const MarketDataRequest &request, CallbackFunc callback)

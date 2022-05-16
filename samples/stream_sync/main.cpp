@@ -19,7 +19,7 @@ int main()
                 [marketdata](){marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);}
     );
 
-    //Subscribe to orders of Bashneft (BANE) and Moscow Exchange (MOEX)
+    //subscribe to transactions on shares of Bashneft (BANE) and Moscow Exchange (MOEX)
     std::thread th2(
                 [marketdata](){marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);}
     );

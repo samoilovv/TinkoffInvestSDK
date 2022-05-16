@@ -5,9 +5,9 @@
 #include <set>
 #include <thread>
 #include <grpcpp/grpcpp.h>
-#include "customservice.h"
 #include "marketdata.grpc.pb.h"
-#include "servicereply.h"
+#include "customservice.h"
+#include "commontypes.h"
 #include "rpchandler.h"
 
 using grpc::Channel;
@@ -15,8 +15,6 @@ using grpc::ClientAsyncReaderWriter;
 using grpc::CompletionQueue;
 
 using namespace tinkoff::public_::invest::api::contract::v1;
-
-using CallbackFunc = std::function<void (ServiceReply)>;
 
 /*!
     \brief Сервис получения биржевой информации в режиме стриминга
@@ -35,15 +33,15 @@ public:
     ~MarketDataStream();
 
     /// Запрос подписки на свечи, блокирующий вызов
-    void SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback);
+    bool SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback);
     /// Запрос подписки на стаканы, блокирующий вызов
-    void SubscribeOrderBook(const std::string &figi, int32_t depth, CallbackFunc callback);
+    bool SubscribeOrderBook(const std::string &figi, int32_t depth, CallbackFunc callback);
     /// Запрос подписки на ленту обезличенных сделок, блокирующий вызов
-    void SubscribeTrades(const std::vector<std::string> &figis, CallbackFunc callback);
+    bool SubscribeTrades(const std::vector<std::string> &figis, CallbackFunc callback);
     /// Запрос подписки на торговые статусы инструментов, блокирующий вызов
-    void SubscribeInfo(const std::vector<std::string> &figis, CallbackFunc callback);
+    bool SubscribeInfo(const std::vector<std::string> &figis, CallbackFunc callback);
     /// Запрос подписки на последние цены, блокирующий вызов
-    void SubscribeLastPrice(const std::vector<std::string> &figis, CallbackFunc callback);
+    bool SubscribeLastPrice(const std::vector<std::string> &figis, CallbackFunc callback);
 
     /// Запрос подписки на свечи, асинхронный вызов
     void SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback);
@@ -57,15 +55,15 @@ public:
     void SubscribeLastPriceAsync(const std::vector<std::string> &figis, CallbackFunc callback);
 
     /// Отмена подписки на свечи, блокирующий вызов
-    void UnSubscribeCandles();
+    bool UnSubscribeCandles();
     /// Отмена подписки на стаканы, блокирующий вызов
-    void UnSubscribeOrderBook();
+    bool UnSubscribeOrderBook();
     /// Отмена подписки на ленту обезличенных сделок, блокирующий вызов
-    void UnSubscribeTrades();
+    bool UnSubscribeTrades();
     /// Отмена подписки на последние цены, блокирующий вызов
-    void UnSubscribeLastPrice();
+    bool UnSubscribeLastPrice();
     /// Отмена подписки на торговые статусы инструментов, блокирующий вызов
-    void UnSubscribeInfo();
+    bool UnSubscribeInfo();
 
 private:
     CompletionQueue m_cq;

@@ -25,8 +25,8 @@ ServiceReply MarketData::GetCandles(const std::string &figi, int64_t fromseconds
     from->set_nanos(fromnanos);
     request.set_allocated_from(from);
     auto  to = new google::protobuf::Timestamp();
-    to->set_seconds(fromseconds);
-    to->set_nanos(fromnanos);
+    to->set_seconds(toseconds);
+    to->set_nanos(tonanos);
     request.set_allocated_to(to);
     request.set_interval(interval);
     GetCandlesResponse reply;
@@ -34,7 +34,7 @@ ServiceReply MarketData::GetCandles(const std::string &figi, int64_t fromseconds
     return ServiceReply::prepareServiceAnswer<GetCandlesResponse>(status, reply);
 }
 
-ServiceReply MarketData::GetLastPrices(const std::vector<std::string> &figis)
+ServiceReply MarketData::GetLastPrices(const Strings &figis)
 {
     GetLastPricesRequest request;
     for (auto &figi: figis) request.add_figi(figi);

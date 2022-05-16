@@ -1,4 +1,5 @@
 #include "customservice.h"
+#include "commontypes.h"
 
 CustomService::CustomService(const std::string &token) : m_token(token)
 {

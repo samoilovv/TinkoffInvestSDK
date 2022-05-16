@@ -1,5 +1,5 @@
-#include "servicereply.h"
 #include "sandbox.grpc.pb.h"
+#include "commontypes.h"
 
 using namespace tinkoff::public_::invest::api::contract::v1;
 

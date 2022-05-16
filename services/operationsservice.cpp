@@ -25,6 +25,7 @@ ServiceReply Operations::GetOperations(const std::string  &accountId, int64_t fr
     to->set_nanos(tonanos);
     request.set_allocated_to(to);
     request.set_figi(figi);
+    request.set_state(state);
     OperationsResponse reply;
     Status status = m_operationsService->GetOperations(makeContext().get(), request, &reply);
     return ServiceReply::prepareServiceAnswer<OperationsResponse>(status, reply);

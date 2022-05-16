@@ -4,7 +4,7 @@
 #include "customservice.h"
 #include <grpcpp/grpcpp.h>
 #include "instruments.grpc.pb.h"
-#include "servicereply.h"
+#include "commontypes.h"
 
 using grpc::Channel;
 using namespace tinkoff::public_::invest::api::contract::v1;

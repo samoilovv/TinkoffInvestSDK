@@ -1,11 +1,12 @@
 #ifndef MARKETDATASERVICE_H
 #define MARKETDATASERVICE_H
 
-#include "customservice.h"
-#include <grpcpp/grpcpp.h>
-#include "marketdata.grpc.pb.h"
-#include "servicereply.h"
 #include <vector>
+#include <grpcpp/grpcpp.h>
+#include "customservice.h"
+#include "marketdata.grpc.pb.h"
+#include "commontypes.h"
+
 
 using grpc::Channel;
 using namespace tinkoff::public_::invest::api::contract::v1;

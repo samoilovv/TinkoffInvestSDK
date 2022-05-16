@@ -2,11 +2,10 @@
 #define RPCHANDLER_H
 
 #include <queue>
-#include <mutex>
-#include <functional>
 #include <grpcpp/grpcpp.h>
 #include "marketdata.grpc.pb.h"
-#include "servicereply.h"
+#include "customservice.h"
+#include "commontypes.h"
 
 using namespace tinkoff::public_::invest::api::contract::v1;
 
@@ -67,7 +66,7 @@ public:
     using responder_ptr = std::unique_ptr<ClientAsyncReaderWriter<MarketDataRequest, MarketDataResponse>>;
 
     MarketDataHandler(responder_ptr responder, std::function<void (ServiceReply)> callback);
-    MarketDataHandler(CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, std::function<void (ServiceReply)> callback);
+    MarketDataHandler(CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, CallbackFunc callback);
     ~MarketDataHandler();
 
     void send(const MarketDataRequest &msg);
@@ -83,8 +82,8 @@ private:
     bool sending_ = false;
     bool ready_ = false;
     std::queue<MarketDataRequest> queued_msgs_;
-    std::function<void (ServiceReply)> callback_;
-    std::mutex mutex_;
+    CallbackFunc callback_;
+
 };
 
 #endif // RPCHANDLER_H

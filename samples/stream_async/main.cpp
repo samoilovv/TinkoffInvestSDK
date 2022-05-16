@@ -13,10 +13,10 @@ int main()
     //get references to MarketDataStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
-    //Subscribe to Bashneft (BANE) and Moscow Exchange (MOEX) prices
+    //subscribe to Bashneft (BANE) and Moscow Exchange (MOEX) prices
     marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, marketStreamCallBack);
 
-    //Subscribe to orders of Bashneft (BANE) and Moscow Exchange (MOEX)
+    //subscribe to transactions on shares of Bashneft (BANE) and Moscow Exchange (MOEX)
     marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);
 
     return 0;

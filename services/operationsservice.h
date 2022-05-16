@@ -1,10 +1,11 @@
 #ifndef OPERATIONSSERVICE_H
 #define OPERATIONSSERVICE_H
 
-#include "customservice.h"
+
 #include <grpcpp/grpcpp.h>
 #include "operations.grpc.pb.h"
-#include "servicereply.h"
+#include "customservice.h"
+#include "commontypes.h"
 
 using grpc::Channel;
 using namespace tinkoff::public_::invest::api::contract::v1;

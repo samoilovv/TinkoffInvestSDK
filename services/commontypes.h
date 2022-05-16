@@ -1,8 +1,9 @@
-#ifndef SERVICEREPLY_H
-#define SERVICEREPLY_H
+#ifndef COMMONTYPES_H
+#define COMMONTYPES_H
 
-#include "google/protobuf/message.h"
 #include <grpcpp/grpcpp.h>
+#include <functional>
+#include "google/protobuf/message.h"
 #include "tinkoffinvestsdk_export.h"
 
 using grpc::Status;
@@ -35,4 +36,8 @@ private:
 
 };
 
-#endif // SERVICEREPLY_H
+using CallbackFunc = std::function<void (ServiceReply)>;
+
+using Strings = std::vector<std::string>;
+
+#endif // COMMONTYPES_H

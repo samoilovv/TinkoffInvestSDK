@@ -3,7 +3,7 @@
 
 #include <grpcpp/grpcpp.h>
 #include "google/protobuf/message.h"
-#include "servicereply.h"
+#include "commontypes.h"
 
 using grpc::ClientContext;
 using grpc::Status;

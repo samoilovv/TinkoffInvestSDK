@@ -2,10 +2,10 @@
 #define ORDERSSTREAMSERVICE_H
 
 #include <thread>
-#include "customservice.h"
 #include <grpcpp/grpcpp.h>
+#include "customservice.h"
 #include "orders.grpc.pb.h"
-#include "servicereply.h"
+#include "commontypes.h"
 
 using grpc::ClientAsyncReader;
 using grpc::Channel;
@@ -26,9 +26,9 @@ public:
     ~OrdersStream();
 
     /// Поток сделок пользователя, блокирующий вызов
-    void TradesStream(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback);
+    void TradesStream(const Strings &accounts, CallbackFunc callback);
     /// Поток сделок пользователя, асинхронный вызов
-    void TradesStreamAsync(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback);
+    void TradesStreamAsync(const Strings &accounts, CallbackFunc callback);
     void AsyncCompleteRpc();
 
 private:
@@ -37,7 +37,7 @@ private:
     {
 
     public:
-        AsyncClientCall(const TradesStreamRequest& request, CompletionQueue& cq_, std::unique_ptr<OrdersStreamService::Stub>& stub_, std::string token, std::function<void(ServiceReply)> callback);
+        AsyncClientCall(const TradesStreamRequest& request, CompletionQueue& cq_, std::unique_ptr<OrdersStreamService::Stub>& stub_, std::string token, CallbackFunc callback);
         ~AsyncClientCall(){}
 
         ClientContext context;
@@ -50,7 +50,7 @@ private:
 
     private:
         std::unique_ptr<ClientAsyncReader<TradesStreamResponse> > responder;
-        std::function<void(ServiceReply)> callback;
+        CallbackFunc callback;
 
     };
 

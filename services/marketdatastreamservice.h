@@ -37,11 +37,11 @@ public:
     /// Запрос подписки на стаканы, блокирующий вызов
     bool SubscribeOrderBook(const std::string &figi, int32_t depth, CallbackFunc callback);
     /// Запрос подписки на ленту обезличенных сделок, блокирующий вызов
-    bool SubscribeTrades(const std::vector<std::string> &figis, CallbackFunc callback);
+    bool SubscribeTrades(const Strings &figis, CallbackFunc callback);
     /// Запрос подписки на торговые статусы инструментов, блокирующий вызов
-    bool SubscribeInfo(const std::vector<std::string> &figis, CallbackFunc callback);
+    bool SubscribeInfo(const Strings &figis, CallbackFunc callback);
     /// Запрос подписки на последние цены, блокирующий вызов
-    bool SubscribeLastPrice(const std::vector<std::string> &figis, CallbackFunc callback);
+    bool SubscribeLastPrice(const Strings &figis, CallbackFunc callback);
 
     /// Отмена подписки на свечи, блокирующий вызов
     bool UnSubscribeCandles();
@@ -59,11 +59,11 @@ public:
     /// Запрос подписки на стаканы, асинхронный вызов
     void SubscribeOrderBookAsync(const std::string &figi, int32_t depth, CallbackFunc callback);
     /// Запрос подписки на ленту обезличенных сделок, асинхронный вызов
-    void SubscribeTradesAsync(const std::vector<std::string> &figis, CallbackFunc callback);
+    void SubscribeTradesAsync(const Strings &figis, CallbackFunc callback);
     /// Запрос подписки на торговые статусы инструментов, асинхронный вызов
-    void SubscribeInfoAsync(const std::vector<std::string> &figis, CallbackFunc callback);
+    void SubscribeInfoAsync(const Strings &figis, CallbackFunc callback);
     /// Запрос подписки на последние цены, асинхронный вызов
-    void SubscribeLastPriceAsync(const std::vector<std::string> &figis, CallbackFunc callback);
+    void SubscribeLastPriceAsync(const Strings &figis, CallbackFunc callback);
 
     /// Отмена подписки на свечи, асинхронный вызов
     void UnSubscribeCandlesAsync();

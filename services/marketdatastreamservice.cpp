@@ -141,7 +141,7 @@ bool MarketDataStream::UnSubscribeOrderBook()
     return status.ok();
 }
 
-bool MarketDataStream::SubscribeInfo(const std::vector<std::string> &figis, CallbackFunc callback)
+bool MarketDataStream::SubscribeInfo(const Strings &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -203,7 +203,7 @@ bool MarketDataStream::UnSubscribeInfo()
     return status.ok();
 }
 
-bool MarketDataStream::SubscribeTrades(const std::vector<std::string> &figis, CallbackFunc callback)
+bool MarketDataStream::SubscribeTrades(const Strings &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -265,7 +265,7 @@ bool MarketDataStream::UnSubscribeTrades()
     return status.ok();
 }
 
-bool MarketDataStream::SubscribeLastPrice(const std::vector<std::string> &figis, CallbackFunc callback)
+bool MarketDataStream::SubscribeLastPrice(const Strings &figis, CallbackFunc callback)
 {
     ClientContext context;
     std::string meta_value = "Bearer " + m_token;
@@ -330,7 +330,7 @@ void MarketDataStream::SubscribeOrderBookAsync(const std::string &figi, int32_t 
     SendRequest(request, callback);
 }
 
-void MarketDataStream::SubscribeTradesAsync(const std::vector<std::string> &figis, CallbackFunc callback)
+void MarketDataStream::SubscribeTradesAsync(const Strings &figis, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto str = new SubscribeTradesRequest();
@@ -345,7 +345,7 @@ void MarketDataStream::SubscribeTradesAsync(const std::vector<std::string> &figi
     SendRequest(request, callback);
 }
 
-void MarketDataStream::SubscribeInfoAsync(const std::vector<std::string> &figis, CallbackFunc callback)
+void MarketDataStream::SubscribeInfoAsync(const Strings &figis, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto sir = new SubscribeInfoRequest();
@@ -360,7 +360,7 @@ void MarketDataStream::SubscribeInfoAsync(const std::vector<std::string> &figis,
     SendRequest(request, callback);
 }
 
-void MarketDataStream::SubscribeLastPriceAsync(const std::vector<std::string> &figis, CallbackFunc callback)
+void MarketDataStream::SubscribeLastPriceAsync(const Strings &figis, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto slpr = new SubscribeLastPriceRequest();

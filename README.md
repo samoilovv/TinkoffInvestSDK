@@ -52,7 +52,7 @@ sandbox->CloseSandboxAccount(accountId);
 ```
 
 
-Пример использования потокового блокирующего вызова: подписка на получение последних цен акций двух компаний по их идентификторам. Каждый вызов необходимо помещать в отдельный поток.
+Пример использования потокового блокирующего вызова: подписка на получение последних цен акций и на ленту обезличенных сделок. Каждый вызов необходимо помещать в отдельный поток.
 
 ```cpp
 
@@ -73,7 +73,7 @@ int main()
                 [marketdata](){marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);}
     );
 
-    //Subscribe to orders of Bashneft (BANE) and Moscow Exchange (MOEX)
+    //Subscribe to orders of Bashneft (BANE) and Moscow Exchange (MOEX) and start streaming
     std::thread th2(
                 [marketdata](){marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);}
     );
@@ -102,7 +102,7 @@ int main()
     //get references to MarketDataStream service
     auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
 
-    //Subscribe to British American Tobacco and Visa Inc. prices and start streaming
+    //Subscribe to British American Tobacco and Visa Inc. prices 
     marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, tradesStreamCallBack);
     
     //Subscribe to orders of Bashneft (BANE) and Moscow Exchange (MOEX)

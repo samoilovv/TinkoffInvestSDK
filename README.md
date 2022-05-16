@@ -62,21 +62,31 @@ void marketStreamCallBack(ServiceReply reply)
 }
 
 int main()
-{
-    InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
+{    
+    InvestApiClient client("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
-    //get references to MarketDataStream service
-    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
+    //get reference to MarketDataStream service
+    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
-    //Subscribe on British American Tobacco and Visa Inc. prices and start streaming
-    marketdata->SubscribeLastPrice({"BBG000BWPXQ8", "BBG00844BD08"}, marketStreamCallBack);
+    //subscribe on NVIDIA and Tesla Motors prices and start streaming
+    std::thread th1(
+                [marketdata](){marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);}
+    );
+
+    //Subscribe on orders of Bashneft (BANE) and Moscow Exchange (MOEX)
+    std::thread th2(
+                [marketdata](){marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);}
+    );
+
+    th1.join();
+    th2.join();
 
     return 0;
 }
 
 ```
 
-Пример использования потокового асинхронного запроса: подписка на получение последних цен и на ленту обезличенных сделок. Клиент обрабатывает ответы на все запросы в своем собственном потоке, что сущесвтенно повышает производительность системы. 
+Пример использования потокового асинхронного запроса: подписка на получение последних цен и на ленту обезличенных сделок. Клиент обрабатывает ответы сервера в своем единственном потоке, что сущесвтенно повышает производительность системы при большом количестве запросов. 
 
 ```cpp
 

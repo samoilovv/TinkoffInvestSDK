@@ -59,6 +59,9 @@ public:
 
 };
 
+/*!
+    \brief Обработчик асинхронных двунаправленных RPC вызовов MarketDataStream сервиса
+*/
 class MarketDataHandler final : public RpcHandler
 {
 

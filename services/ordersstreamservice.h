@@ -29,6 +29,7 @@ public:
     void TradesStream(const Strings &accounts, CallbackFunc callback);
     /// Поток сделок пользователя, асинхронный вызов
     void TradesStreamAsync(const Strings &accounts, CallbackFunc callback);
+    /// Обработчик асинхронных вызовов
     void AsyncCompleteRpc();
 
 private:
@@ -49,7 +50,7 @@ private:
         void Proceed(bool ok = true);
 
     private:
-        std::unique_ptr<ClientAsyncReader<TradesStreamResponse> > responder;
+        std::unique_ptr<ClientAsyncReader<TradesStreamResponse>> responder;
         CallbackFunc callback;
 
     };

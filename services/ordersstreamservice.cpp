@@ -1,5 +1,5 @@
-#include <iostream>
 #include "ordersstreamservice.h"
+
 
 using grpc::ClientReader;
 
@@ -7,26 +7,28 @@ OrdersStream::OrdersStream(std::shared_ptr<grpc::Channel> channel, const std::st
     CustomService(token),
     m_ordersStreamService(OrdersStreamService::NewStub(channel))
 {
-    //m_grpcThread.reset(new std::thread(std::bind(&OrdersStream::AsyncCompleteRpc, this)));
+    m_grpcThread = std::unique_ptr<std::thread>(
+                   new std::thread(std::bind(&OrdersStream::AsyncCompleteRpc, this))
+                );
 }
 
 OrdersStream::~OrdersStream()
 {
-
+    m_grpcThread->join();
 }
 
 void OrdersStream::AsyncCompleteRpc()
 {
-    void * got_tag;
+    void *got_tag;
     bool ok = false;
     while(m_cq.Next(&got_tag, &ok))
     {
-        AsyncClientCall * call = static_cast<AsyncClientCall*>(got_tag);
+        AsyncClientCall *call = static_cast<AsyncClientCall*>(got_tag);
         call->Proceed(ok);
     }
 }
 
-void OrdersStream::TradesStreamAsync(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback)
+void OrdersStream::TradesStreamAsync(const Strings &accounts, CallbackFunc callback)
 {
     TradesStreamRequest request;
     for (auto &account: accounts)
@@ -37,7 +39,7 @@ void OrdersStream::TradesStreamAsync(const std::vector<std::string> &accounts, s
     new AsyncClientCall(request, m_cq, m_ordersStreamService, m_token, callback);
 }
 
-void OrdersStream::TradesStream(const std::vector<std::string> &accounts, std::function<void(ServiceReply)> callback)
+void OrdersStream::TradesStream(const Strings &accounts, CallbackFunc callback)
 {
     TradesStreamRequest request;
     for (auto &account: accounts)
@@ -54,13 +56,11 @@ void OrdersStream::TradesStream(const std::vector<std::string> &accounts, std::f
     std::unique_ptr<ClientReader<TradesStreamResponse> > reader(
         m_ordersStreamService->TradesStream(&context, request));
     while (reader->Read(&reply)) {
-      auto data = ServiceReply(std::make_shared<TradesStreamResponse>(reply));
-      callback(data);
+        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(reply));
+        if (callback) callback(data);
     }
     Status status = reader->Finish();
-    if (status.ok()) {
-        std::cout << "TradesStream rpc succeeded." << std::endl;
-    } else {
+    if (!status.ok()) {
         std::cout << "TradesStream rpc failed." << std::endl;
     }
 }
@@ -80,7 +80,6 @@ void OrdersStream::AsyncClientCall::Proceed(bool ok)
     {
         if (!ok)
         {
-            std::cout << "Trying finish" << std::endl;
             responder->Finish(&status, (void*)this);
             callStatus = FINISH;
             return ;
@@ -91,7 +90,6 @@ void OrdersStream::AsyncClientCall::Proceed(bool ok)
     }
     else if(callStatus == FINISH)
     {
-        std::cout << "Finish" << std::endl;
         delete this;
     }
     return;

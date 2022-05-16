@@ -33,12 +33,10 @@ $ export TOKEN=YOUR_TOKEN
 
 ```cpp
 
-using std;
-
 InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
 //get reference to sandbox service
-auto sandbox = dynamic_pointer_cast<Sandbox>(сlient.service("sandbox"));
+auto sandbox = std::dynamic_pointer_cast<Sandbox>(сlient.service("sandbox"));
 
 //open account
 sandbox->OpenSandboxAccount();

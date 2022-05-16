@@ -188,6 +188,7 @@ bool MarketDataStream::UnSubscribeInfo()
     auto sir = new SubscribeInfoRequest();
     sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);;
     request.set_allocated_subscribe_info_request(sir);
+
     std::thread writer([stream, request]() {
         stream->Write(request);
         stream->WritesDone();
@@ -249,6 +250,7 @@ bool MarketDataStream::UnSubscribeTrades()
     auto str = new SubscribeTradesRequest();
     str->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     request.set_allocated_subscribe_trades_request(str);
+
     std::thread writer([stream, request]() {
         stream->Write(request);
         stream->WritesDone();
@@ -373,6 +375,56 @@ void MarketDataStream::SubscribeLastPriceAsync(const std::vector<std::string> &f
     SendRequest(request, callback);
 }
 
+void MarketDataStream::UnSubscribeCandlesAsync()
+{
+    MarketDataRequest request;
+    auto scr = new SubscribeCandlesRequest();
+    scr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    request.set_allocated_subscribe_candles_request(scr);
+
+    SendRequest(request);
+}
+
+void MarketDataStream::UnSubscribeOrderBookAsync()
+{
+    MarketDataRequest request;
+    auto sobr = new SubscribeOrderBookRequest();
+    sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    request.set_allocated_subscribe_order_book_request(sobr);
+
+    SendRequest(request);
+}
+
+void MarketDataStream::UnSubscribeTradesAsync()
+{
+    MarketDataRequest request;
+    auto str = new SubscribeTradesRequest();
+    str->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    request.set_allocated_subscribe_trades_request(str);
+
+    SendRequest(request);
+}
+
+void MarketDataStream::UnSubscribeLastPriceAsync()
+{
+    MarketDataRequest request;
+    auto slpr = new SubscribeLastPriceRequest();
+    slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
+    request.set_allocated_subscribe_last_price_request(slpr);
+
+    SendRequest(request);
+}
+
+void MarketDataStream::UnSubscribeInfoAsync()
+{
+    MarketDataRequest request;
+    auto sir = new SubscribeInfoRequest();
+    sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);;
+    request.set_allocated_subscribe_info_request(sir);
+
+    SendRequest(request);
+}
+
 bool MarketDataStream::UnSubscribeLastPrice()
 {
     ClientContext context;
@@ -386,6 +438,7 @@ bool MarketDataStream::UnSubscribeLastPrice()
     auto slpr = new SubscribeLastPriceRequest();
     slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     request.set_allocated_subscribe_last_price_request(slpr);
+
     std::thread writer([stream, request]() {
         stream->Write(request);
         stream->WritesDone();

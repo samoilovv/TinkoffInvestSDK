@@ -33,10 +33,12 @@ $ export TOKEN=YOUR_TOKEN
 
 ```cpp
 
+using std;
+
 InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
 //get reference to sandbox service
-auto sandbox = std::dynamic_pointer_cast<Sandbox>(сlient.service("sandbox"));
+auto sandbox = dynamic_pointer_cast<Sandbox>(сlient.service("sandbox"));
 
 //open account
 sandbox->OpenSandboxAccount();
@@ -44,7 +46,7 @@ sandbox->OpenSandboxAccount();
 //print info about your account
 auto accounts = sandbox->GetSandboxAccounts();
 auto portfolio = sandbox->GetSandboxPortfolio(accounts.accountID(0));
-std::cout << portfolio.ptr()->DebugString() << std::endl;
+cout << portfolio.ptr()->DebugString() << endl;
 
 //close account
 sandbox->CloseSandboxAccount(accountId);
@@ -56,9 +58,11 @@ sandbox->CloseSandboxAccount(accountId);
 
 ```cpp
 
+using std;
+
 void marketStreamCallBack(ServiceReply reply)
 {
-    std::cout << reply.ptr()->DebugString() << std::endl;
+    cout << reply.ptr()->DebugString() << endl;
 }
 
 int main()
@@ -66,16 +70,16 @@ int main()
     InvestApiClient client("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get reference to MarketDataStream service
-    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
+    auto marketdata = dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
     //subscribe to NVIDIA and Tesla Motors prices and start streaming
-    std::thread th1(
-                [marketdata](){marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);}
+    thread th1(
+        [marketdata](){marketdata->SubscribeLastPrice({"BBG000BBJQV0", "BBG000N9MNX3"}, marketStreamCallBack);}
     );
 
     //subscribe to Bashneft (BANE) and Moscow Exchange (MOEX) shares transactions and start streaming
-    std::thread th2(
-                [marketdata](){marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);}
+    thread th2(
+        [marketdata](){marketdata->SubscribeTradesAsync({"BBG004S68758", "BBG004730JJ5"}, marketStreamCallBack);}
     );
 
     th1.join();
@@ -90,9 +94,11 @@ int main()
 
 ```cpp
 
+using std;
+
 void marketStreamCallBack(ServiceReply reply)
 {
-    std::cout << reply.ptr()->DebugString() << std::endl;
+    cout << reply.ptr()->DebugString() << endl;
 }
 
 int main()
@@ -100,7 +106,7 @@ int main()
     InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
     //get references to MarketDataStream service
-    auto marketdata = std::dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
+    auto marketdata = dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
 
     //subscribe to British American Tobacco and Visa Inc. prices 
     marketdata->SubscribeLastPriceAsync({"BBG000BWPXQ8", "BBG00844BD08"}, marketStreamCallBack);

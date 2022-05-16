@@ -175,4 +175,4 @@ subscribe_trades_response {
 
 ## Документация
 
-Подробную документацию можно найти по [ссылке](https://samoilovv.github.io/TinkoffInvestSDK/). Вопросы и предложения [сюда](https://github.com/samoilovv/TinkoffInvestSDK/issues)
+Подробную документацию можно найти по [ссылке](https://samoilovv.github.io/TinkoffInvestSDK/). Вопросы и предложения [сюда](https://github.com/samoilovv/TinkoffInvestSDK/issues).

@@ -11,6 +11,13 @@ C++ client for Tinkoff invest API
 
 ### Сборка
 
+Клонируйте проект
+
+```bash
+git clone https://github.com/samoilovv/TinkoffInvestSDK.git
+git submodule update —init —recursive
+``` 
+
 Перейдите в директорию проекта и выполните следующие команды:
 
 ```bash

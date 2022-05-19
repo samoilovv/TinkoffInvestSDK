@@ -37,13 +37,13 @@ void RpcHandler::handlingThread(CompletionQueue *cq)
     }
 }
 
-MarketDataHandler::MarketDataHandler(MarketDataHandler::responder_ptr responder, std::function<void (ServiceReply)> callback)
+MarketDataHandler::MarketDataHandler(MarketDataHandler::responder_ptr responder, CallbackFunc callback)
     : responder_(std::move(responder)), callback_(callback)
 {
     responder_->StartCall(&tags.start_done);
 }
 
-MarketDataHandler::MarketDataHandler(grpc::CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, std::function<void (ServiceReply)> callback)
+MarketDataHandler::MarketDataHandler(grpc::CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, CallbackFunc callback)
     : callback_(callback)
 {
     std::string meta_value = "Bearer " + token;
@@ -103,7 +103,7 @@ void MarketDataHandler::on_write_done()
     }
 }
 
-OrdersHandler::OrdersHandler(OrdersHandler::responder_ptr responder, std::function<void (ServiceReply)> callback)
+OrdersHandler::OrdersHandler(OrdersHandler::responder_ptr responder, CallbackFunc callback)
     : responder_(std::move(responder)), callback_(callback)
 {
     responder_->StartCall(&tags.start_done);

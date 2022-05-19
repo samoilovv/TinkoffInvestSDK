@@ -70,7 +70,7 @@ class MarketDataHandler final : public RpcHandler
 public:
     using responder_ptr = std::unique_ptr<ClientAsyncReaderWriter<MarketDataRequest, MarketDataResponse>>;
 
-    MarketDataHandler(responder_ptr responder, std::function<void (ServiceReply)> callback);
+    MarketDataHandler(responder_ptr responder, CallbackFunc callback);
     MarketDataHandler(CompletionQueue &cq_, std::unique_ptr<MarketDataStreamService::Stub> &stub_, const std::string &token, CallbackFunc callback);
     ~MarketDataHandler();
 
@@ -92,7 +92,7 @@ private:
 };
 
 /*!
-    \brief Обработчик асинхронных двунаправленных RPC вызовов OrdersStream сервиса
+    \brief Обработчик асинхронных однонаправленных RPC вызовов OrdersStream сервиса
 */
 class OrdersHandler final : public RpcHandler
 {

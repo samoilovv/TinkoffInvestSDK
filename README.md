@@ -11,7 +11,7 @@ C++ client for Tinkoff invest API
 
 ### Сборка
 
-Клонируйте проект
+Выполните клонирование репозитория
 
 ```bash
 git clone https://github.com/samoilovv/TinkoffInvestSDK.git

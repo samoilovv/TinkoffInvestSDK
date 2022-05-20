@@ -63,7 +63,7 @@ sandbox->CloseSandboxAccount(accountId);
 
 ```cpp
 
-using std;
+using namespace std;
 
 void marketStreamCallBack(ServiceReply reply)
 {
@@ -101,7 +101,7 @@ int main()
 
 ```cpp
 
-using std;
+using namespace std;
 
 void marketStreamCallBack(ServiceReply reply)
 {

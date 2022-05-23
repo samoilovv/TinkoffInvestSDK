@@ -29,6 +29,18 @@ add_custom_command(
         --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
         "${hw_proto}"
       DEPENDS "${hw_proto}")
+      
+execute_process(
+    COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${CMAKE_CURRENT_BINARY_DIR}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    RESULT_VARIABLE result
+    )
+
+if (result EQUAL 0)
+    message(STATUS "public keyword has been changed to public_ in all autogen source files")
+else()
+    message(STATUS "public-public_ changing error, see fix_keywords.sh for more details")
+endif()      
     
 add_library(hw_grpc_proto
   ${OUTPUT_PB_SOURCES}
@@ -68,7 +80,6 @@ add_custom_command(
   TARGET ${PROJECT_NAME}
   PRE_BUILD
   COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${CMAKE_CURRENT_BINARY_DIR}
-  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
        
 add_subdirectory(samples)

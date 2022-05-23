@@ -11,11 +11,12 @@ C++ client for Tinkoff invest API
 
 ### Сборка
 
-Клонируйте проект
+Клонируйте репозиторий:
 
 ```bash
 git clone https://github.com/samoilovv/TinkoffInvestSDK.git
-git submodule update —init —recursive
+cd TinkoffInvestSDK
+git submodule update --init --recursive
 ``` 
 
 Перейдите в директорию проекта и выполните следующие команды:
@@ -63,7 +64,7 @@ sandbox->CloseSandboxAccount(accountId);
 
 ```cpp
 
-using std;
+using namespace std;
 
 void marketStreamCallBack(ServiceReply reply)
 {
@@ -101,7 +102,7 @@ int main()
 
 ```cpp
 
-using std;
+using namespace std;
 
 void marketStreamCallBack(ServiceReply reply)
 {

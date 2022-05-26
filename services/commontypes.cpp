@@ -24,6 +24,17 @@ const std::string ServiceReply::accountID(const int i)
     }
 }
 
+const std::string ServiceReply::accountName(const int i)
+{
+    auto response = dynamic_cast<GetAccountsResponse *>(ptr().get());
+    if (response && i < response->accounts_size())
+    {
+        return response->accounts(i).name();
+    } else {
+        return "";
+    }
+}
+
 int ServiceReply::accountCount()
 {
     auto response = dynamic_cast<GetAccountsResponse *>(ptr().get());

@@ -1,4 +1,3 @@
-#include <thread>
 #include "marketdatastreamservice.h"
 
 using grpc::ClientReaderWriter;
@@ -7,14 +6,12 @@ MarketDataStream::MarketDataStream(std::shared_ptr<grpc::Channel> channel, const
     CustomService(token),
     m_marketDataStreamService(MarketDataStreamService::NewStub(channel))
 {
-    m_grpcThread = std::unique_ptr<std::thread>(
-                   new std::thread(&RpcHandler::handlingThread, &m_cq)
-                );
+
 }
 
 MarketDataStream::~MarketDataStream()
 {
-    m_grpcThread->join();
+    if (m_grpcThread) m_grpcThread->join();
 }
 
 bool MarketDataStream::SubscribeCandles(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback)
@@ -301,7 +298,7 @@ bool MarketDataStream::SubscribeLastPrice(const Strings &figis, CallbackFunc cal
 }
 
 void MarketDataStream::SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval> > &candleInstruments, CallbackFunc callback)
-{
+{ 
     MarketDataRequest request;
     auto scr = new SubscribeCandlesRequest();
     scr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
@@ -312,7 +309,6 @@ void MarketDataStream::SubscribeCandlesAsync(const std::vector<std::pair<std::st
         instr->set_interval(candleInstrument.second);
     }
     request.set_allocated_subscribe_candles_request(scr);
-
     SendRequest(request, callback);
 }
 
@@ -325,7 +321,6 @@ void MarketDataStream::SubscribeOrderBookAsync(const std::string &figi, int32_t 
     obi->set_figi(figi);
     obi->set_depth(depth);
     request.set_allocated_subscribe_order_book_request(sobr);
-
     SendRequest(request, callback);
 }
 
@@ -340,7 +335,6 @@ void MarketDataStream::SubscribeTradesAsync(const Strings &figis, CallbackFunc c
         instr->set_figi(figi);
     }
     request.set_allocated_subscribe_trades_request(str);
-
     SendRequest(request, callback);
 }
 
@@ -355,7 +349,6 @@ void MarketDataStream::SubscribeInfoAsync(const Strings &figis, CallbackFunc cal
     }
     sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
     request.set_allocated_subscribe_info_request(sir);
-
     SendRequest(request, callback);
 }
 
@@ -370,7 +363,6 @@ void MarketDataStream::SubscribeLastPriceAsync(const Strings &figis, CallbackFun
     }
     slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
     request.set_allocated_subscribe_last_price_request(slpr);
-
     SendRequest(request, callback);
 }
 
@@ -380,7 +372,6 @@ void MarketDataStream::UnSubscribeCandlesAsync()
     auto scr = new SubscribeCandlesRequest();
     scr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     request.set_allocated_subscribe_candles_request(scr);
-
     SendRequest(request);
 }
 
@@ -390,7 +381,6 @@ void MarketDataStream::UnSubscribeOrderBookAsync()
     auto sobr = new SubscribeOrderBookRequest();
     sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     request.set_allocated_subscribe_order_book_request(sobr);
-
     SendRequest(request);
 }
 
@@ -400,7 +390,6 @@ void MarketDataStream::UnSubscribeTradesAsync()
     auto str = new SubscribeTradesRequest();
     str->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     request.set_allocated_subscribe_trades_request(str);
-
     SendRequest(request);
 }
 
@@ -410,7 +399,6 @@ void MarketDataStream::UnSubscribeLastPriceAsync()
     auto slpr = new SubscribeLastPriceRequest();
     slpr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);
     request.set_allocated_subscribe_last_price_request(slpr);
-
     SendRequest(request);
 }
 
@@ -420,7 +408,6 @@ void MarketDataStream::UnSubscribeInfoAsync()
     auto sir = new SubscribeInfoRequest();
     sir->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_UNSUBSCRIBE);;
     request.set_allocated_subscribe_info_request(sir);
-
     SendRequest(request);
 }
 
@@ -454,9 +441,12 @@ bool MarketDataStream::UnSubscribeLastPrice()
 
 void MarketDataStream::SendRequest(const MarketDataRequest &request, CallbackFunc callback)
 {
+    StartThread();
     auto handler = std::shared_ptr<MarketDataHandler>(
                 new MarketDataHandler(m_cq, m_marketDataStreamService, m_token, callback)
                 );
     handler->send(request);
     m_currentHandlers.insert(handler);
 }
+
+

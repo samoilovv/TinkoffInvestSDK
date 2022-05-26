@@ -23,6 +23,7 @@ public:
     ServiceReply(const std::shared_ptr<google::protobuf::Message> protoMsg);
     const std::shared_ptr<google::protobuf::Message> ptr();
     const std::string accountID(const int i);
+    const std::string accountName(const int i);
     int accountCount();
 
     template<class T>

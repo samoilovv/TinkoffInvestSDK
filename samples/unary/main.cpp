@@ -1,6 +1,8 @@
 #include "investapiclient.h"
 #include "sandboxservice.h"
 #include "marketdataservice.h"
+#include "usersservice.h"
+#include "ordersservice.h"
 
 int main()
 {
@@ -20,7 +22,7 @@ int main()
     //print all opened accounts id
     auto accounts = sandbox->GetSandboxAccounts();
     for (int i = 0; i < accounts.accountCount(); i++)
-        std::cout << accounts.accountID(i) << std::endl;
+        std::cout << accounts.accountID(i) << accounts.accountName(i) << std::endl;
 
     //print info about your account
     auto accountId = accounts.accountID(0);

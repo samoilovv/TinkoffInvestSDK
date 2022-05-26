@@ -3,16 +3,13 @@
 
 #include <vector>
 #include <set>
-#include <thread>
 #include <grpcpp/grpcpp.h>
 #include "marketdata.grpc.pb.h"
 #include "customservice.h"
 #include "commontypes.h"
-#include "rpchandler.h"
 
 using grpc::Channel;
 using grpc::ClientAsyncReaderWriter;
-using grpc::CompletionQueue;
 
 using namespace tinkoff::public_::invest::api::contract::v1;
 
@@ -77,11 +74,8 @@ public:
     void UnSubscribeInfoAsync();
 
 private:
-    CompletionQueue m_cq;
     std::unique_ptr<MarketDataStreamService::Stub> m_marketDataStreamService;
-    std::unique_ptr<std::thread> m_grpcThread;
     std::set<std::shared_ptr<MarketDataHandler>> m_currentHandlers;
-
     void SendRequest(const MarketDataRequest &request, CallbackFunc callback = nullptr);
 
 };

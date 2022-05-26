@@ -14,10 +14,7 @@ void RpcHandler::handlingThread(CompletionQueue *cq)
     while (cq->Next(&raw_tag, &ok))
     {
         TagData *tag = reinterpret_cast<TagData*>(raw_tag);
-        if (!ok) {
-            // Handle error
-        }
-        else
+        if (ok)
         {
             if (tag->handler)
             {

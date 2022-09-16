@@ -46,7 +46,7 @@ void OrdersStream::TradesStream(const Strings &accounts, CallbackFunc callback)
     std::unique_ptr<ClientReader<TradesStreamResponse> > reader(
         m_ordersStreamService->TradesStream(&context, request));
     while (reader->Read(&reply)) {
-        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(reply));
+        auto data = ServiceReply(std::make_shared<TradesStreamResponse>(reply), {});
         if (callback) callback(data);
     }
     Status status = reader->Finish();

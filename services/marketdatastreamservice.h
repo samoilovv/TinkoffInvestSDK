@@ -54,7 +54,7 @@ public:
     /// Запрос подписки на свечи, асинхронный вызов
     void SubscribeCandlesAsync(const std::vector<std::pair<std::string, SubscriptionInterval>> &candleInstruments, CallbackFunc callback);
     /// Запрос подписки на стаканы, асинхронный вызов
-    void SubscribeOrderBookAsync(const std::string &figi, int32_t depth, CallbackFunc callback);
+    void SubscribeOrderBookAsync(const Strings &figis, int32_t depth, CallbackFunc callback);
     /// Запрос подписки на ленту обезличенных сделок, асинхронный вызов
     void SubscribeTradesAsync(const Strings &figis, CallbackFunc callback);
     /// Запрос подписки на торговые статусы инструментов, асинхронный вызов

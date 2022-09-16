@@ -8,7 +8,7 @@ ServiceReply::ServiceReply()
 
 }
 
-ServiceReply::ServiceReply(const std::shared_ptr<google::protobuf::Message>  protoMsg) : m_replyPtr(protoMsg)
+ServiceReply::ServiceReply(const std::shared_ptr<google::protobuf::Message>  protoMsg, const Status& status, const std::string& messageIfError) : m_replyPtr(protoMsg), m_status(status), m_errorMessage(messageIfError)
 {
 
 }
@@ -51,3 +51,6 @@ const std::shared_ptr<google::protobuf::Message> ServiceReply::ptr()
     return m_replyPtr;
 }
 
+const Status& ServiceReply::GetStatus() const { return m_status; }
+
+const std::string& ServiceReply::GetErrorMessage() const { return m_errorMessage; }

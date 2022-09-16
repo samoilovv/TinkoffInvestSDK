@@ -26,7 +26,7 @@ ServiceReply Instruments::TradingSchedules(const std::string &exchange, int64_t 
     request.set_allocated_to(to);
     TradingSchedulesResponse reply;
     Status status = m_instrumentsService->TradingSchedules(makeContext().get(), request, &reply);
-    return ServiceReply::prepareServiceAnswer<TradingSchedulesResponse>(status, reply);
+    return ServiceReply::prepareServiceAnswer<TradingSchedulesResponse>(status, reply, exchange);
 }
 
 ServiceReply Instruments::BondBy(InstrumentIdType idType, const std::string &classCode, const std::string &id)

@@ -20,21 +20,24 @@ class TINKOFFINVESTSDK_EXPORT ServiceReply
 
 public:
     ServiceReply();
-    ServiceReply(const std::shared_ptr<google::protobuf::Message> protoMsg);
+    ServiceReply(const std::shared_ptr<google::protobuf::Message> protoMsg, const Status& status, const std::string& messageIfError = "");
     const std::shared_ptr<google::protobuf::Message> ptr();
     const std::string accountID(const int i);
     const std::string accountName(const int i);
     int accountCount();
+    const Status& GetStatus() const;
+	const std::string& GetErrorMessage() const;
 
-    template<class T>
-    static const ServiceReply prepareServiceAnswer(const Status &status, const T &protoMsg)
+	template<class T>
+    static const ServiceReply prepareServiceAnswer(const Status &status, const T &protoMsg, const std::string& messageIfError = "")
     {
-        return (status.ok()) ? ServiceReply(std::make_shared<T>(protoMsg)) : ServiceReply(nullptr);
+        return (status.ok()) ? ServiceReply(std::make_shared<T>(protoMsg), status) : ServiceReply(nullptr, status, messageIfError);
     }
 
 private:
     std::shared_ptr<google::protobuf::Message> m_replyPtr;
-
+    Status m_status;
+	std::string m_errorMessage;
 };
 
 using CallbackFunc = std::function<void (ServiceReply)>;

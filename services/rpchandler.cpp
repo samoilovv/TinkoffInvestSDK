@@ -85,7 +85,7 @@ void MarketDataHandler::on_ready()
 
 void MarketDataHandler::on_recv()
 {
-    auto data = ServiceReply(std::make_shared<MarketDataResponse>(incoming_));
+    auto data = ServiceReply(std::make_shared<MarketDataResponse>(incoming_), {});
     if (callback_) callback_(data);
     responder_->Read(&incoming_, &tags.read_done);
 }
@@ -129,7 +129,7 @@ void OrdersHandler::on_ready()
 
 void OrdersHandler::on_recv()
 {
-    auto data = ServiceReply(std::make_shared<TradesStreamResponse>(incoming_));
+    auto data = ServiceReply(std::make_shared<TradesStreamResponse>(incoming_), {});
     if (callback_) callback_(data);
     responder_->Read(&incoming_, &tags.read_done);
 }

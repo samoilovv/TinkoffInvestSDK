@@ -41,7 +41,7 @@ bool MarketDataStream::SubscribeCandles(const std::vector<std::pair<std::string,
 
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
-        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply), {});
         if (callback) callback(data);
     }
     writer.join();
@@ -101,7 +101,7 @@ bool MarketDataStream::SubscribeOrderBook(const std::string &figi, int32_t depth
 
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
-        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply), {});
         if (callback) callback(data);
     }
     writer.join();
@@ -163,7 +163,7 @@ bool MarketDataStream::SubscribeInfo(const Strings &figis, CallbackFunc callback
 
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
-        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply), {});
         if (callback) callback(data);
     }
     writer.join();
@@ -225,7 +225,7 @@ bool MarketDataStream::SubscribeTrades(const Strings &figis, CallbackFunc callba
 
     MarketDataResponse reply;
     while (stream->Read(&reply)) {
-        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply), {});
         if (callback) callback(data);
     }
     writer.join();
@@ -288,7 +288,7 @@ bool MarketDataStream::SubscribeLastPrice(const Strings &figis, CallbackFunc cal
     MarketDataResponse reply;
 
     while (stream->Read(&reply)) {
-        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply));
+        auto data = ServiceReply(std::make_shared<MarketDataResponse>(reply), {});
         if (callback) callback(data);
     }
     writer.join();
@@ -312,14 +312,16 @@ void MarketDataStream::SubscribeCandlesAsync(const std::vector<std::pair<std::st
     SendRequest(request, callback);
 }
 
-void MarketDataStream::SubscribeOrderBookAsync(const std::string &figi, int32_t depth, CallbackFunc callback)
+void MarketDataStream::SubscribeOrderBookAsync(const Strings &figis, int32_t depth, CallbackFunc callback)
 {
     MarketDataRequest request;
     auto sobr = new SubscribeOrderBookRequest();
     sobr->set_subscription_action(SubscriptionAction::SUBSCRIPTION_ACTION_SUBSCRIBE);
-    auto obi = sobr->add_instruments();
-    obi->set_figi(figi);
-    obi->set_depth(depth);
+    for (const auto& figi : figis) {
+        auto obi = sobr->add_instruments();
+        obi->set_figi(figi);
+        obi->set_depth(depth);
+    }
     request.set_allocated_subscribe_order_book_request(sobr);
     SendRequest(request, callback);
 }

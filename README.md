@@ -43,7 +43,7 @@ $ export TOKEN=YOUR_TOKEN
 
 InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
-//get reference to sandbox service
+//get pointer to sandbox service
 auto sandbox = std::dynamic_pointer_cast<Sandbox>(сlient.service("sandbox"));
 
 //open account
@@ -75,7 +75,7 @@ int main()
 {    
     InvestApiClient client("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
-    //get reference to MarketDataStream service
+    //get pointer to MarketDataStream service
     auto marketdata = dynamic_pointer_cast<MarketDataStream>(client.service("marketdatastream"));
 
     //subscribe to NVIDIA and Tesla Motors prices and start streaming
@@ -113,7 +113,7 @@ int main()
 {
     InvestApiClient сlient("invest-public-api.tinkoff.ru:443", getenv("TOKEN"));
 
-    //get references to MarketDataStream service
+    //get pointer to MarketDataStream service
     auto marketdata = dynamic_pointer_cast<MarketDataStream>(сlient.service("marketdatastream"));
 
     //subscribe to British American Tobacco and Visa Inc. prices 

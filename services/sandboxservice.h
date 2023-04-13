@@ -14,7 +14,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
 
     Сервис для работы с песочницей TINKOFF INVEST API
 */
-class Sandbox: public CustomService
+class TINKOFFINVESTSDK_EXPORT Sandbox: public CustomService
 {
 
 public:  

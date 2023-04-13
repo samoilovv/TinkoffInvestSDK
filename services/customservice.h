@@ -14,7 +14,7 @@ using grpc::CompletionQueue;
 /*!
     \brief  Родительский класс для всех сервисов
 */
-class CustomService
+class TINKOFFINVESTSDK_EXPORT CustomService
 {
 
 public:

@@ -18,7 +18,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
     2.отмена;
     3.получение списка стоп-заявок.
 */
-class StopOrders: public CustomService
+class TINKOFFINVESTSDK_EXPORT StopOrders: public CustomService
 {
 
 public:  

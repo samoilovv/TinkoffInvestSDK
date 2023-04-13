@@ -20,7 +20,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
     3. торговые статусы;
     4. лента сделок.
 */
-class MarketData: public CustomService
+class TINKOFFINVESTSDK_EXPORT MarketData: public CustomService
 {
 
 public:  

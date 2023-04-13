@@ -20,7 +20,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
     4.доступного остатка для вывода средств;
     5.получения различных отчётов.
 */
-class Operations: public CustomService
+class TINKOFFINVESTSDK_EXPORT Operations: public CustomService
 {
 
 public:  

@@ -17,7 +17,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
     1.списка счетов пользователя;
     2.маржинальных показателе по счёту.
 */
-class Users: public CustomService
+class TINKOFFINVESTSDK_EXPORT Users: public CustomService
 {
 
 public:  

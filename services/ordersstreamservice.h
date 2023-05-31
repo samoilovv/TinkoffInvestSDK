@@ -18,7 +18,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
 
     Сервис предназначен для получения потока сделок пользователя.
 */
-class OrdersStream: public CustomService
+class TINKOFFINVESTSDK_EXPORT OrdersStream: public CustomService
 {
 
 public:

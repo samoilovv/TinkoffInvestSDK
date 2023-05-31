@@ -19,7 +19,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
     4.размера гарантийного обеспечения по фьючерсам;
     5.дивидендов по ценной бумаге.
 */
-class Instruments: public CustomService
+class TINKOFFINVESTSDK_EXPORT Instruments: public CustomService
 {
 
 public:  

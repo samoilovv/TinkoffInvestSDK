@@ -19,7 +19,7 @@ using namespace tinkoff::public_::invest::api::contract::v1;
     4.расчёт полной стоимости;
     5.получение списка заявок.
 */
-class Orders: public CustomService
+class TINKOFFINVESTSDK_EXPORT Orders: public CustomService
 {
 
 public:  

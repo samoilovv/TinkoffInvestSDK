@@ -33,6 +33,8 @@ foreach (tink_proto ${tink_protos})
             "${tink_proto}"
           DEPENDS "${tink_proto}")
 
+      message(${OUTPUT_PB_SOURCE})
+
     file(READ ${OUTPUT_PB_SOURCE} FILE_CONTENTS)
     string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
     string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")

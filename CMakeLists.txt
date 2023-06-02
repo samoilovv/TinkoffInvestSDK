@@ -5,15 +5,20 @@ project(TinkoffInvestSDK)
 include(GenerateExportHeader)
 include(cmake/common.cmake)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+
 file(GLOB tink_protos "${CMAKE_CURRENT_SOURCE_DIR}/investAPI/src/docs/contracts/*.proto")
 
 foreach (tink_proto ${tink_protos})
 
     get_filename_component(tink_proto_path "${tink_proto}" PATH)
+    get_filename_component(tink_proto_name "${tink_proto}" NAME)
 
     file(GLOB tinkoff_proto_files "${tink_proto}")
 
     string(REPLACE ${tink_proto_path} ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_FILE_NAMES "${tinkoff_proto_files}")
+
+    string(REPLACE ".proto" "" OUTPUT_NAME "${tink_proto_name}")
 
     string(REPLACE ".proto" ".pb.cc" OUTPUT_PB_SOURCE "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".grpc.pb.cc" OUTPUT_GRPC_SOURCE "${OUTPUT_FILE_NAMES}")
@@ -57,11 +62,6 @@ foreach (tink_proto ${tink_protos})
     list(APPEND OUTPUT_GRPC_HEADERS ${OUTPUT_GRPC_HEADER})
 
 endforeach (tink_proto ${tink_protos})
-
-#add_custom_command(
-#    COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${CMAKE_CURRENT_BINARY_DIR} > output.temp
-#    OUTPUT output.temp
-#)
 
 add_library(tink_grpc_proto
   ${OUTPUT_PB_SOURCES}

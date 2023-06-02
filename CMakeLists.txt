@@ -35,7 +35,7 @@ foreach (tink_proto ${tink_protos})
 
     file(READ ${OUTPUT_PB_SOURCE} FILE_CONTENTS)
     string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
-    string(REPLACE "tinkoff::public::" "tinkoff::p_ublic_::" FILE_CONTENTS "${FILE_CONTENTS}")
+    string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")
     file(WRITE ${OUTPUT_PB_SOURCE} "${FILE_CONTENTS}")
 
     file(READ ${OUTPUT_PB_HEADER} FILE_CONTENTS)

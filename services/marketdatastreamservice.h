@@ -11,7 +11,7 @@
 using grpc::Channel;
 using grpc::ClientAsyncReaderWriter;
 
-using namespace tinkoff::p_ublic_::invest::api::contract::v1;
+using namespace tinkoff::public_::invest::api::contract::v1;
 
 /*!
     \brief Сервис получения биржевой информации в режиме стриминга

@@ -8,7 +8,7 @@
 
 using grpc::Channel;
 
-using namespace tinkoff::p_ublic_::invest::api::contract::v1;
+using namespace tinkoff::public_::invest::api::contract::v1;
 
 /*!
     \brief  Сервис работы со стоп-заявками

@@ -12,13 +12,10 @@ file(GLOB tink_protos "${CMAKE_CURRENT_SOURCE_DIR}/investAPI/src/docs/contracts/
 foreach (tink_proto ${tink_protos})
 
     get_filename_component(tink_proto_path "${tink_proto}" PATH)
-    get_filename_component(tink_proto_name "${tink_proto}" NAME)
 
     file(GLOB tinkoff_proto_files "${tink_proto}")
 
     string(REPLACE ${tink_proto_path} ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_FILE_NAMES "${tinkoff_proto_files}")
-
-    string(REPLACE ".proto" "" OUTPUT_NAME "${tink_proto_name}")
 
     string(REPLACE ".proto" ".pb.cc" OUTPUT_PB_SOURCE "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".grpc.pb.cc" OUTPUT_GRPC_SOURCE "${OUTPUT_FILE_NAMES}")
@@ -37,23 +34,23 @@ foreach (tink_proto ${tink_protos})
           DEPENDS "${tink_proto}")
 
     file(READ ${OUTPUT_PB_SOURCE} FILE_CONTENTS)
-    string(REPLACE "namespace public {" "namespace p_ublic_ {" FILE_CONTENTS "${FILE_CONTENTS}")
+    string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
     string(REPLACE "tinkoff::public::" "tinkoff::p_ublic_::" FILE_CONTENTS "${FILE_CONTENTS}")
     file(WRITE ${OUTPUT_PB_SOURCE} "${FILE_CONTENTS}")
 
     file(READ ${OUTPUT_PB_HEADER} FILE_CONTENTS)
-    string(REPLACE "namespace public {" "namespace p_ublic_ {" FILE_CONTENTS "${FILE_CONTENTS}")
-    string(REPLACE "tinkoff::public::" "tinkoff::p_ublic_::" FILE_CONTENTS "${FILE_CONTENTS}")
+    string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
+    string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")
     file(WRITE ${OUTPUT_PB_HEADER} "${FILE_CONTENTS}")
 
     file(READ ${OUTPUT_GRPC_SOURCE} FILE_CONTENTS)
-    string(REPLACE "namespace public {" "namespace p_ublic_ {" FILE_CONTENTS "${FILE_CONTENTS}")
-    string(REPLACE "tinkoff::public::" "tinkoff::p_ublic_::" FILE_CONTENTS "${FILE_CONTENTS}")
+    string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
+    string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")
     file(WRITE ${OUTPUT_GRPC_SOURCE} "${FILE_CONTENTS}")
 
     file(READ ${OUTPUT_GRPC_HEADER} FILE_CONTENTS)
-    string(REPLACE "namespace public {" "namespace p_ublic_ {" FILE_CONTENTS "${FILE_CONTENTS}")
-    string(REPLACE "tinkoff::public::" "tinkoff::p_ublic_::" FILE_CONTENTS "${FILE_CONTENTS}")
+    string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
+    string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")
     file(WRITE ${OUTPUT_GRPC_HEADER} "${FILE_CONTENTS}")
 
     list(APPEND OUTPUT_PB_SOURCES ${OUTPUT_PB_SOURCE})

@@ -22,10 +22,12 @@ foreach (tink_proto ${tink_protos})
     string(REPLACE ".proto" ".pb.h" OUTPUT_PB_HEADER "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".grpc.pb.h" OUTPUT_GRPC_HEADER "${OUTPUT_FILE_NAMES}")
 
-#    set(ENV{OUTPUT_PB_SOURCE} ${OUTPUT_PB_SOURCE})
-#    set(ENV{OUTPUT_PB_HEADER} ${OUTPUT_PB_HEADER})
-#    set(ENV{OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_SOURCE})
-#    set(ENV{OUTPUT_GRPC_HEADER} ${OUTPUT_GRPC_HEADER})
+    set(ENV{OUTPUT_PB_SOURCE} ${OUTPUT_PB_SOURCE})
+    set(ENV{OUTPUT_PB_HEADER} ${OUTPUT_PB_HEADER})
+    set(ENV{OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_SOURCE})
+    set(ENV{OUTPUT_GRPC_HEADER} ${OUTPUT_GRPC_HEADER})
+
+    message(${OUTPUT_GRPC_HEADER})
 
     add_custom_command(
           OUTPUT ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
@@ -36,7 +38,7 @@ foreach (tink_proto ${tink_protos})
             -I "${tink_proto_path}"
             --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
             "${tink_proto}"
-          COMMAND cmake -DOUTPUT_PB_SOURCE=${OUTPUT_PB_SOURCE} DOUTPUT_PB_HEADER=${OUTPUT_PB_HEADER} DOUTPUT_GRPC_SOURCE=${OUTPUT_GRPC_SOURCE} DOUTPUT_GRPC_HEADER=${OUTPUT_GRPC_HEADER} ${CMAKE_SOURCE_DIR}/cmake
+          COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
           DEPENDS "${tink_proto}")
 
     list(APPEND OUTPUT_PB_SOURCES ${OUTPUT_PB_SOURCE})

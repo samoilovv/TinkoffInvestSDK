@@ -8,7 +8,7 @@
 #include "customservice.h"
 #include "commontypes.h"
 
-using namespace tinkoff::public_::invest::api::contract::v1;
+using namespace tinkoff::p_ublic_::invest::api::contract::v1;
 
 using grpc::ClientContext;
 using grpc::CompletionQueue;

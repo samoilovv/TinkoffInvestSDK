@@ -27,6 +27,8 @@ foreach (tink_proto ${tink_protos})
     set(ENV{OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_SOURCE})
     set(ENV{OUTPUT_GRPC_HEADER} ${OUTPUT_GRPC_HEADER})
 
+    message(${OUTPUT_GRPC_HEADER})
+
     add_custom_command(
           OUTPUT ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
           COMMAND ${_PROTOBUF_PROTOC}
@@ -36,37 +38,8 @@ foreach (tink_proto ${tink_protos})
             -I "${tink_proto_path}"
             --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
             "${tink_proto}"
-          COMMAND cmake -DOUTPUT_PB_SOURCE=${OUTPUT_PB_SOURCE} DOUTPUT_PB_HEADER=${OUTPUT_PB_HEADER} DOUTPUT_GRPC_SOURCE=${OUTPUT_GRPC_SOURCE} DOUTPUT_GRPC_HEADER=${OUTPUT_GRPC_HEADER} cmake
+          COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
           DEPENDS "${tink_proto}")
-
-#    if(EXISTS ${OUTPUT_PB_SOURCE})
-#        file(READ ${OUTPUT_PB_SOURCE} FILE_CONTENTS)
-#        string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
-#        string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")
-#        file(WRITE ${OUTPUT_PB_SOURCE} "${FILE_CONTENTS}")
-#        list(APPEND OUTPUT_PB_SOURCES ${OUTPUT_PB_SOURCE})
-#    endif()
-#    if(EXISTS ${OUTPUT_PB_HEADER})
-#        file(READ ${OUTPUT_PB_HEADER} FILE_CONTENTS)
-#        string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
-#        string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")
-#        file(WRITE ${OUTPUT_PB_HEADER} "${FILE_CONTENTS}")
-#        list(APPEND OUTPUT_PB_HEADERS ${OUTPUT_PB_HEADER})
-#    endif()
-#    if(EXISTS ${OUTPUT_GRPC_SOURCE})
-#        file(READ ${OUTPUT_GRPC_SOURCE} FILE_CONTENTS)
-#        string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
-#        string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")
-#        file(WRITE ${OUTPUT_GRPC_SOURCE} "${FILE_CONTENTS}")
-#        list(APPEND OUTPUT_GRPC_SOURCES ${OUTPUT_GRPC_SOURCE})
-#    endif()
-#    if(EXISTS ${OUTPUT_GRPC_HEADER})
-#        file(READ ${OUTPUT_GRPC_HEADER} FILE_CONTENTS)
-#        string(REPLACE "namespace public {" "namespace public_ {" FILE_CONTENTS "${FILE_CONTENTS}")
-#        string(REPLACE "tinkoff::public::" "tinkoff::public_::" FILE_CONTENTS "${FILE_CONTENTS}")
-#        file(WRITE ${OUTPUT_GRPC_HEADER} "${FILE_CONTENTS}")
-#        list(APPEND OUTPUT_GRPC_HEADERS ${OUTPUT_GRPC_HEADER})
-#    endif()
 
     list(APPEND OUTPUT_PB_SOURCES ${OUTPUT_PB_SOURCE})
     list(APPEND OUTPUT_PB_HEADERS ${OUTPUT_PB_HEADER})

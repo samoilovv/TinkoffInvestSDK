@@ -22,16 +22,6 @@ foreach (tink_proto ${tink_protos})
     string(REPLACE ".proto" ".pb.h" OUTPUT_PB_HEADER "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".grpc.pb.h" OUTPUT_GRPC_HEADER "${OUTPUT_FILE_NAMES}")
 
-    get_filename_component(OUTPUT_PB_SOURCE_NAME "${OUTPUT_PB_SOURCE}" NAME)
-    get_filename_component(OUTPUT_GRPC_SOURCE_NAME "${OUTPUT_PB_SOURCE}" NAME)
-    get_filename_component(OUTPUT_PB_HEADER_NAME "${OUTPUT_PB_SOURCE}" NAME)
-    get_filename_component(OUTPUT_GRPC_HEADER_NAME "${OUTPUT_PB_SOURCE}" NAME)
-
-    set(ENV{OUTPUT_PB_SOURCE} ${OUTPUT_PB_SOURCE})
-    set(ENV{OUTPUT_PB_HEADER} ${OUTPUT_PB_HEADER})
-    set(ENV{OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_SOURCE})
-    set(ENV{OUTPUT_GRPC_HEADER} ${OUTPUT_GRPC_HEADER})
-
     message(${OUTPUT_GRPC_HEADER})
 
     if (WIN32)
@@ -44,8 +34,6 @@ foreach (tink_proto ${tink_protos})
                 -I "${tink_proto_path}"
                 --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
                 "${tink_proto}"
-#              COMMAND powershell ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.cmd ${OUTPUT_PB_SOURCE_NAME} ${OUTPUT_PB_HEADER_NAME} ${OUTPUT_GRPC_SOURCE_NAME} ${OUTPUT_GRPC_HEADER_NAME}
-
               COMMAND powershell "((Get-Content -path ${OUTPUT_PB_SOURCE} -Raw) -replace 'namespace public {','namespace public_ {') | Set-Content -Path ${OUTPUT_PB_SOURCE}"
               COMMAND powershell "((Get-Content -path ${OUTPUT_PB_SOURCE} -Raw) -replace 'tinkoff::public::','tinkoff::public_::') | Set-Content -Path ${OUTPUT_PB_SOURCE}"
               COMMAND powershell "((Get-Content -path ${OUTPUT_PB_HEADER} -Raw) -replace 'namespace public {','namespace public_ {') | Set-Content -Path ${OUTPUT_PB_HEADER}"

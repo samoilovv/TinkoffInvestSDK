@@ -17,7 +17,10 @@ foreach (tink_proto ${tink_protos})
     string(REPLACE ".proto" ".grpc.pb.cc" OUTPUT_GRPC_SOURCE "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".pb.h" OUTPUT_PB_HEADER "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".grpc.pb.h" OUTPUT_GRPC_HEADER "${OUTPUT_FILE_NAMES}")
-
+    set(str1 "namespace public {")
+    set(repl1 "namespace public_ {")
+    set(str2 "tinkoff::public::")
+    set(repl2 "tinkoff::public_::")
     if (WIN32)
         add_custom_command(
               OUTPUT ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
@@ -28,14 +31,14 @@ foreach (tink_proto ${tink_protos})
                 -I "${tink_proto_path}"
                 --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
                 "${tink_proto}"
-              COMMAND powershell "((Get-Content -path ${OUTPUT_PB_SOURCE} -Raw) -replace 'namespace public {','namespace public_ {') | Set-Content -Path ${OUTPUT_PB_SOURCE}"
-              COMMAND powershell "((Get-Content -path ${OUTPUT_PB_SOURCE} -Raw) -replace 'tinkoff::public::','tinkoff::public_::') | Set-Content -Path ${OUTPUT_PB_SOURCE}"
-              COMMAND powershell "((Get-Content -path ${OUTPUT_PB_HEADER} -Raw) -replace 'namespace public {','namespace public_ {') | Set-Content -Path ${OUTPUT_PB_HEADER}"
-              COMMAND powershell "((Get-Content -path ${OUTPUT_PB_HEADER} -Raw) -replace 'tinkoff::public::','tinkoff::public_::') | Set-Content -Path ${OUTPUT_PB_HEADER}"
-              COMMAND powershell "((Get-Content -path ${OUTPUT_GRPC_SOURCE} -Raw) -replace 'namespace public {','namespace public_ {') | Set-Content -Path ${OUTPUT_GRPC_SOURCE}"
-              COMMAND powershell "((Get-Content -path ${OUTPUT_GRPC_SOURCE} -Raw) -replace 'tinkoff::public::','tinkoff::public_::') | Set-Content -Path ${OUTPUT_GRPC_SOURCE}"
-              COMMAND powershell "((Get-Content -path ${OUTPUT_GRPC_HEADER} -Raw) -replace 'namespace public {','namespace public_ {') | Set-Content -Path ${OUTPUT_GRPC_HEADER}"
-              COMMAND powershell "((Get-Content -path ${OUTPUT_GRPC_HEADER} -Raw) -replace 'tinkoff::public::','tinkoff::public_::') | Set-Content -Path ${OUTPUT_GRPC_HEADER}"
+              COMMAND powershell "((Get-Content -path ${OUTPUT_PB_SOURCE} -Raw) -replace '${str1}','${repl1}') | Set-Content -Path ${OUTPUT_PB_SOURCE}"
+              COMMAND powershell "((Get-Content -path ${OUTPUT_PB_SOURCE} -Raw) -replace '${str2}','${repl2}') | Set-Content -Path ${OUTPUT_PB_SOURCE}"
+              COMMAND powershell "((Get-Content -path ${OUTPUT_PB_HEADER} -Raw) -replace '${str1}','${repl1}') | Set-Content -Path ${OUTPUT_PB_HEADER}"
+              COMMAND powershell "((Get-Content -path ${OUTPUT_PB_HEADER} -Raw) -replace '${str2}','${repl2}') | Set-Content -Path ${OUTPUT_PB_HEADER}"
+              COMMAND powershell "((Get-Content -path ${OUTPUT_GRPC_SOURCE} -Raw) -replace '${str1}','${repl1}') | Set-Content -Path ${OUTPUT_GRPC_SOURCE}"
+              COMMAND powershell "((Get-Content -path ${OUTPUT_GRPC_SOURCE} -Raw) -replace '${str2}','${repl2}') | Set-Content -Path ${OUTPUT_GRPC_SOURCE}"
+              COMMAND powershell "((Get-Content -path ${OUTPUT_GRPC_HEADER} -Raw) -replace '${str1}','${repl1}') | Set-Content -Path ${OUTPUT_GRPC_HEADER}"
+              COMMAND powershell "((Get-Content -path ${OUTPUT_GRPC_HEADER} -Raw) -replace '${str2}','${repl2}') | Set-Content -Path ${OUTPUT_GRPC_HEADER}"
               DEPENDS "${tink_proto}")
     else()
         add_custom_command(
@@ -47,7 +50,9 @@ foreach (tink_proto ${tink_protos})
                 -I "${tink_proto_path}"
                 --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
                 "${tink_proto}"
-              COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
+              #COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
+              COMMAND sh "sed -i -- 's/${str1}/${repl1}/g' ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}"
+              COMMAND sh "sed -i -- 's/${str2}/${repl2}/g' ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}"
               DEPENDS "${tink_proto}")
     endif()
 

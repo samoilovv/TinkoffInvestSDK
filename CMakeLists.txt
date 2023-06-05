@@ -29,17 +29,32 @@ foreach (tink_proto ${tink_protos})
 
     message(${OUTPUT_GRPC_HEADER})
 
-    add_custom_command(
-          OUTPUT ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
-          COMMAND ${_PROTOBUF_PROTOC}
-          ARGS --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
-            --proto_path ${CMAKE_BINARY_DIR}/_deps/grpc-src/third_party/protobuf/src
-            --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
-            -I "${tink_proto_path}"
-            --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
-            "${tink_proto}"
-          COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
-          DEPENDS "${tink_proto}")
+    if (WIN32)
+        add_custom_command(
+              OUTPUT ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
+              COMMAND ${_PROTOBUF_PROTOC}
+              ARGS --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
+                --proto_path ${CMAKE_BINARY_DIR}/_deps/grpc-src/third_party/protobuf/src
+                --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
+                -I "${tink_proto_path}"
+                --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
+                "${tink_proto}"
+              COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.bat ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
+              DEPENDS "${tink_proto}")
+    else()
+        add_custom_command(
+              OUTPUT ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
+              COMMAND ${_PROTOBUF_PROTOC}
+              ARGS --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
+                --proto_path ${CMAKE_BINARY_DIR}/_deps/grpc-src/third_party/protobuf/src
+                --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
+                -I "${tink_proto_path}"
+                --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
+                "${tink_proto}"
+              COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/cmake/fix_keywords.sh ${OUTPUT_PB_SOURCE} ${OUTPUT_PB_HEADER} ${OUTPUT_GRPC_SOURCE} ${OUTPUT_GRPC_HEADER}
+              DEPENDS "${tink_proto}")
+    endif()
+
 
     list(APPEND OUTPUT_PB_SOURCES ${OUTPUT_PB_SOURCE})
     list(APPEND OUTPUT_PB_HEADERS ${OUTPUT_PB_HEADER})

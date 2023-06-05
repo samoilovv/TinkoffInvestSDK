@@ -24,7 +24,7 @@ git submodule update --init --recursive
 ```bash
 mkdir build && cd build
 cmake ..
-make
+cmake --build .
 ``` 
 Первый запуск CMake вызовет скачивание зависимостей, что может занять некоторое время. 
 

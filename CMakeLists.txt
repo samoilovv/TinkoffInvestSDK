@@ -10,19 +10,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 file(GLOB tink_protos "${CMAKE_CURRENT_SOURCE_DIR}/investAPI/src/docs/contracts/*.proto")
 
 foreach (tink_proto ${tink_protos})
-
     get_filename_component(tink_proto_path "${tink_proto}" PATH)
-
     file(GLOB tinkoff_proto_files "${tink_proto}")
-
     string(REPLACE ${tink_proto_path} ${CMAKE_CURRENT_BINARY_DIR} OUTPUT_FILE_NAMES "${tinkoff_proto_files}")
-
     string(REPLACE ".proto" ".pb.cc" OUTPUT_PB_SOURCE "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".grpc.pb.cc" OUTPUT_GRPC_SOURCE "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".pb.h" OUTPUT_PB_HEADER "${OUTPUT_FILE_NAMES}")
     string(REPLACE ".proto" ".grpc.pb.h" OUTPUT_GRPC_HEADER "${OUTPUT_FILE_NAMES}")
-
-    message(${OUTPUT_GRPC_HEADER})
 
     if (WIN32)
         add_custom_command(
@@ -57,12 +51,10 @@ foreach (tink_proto ${tink_protos})
               DEPENDS "${tink_proto}")
     endif()
 
-
     list(APPEND OUTPUT_PB_SOURCES ${OUTPUT_PB_SOURCE})
     list(APPEND OUTPUT_PB_HEADERS ${OUTPUT_PB_HEADER})
     list(APPEND OUTPUT_GRPC_SOURCES ${OUTPUT_GRPC_SOURCE})
     list(APPEND OUTPUT_GRPC_HEADERS ${OUTPUT_GRPC_HEADER})
-
 endforeach (tink_proto ${tink_protos})
 
 add_library(tink_grpc_proto

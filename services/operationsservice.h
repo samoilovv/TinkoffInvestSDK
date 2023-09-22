@@ -30,7 +30,7 @@ public:
     /// Метод получения списка операций по счёту
     ServiceReply GetOperations(const std::string &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos, OperationState state, const std::string  &figi);
     /// Метод получения портфеля по счёту
-    ServiceReply GetPortfolio(const std::string &accountId);
+    ServiceReply GetPortfolio(const std::string &accountId, PortfolioRequest_CurrencyRequest currency);
     /// Метод получения списка позиций по счёту
     ServiceReply GetPositions(const std::string &accountId);
     /// Метод получения доступного остатка для вывода средств

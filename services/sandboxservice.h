@@ -40,7 +40,7 @@ public:
     /// Получение операций в песочнице по номеру счёта
     ServiceReply GetSandboxOperations(const std::string  &accountId, int64_t fromseconds, int32_t fromnanos, int64_t toseconds, int32_t tonanos);
     /// Получение портфолио в песочнице
-    ServiceReply GetSandboxPortfolio(const std::string  &accountId);
+    ServiceReply GetSandboxPortfolio(const std::string  &accountId, PortfolioRequest_CurrencyRequest currency);
     /// Пополнение счёта в песочнице
     ServiceReply SandboxPayIn(const std::string &accountId, const std::string  &currency, int64_t units, int32_t nano);
 

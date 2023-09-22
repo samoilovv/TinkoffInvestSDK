@@ -110,10 +110,11 @@ ServiceReply Sandbox::GetSandboxOperations(const std::string &accountId, int64_t
     return ServiceReply::prepareServiceAnswer<OperationsResponse>(status, reply);
 }
 
-ServiceReply Sandbox::GetSandboxPortfolio(const std::string &accountId)
+ServiceReply Sandbox::GetSandboxPortfolio(const std::string &accountId, PortfolioRequest_CurrencyRequest currency)
 {
     PortfolioRequest request;
     request.set_account_id(accountId);
+    request.set_currency(currency);
     PortfolioResponse reply;
     Status status = m_sandboxService->GetSandboxPortfolio(makeContext().get(), request, &reply);
     return ServiceReply::prepareServiceAnswer<PortfolioResponse>(status, reply);

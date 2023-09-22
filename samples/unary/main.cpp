@@ -26,7 +26,7 @@ int main()
 
     //print info about your account
     auto accountId = accounts.accountID(0);
-    auto portfolio = sandbox->GetSandboxPortfolio(accountId);
+    auto portfolio = sandbox->GetSandboxPortfolio(accountId, PortfolioRequest_CurrencyRequest_RUB);
     std::cout << portfolio.ptr()->DebugString() << std::endl;
 
     //close account

@@ -37,7 +37,7 @@ ServiceReply Sandbox::CloseSandboxAccount(const std::string &accountId)
     return ServiceReply::prepareServiceAnswer<CloseSandboxAccountResponse>(status, reply);
 }
 
-ServiceReply Sandbox::PostSandboxOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano)
+ServiceReply Sandbox::PostSandboxOrder(const std::string &figi, int64_t quantity, int64_t units, int32_t nano, OrderDirection direction, const std::string &accountId, OrderType orderType, const std::string &orderId)
 {
     PostOrderRequest request;
     request.set_figi(figi);
@@ -46,6 +46,10 @@ ServiceReply Sandbox::PostSandboxOrder(const std::string &figi, int64_t quantity
     price->set_units(units);
     price->set_nano(nano);
     request.set_allocated_price(price);
+    request.set_direction(direction);
+    request.set_account_id(accountId);
+    request.set_order_type(orderType);
+    request.set_order_id(orderId);
     PostOrderResponse reply;
     Status status = m_sandboxService->PostSandboxOrder(makeContext().get(), request, &reply);
     return ServiceReply::prepareServiceAnswer<PostOrderResponse>(status, reply);
